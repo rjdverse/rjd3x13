@@ -85,7 +85,7 @@ set_x11.JD3_X11_SPEC <- function(x,
                       "LOGADDITIVE", "PSEUDOADDITIVE"))
   calendar.sigma <- match.arg(toupper(calendar.sigma[1]),
                               c(NA, "NONE", "SIGNIF", "ALL", "SELECT"))
-  seasonal.filter <- match.arg(toupper(seasonal.filter)[1],
+  seasonal.filter <- match.arg(toupper(seasonal.filter),
                                choices = c(NA, "MSR", "STABLE", "X11DEFAULT",
                                            "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"),
                                several.ok = TRUE
@@ -132,13 +132,12 @@ set_x11.JD3_X11_SPEC <- function(x,
   if (!is.na(exclude.forecast) && is.logical(exclude.forecast)) {
     x$excludefcasts <- exclude.forecast
   }
-  if (!is.na(sigma.vector) && is.integer(sigma.vector)) {
-    if (all(sigma.vector %in% c(1, 2))) {
+  if (!any(is.na(sigma.vector))) {
+    if (!all(sigma.vector %in% c(1, 2))) {
       warning("sigma.vector must be equal to 1 or 2")
-    } else if (x$sigma != "SELECT"){
-      warning("calendar.sigma must be equal to SELECT to set sigma.vector")
-    } else {
-      x$vsigmas <- sigma.vector
+    }  else {
+      x$sigma <- "SELECT"
+      x$vsigmas <- as.integer(sigma.vector)
     }
   }
   if (!is.na(bias)) {
