@@ -135,9 +135,7 @@ set_x11.JD3_X11_SPEC <- function(x,
   if (!any(is.na(sigma.vector))) {
     if (!all(sigma.vector %in% c(1, 2))) {
       warning("sigma.vector must be equal to 1 or 2")
-    } else if (x$sigma != "SELECT"){
-      warning("calendar.sigma must be equal to SELECT to set sigma.vector")
-    } else {
+    }  else {
       x$sigma <- "SELECT"
       x$vsigmas <- as.integer(sigma.vector)
     }
