@@ -1,11 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  fig.align="center"
+)
+```
 
 # rjd3x13
 
 ## Installation
 
-``` r
+
+```{r, eval = FALSE}
 # Install development version from GitHub
 # install.packages("remotes")
 remotes::install_github("palatej/rjd3toolkit")

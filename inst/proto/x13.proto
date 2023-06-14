@@ -1,0 +1,310 @@
+syntax = "proto3";
+import public "toolkit.proto";
+import public "modelling.proto";
+import public "regarima.proto";
+import public "sa.proto";
+
+package x13;
+
+option java_multiple_files = true;
+option java_package = "demetra.x13.io.protobuf";
+option java_outer_classname = "X13Protos";
+
+enum DecompositionMode {
+  MODE_UNKNOWN = 0;
+  MODE_ADDITIVE = 1;
+  MODE_MULTIPLICATIVE = 2;
+  MODE_LOGADDITIVE = 3;
+  MODE_PSEUDOADDITIVE = 4;
+}
+  
+enum SeasonalFilter {
+	SEASONAL_FILTER_MSR=0;
+    SEASONAL_FILTER_S3X1=1;
+    SEASONAL_FILTER_S3X3=2;
+    SEASONAL_FILTER_S3X5=3;
+    SEASONAL_FILTER_S3X9=4;
+    SEASONAL_FILTER_S3X15=5;
+	SEASONAL_FILTER_STABLE=6;
+    SEASONAL_FILTER_X11DEFAULT=7;
+}
+  
+enum CalendarSigma {
+    SIGMA_NONE=0;
+    SIGMA_SIGNIF=1; 
+    SIGMA_ALL=2;
+    SIGMA_SELECT=3;
+}
+  
+enum BiasCorrection {
+    BIAS_NONE = 0;
+    BIAS_LEGACY = 1;
+    BIAS_SMOOTH = 2;
+    BIAS_RATIO = 3;	
+}
+
+message X11Spec {
+  
+  DecompositionMode mode = 1;
+  bool seasonal = 2;
+  int32 henderson = 3;
+  repeated SeasonalFilter sfilters=4;
+  double lsig = 5;
+  double usig = 6;
+  int32 nfcasts = 7;
+  int32 nbcasts = 8;
+  CalendarSigma sigma = 9;
+  repeated int32 vsigmas = 10;
+  bool exclude_fcasts = 11;
+  BiasCorrection bias = 12;
+}
+
+enum OutlierMethod{
+	OUTLIER_ADDONE = 0;
+	OUTLIER_ADDALL = 1;
+}
+
+enum EasterType {
+	EASTER_UNUSED = 0;
+	EASTER_STANDARD = 1;
+	EASTER_JULIAN = 2;
+	EASTER_SC = 3;
+}
+
+enum RegressionTest {
+	TEST_NO = 0;
+	TEST_ADD = 1;
+	TEST_REMOVE = 2;
+}
+
+enum AutomaticTradingDays {
+	TD_AUTO_NO = 0;
+	TD_AUTO_WALD = 1;
+	TD_AUTO_AIC = 2;
+	TD_AUTO_BIC = 3;
+}
+	
+		
+message RegArimaSpec {
+    
+    message BasicSpec{
+		jd3.TimeSelector span = 1;
+		bool preprocessing = 2;
+		bool preliminary_check = 3;
+    }
+	
+    message TransformSpec{
+		modelling.Transformation transformation = 1;
+		modelling.LengthOfPeriod adjust = 2;
+		double aicdiff = 3;
+		bool outliers_correction = 4;
+    }
+	
+	message OutlierSpec{
+		message Type{
+			string code = 1;
+			double va = 2;
+		}
+		repeated Type outliers = 1;
+	    jd3.TimeSelector span = 2;
+		double defva = 3;
+		OutlierMethod method = 4;
+		double monthly_tc_rate = 5;
+		int32 maxiter = 6;
+		int32 lsrun = 7;
+	}
+
+    message AutoModelSpec{
+        bool enabled = 1;
+        double ljungbox = 2;
+        double tsig = 3;
+        double predcv = 4;
+        double ubfinal = 5;
+        double ub1 = 6;
+        double ub2 = 7;
+        double cancel = 8;
+        double fct = 9;
+        bool acceptdef = 10;
+        bool mixed = 11;
+        bool balanced = 12;
+    }
+
+	message EasterSpec{
+		EasterType type = 1;
+		int32 duration = 2;
+		RegressionTest test = 3;
+		jd3.Parameter coefficient = 10;
+	}
+
+	message TradingDaysSpec{
+		modelling.TradingDays td = 1;
+		modelling.LengthOfPeriod lp = 2;
+		string holidays = 3;
+		repeated string users = 4;
+		int32 w = 5;
+		RegressionTest test = 6;
+		AutomaticTradingDays auto = 7;
+		double ptest1 = 8;
+		double ptest2= 9;
+		bool auto_adjust=10;
+		repeated jd3.Parameter tdcoefficients = 11;
+		jd3.Parameter lpcoefficient = 12;
+	}
+
+	message RegressionSpec{
+		jd3.Parameter mean = 1;
+		bool check_mean = 2;
+		TradingDaysSpec td = 3;
+		EasterSpec easter = 4;
+		repeated modelling.Outlier outliers = 5;
+		repeated modelling.TsVariable users = 6;
+		repeated modelling.InterventionVariable interventions=7;
+		repeated modelling.Ramp ramps = 8;
+	}
+
+	message EstimateSpec{
+	    jd3.TimeSelector span = 1;
+		double tol = 2;
+	}
+
+	BasicSpec basic = 1;
+	TransformSpec transform = 2;
+	OutlierSpec outlier = 3;
+	regarima.SarimaSpec arima = 4;
+    AutoModelSpec automodel = 5;
+	RegressionSpec regression = 6;
+	EstimateSpec estimate = 7;
+}
+
+message Spec{
+	RegArimaSpec regarima = 1;
+	X11Spec x11 = 2;
+	sa.BenchmarkingSpec benchmarking = 3;
+}
+
+message X11Results{
+
+    DecompositionMode mode =1;
+    jd3.TsData d1=2;
+    jd3.TsData d2=3;
+    jd3.TsData d4=4;
+    jd3.TsData d5=5;
+    jd3.TsData d6=6;
+    jd3.TsData d7=7;
+    jd3.TsData d8=8;
+    jd3.TsData d9=9;
+    jd3.TsData d10=10;
+    jd3.TsData d11=11;
+    jd3.TsData d12=12;
+    jd3.TsData d13=13;
+	
+	repeated SeasonalFilter final_seasonal_filters = 14;
+	int32 final_henderson_filter = 15;
+	double icratio =16;
+	
+    jd3.TsData b1=20;
+    jd3.TsData b2=21;
+    jd3.TsData b3=22;
+    jd3.TsData b4=23;
+    jd3.TsData b5=24;
+    jd3.TsData b6=25;
+    jd3.TsData b7=26;
+    jd3.TsData b8=27;
+    jd3.TsData b9=28;
+    jd3.TsData b10=29;
+    jd3.TsData b11=30;
+    jd3.TsData b13=31;
+    jd3.TsData b17=32;
+    jd3.TsData b20=33;
+    jd3.TsData c1=40;
+    jd3.TsData c2=41;
+    jd3.TsData c4=42;
+    jd3.TsData c5=43;
+    jd3.TsData c6=44;
+    jd3.TsData c7=45;
+    jd3.TsData c9=46;
+    jd3.TsData c10=47;
+    jd3.TsData c11=48;
+    jd3.TsData c13=49;
+    jd3.TsData c17=50;
+    jd3.TsData c20=51;
+ }
+ 
+ message MStatistics{
+	double m1 = 1;
+	double m2 = 2;
+	double m3 = 3;
+	double m4 = 4;
+	double m5 = 5;
+	double m6 = 6;
+	double m7 = 7;
+	double m8 = 8;
+	double m9 = 9;
+	double m10 = 10;
+	double m11 = 11;
+	double q = 12;
+	double qm2 = 13; 
+ }
+ 
+  message X13Preadjustment{
+ 
+	jd3.TsData a1 = 1;
+	jd3.TsData a1a = 2;
+	jd3.TsData a1b = 3;
+	jd3.TsData a6 = 4;
+	jd3.TsData a7 = 5;
+	jd3.TsData a8 = 6;
+	jd3.TsData a9 = 7;
+ }
+
+ 
+  message X13Finals{
+ 
+	jd3.TsData d11final = 1;
+	jd3.TsData d12final = 2;
+	jd3.TsData d13final = 3;
+	jd3.TsData d16 = 4;
+	jd3.TsData d18 = 5;
+	jd3.TsData d11a = 6;
+	jd3.TsData d12a = 7;
+	jd3.TsData d16a = 8;
+	jd3.TsData d18a = 9;
+	
+	jd3.TsData e1 = 10;
+	jd3.TsData e2 = 11;
+	jd3.TsData e3 = 12;
+	jd3.TsData e11 = 13;
+
+ }
+ 
+ message Diagnostics{
+ 	MStatistics mstatistics = 1;
+
+ }
+ 
+ message X13Results{
+    X13Preadjustment preadjustment = 1;
+	regarima.RegArimaModel preprocessing = 2;
+	X11Results decomposition = 3;
+    X13Finals final = 4;
+
+	Diagnostics diagnostics_x13= 5;
+	sa.Diagnostics diagnostics_sa= 6;
+}
+
+
+message RegArimaOutput{
+	regarima.RegArimaModel result = 1;
+	RegArimaSpec estimation_spec = 2;
+	RegArimaSpec result_spec = 3;
+	jd3.ProcessingLogs log = 4;
+	map<string, jd3.ProcessingDetail> details = 5;
+}
+
+message X13Output{
+	X13Results result = 1;
+	Spec estimation_spec = 2;
+	Spec result_spec = 3;
+	jd3.ProcessingLogs log = 4;
+	map<string, jd3.ProcessingDetail> details = 5;
+}
