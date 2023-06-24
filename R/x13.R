@@ -189,7 +189,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
     spec = match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
-    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
   }else{
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
@@ -197,11 +197,12 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base_core/x13/X13Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
+    jrslt <- .jcall(jrslt, "Ljdplus/x13/base/core/x13/X13Results;", "getResult")
     res = rjd3toolkit::.jd3_object(jrslt, result = TRUE)
     return (res)
   }
