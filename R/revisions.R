@@ -25,9 +25,12 @@ NULL
 #' s<-rjd3toolkit::ABS$X0.2.09.10.M
 #' q<-rjd3x13::x13(s)
 #' spec<-rjd3x13::x13_refresh(q$result_spec)
-#' ts_ids<-list(list(period="2010-01-01", start="2010-01-01", id="sa"), list(period="2010-01-01", start="2015-01-01", id="i"))
-#' data_ids<-list(list(start="2005-01-01", id="regression.td(1)"), list(start="2010-01-01", id="residuals.lb"))
-#' cmp_ids<-list(list(start="2010-01-01", end="2020-01-01", id="sa"), list(start="2010-01-01", end="2020-01-01", id="t"))
+#' ts_ids<-list(list(period="2010-01-01", start="2010-01-01", id="sa"),
+#'                               list(period="2010-01-01", start="2015-01-01", id="i"))
+#' data_ids<-list(list(start="2005-01-01", id="regression.td(1)"),
+#'                               list(start="2010-01-01", id="residuals.lb"))
+#' cmp_ids<-list(list(start="2010-01-01", end="2020-01-01", id="sa"),
+#'                               list(start="2010-01-01", end="2020-01-01", id="t"))
 #' rh<-revisions(s, spec, data_ids, ts_ids, cmp_ids)
 revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
