@@ -19,10 +19,10 @@ Imports:
   RProtoBuf (>= 0.4.17)
 SystemRequirements: Java (>= 17)
 License: EUPL
-URL: https://github.com/palatej/rjd3x13
+URL: https://github.com/rjdemetra/rjd3x13
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-BugReports: https://github.com/palatej/rjd3x13/issues
+BugReports: https://github.com/rjdemetra/rjd3x13/issues
 Encoding: UTF-8
 Collate: 
     'print.R'
