@@ -31,8 +31,8 @@ NULL
 #'                               list(start="2010-01-01", id="residuals.lb"))
 #' cmp_ids<-list(list(start="2010-01-01", end="2020-01-01", id="sa"),
 #'                               list(start="2010-01-01", end="2020-01-01", id="t"))
-#' rh<-revisions(s, spec, data_ids, ts_ids, cmp_ids)
-revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
+#' rh<-x13_revisions(s, spec, data_ids, ts_ids, cmp_ids)
+x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
   jspec<-.r2jd_spec_x13(spec)
   if (is.null(context)){
