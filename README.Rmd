@@ -47,3 +47,9 @@ summary(x13_model$result$preprocessing) # Summary of regarima model
 
 plot(x13_model) # Plot of the final decomposition
 ```
+
+To get the final components you can use the function `rjd3toolkit::sa.decomposition()`:
+
+```{r x-13-fin-comp}
+rjd3toolkit::sa.decomposition(x13_model)
+```
