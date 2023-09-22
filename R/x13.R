@@ -6,7 +6,7 @@ NULL
 #' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context list of external regressors (calendar or other) to be used for estimation
-#' @param userdefined a vector containing additional output variables.
+#' @param userdefined a vector containing additional output variables (see [x13_dictionary()]).
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
 #'
@@ -99,7 +99,6 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #'
 #'
 #' @examples
-
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' fast_x13(y,"rsa3")
 #' x13(y,"rsa5c")
@@ -124,8 +123,8 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `fast_x13()` is a faster function that only returns the results.
 #' The `jx13()` functions only returns results in a java object which will allow to customize outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
-#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string)
-#' #' If you want to customize a specification you have to create a specification object first
+#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string).
+#' If you want to customize a specification you have to create a specification object first.
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
@@ -352,12 +351,10 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
   return (.jd2r_spec_x13(jnspec))
 }
 
-#' Title
+#' X-13 Dictionary
 #'
-#' @return
+#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
 #' @export
-#'
-#' @examples
 x13_dictionary<-function(){
   return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }

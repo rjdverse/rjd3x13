@@ -63,7 +63,6 @@ summary(x13_model$result$preprocessing) # Summary of regarima model
 #> Loglikelihood:  746.7517, Adjusted loglikelihood:  -2120.875
 #> Standard error of the regression (ML estimate):  0.03927991 
 #> AIC:  4259.75 , AICc:  4260.198 , BIC:  4295.939
-
 plot(x13_model) # Plot of the final decomposition
 ```
 

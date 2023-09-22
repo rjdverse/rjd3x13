@@ -44,7 +44,6 @@ library(rjd3x13)
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x13_model <- x13(y) 
 summary(x13_model$result$preprocessing) # Summary of regarima model
-
 plot(x13_model) # Plot of the final decomposition
 ```
 
