@@ -35,13 +35,15 @@ By default this is the \code{"RG5c"} or \code{"RSA5"} specification.}
 \item{policy}{the refresh policy to apply (see details).}
 
 \item{period, start, end}{to specify the span on which outliers will be re-identified when \code{policy} equals to \code{"Outliers"}
-or \code{"Outliers_StochasticComponent"}. Span definition: \code{period}: numeric, number of observations in a year (12,4...). \code{start}: vector
-indicating the start of the series in the format \code{c(YYYY, MM)}. \code{end}: vector in the format \code{c(YYYY, MM)} indicating the date from which outliers
+or \code{"Outliers_StochasticComponent"}.
+Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
+\code{start}: vector indicating the start of the series in the format \code{c(YYYY, MM)}.
+\code{end}: vector in the format \code{c(YYYY, MM)} indicating the date from which outliers
 will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.}
 }
 \value{
 a new specification, an object of class \code{"JD3_X13_SPEC"} (\code{spec_x13()}),
-\code{"JD3_REGARIMA_SPEC"} (\code{spec_regarima()})
+\code{"JD3_REGARIMA_SPEC"} (\code{spec_regarima()}).
 }
 \description{
 Function allowing to create a new specification by updating a specification used for a previous estimation.
@@ -62,6 +64,7 @@ Available refresh policies are:
 
 \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
 and coefficients are unchanged.
+
 \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
 
 \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.

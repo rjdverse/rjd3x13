@@ -267,6 +267,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #'
 #' \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
 #' and coefficients are unchanged.
+#'
 #' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
 #'
 #' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
@@ -279,13 +280,15 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec").
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end to specify the span on which outliers will be re-identified when `policy` equals to `"Outliers"`
-#' or `"Outliers_StochasticComponent"`. Span definition: \code{period}: numeric, number of observations in a year (12,4...). \code{start}: vector
-#' indicating the start of the series in the format `c(YYYY, MM)`. \code{end}: vector in the format `c(YYYY, MM)` indicating the date from which outliers
+#' @param period,start,end to specify the span on which outliers will not be re-identified when `policy` equals to `"Outliers"`
+#' or `"Outliers_StochasticComponent"`.
+#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
+#' \code{start}: vector indicating the start of the series in the format `c(YYYY, MM)`.
+#' \code{end}: vector in the format `c(YYYY, MM)` indicating the date from which outliers
 #' will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.
 #'
 #' @return a new specification, an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
-#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`)
+#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`).
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:
