@@ -203,11 +203,11 @@ print.JD3_X11_SPEC <- function(x, ...) {
 #' @export
 print.JD3_X13_SPEC <- function(x, ...) {
 
-  print(x$regarima, enable_print_style = enable_print_style)
+  print(x$regarima)
 
   cat("\n")
 
-  print(x$x11, enable_print_style = enable_print_style)
+  print(x$x11)
 
   cat("\n", "Benchmarking", "\n", sep = "")
 
@@ -248,11 +248,11 @@ print.JD3_X13_OUTPUT<- function(x, digits = max(3L, getOption("digits") - 3L),
 }
 
 #' @export
-print.JD3X11 <- function(x) {
+print.JD3X11 <- function(x, ...) {
   table <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 
   cat("Last values\n")
-  print(tail(.preformat.ts(table)))
+  print(utils::tail(stats::.preformat.ts(table)))
 
   return(invisible(x))
 }

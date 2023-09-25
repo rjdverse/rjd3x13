@@ -6,7 +6,7 @@ NULL
 #' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context list of external regressors (calendar or other) to be used for estimation
-#' @param userdefined a vector containing additional output variables.
+#' @param userdefined a vector containing additional output variables (see [x13_dictionary()]).
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
 #'
@@ -99,7 +99,6 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #'
 #'
 #' @examples
-
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' fast_x13(y,"rsa3")
 #' x13(y,"rsa5c")
@@ -124,8 +123,8 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `fast_x13()` is a faster function that only returns the results.
 #' The `jx13()` functions only returns results in a java object which will allow to customize outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
-#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string)
-#' #' If you want to customize a specification you have to create a specification object first
+#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string).
+#' If you want to customize a specification you have to create a specification object first.
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
@@ -268,6 +267,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #'
 #' \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
 #' and coefficients are unchanged.
+#'
 #' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
 #'
 #' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
@@ -277,16 +277,18 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
 #' @param spec the current specification to be refreshed ("result_spec")
-#' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec")
+#' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec").
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
-#' @param policy the refresh policy to apply (see details)
-#' @param period,start,end to specify the span on which outliers will be re-identified when `policy` equals to `"Outliers"`
-#' or `"Outliers_StochasticComponent"`. Span definition: \code{period}: numeric, number of observations in a year (12,4...). \code{start}: vector
-#' indicating the start of the series in the format c(YYYY,MM). \code{end}: vector in the format c(YYYY,MM) indicating the date from which outliers
+#' @param policy the refresh policy to apply (see details).
+#' @param period,start,end to specify the span on which outliers will not be re-identified when `policy` equals to `"Outliers"`
+#' or `"Outliers_StochasticComponent"`.
+#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
+#' \code{start}: vector indicating the start of the series in the format `c(YYYY, MM)`.
+#' \code{end}: vector in the format `c(YYYY, MM)` indicating the date from which outliers
 #' will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.
 #'
 #' @return a new specification, an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
-#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`)
+#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`).
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:
@@ -301,7 +303,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #'# specification for first estimation
 #'spec_x13_1<-spec_x13("rsa5c")
 #'# first estimation
-#'sa_x13<- rjd3x13::x13(y_raw, spec_x13_1)
+#'sa_x13<- x13(y_raw, spec_x13_1)
 #' # refreshing the specification
 #' current_result_spec <- sa_x13$result_spec
 #' current_domain_spec <- sa_x13$estimation_spec
@@ -352,12 +354,10 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
   return (.jd2r_spec_x13(jnspec))
 }
 
-#' Title
+#' X-13 Dictionary
 #'
-#' @return
+#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
 #' @export
-#'
-#' @examples
 x13_dictionary<-function(){
   return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }

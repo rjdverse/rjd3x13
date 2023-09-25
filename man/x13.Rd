@@ -34,14 +34,14 @@ jx13(
 
 \item{context}{list of external regressors (calendar or other) to be used for estimation}
 
-\item{userdefined}{a vector containing additional output variables.}
+\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
 the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_x13()} is a faster function that only returns the results.
 The \code{jx13()} functions only returns results in a java object which will allow to customize outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
-In the estimation functions \code{x13()} and \code{fast_x13()} you can directly use a specification name (string)
-#' If you want to customize a specification you have to create a specification object first
+In the estimation functions \code{x13()} and \code{fast_x13()} you can directly use a specification name (string).
+If you want to customize a specification you have to create a specification object first.
 }
 \description{
 Seasonal Adjustment with  X13-ARIMA

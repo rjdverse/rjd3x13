@@ -8,30 +8,52 @@ NULL
 }
 
 
-#' Title
+#' Revisions History
 #'
-#' @param ts
-#' @param spec
-#' @param context
-#' @param start
-#' @param period
-#' @param data_ids
-#' @param ts_ids
+#' Compute revisions history
 #'
-#' @return
-#' @export
+#' @param ts The time series used for the estimation.
+#' @param spec The specification used.
+#' @param data_ids A `list` of `list` to specify the statistics to export.
+#' Each sub-list must contain two elements:
+#' `start` (first date to compute the history, in the format `"YYYY-MM-DD"`)
+#' and `id` (the name of the statistics, see [x13_dictionary()]).
+#' See example.
+#' @param ts_ids A `list` of `list` to specify the specific date of a component whose history is to be studied.
+#' Each sub-list must contain three elements:
+#' `start` (first date to compute the history, in the format `"YYYY-MM-DD"`),
+#' `period` (the date of the studied)
+#' and `id` (the name of the component, see [x13_dictionary()]).
+#' See example.
+#' @param cmp_ids A `list` of `list` to specify the component whose history is to be studied.
+#' Each sub-list must contain three elements:
+#' `start` (first date to compute the history, in the format `"YYYY-MM-DD"`),
+#' `end` (last date to compute the history, in the format `"YYYY-MM-DD"`)
+#' and `id` (the name of the component, see [x13_dictionary()]).
+#' As many series as periods between `start` and `end` will be exported.
+#' See example.
+#' @param context The context of the specification.
 #'
 #' @examples
-#' s<-rjd3toolkit::ABS$X0.2.09.10.M
-#' q<-rjd3x13::x13(s)
-#' spec<-rjd3x13::x13_refresh(q$result_spec)
-#' ts_ids<-list(list(period="2010-01-01", start="2010-01-01", id="sa"),
-#'                               list(period="2010-01-01", start="2015-01-01", id="i"))
-#' data_ids<-list(list(start="2005-01-01", id="regression.td(1)"),
-#'                               list(start="2010-01-01", id="residuals.lb"))
-#' cmp_ids<-list(list(start="2010-01-01", end="2020-01-01", id="sa"),
-#'                               list(start="2010-01-01", end="2020-01-01", id="t"))
-#' rh<-x13_revisions(s, spec, data_ids, ts_ids, cmp_ids)
+#' s <- rjd3toolkit::ABS$X0.2.09.10.M
+#' sa_mod <- x13(s)
+#' data_ids <- list(
+#'   # Get the coefficient of the trading-day coefficient from 2005-jan
+#'   list(start = "2005-01-01", id = "regression.td(1)"),
+#'   # Get the ljung-box statistics on residuals from 2010-jan
+#'   list(start = "2010-01-01", id = "residuals.lb"))
+#' ts_ids <- list(
+#'   # Get the SA component estimates of 2010-jan from 2010-jan
+#'   list(period = "2010-01-01", start = "2010-01-01", id = "sa"),
+#'   # Get the irregular component estimates of 2010-jan from 2015-jan
+#'   list(period = "2010-01-01", start = "2015-01-01", id = "i"))
+#' cmp_ids <- list(
+#'   # Get the SA component estimates (full time series) 2010-jan to 2020-jan
+#'   list(start = "2010-01-01", end = "2020-01-01", id = "sa"),
+#'   # Get the trend component estimates (full time series)  2010-jan to 2020-jan
+#'   list(start = "2010-01-01", end = "2020-01-01", id = "t"))
+#' rh <- x13_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
+#' @export
 x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
   jspec<-.r2jd_spec_x13(spec)
@@ -47,7 +69,7 @@ x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, cont
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "history", data_id$id, data_id$start)
       return (rjd3toolkit::.jd2r_ts(w))
     })
-    ldata<-`names<-`(ldata, data_ids)
+    names(ldata) <- sapply(data_ids, `[[`,"id")
   }
   lts<-NULL
   if (! is.null(ts_ids)){
@@ -55,7 +77,7 @@ x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, cont
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "tsHistory", ts_id$id, ts_id$period, ts_id$start)
       return (rjd3toolkit::.jd2r_ts(w))
     })
-    lts<-`names<-`(lts, sapply(ts_ids, function(z)z$id))
+   names(lts) <- sapply(ts_ids, `[[`,"id")
   }
   lcmp<-NULL
   if (! is.null(cmp_ids)){
@@ -63,7 +85,7 @@ x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, cont
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;", "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
       return (rjd3toolkit::.jd2r_mts(w))
     })
-    lcmp<-`names<-`(lcmp, sapply(cmp_ids, function(z)z$id))
+    names(lcmp) <- sapply(cmp_ids, `[[`,"id")
   }
 
   return (list(data=ldata, series=lts, components=lcmp))

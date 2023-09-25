@@ -26,7 +26,7 @@ fast_regarima(
 
 \item{context}{list of external regressors (calendar or other) to be used for estimation}
 
-\item{userdefined}{a vector containing additional output variables.}
+\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
 the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast_regarima()} is a faster function that only returns the results.

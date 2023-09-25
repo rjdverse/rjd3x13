@@ -102,12 +102,11 @@ NULL
 #' @importFrom rjd3toolkit sa.decomposition
 sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
-  return (rjd3toolkit::sadecomposition(x$preadjust$a1,
-                                  x$final$d11final,
-                                  x$final$d12final,
-                                  x$final$d10final,
-                                  # x$decomposition$d10,
-                                  x$final$d13final,
+  return (rjd3toolkit::sadecomposition(x$preadjust$a1, #y
+                                  x$final$d11final, #sa
+                                  x$final$d12final, #t
+                                  x$final$d16, #s
+                                  x$final$d13final, #i
                                   x$preprocessing$description$log
   ))
 
@@ -115,7 +114,7 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
 
 #' @export
 sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::sadecomposition(x$result, ...))
+  return (rjd3toolkit::sa.decomposition(x$result, ...))
 }
 
 
