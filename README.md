@@ -69,10 +69,10 @@ plot(x13_model) # Plot of the final decomposition
 <img src="man/figures/README-x-13-final-1.png" style="display: block; margin: auto;" />
 
 To get the final components you can use the function
-`rjd3toolkit::sa.decomposition()`:
+`rjd3toolkit::sa_decomposition()`:
 
 ``` r
-rjd3toolkit::sa.decomposition(x13_model)
+rjd3toolkit::sa_decomposition(x13_model)
 #> Last values
 #>          series       sa    trend      seas       irr
 #> Sep 2016 1393.5 1556.806 1548.194 0.8951022 1.0055624

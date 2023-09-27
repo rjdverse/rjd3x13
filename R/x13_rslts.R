@@ -1,5 +1,5 @@
 #' @include utils.R
-#' @importFrom rjd3toolkit sa.decomposition
+#' @importFrom rjd3toolkit sa_decomposition
 NULL
 
 .regarima_rslts <- function(jrslts){
@@ -99,8 +99,8 @@ NULL
 ############################# Generics
 
 #' @export
-#' @importFrom rjd3toolkit sa.decomposition
-sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
+#' @importFrom rjd3toolkit sa_decomposition
+sa_decomposition.JD3_X13_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
   return (rjd3toolkit::sadecomposition(x$preadjust$a1, #y
                                   x$final$d11final, #sa
@@ -113,8 +113,8 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
 }
 
 #' @export
-sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::sa.decomposition(x$result, ...))
+sa_decomposition.JD3_X13_OUTPUT<-function(x, ...){
+  return (rjd3toolkit::sa_decomposition(x$result, ...))
 }
 
 
