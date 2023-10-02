@@ -28,7 +28,7 @@ NULL
 #' fast_regarima(y, spec = sp)
 #' @export
 regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -54,7 +54,7 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
 #' @export
 #' @rdname regarima
 fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -127,7 +127,7 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' If you want to customize a specification you have to create a specification object first.
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -155,7 +155,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
 #' @export
 #' @rdname x13
 fast_x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -182,7 +182,7 @@ fast_x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
 #' @export
 #' @rdname x13
 jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -235,7 +235,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
 #' x11(y, x11_spec)
 #' @export
 x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   jspec<-.r2jd_spec_x11(spec)
   jrslt<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
