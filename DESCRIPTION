@@ -25,6 +25,7 @@ Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3x13/issues
 Encoding: UTF-8
 Collate: 
+    'deprecated.R'
     'print.R'
     'regarima_generic.R'
     'utils.R'

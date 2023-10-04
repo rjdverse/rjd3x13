@@ -8,8 +8,8 @@ rjd3x13 offers full acces to options and outputs of X-13
 and X-11 decomposition (`rjd3x13::x11()`).
 
 The specification can be created with the functions
-`rjd3x13::spec_regarima()`, `rjd3x13::spec_x11()` or
-`rjd3x13::spec_x13()` and can be modified with the function:
+`rjd3x13::regarima_spec()`, `rjd3x13::x11_spec()` or
+`rjd3x13::x13_spec()` and can be modified with the function:
 
 - for the pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,

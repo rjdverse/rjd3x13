@@ -1,7 +1,7 @@
 
 #' Set X-11 Specification
 #'
-#' @param x the specification to be modified, object of class "JD3_X11_SPEC", default X11 spec can be obtained as 'x=spec_x11()'
+#' @param x the specification to be modified, object of class "JD3_X11_SPEC", default X11 spec can be obtained as 'x=x11_spec()'
 #' @param mode character: the decomposition mode. Determines the mode of the seasonal adjustment decomposition to be performed:
 #' `"Undefined"` - no assumption concerning the relationship between the time series components is made;
 #' `"Additive"` - assumes an additive relationship;
@@ -32,9 +32,10 @@
 #' detection and adjustment will be computed separately. Only used if `calendar.sigma = "Select"`. Possible values are: `1` or `2`.
 #' @param exclude.forecast Boolean to exclude forecasts and backcasts. If `TRUE`, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.Default= FALSE.
 #' @param bias TODO.
-#' @return  a "JD3_X11_SPEC" object, containing all the parameters
+#' @return  a "JD3_X11_SPEC" object, containing all the parameters.
+#' @seealso [x13_spec()] and [x11_spec()].
 #' @examples
-#' init_spec <- spec_x11()
+#' init_spec <- x11_spec()
 #' new_spec <- set_x11(init_spec,
 #'                    mode = "LogAdditive",
 #'                    seasonal.comp = 1,
@@ -48,7 +49,7 @@
 #'                    sigma.vector = NA,
 #'                    exclude.forecast = FALSE,
 #'                    bias = "LEGACY")
-#' @rdname spec_x11
+#' @rdname x11_spec
 #' @export
 set_x11 <- function(x,
                     mode = c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"),
