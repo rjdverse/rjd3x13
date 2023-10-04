@@ -4,7 +4,7 @@
 \alias{x11}
 \title{X-11 Decomposition Algorithm}
 \usage{
-x11(ts, spec = spec_x11(), userdefined = NULL)
+x11(ts, spec = x11_spec(), userdefined = NULL)
 }
 \arguments{
 \item{ts}{an univariate time series.}
@@ -18,7 +18,7 @@ X-11 Decomposition Algorithm
 }
 \examples{
 y <- rjd3toolkit::ABS$X0.2.09.10.M
-x11_spec <- spec_x11()
+x11_spec <- x11_spec()
 x11(y, x11_spec)
 x11_spec <- set_x11(x11_spec, henderson.filter = 13)
 x11(y, x11_spec)
