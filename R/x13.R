@@ -8,14 +8,14 @@ NULL
 #' @param context list of external regressors (calendar or other) to be used for estimation
 #' @param userdefined a vector containing additional output variables (see [x13_dictionary()]).
 #'
-#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
+#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `regarima_fast()` is a faster function that only returns the results.
 #'
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' sp = spec_regarima("rg5c")
+#' sp = regarima_spec("rg5c")
 #' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-#' fast_regarima(y, spec = sp)
+#' regarima_fast(y, spec = sp)
 #' sp = rjd3toolkit::set_transform(
 #'    rjd3toolkit::set_tradingdays(
 #'      rjd3toolkit::set_easter(sp, enabled = FALSE),
@@ -23,9 +23,9 @@ NULL
 #'   ),
 #'   fun = "None"
 #' )
-#' fast_regarima(y, spec = sp)
+#' regarima_fast(y, spec = sp)
 #' sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
-#' fast_regarima(y, spec = sp)
+#' regarima_fast(y, spec = sp)
 #' @export
 regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
@@ -53,7 +53,7 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
 }
 #' @export
 #' @rdname regarima
-fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
+regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
@@ -100,12 +100,12 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #'
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' fast_x13(y,"rsa3")
+#' x13_fast(y,"rsa3")
 #' x13(y,"rsa5c")
-#' fast_regarima(y,"rg0")
+#' regarima_fast(y,"rg0")
 #' regarima(y,"rg3")
 #'
-#' sp = spec_x13("rsa5c")
+#' sp = x13_spec("rsa5c")
 #' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' sp =  rjd3toolkit::set_transform(
@@ -118,12 +118,12 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' x13(y,spec=sp)
 #' sp = set_x11(sp,
 #'              henderson.filter = 13)
-#' fast_x13(y, spec = sp)
+#' x13_fast(y, spec = sp)
 #'
-#' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `fast_x13()` is a faster function that only returns the results.
+#' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `x13_fast()` is a faster function that only returns the results.
 #' The `jx13()` functions only returns results in a java object which will allow to customize outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
-#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string).
+#' In the estimation functions `x13()` and `x13_fast()` you can directly use a specification name (string).
 #' If you want to customize a specification you have to create a specification object first.
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
@@ -154,7 +154,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
 
 #' @export
 #' @rdname x13
-fast_x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
+x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
@@ -229,12 +229,12 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
 #'
 #' @examples
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
-#' x11_spec <- spec_x11()
+#' x11_spec <- x11_spec()
 #' x11(y, x11_spec)
 #' x11_spec <- set_x11(x11_spec, henderson.filter = 13)
 #' x11(y, x11_spec)
 #' @export
-x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
+x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   jspec<-.r2jd_spec_x11(spec)
   jrslt<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts, jspec)
@@ -301,7 +301,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #'# raw series for second (refreshed) estimation
 #'y_new <-window(y,end = 2010)
 #'# specification for first estimation
-#'spec_x13_1<-spec_x13("rsa5c")
+#'spec_x13_1<-x13_spec("rsa5c")
 #'# first estimation
 #'sa_x13<- x13(y_raw, spec_x13_1)
 #' # refreshing the specification

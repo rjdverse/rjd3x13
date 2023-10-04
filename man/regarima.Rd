@@ -2,7 +2,7 @@
 % Please edit documentation in R/x13.R
 \name{regarima}
 \alias{regarima}
-\alias{fast_regarima}
+\alias{regarima_fast}
 \title{RegARIMA model, pre-adjustment in X13}
 \usage{
 regarima(
@@ -12,7 +12,7 @@ regarima(
   userdefined = NULL
 )
 
-fast_regarima(
+regarima_fast(
   ts,
   spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
   context = NULL,
@@ -29,17 +29,17 @@ fast_regarima(
 \item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
-the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast_regarima()} is a faster function that only returns the results.
+the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{regarima_fast()} is a faster function that only returns the results.
 }
 \description{
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
 y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = spec_regarima("rg5c")
+sp = regarima_spec("rg5c")
 sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-fast_regarima(y, spec = sp)
+regarima_fast(y, spec = sp)
 sp = rjd3toolkit::set_transform(
    rjd3toolkit::set_tradingdays(
      rjd3toolkit::set_easter(sp, enabled = FALSE),
@@ -47,7 +47,7 @@ sp = rjd3toolkit::set_transform(
   ),
   fun = "None"
 )
-fast_regarima(y, spec = sp)
+regarima_fast(y, spec = sp)
 sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
-fast_regarima(y, spec = sp)
+regarima_fast(y, spec = sp)
 }

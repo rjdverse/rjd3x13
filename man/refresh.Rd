@@ -80,7 +80,7 @@ y_raw <-window(y,end = 2009)
 # raw series for second (refreshed) estimation
 y_new <-window(y,end = 2010)
 # specification for first estimation
-spec_x13_1<-spec_x13("rsa5c")
+spec_x13_1<-x13_spec("rsa5c")
 # first estimation
 sa_x13<- x13(y_raw, spec_x13_1)
 # refreshing the specification
