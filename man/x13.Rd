@@ -2,7 +2,7 @@
 % Please edit documentation in R/x13.R
 \name{x13}
 \alias{x13}
-\alias{fast_x13}
+\alias{x13_fast}
 \alias{jx13}
 \title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
@@ -13,7 +13,7 @@ x13(
   userdefined = NULL
 )
 
-fast_x13(
+x13_fast(
   ts,
   spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   context = NULL,
@@ -34,26 +34,26 @@ jx13(
 
 \item{context}{list of external regressors (calendar or other) to be used for estimation}
 
-\item{userdefined}{a vector containing additional output variables.}
+\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
-the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_x13()} is a faster function that only returns the results.
+the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{x13_fast()} is a faster function that only returns the results.
 The \code{jx13()} functions only returns results in a java object which will allow to customize outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
-In the estimation functions \code{x13()} and \code{fast_x13()} you can directly use a specification name (string)
-#' If you want to customize a specification you have to create a specification object first
+In the estimation functions \code{x13()} and \code{x13_fast()} you can directly use a specification name (string).
+If you want to customize a specification you have to create a specification object first.
 }
 \description{
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
 y = rjd3toolkit::ABS$X0.2.09.10.M
-fast_x13(y,"rsa3")
+x13_fast(y,"rsa3")
 x13(y,"rsa5c")
-fast_regarima(y,"rg0")
+regarima_fast(y,"rg0")
 regarima(y,"rg3")
 
-sp = spec_x13("rsa5c")
+sp = x13_spec("rsa5c")
 sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 sp =  rjd3toolkit::set_transform(
@@ -66,6 +66,6 @@ sp =  rjd3toolkit::set_transform(
 x13(y,spec=sp)
 sp = set_x11(sp,
              henderson.filter = 13)
-fast_x13(y, spec = sp)
+x13_fast(y, spec = sp)
 
 }

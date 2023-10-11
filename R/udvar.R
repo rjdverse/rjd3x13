@@ -42,7 +42,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
                  choices = c("x13", "regarima", "x11"))
 
   # library(rjd3x13)
-  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_tsdata(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, "RSA3")
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt$getResult(), result = TRUE)) |>
   #   sort() |>
@@ -140,7 +140,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
              "y_b", "y_b(?)", "y_eb(?)", "y_ef(?)", "y_f", "y_f(?)", "yc",
              "ycal", "ycal_f(?)")
 
-  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_tsdata(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, "RG3")
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt$getResult(), result = TRUE)) |>
   #   sort() |>
@@ -180,7 +180,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
                   "span.n", "span.start", "tde", "tde_b(?)", "tde_f(?)", "y", "y_b(?)",
                   "y_eb(?)", "y_ef(?)", "y_f(?)", "yc", "ycal", "ycal_f(?)")
 
-  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_tsdata(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts,
   #                       rjd3x13::.r2jd_spec_x11(rjd3x13::spec_x11()))
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>

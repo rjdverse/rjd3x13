@@ -19,7 +19,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...){
   diagnostics = rjd3toolkit::diagnostics(x)
   variance_decomposition = diagnostics$variance_decomposition
-  residuals_test = diagnostics$residuals_test
+  residual_tests = diagnostics$residual_tests
 
   cat("Relative contribution of the components to the stationary",
       "portion of the variance in the original series,",
@@ -38,7 +38,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
   cat("\n")
   cat(paste0(" ",
              capture.output(
-               printCoefmat(residuals_test[,"P.value", drop = FALSE], digits = digits,
+               printCoefmat(residual_tests[,"P.value", drop = FALSE], digits = digits,
                             na.print = "NA", ...)
              )
   ),
@@ -48,7 +48,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
   return(invisible(x))
 }
 print_final <- function(x, ...){
-  print(rjd3toolkit::sa.decomposition(x), ...)
+  print(rjd3toolkit::sa_decomposition(x), ...)
   return(invisible(x))
 }
 
@@ -203,11 +203,11 @@ print.JD3_X11_SPEC <- function(x, ...) {
 #' @export
 print.JD3_X13_SPEC <- function(x, ...) {
 
-  print(x$regarima, enable_print_style = enable_print_style)
+  print(x$regarima)
 
   cat("\n")
 
-  print(x$x11, enable_print_style = enable_print_style)
+  print(x$x11)
 
   cat("\n", "Benchmarking", "\n", sep = "")
 
@@ -248,11 +248,11 @@ print.JD3_X13_OUTPUT<- function(x, digits = max(3L, getOption("digits") - 3L),
 }
 
 #' @export
-print.JD3X11 <- function(x) {
+print.JD3X11 <- function(x, ...) {
   table <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 
   cat("Last values\n")
-  print(tail(.preformat.ts(table)))
+  print(utils::tail(stats::.preformat.ts(table)))
 
   return(invisible(x))
 }
@@ -266,7 +266,7 @@ plot.JD3_X13_RSLTS <- function(x, first_date = NULL, last_date = NULL,
                                colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
                                           s = "#1E6C0B", i = "#155692"),
                                ...){
-  plot(rjd3toolkit::sa.decomposition(x),
+  plot(rjd3toolkit::sa_decomposition(x),
        first_date = first_date, last_date = last_date,
        type_chart = type_chart,
        caption = caption,
@@ -297,12 +297,13 @@ diagnostics.JD3_X13_RSLTS<-function(x, ...){
   variance_decomposition = matrix(unlist(variance_decomposition),
                                   ncol = 1,
                                   dimnames = list(names(variance_decomposition), "Component"))
-  residuals_test = x$diagnostics[grep("test", names(x$diagnostics))]
-  residuals_test = data.frame(Statistic = sapply(residuals_test, function(test) test[["value"]]),
-                              P.value = sapply(residuals_test, function(test) test[["pvalue"]]),
-                              Description =  sapply(residuals_test, function(test) attr(test, "distribution")))
-  list(variance_decomposition = variance_decomposition,
-       residuals_test = residuals_test)
+  residual_tests = x$diagnostics[grep("test", names(x$diagnostics))]
+  residual_tests = data.frame(Statistic = sapply(residual_tests, function(test) test[["value"]]),
+                              P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
+                              Description =  sapply(residual_tests, function(test) attr(test, "distribution")))
+  list(preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
+       variance_decomposition = variance_decomposition,
+       residual_tests = residual_tests)
 }
 
 #' @export
