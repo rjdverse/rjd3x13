@@ -17,6 +17,8 @@ Imports:
   rJava (>= 1.0-6),
   rjd3toolkit (>= 3.1.0),
   RProtoBuf (>= 0.4.17)
+Remotes:
+  github::rjdemetra/rjd3toolkit, 
 SystemRequirements: Java (>= 17)
 License: EUPL
 URL: https://github.com/rjdemetra/rjd3x13
