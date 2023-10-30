@@ -21,7 +21,7 @@ Remotes:
   github::rjdemetra/rjd3toolkit, 
 SystemRequirements: Java (>= 17)
 License: EUPL
-URL: https://github.com/rjdemetra/rjd3x13
+URL: https://github.com/rjdemetra/rjd3x13, https://rjdemetra.github.io/rjd3x13/
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3x13/issues
