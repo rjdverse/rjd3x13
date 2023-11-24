@@ -1,7 +1,7 @@
 Package: rjd3x13
 Type: Package
 Title: Seasonal Adjustment with X-13 and 'JDemetra+ 3.0'
-Version: 3.1.0
+Version: 3.1.1
 Authors@R: c(
   person("Jean", "Palate", role = c("aut", "cre"),
                 email = "jean.palate@nbb.be"),
@@ -17,9 +17,11 @@ Imports:
   rJava (>= 1.0-6),
   rjd3toolkit (>= 3.1.0),
   RProtoBuf (>= 0.4.17)
+Remotes:
+  github::rjdemetra/rjd3toolkit, 
 SystemRequirements: Java (>= 17)
 License: EUPL
-URL: https://github.com/rjdemetra/rjd3x13
+URL: https://github.com/rjdemetra/rjd3x13, https://rjdemetra.github.io/rjd3x13/
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3x13/issues
