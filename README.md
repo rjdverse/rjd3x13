@@ -11,7 +11,7 @@ The specification can be created with the functions
 `rjd3x13::regarima_spec()`, `rjd3x13::x11_spec()` or
 `rjd3x13::x13_spec()` and can be modified with the function:
 
-- for the pre-processing: `rjd3toolkit::set_arima()`,
+- for pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
   `rjd3toolkit::set_easter()`, `rjd3toolkit::set_estimate()`,
   `rjd3toolkit::set_outlier()`, `rjd3toolkit::set_tradingdays()`,
@@ -19,9 +19,9 @@ The specification can be created with the functions
   `rjd3toolkit::remove_outlier()`, `rjd3toolkit::add_ramp()`,
   `rjd3toolkit::remove_ramp()`, `rjd3toolkit::add_usrdefvar()`;
 
-- for the decomposition: `rjd3x13::set_x11()`;
+- for decomposition: `rjd3x13::set_x11()`;
 
-- for the benchmarking: `rjd3toolkit::set_benchmarking()`.
+- for benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
 
