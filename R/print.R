@@ -310,5 +310,3 @@ diagnostics.JD3_X13_RSLTS<-function(x, ...){
 diagnostics.JD3_X13_OUTPUT<-function(x, ...){
   return (rjd3toolkit::diagnostics(x$result, ...))
 }
-
-

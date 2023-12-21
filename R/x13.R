@@ -361,5 +361,3 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
 x13_dictionary<-function(){
   return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }
-
-

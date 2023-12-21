@@ -333,5 +333,3 @@ x11_spec<-function(){
   p$benchmarking<-rjd3toolkit::.r2p_spec_benchmarking(r$benchmarking)
   return (p)
 }
-
-
