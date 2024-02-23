@@ -361,3 +361,18 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
 x13_dictionary<-function(){
   return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+x13_full_dictionary<-function(){
+  q<-.jcall("jdplus/x13/base/r/X13","[S", "fullDictionary")
+  q<-`dim<-`(q, c(6, length(q)/6))
+  q<-t(q)
+  q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
+  return (q)
+}
+

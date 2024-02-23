@@ -88,6 +88,8 @@ x11_spec<-function(){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 .r2jd_spec_regarima<-function(spec){
   p<-.r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
@@ -95,6 +97,8 @@ x11_spec<-function(){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 .jd2r_spec_regarima<-function(jspec){
   b<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
