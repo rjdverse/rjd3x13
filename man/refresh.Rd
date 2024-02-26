@@ -34,10 +34,10 @@ By default this is the \code{"RG5c"} or \code{"RSA5"} specification.}
 
 \item{policy}{the refresh policy to apply (see details).}
 
-\item{period, start, end}{to specify the span on which outliers will not be re-identified (i.e.: re-detected) when \code{policy = "Outliers"}
-or \code{policy = "Outliers_StochasticComponent"}.
+\item{period, start, end}{additional parameters used when outliers are partially re-estimated (\code{policy = "Outliers"}) or to specify the span on which additive outliers are introduced,
+normally at the end of the series  (\code{policy = "Current"}).
 Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-\code{start} and \code{end}: first and last date from which outliers will not be re-identfied,
+\code{start} and \code{end}: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
 defined as arrays of two elements: year and first period (for example, if \code{period = 12}, \code{c(1980, 1)} for January 1980).
 If they are not specified, the outliers will be re-identified on the whole series.}
 }

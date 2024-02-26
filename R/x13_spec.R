@@ -189,8 +189,9 @@ x11_spec<-function(){
     td=td,
     easter=easter,
     outliers=rjd3toolkit::.p2r_outliers(pspec$regression$outliers),
-    ramps=rjd3toolkit::.p2r_ramps(pspec$regression$ramps),
-    users=rjd3toolkit::.p2r_uservars(pspec$regression$users)
+    users=rjd3toolkit::.p2r_uservars(pspec$regression$users),
+    interventions=rjd3toolkit::.p2r_ivs(pspec$regression$interventions),
+    ramps=rjd3toolkit::.p2r_ramps(pspec$regression$ramps)
   )
 
   estimate<-list(
@@ -257,6 +258,8 @@ x11_spec<-function(){
   p$regression$mean<-rjd3toolkit::.r2p_parameter(r$regression$mean)
   p$regression$check_mean<-r$regression$check_mean
   p$regression$outliers<-rjd3toolkit::.r2p_outliers(r$regression$outliers)
+  p$regression$users<-rjd3toolkit::.r2p_uservars(r$regression$users)
+  p$regression$interventions<-rjd3toolkit::.r2p_ivs(r$regression$interventions)
   p$regression$ramps<-rjd3toolkit::.r2p_ramps(r$regression$ramps)
 
   #TD
@@ -277,7 +280,6 @@ x11_spec<-function(){
   p$regression$easter$test<-rjd3toolkit::.enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
   p$regression$easter$coefficient<-rjd3toolkit::.r2p_parameter(r$regression$easter$coefficient)
 
-  p$regression$users <- rjd3toolkit::.r2p_uservars(r$regression$users)
   #ESTIMATE
   p$estimate$span<-rjd3toolkit::.r2p_span(r$estimate$span)
   p$estimate$tol<-r$estimate$tol
