@@ -261,7 +261,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: Not Available yet, behaves like "Fixed". Will be: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
 #'
 #' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
 #'
@@ -272,7 +272,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #'
 #' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
 #'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated
+#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected from specified end date, thus all regression and Arima model coefficients are re-estimated
 #'
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
@@ -280,12 +280,13 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end to specify the span on which outliers will not be re-identified (i.e.: re-detected) when `policy = "Outliers"`
+#' @param period periodicity of the series on which the refreshed spec will be applied, an integer in (12,6,4,3,2).
+#' @param start starting date of of the series on which the refreshed spec will be applied, defined as an array of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
+#' @param end specifies the date from which outliers will be re-identified (i.e.: re-detected) when `policy = "Outliers"`
+#' or `policy = "Outliers_StochasticComponent"`, defined as an array of two elements: year and first period.
+#' If not specified, outliers will be re-identified on the whole series.
+#' Span definition: \code{period}, \code{start} and \code{end} have to be specified only when `policy = "Outliers"`
 #' or `policy = "Outliers_StochasticComponent"`.
-#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: first and last date from which outliers will not be re-identfied,
-#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
-#' If they are not specified, the outliers will be re-identified on the whole series.
 #'
 #' @return a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
