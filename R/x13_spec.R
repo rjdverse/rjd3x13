@@ -172,7 +172,9 @@ x11_spec<-function(){
     auto=rjd3toolkit::.enum_extract(x13.AutomaticTradingDays, pspec$regression$td$auto),
     autoadjust=pspec$regression$td$auto_adjust,
     tdcoefficients=rjd3toolkit::.p2r_parameters(pspec$regression$td$tdcoefficients),
-    lpcoefficient=rjd3toolkit::.p2r_parameter(pspec$regression$td$lpcoefficient)
+    lpcoefficient=rjd3toolkit::.p2r_parameter(pspec$regression$td$lpcoefficient),
+    ptest1=pspec$regression$td$ptest1,
+    ptest2=pspec$regression$td$ptest2
   )
 
   easter<-list(
@@ -273,8 +275,10 @@ x11_spec<-function(){
   p$regression$td$auto_adjust <-r$regression$td$autoadjust
   p$regression$td$tdcoefficients<-rjd3toolkit::.r2p_parameters(r$regression$td$tdcoefficients)
   p$regression$td$lpcoefficient<-rjd3toolkit::.r2p_parameter(r$regression$td$lpcoefficient)
+  p$regression$td$ptest1<-r$regression$td$ptest1
+  p$regression$td$ptest2<-r$regression$td$ptest2
 
-  #EASTER
+    #EASTER
   p$regression$easter$type<-rjd3toolkit::.enum_of(x13.EasterType, r$regression$easter$type, "EASTER")
   p$regression$easter$duration<-r$regression$easter$duration
   p$regression$easter$test<-rjd3toolkit::.enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
