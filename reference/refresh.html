@@ -90,20 +90,13 @@ By default this is the <code>"RG5c"</code> or <code>"RSA5"</code> specification.
 <dd><p>the refresh policy to apply (see details).</p></dd>
 
 
-<dt>period</dt>
-<dd><p>periodicity of the series on which the refreshed spec will be applied, an integer in (12,6,4,3,2).</p></dd>
-
-
-<dt>start</dt>
-<dd><p>starting date of of the series on which the refreshed spec will be applied, defined as an array of two elements: year and first period (for example, if <code>period = 12</code>, <code>c(1980, 1)</code> for January 1980).</p></dd>
-
-
-<dt>end</dt>
-<dd><p>specifies the date from which outliers will be re-identified (i.e.: re-detected) when <code>policy = "Outliers"</code>
-or <code>policy = "Outliers_StochasticComponent"</code>, defined as an array of two elements: year and first period.
-If not specified, outliers will be re-identified on the whole series.
-Span definition: <code>period</code>, <code>start</code> and <code>end</code> have to be specified only when <code>policy = "Outliers"</code>
-or <code>policy = "Outliers_StochasticComponent"</code>.</p></dd>
+<dt>period, start, end</dt>
+<dd><p>additional parameters used when outliers are partially re-estimated (<code>policy = "Outliers"</code>) or to specify the span on which additive outliers are introduced,
+normally at the end of the series  (<code>policy = "Current"</code>).
+Span definition: <code>period</code>: numeric, number of observations in a year (12, 4...).
+<code>start</code> and <code>end</code>: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
+defined as arrays of two elements: year and first period (for example, if <code>period = 12</code>, <code>c(1980, 1)</code> for January 1980).
+If they are not specified, the outliers will be re-identified on the whole series.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -120,13 +113,13 @@ User-defined parameters are always copied to the new refreshed specifications.
 In X-13 only the reg-arima part can be refreshed. X-11 decomposition will be completely re-run,
 keeping all the user-defined parameters from the original specification.</p>
 <p>Available refresh policies are:</p>
-<p><strong>Current</strong>: Not Available yet, behaves like "Fixed". Will be: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)</p>
+<p><strong>Current</strong>: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)</p>
 <p><strong>Fixed</strong>: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.</p>
 <p><strong>FixedParameters</strong>: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
 and coefficients are unchanged.</p>
 <p><strong>FixedAutoRegressiveParameters</strong>: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.</p>
 <p><strong>FreeParameters</strong>: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.</p>
-<p><strong>Outliers</strong>: regression variables and Arima orders are kept fixed, but outliers will be re-detected from specified end date, thus all regression and Arima model coefficients are re-estimated</p>
+<p><strong>Outliers</strong>: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated</p>
 <p><strong>Outliers_StochasticComponent</strong>: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.</p>
     </div>
     <div class="section level2">
@@ -144,16 +137,22 @@ and coefficients are unchanged.</p>
 <span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># specification for first estimation</span></span></span>
 <span class="r-in"><span><span class="va">spec_x13_1</span><span class="op">&lt;-</span><span class="fu"><a href="x13_spec.html">x13_spec</a></span><span class="op">(</span><span class="st">"rsa5c"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> '.p2r_ivs' is not an exported object from 'namespace:rjd3toolkit'</span>
 <span class="r-in"><span><span class="co"># first estimation</span></span></span>
 <span class="r-in"><span><span class="va">sa_x13</span><span class="op">&lt;-</span> <span class="fu"><a href="x13.html">x13</a></span><span class="op">(</span><span class="va">y_raw</span>, <span class="va">spec_x13_1</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'spec_x13_1' not found</span>
 <span class="r-in"><span><span class="co"># refreshing the specification</span></span></span>
 <span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_x13</span><span class="op">$</span><span class="va">result_spec</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sa_x13' not found</span>
 <span class="r-in"><span><span class="va">current_domain_spec</span> <span class="op">&lt;-</span> <span class="va">sa_x13</span><span class="op">$</span><span class="va">estimation_spec</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sa_x13' not found</span>
 <span class="r-in"><span><span class="va">spec_x13_ref</span> <span class="op">&lt;-</span> <span class="fu">x13_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>, <span class="co"># point spec to be refreshed</span></span></span>
 <span class="r-in"><span>  <span class="va">current_domain_spec</span>, <span class="co">#domain spec (set of constraints)</span></span></span>
 <span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"Fixed"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'current_result_spec' not found</span>
 <span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
 <span class="r-in"><span><span class="va">sa_x13_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13.html">x13</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_x13_ref</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'spec_x13_ref' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

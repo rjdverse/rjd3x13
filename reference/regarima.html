@@ -92,43 +92,12 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">y</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va">ABS</span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span></span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="x13_spec.html">regarima_spec</a></span><span class="op">(</span><span class="st">"rg5c"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> '.p2r_ivs' is not an exported object from 'namespace:rjd3toolkit'</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
 <span class="r-in"><span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="fu">regarima_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (0,1,1) (1,1,1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.81606    0.06959 -11.73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> bphi(1)   -0.43734    0.02661 -16.44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.82509    0.04481 -18.41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> monday          -0.008747   0.003287 -2.661</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tuesday          0.004488   0.003314  1.354</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wednesday       -0.001471   0.003294 -0.447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> thursday         0.013886   0.003325  4.176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> friday          -0.001944   0.003325 -0.585</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> saturday         0.015368   0.003304  4.651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> easter           0.051130   0.006621  7.723</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)  0.035349   0.028796  1.228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01) -0.020385   0.028885 -0.706</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TC (2000-06-01)  0.162169   0.026510  6.117</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -0.306536   0.032095 -9.551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  15 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  795.8429 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Adjusted loglikelihood:  -2071.784 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  0.03478056 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4173.568 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4174.78 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4233.883 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>     <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
@@ -136,70 +105,13 @@
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  fun <span class="op">=</span> <span class="st">"None"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="fu">regarima_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (3,1,1) (0,1,1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.16557    0.06461   2.563</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.08780    0.06435   1.364</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(3)    -0.11287    0.06047  -1.867</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.86076    0.03927 -21.918</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.22918    0.05193  -4.413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> td                 1.0015     0.8098  1.237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lp                29.6392    11.5469  2.567</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   37.0476    34.4300  1.076</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)   27.9946    35.0234  0.799</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  199.7536    34.5756  5.777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -194.6887    34.6240 -5.623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2005-04-01)  -82.3062    17.4210 -4.725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2015-07-01)   81.3334    18.0924  4.495</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2159.902 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  45.632 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4347.804 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4348.862 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4404.099 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span>  <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_outlier.html" class="external-link">set_outlier</a></span><span class="op">(</span><span class="va">sp</span>, outliers.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="fu">regarima_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (3,1,1) (0,1,1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.11808    0.09633   1.226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.03364    0.09199   0.366</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(3)    -0.15061    0.08002  -1.882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.83611    0.07714 -10.838</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.24114    0.05412  -4.456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> td                 1.0012     0.8028  1.247</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lp                30.8981    11.7820  2.622</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   37.2796    35.1800  1.060</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)    6.5622    35.1307  0.187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  194.6157    35.1753  5.533</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -201.1923    35.2286 -5.711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2005-04-01) -150.2768    35.1047 -4.281</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2169.985 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  46.77874 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4365.971 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4366.885 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4418.244 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
