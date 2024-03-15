@@ -88,6 +88,8 @@ x11_spec<-function(){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 .r2jd_spec_regarima<-function(spec){
   p<-.r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
@@ -95,6 +97,8 @@ x11_spec<-function(){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 .jd2r_spec_regarima<-function(jspec){
   b<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
@@ -168,7 +172,9 @@ x11_spec<-function(){
     auto=rjd3toolkit::.enum_extract(x13.AutomaticTradingDays, pspec$regression$td$auto),
     autoadjust=pspec$regression$td$auto_adjust,
     tdcoefficients=rjd3toolkit::.p2r_parameters(pspec$regression$td$tdcoefficients),
-    lpcoefficient=rjd3toolkit::.p2r_parameter(pspec$regression$td$lpcoefficient)
+    lpcoefficient=rjd3toolkit::.p2r_parameter(pspec$regression$td$lpcoefficient),
+    ptest1=pspec$regression$td$ptest1,
+    ptest2=pspec$regression$td$ptest2
   )
 
   easter<-list(
@@ -185,8 +191,9 @@ x11_spec<-function(){
     td=td,
     easter=easter,
     outliers=rjd3toolkit::.p2r_outliers(pspec$regression$outliers),
-    ramps=rjd3toolkit::.p2r_ramps(pspec$regression$ramps),
-    users=rjd3toolkit::.p2r_uservars(pspec$regression$users)
+    users=rjd3toolkit::.p2r_uservars(pspec$regression$users),
+    interventions=rjd3toolkit::.p2r_ivs(pspec$regression$interventions),
+    ramps=rjd3toolkit::.p2r_ramps(pspec$regression$ramps)
   )
 
   estimate<-list(
@@ -253,6 +260,8 @@ x11_spec<-function(){
   p$regression$mean<-rjd3toolkit::.r2p_parameter(r$regression$mean)
   p$regression$check_mean<-r$regression$check_mean
   p$regression$outliers<-rjd3toolkit::.r2p_outliers(r$regression$outliers)
+  p$regression$users<-rjd3toolkit::.r2p_uservars(r$regression$users)
+  p$regression$interventions<-rjd3toolkit::.r2p_ivs(r$regression$interventions)
   p$regression$ramps<-rjd3toolkit::.r2p_ramps(r$regression$ramps)
 
   #TD
@@ -266,14 +275,15 @@ x11_spec<-function(){
   p$regression$td$auto_adjust <-r$regression$td$autoadjust
   p$regression$td$tdcoefficients<-rjd3toolkit::.r2p_parameters(r$regression$td$tdcoefficients)
   p$regression$td$lpcoefficient<-rjd3toolkit::.r2p_parameter(r$regression$td$lpcoefficient)
+  p$regression$td$ptest1<-r$regression$td$ptest1
+  p$regression$td$ptest2<-r$regression$td$ptest2
 
-  #EASTER
+    #EASTER
   p$regression$easter$type<-rjd3toolkit::.enum_of(x13.EasterType, r$regression$easter$type, "EASTER")
   p$regression$easter$duration<-r$regression$easter$duration
   p$regression$easter$test<-rjd3toolkit::.enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
   p$regression$easter$coefficient<-rjd3toolkit::.r2p_parameter(r$regression$easter$coefficient)
 
-  p$regression$users <- rjd3toolkit::.r2p_uservars(r$regression$users)
   #ESTIMATE
   p$estimate$span<-rjd3toolkit::.r2p_span(r$estimate$span)
   p$estimate$tol<-r$estimate$tol
