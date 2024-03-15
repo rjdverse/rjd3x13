@@ -116,5 +116,3 @@ sa_decomposition.JD3_X13_RSLTS<-function(x, ...){
 sa_decomposition.JD3_X13_OUTPUT<-function(x, ...){
   return (rjd3toolkit::sa_decomposition(x$result, ...))
 }
-
-

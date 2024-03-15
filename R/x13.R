@@ -280,10 +280,10 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end to specify the span on which outliers will not be re-identified (i.e.: re-detected) when `policy = "Outliers"`
-#' or `policy = "Outliers_StochasticComponent"`.
+#' @param period,start,end additional parameters used when outliers are partially re-estimated (`policy = "Outliers"`) or to specify the span on which additive outliers are introduced,
+#' normally at the end of the series  (`policy = "Current"`).
 #' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: first and last date from which outliers will not be re-identfied,
+#' \code{start} and \code{end}: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
 #' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
 #' If they are not specified, the outliers will be re-identified on the whole series.
 #'
@@ -329,7 +329,14 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_regarima(refspec)
   }
-  jdom<-rjd3toolkit::.jdomain(period, start, end)
+  if (policy == 'Current'){
+    if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
+    jdom<-rjd3toolkit::.jdomain(period, start, end)
+  }
+  else if (policy == 'Outliers')
+    jdom<-rjd3toolkit::.jdomain(period, NULL, start)
+  else
+    jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_regarima(jnspec))
 }
@@ -349,7 +356,14 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_x13(refspec)
   }
-  jdom<-rjd3toolkit::.jdomain(period, start, end)
+  if (policy == 'Current'){
+    if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
+    jdom<-rjd3toolkit::.jdomain(period, start, end)
+  }
+  else if (policy == 'Outliers')
+    jdom<-rjd3toolkit::.jdomain(period, NULL, start)
+  else
+    jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_x13(jnspec))
 }
@@ -362,4 +376,17 @@ x13_dictionary<-function(){
   return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+x13_full_dictionary<-function(){
+  q<-.jcall("jdplus/x13/base/r/X13","[S", "fullDictionary")
+  q<-`dim<-`(q, c(6, length(q)/6))
+  q<-t(q)
+  q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
+  return (q)
+}
 
