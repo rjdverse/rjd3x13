@@ -103,19 +103,238 @@ If you want to customize a specification you have to create a specification obje
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">y</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va">ABS</span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span></span>
 <span class="r-in"><span><span class="fu">x13_fast</span><span class="op">(</span><span class="va">y</span>,<span class="st">"rsa3"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jrslts):</span> java.lang.NoSuchMethodError: 'jdplus.toolkit.base.protobuf.regarima.RegArimaProtos$RegArimaModel jdplus.toolkit.base.protobuf.regarima.RegArimaEstimationProto.convert(jdplus.toolkit.base.core.regsarima.regular.RegSarimaModel)'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RegARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (2,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.38042    0.06517   5.838</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.21398    0.06040   3.543</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.70246    0.05146 -13.650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.56259    0.06648  -8.462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TC (2000-06-01)  0.15476    0.03158  4.900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -0.29505    0.04425 -6.668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  720.2196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Adjusted loglikelihood:  -2147.407 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  0.04181753 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4308.814 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4309.092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4336.962 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decomposition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Monitoring and Quality Assessment Statistics: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     M stats</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m1    0.095</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m2    0.097</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m3    2.384</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m4    0.403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m5    1.940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m6    0.179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m7    0.053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m8    0.176</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m9    0.047</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m10   0.157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m11   0.154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> q     0.560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> qm2   0.617</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final filters: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter:  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trend filter: 23 terms Henderson moving average</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diagnostics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Relative contribution of the components to the stationary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> portion of the variance in the original series,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> after the removal of the long term trend (in %)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Component</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  cycle        13.259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seasonal     86.854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  irregular     0.970</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  calendar      0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  others        0.299</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  total       101.383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual seasonality tests</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 P.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.i     0.994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.sa    0.999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.i    0.045</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.sa   0.035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.i       0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.sa      0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Last values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          series       sa    trend      seas       irr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sep 2016 1393.5 1558.700 1547.466 0.8940140 1.0072601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Oct 2016 1497.4 1539.619 1543.359 0.9725785 0.9975766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov 2016 1684.3 1540.423 1541.287 1.0934011 0.9994390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dec 2016 2850.4 1561.106 1541.060 1.8258848 1.0130078</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2017 1428.5 1513.071 1542.061 0.9441065 0.9812005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2017 1092.4 1538.709 1543.697 0.7099456 0.9967689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2017 1370.3 1532.681 1545.484 0.8940545 0.9917157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2017 1522.6 1609.073 1547.232 0.9462594 1.0399684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2017 1452.4 1563.830 1548.782 0.9287456 1.0097158</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2017 1557.2 1561.361 1549.791 0.9973351 1.0074658</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jul 2017 1445.5 1519.197 1550.206 0.9514898 0.9799965</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Aug 2017 1303.1 1554.064 1550.306 0.8385112 1.0024242</span>
 <span class="r-in"><span><span class="fu">x13</span><span class="op">(</span><span class="va">y</span>,<span class="st">"rsa5c"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq):</span> java.lang.NoSuchMethodError: 'jdplus.toolkit.base.protobuf.regarima.RegArimaProtos$RegArimaModel jdplus.toolkit.base.protobuf.regarima.RegArimaEstimationProto.convert(jdplus.toolkit.base.core.regsarima.regular.RegSarimaModel)'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RegARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (0,1,1) (1,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.81551    0.06932 -11.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> bphi(1)   -0.43410    0.02650 -16.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.82463    0.04458 -18.50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> monday          -0.009156   0.003278 -2.793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tuesday          0.004523   0.003316  1.364</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> wednesday       -0.001181   0.003285 -0.360</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> thursday         0.013349   0.003304  4.040</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> friday          -0.001501   0.003313 -0.453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> saturday         0.014993   0.003293  4.553</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> easter           0.051061   0.006629  7.703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TC (2000-06-01)  0.162337   0.026546  6.115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -0.306371   0.032121 -9.538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  13 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  794.8103 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Adjusted loglikelihood:  -2072.816 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  0.03486636 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4171.633 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4172.548 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4223.906 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decomposition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Monitoring and Quality Assessment Statistics: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     M stats</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m1    0.054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m2    0.049</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m3    1.765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m4    0.089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m5    1.416</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m6    0.012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m7    0.052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m8    0.160</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m9    0.050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m10   0.124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m11   0.122</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> q     0.385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> qm2   0.427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final filters: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter:  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trend filter: 23 terms Henderson moving average</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diagnostics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Relative contribution of the components to the stationary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> portion of the variance in the original series,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> after the removal of the long term trend (in %)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Component</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  cycle        13.437</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seasonal     86.536</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  irregular     0.489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  calendar      0.599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  others        0.323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  total       101.383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual seasonality tests</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 P.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.i     0.977</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.sa    0.986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.i    0.010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.sa   0.004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.i       0.993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.sa      0.996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Last values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          series       sa    trend      seas       irr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sep 2016 1393.5 1544.948 1548.898 0.9019720 0.9974502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Oct 2016 1497.4 1569.409 1547.139 0.9541172 1.0143941</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov 2016 1684.3 1523.294 1546.638 1.1056959 0.9849069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dec 2016 2850.4 1536.891 1546.939 1.8546531 0.9935050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2017 1428.5 1547.514 1547.658 0.9230932 0.9999075</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2017 1092.4 1545.578 1548.351 0.7067905 0.9982091</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2017 1370.3 1556.916 1548.748 0.8801376 1.0052738</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2017 1522.6 1587.923 1548.518 0.9588628 1.0254470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2017 1452.4 1555.226 1547.332 0.9338837 1.0051016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2017 1557.2 1539.877 1545.264 1.0112493 0.9965141</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jul 2017 1445.5 1532.112 1542.797 0.9434688 0.9930744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Aug 2017 1303.1 1524.535 1540.385 0.8547526 0.9897103</span>
 <span class="r-in"><span><span class="fu"><a href="regarima.html">regarima_fast</a></span><span class="op">(</span><span class="va">y</span>,<span class="st">"rg0"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jrslts):</span> java.lang.NoSuchMethodError: 'jdplus.toolkit.base.protobuf.regarima.RegArimaProtos$RegArimaModel jdplus.toolkit.base.protobuf.regarima.RegArimaEstimationProto.convert(jdplus.toolkit.base.core.regsarima.regular.RegSarimaModel)'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (0,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.87640    0.02290 -38.275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.38755    0.05071  -7.642</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No regression variables</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2218.964 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  52.59136 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4443.928 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4443.987 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4455.991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="regarima.html">regarima</a></span><span class="op">(</span><span class="va">y</span>,<span class="st">"rg3"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq):</span> java.lang.NoSuchMethodError: 'jdplus.toolkit.base.protobuf.regarima.RegArimaProtos$RegArimaModel jdplus.toolkit.base.protobuf.regarima.RegArimaEstimationProto.convert(jdplus.toolkit.base.core.regsarima.regular.RegSarimaModel)'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (2,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.38042    0.06517   5.838</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.21398    0.06040   3.543</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.70246    0.05146 -13.650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.56259    0.06648  -8.462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TC (2000-06-01)  0.15476    0.03158  4.900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -0.29505    0.04425 -6.668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  720.2196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Adjusted loglikelihood:  -2147.407 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  0.04181753 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4308.814 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4309.092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4336.962 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="x13_spec.html">x13_spec</a></span><span class="op">(</span><span class="st">"rsa5c"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> '.p2r_ivs' is not an exported object from 'namespace:rjd3toolkit'</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
 <span class="r-in"><span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span>  <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>     <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
@@ -123,14 +342,194 @@ If you want to customize a specification you have to create a specification obje
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  fun <span class="op">=</span> <span class="st">"None"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="fu">x13</span><span class="op">(</span><span class="va">y</span>,spec<span class="op">=</span><span class="va">sp</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RegARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (3,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.16557    0.06461   2.563</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.08780    0.06435   1.364</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(3)    -0.11287    0.06047  -1.867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.86076    0.03927 -21.918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.22918    0.05193  -4.413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> td                 1.0015     0.8098  1.237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lp                29.6392    11.5469  2.567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   37.0476    34.4300  1.076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)   27.9946    35.0234  0.799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  199.7536    34.5756  5.777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -194.6887    34.6240 -5.623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2005-04-01)  -82.3062    17.4210 -4.725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2015-07-01)   81.3334    18.0924  4.495</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2159.902 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  45.632 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4347.804 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4348.862 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4404.099 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decomposition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Monitoring and Quality Assessment Statistics: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     M stats</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m1    0.043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m2    0.033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m3    1.909</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m4    0.447</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m5    1.607</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m6    0.399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m7    0.167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m8    0.298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m9    0.145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m10   0.308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m11   0.293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> q     0.552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> qm2   0.624</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final filters: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter:  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trend filter: 23 terms Henderson moving average</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diagnostics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Relative contribution of the components to the stationary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> portion of the variance in the original series,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> after the removal of the long term trend (in %)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Component</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  cycle         6.178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seasonal     94.402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  irregular     0.325</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  calendar      0.020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  others        1.504</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  total       102.429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual seasonality tests</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 P.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.i     0.902</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.sa    0.996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.i    0.038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.sa   0.138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.i       0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.sa      0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Last values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          series       sa    trend        seas        irr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sep 2016 1393.5 1567.439 1554.386 -173.938673  13.052790</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Oct 2016 1497.4 1547.052 1551.116  -49.651713  -4.064205</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov 2016 1684.3 1544.888 1549.070  139.411575  -4.182012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dec 2016 2850.4 1560.255 1548.078 1290.145096  12.177219</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2017 1428.5 1529.584 1547.770 -101.084412 -18.185622</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2017 1092.4 1552.751 1547.915 -460.350943   4.835817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2017 1370.3 1532.112 1548.227 -161.812246 -16.114386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2017 1522.6 1571.429 1548.386  -48.829077  23.042779</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2017 1452.4 1554.351 1548.282 -101.951014   6.069336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2017 1557.2 1548.139 1547.682    9.061423   0.456243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jul 2017 1445.5 1540.321 1546.422  -94.820887  -6.101117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Aug 2017 1303.1 1554.506 1544.648 -251.405622   9.857735</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="x11_spec.html">set_x11</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
 <span class="r-in"><span>             henderson.filter <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
 <span class="r-in"><span><span class="fu">x13_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sp' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RegARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (3,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error  T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)     0.16557    0.06461   2.563</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.08780    0.06435   1.364</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> phi(3)    -0.11287    0.06047  -1.867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.86076    0.03927 -21.918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.22918    0.05193  -4.413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> td                 1.0015     0.8098  1.237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lp                29.6392    11.5469  2.567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   37.0476    34.4300  1.076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)   27.9946    35.0234  0.799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  199.7536    34.5756  5.777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -194.6887    34.6240 -5.623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2005-04-01)  -82.3062    17.4210 -4.725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> LS (2015-07-01)   81.3334    18.0924  4.495</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2159.902 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  45.632 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4347.804 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4348.862 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4404.099 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decomposition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Monitoring and Quality Assessment Statistics: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     M stats</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m1    0.036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m2    0.029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m3    1.786</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m4    0.537</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m5    1.528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m6    0.449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m7    0.167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m8    0.290</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m9    0.144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m10   0.297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m11   0.285</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> q     0.533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> qm2   0.604</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final filters: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter:  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trend filter: 13 terms Henderson moving average</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diagnostics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Relative contribution of the components to the stationary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> portion of the variance in the original series,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> after the removal of the long term trend (in %)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Component</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  cycle         6.227</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seasonal     94.535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  irregular     0.290</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  calendar      0.020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  others        1.506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  total       102.578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual seasonality tests</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 P.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.i     0.924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.ftest.sa    0.997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.i    0.018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  seas.qstest.sa   0.117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.i       0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  td.ftest.sa      0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Final</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Last values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          series       sa    trend        seas        irr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sep 2016 1393.5 1567.255 1554.069 -173.754955  13.186079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Oct 2016 1497.4 1547.824 1551.331  -50.424459  -3.506850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nov 2016 1684.3 1546.128 1548.057  138.172189  -1.929197</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dec 2016 2850.4 1557.769 1545.941 1292.630528  11.828053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2017 1428.5 1530.142 1545.777 -101.642006 -15.634829</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2017 1092.4 1552.860 1546.573 -460.459760   6.287131</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2017 1370.3 1532.029 1548.853 -161.728778 -16.824581</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2017 1522.6 1571.073 1551.472  -48.473184  19.601512</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2017 1452.4 1554.849 1552.698 -102.448692   2.151163</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2017 1557.2 1550.052 1552.154    7.148413  -2.102681</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jul 2017 1445.5 1541.002 1549.653  -95.502435  -8.650144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Aug 2017 1303.1 1554.802 1545.625 -251.702019   9.176569</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
