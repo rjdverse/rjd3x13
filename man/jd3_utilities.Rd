@@ -5,6 +5,8 @@
 \alias{.x13_rslts}
 \alias{.jd2r_spec_x11}
 \alias{.r2jd_spec_x11}
+\alias{.r2jd_spec_regarima}
+\alias{.jd2r_spec_regarima}
 \alias{.r2jd_spec_x13}
 \alias{.jd2r_spec_x13}
 \title{Java Utility Functions}
@@ -14,6 +16,10 @@
 .jd2r_spec_x11(jspec)
 
 .r2jd_spec_x11(spec)
+
+.r2jd_spec_regarima(spec)
+
+.jd2r_spec_regarima(jspec)
 
 .r2jd_spec_x13(spec)
 
