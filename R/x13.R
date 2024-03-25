@@ -360,11 +360,15 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
     if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
     jdom<-rjd3toolkit::.jdomain(period, start, end)
   }
-  else if (policy == 'Outliers')
+  else if (policy %in% c('Outliers', "Outliers_StochasticComponent"))
     jdom<-rjd3toolkit::.jdomain(period, NULL, start)
   else
-    jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
-  jnspec<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+    jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
+  jnspec<-.jcall(
+      obj = "jdplus/x13/base/r/X13",
+      returnSig = "Ljdplus/x13/base/api/x13/X13Spec;",
+      method = "refreshSpec",
+      jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_x13(jnspec))
 }
 
