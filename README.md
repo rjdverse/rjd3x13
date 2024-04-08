@@ -76,3 +76,12 @@ plot(x13_model) # Plot of the final decomposition
 ```
 
 <img src="man/figures/README-x-13-final-1.png" style="display: block; margin: auto;" />
+
+
+## Contributing
+
+Any contribution is welcome and should be done through pull requests and/or issues.
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
