@@ -261,7 +261,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and handling the new raw data points, or any sub-span of the series as Additive Outliers (defined as new intervention variables)
 #'
 #' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
 #'
@@ -280,13 +280,13 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end additional parameters used when outliers are partially re-estimated (`policy = "Outliers"`) or to specify the span on which additive outliers are introduced,
-#' normally at the end of the series  (`policy = "Current"`).
+#' @param period,start,end  additional parameters used to specify the span on which additive outliers (AO) are introduced when `policy = "Current"`
+#' or to specify the span on which outliers will be re-detected when `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`,
+#' is this case \code{end} is unused.
+#' If \code{start} is not specified, outliers will be re-identified on the whole series.
 #' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
-#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
-#' If they are not specified, the outliers will be re-identified on the whole series.
-#'
+#' \code{start} and \code{end}: defined as arrays of two elements: year and first period (for example, `period = 12` and `c(1980, 1)` stands for January 1980)
+#' The dates corresponding \code{start} and \code{end} are included in the span definition.
 #' @return a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
 #'
@@ -297,9 +297,9 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @examples
 #'y<- rjd3toolkit::ABS$X0.2.08.10.M
 #'# raw series for first estimation
-#'y_raw <-window(y,end = 2009)
+#'y_raw <-window(y,end = c(2016,12))
 #'# raw series for second (refreshed) estimation
-#'y_new <-window(y,end = 2010)
+#'y_new <-window(y,end = c(2017,6))
 #'# specification for first estimation
 #'spec_x13_1<-x13_spec("rsa5c")
 #'# first estimation
@@ -307,9 +307,30 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' # refreshing the specification
 #' current_result_spec <- sa_x13$result_spec
 #' current_domain_spec <- sa_x13$estimation_spec
+#' # policy = "Fixed"
 #' spec_x13_ref <- x13_refresh(current_result_spec, # point spec to be refreshed
 #'   current_domain_spec, #domain spec (set of constraints)
 #'   policy = "Fixed")
+#' # 2nd estimation with refreshed specification
+#' sa_x13_ref <- x13(y_new, spec_x13_ref)
+#' # policy = "Outliers"
+#' spec_x13_ref <- x13_refresh(current_result_spec,
+#'   current_domain_spec,
+#'   policy = "Outliers",
+#'   period=12,
+#'   start=c(2017,1)) # outliers will be re-detected from January 2017 included
+#' # 2nd estimation with refreshed specification
+#' sa_x13_ref <- x13(y_new, spec_x13_ref)
+#'
+#' # policy = "Current"
+#' spec_x13_ref <- x13_refresh(current_result_spec,
+#'   current_domain_spec,
+#'   policy = "Current",
+#'   period=12,
+#'   start=c(2017,1),
+#'   end=end(y_new))
+#'   # points from January 2017 (included) until the end of the series will be treated
+#'   # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
 #' # 2nd estimation with refreshed specification
 #' sa_x13_ref <- x13(y_new, spec_x13_ref)
 #'
@@ -343,7 +364,11 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
 
 #' @rdname refresh
 #' @export
-x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
+x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
+                                                   "Outliers_StochasticComponent", "Outliers",
+                                                   "FixedParameters",
+                                                   "FixedAutoRegressiveParameters", "Fixed",
+                                                   "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
   if (!inherits(spec, "JD3_X13_SPEC"))
     stop("Invalid specification type")
