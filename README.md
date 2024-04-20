@@ -3,15 +3,15 @@
 
 # rjd3x13
 
-rjd3x13 offers full acces to options and outputs of X-13-Arima
+rjd3x13 offers full acces to options and outputs of X-13
 (`rjd3x13::x13()`), including RegARIMA modelling (`rjd3x13::regarima()`)
 and X-11 decomposition (`rjd3x13::x11()`).
 
-A specification can be created with the functions
+The specification can be created with the functions
 `rjd3x13::regarima_spec()`, `rjd3x13::x11_spec()` or
 `rjd3x13::x13_spec()` and can be modified with the function:
 
-- for pre-processing: `rjd3toolkit::set_arima()`,
+- for the pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
   `rjd3toolkit::set_easter()`, `rjd3toolkit::set_estimate()`,
   `rjd3toolkit::set_outlier()`, `rjd3toolkit::set_tradingdays()`,
@@ -19,9 +19,9 @@ A specification can be created with the functions
   `rjd3toolkit::remove_outlier()`, `rjd3toolkit::add_ramp()`,
   `rjd3toolkit::remove_ramp()`, `rjd3toolkit::add_usrdefvar()`;
 
-- for decomposition: `rjd3x13::set_x11()`;
+- for the decomposition: `rjd3x13::set_x11()`;
 
-- for benchmarking: `rjd3toolkit::set_benchmarking()`.
+- for the benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
 
@@ -77,11 +77,14 @@ plot(x13_model) # Plot of the final decomposition
 
 <img src="man/figures/README-x-13-final-1.png" style="display: block; margin: auto;" />
 
+## Package Maintenance and contributing
 
-## Contributing
-
-Any contribution is welcome and should be done through pull requests and/or issues.
+Any contribution is welcome and should be done through pull requests
+and/or issues. pull requests should include **updated tests** and
+**updated documentation**. If functionality is changed, docstrings
+should be added or updated.
 
 ## Licensing
 
-The code of this project is licensed under the [European Union Public Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
+The code of this project is licensed under the [European Union Public
+Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
