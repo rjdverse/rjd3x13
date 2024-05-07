@@ -9,6 +9,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [3.2.2] - 2024-03-15
 
-[Unreleased]: https://github.com/rjdemetra/rjd3x13/compare/v3.2.2...HEAD
-[3.2.2]: https://github.com/rjdemetra/rjd3x13/releases/tag/v3.2.2
+[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.2.2...HEAD
+[3.2.2]: https://github.com/rjdverse/rjd3x13/releases/tag/v3.2.2
 
