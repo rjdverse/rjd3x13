@@ -2,8 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-05-05T13:12Z
+last_built: 2024-05-07T08:19Z
 urls:
-  reference: https://rjdemetra.github.io/rjd3x13/reference
-  article: https://rjdemetra.github.io/rjd3x13/articles
+  reference: https://rjdverse.github.io/rjd3x13/reference
+  article: https://rjdverse.github.io/rjd3x13/articles
 
