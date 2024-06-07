@@ -1,7 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rjd3x13
+# `rjd3x13` <a href="https://rjdverse.github.io/rjd3x13/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rjd3x13)](https://CRAN.R-project.org/package=rjd3x13)
+
+[![R-CMD-check](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml)
+
+[![GH Pages
+built](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml)
+<!-- badges: end -->
 
 rjd3x13 offers full access to options and outputs of X-13
 (`rjd3x13::x13()`), including RegARIMA modelling (`rjd3x13::regarima()`)
@@ -75,6 +87,9 @@ summary(x13_model$result$preprocessing) # Summary of regarima model
 #> Loglikelihood:  746.7517, Adjusted loglikelihood:  -2120.875
 #> Standard error of the regression (ML estimate):  0.03927991 
 #> AIC:  4259.75 , AICc:  4260.198 , BIC:  4295.939
+```
+
+``` r
 
 plot(x13_model) # Plot of the final decomposition
 ```
