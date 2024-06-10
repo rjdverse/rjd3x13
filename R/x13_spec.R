@@ -38,7 +38,7 @@ NULL
 #' RSA4c/RG4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
 #' RSA5c/RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
 #' }
-#' #' @seealso
+#' @seealso
 #' - To set the pre-processing parameters: [rjd3toolkit::set_arima()], [rjd3toolkit::set_automodel()], [rjd3toolkit::set_basic()], [rjd3toolkit::set_easter()], [rjd3toolkit::set_estimate()], [rjd3toolkit::set_outlier()], [rjd3toolkit::set_tradingdays()], [rjd3toolkit::set_transform()], [rjd3toolkit::add_outlier()], [rjd3toolkit::remove_outlier()], [rjd3toolkit::add_ramp()], [rjd3toolkit::remove_ramp()], [rjd3toolkit::add_usrdefvar()].
 #' - To set the decomposition parameters: [set_x11()].
 #' - To set the benchmarking parameters: [rjd3toolkit::set_benchmarking()].
