@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* New .jar (related to release [3.2.4](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.4))
+* Some linting of R functions
+
 ## [3.2.2] - 2024-03-15
 
 [Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.2.2...HEAD
