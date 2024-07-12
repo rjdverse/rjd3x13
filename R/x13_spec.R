@@ -134,7 +134,7 @@ x11_spec<-function(){
     adjust=rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
     aicdiff=pspec$transform$aicdiff,
     outliers=pspec$transform$outliers_correction
-	)
+  )
   automodel=list(
     enabled=pspec$automodel$enabled,
     ljungbox=pspec$automodel$ljungbox,
