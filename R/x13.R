@@ -30,12 +30,12 @@ NULL
 regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
     )
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_regarima(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -45,10 +45,10 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
-    res = .regarima_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined))
+    return(NULL)
+  } else {
+    res <- .regarima_output(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 #' @export
@@ -56,12 +56,12 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
 regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
     )
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_regarima(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -71,19 +71,19 @@ regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
-    res = .regarima_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(NULL)
+  } else {
+    res <- .regarima_rslts(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
 .regarima_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.RegArimaOutput, q)
-  return (structure(list(
+  return(structure(list(
     result=rjd3toolkit::.p2r_regarima_rslts(p$result),
     estimation_spec=.p2r_spec_regarima(p$estimation_spec),
     result_spec=.p2r_spec_regarima(p$result_spec)
@@ -129,12 +129,12 @@ regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -144,10 +144,10 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
-    res = .x13_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
+    return(NULL)
+  } else {
+    res <- .x13_output(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
   }
 }
 
@@ -157,12 +157,12 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
 x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -172,10 +172,10 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
-    res = .x13_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(NULL)
+  } else {
+    res <- .x13_rslts(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -184,12 +184,12 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
 .jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -199,20 +199,20 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
+    return(NULL)
+  } else {
     jrslt <- .jcall(jrslt, "Ljdplus/x13/base/core/x13/X13Results;", "getResult")
-    res = rjd3toolkit::.jd3_object(jrslt, result = TRUE)
-    return (res)
+    res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+    return(res)
   }
 }
 
 .x13_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.X13Output, q)
-  return (structure(list(
+  return(structure(list(
     result=.p2r_x13_rslts(p$result),
     estimation_spec=.p2r_spec_x13(p$estimation_spec),
     result_spec=.p2r_spec_x13(p$result_spec)
@@ -239,10 +239,10 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
   jspec<-.r2jd_spec_x11(spec)
   jrslt<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
-    return (NULL)
-  } else{
-    res = .x11_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(NULL)
+  } else {
+    res <- .x11_rslts(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -338,14 +338,14 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @rdname refresh
 #' @export
 regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_REGARIMA_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_regarima(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
 
-  } else{
+  } else {
     if (!inherits(refspec, "JD3_REGARIMA_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_regarima(refspec)
@@ -359,7 +359,7 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
   else
     jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_regarima(jnspec))
+  return(.jd2r_spec_regarima(jnspec))
 }
 
 #' @rdname refresh
@@ -369,14 +369,14 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
                                                    "FixedParameters",
                                                    "FixedAutoRegressiveParameters", "Fixed",
                                                    "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_X13_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_x13(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
 
-  } else{
+  } else {
     if (!inherits(refspec, "JD3_X13_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_x13(refspec)
@@ -394,7 +394,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
       returnSig = "Ljdplus/x13/base/api/x13/X13Spec;",
       method = "refreshSpec",
       jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_x13(jnspec))
+  return(.jd2r_spec_x13(jnspec))
 }
 
 #' X-13 Dictionary
@@ -402,7 +402,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
 #' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
 #' @export
 x13_dictionary<-function(){
-  return (.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
+  return(.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }
 
 #' Title
@@ -416,6 +416,5 @@ x13_full_dictionary<-function(){
   q<-`dim<-`(q, c(6, length(q)/6))
   q<-t(q)
   q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
-  return (q)
+  return(q)
 }
-

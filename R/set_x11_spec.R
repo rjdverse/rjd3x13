@@ -110,7 +110,7 @@ set_x11.JD3_X11_SPEC <- function(x,
     if ((henderson.filter != 0) && (henderson.filter %% 2 == 0)) {
       warning("The variable henderson.filter should be an odd number or equal to 0.", call. = FALSE)
     } else {
-      x$henderson = henderson.filter
+      x$henderson <- henderson.filter
     }
   }
 
