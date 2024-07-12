@@ -4,33 +4,33 @@ NULL
 
 .regarima_rslts <- function(jrslts){
   if (is.jnull(jrslts))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(regarima.RegArimaModel, q)
-  return (rjd3toolkit::.p2r_regarima_rslts(rq))
+  return(rjd3toolkit::.p2r_regarima_rslts(rq))
 }
 
 #' @export
 #' @rdname jd3_utilities
 .x13_rslts<-function(jrslts){
   if (is.jnull(jrslts))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X13Results, q)
-  return (.p2r_x13_rslts(rq))
+  return(.p2r_x13_rslts(rq))
 }
 
 .x11_rslts<-function(jrslts){
   if (is.jnull(jrslts))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X11Results, q)
-  return (.p2r_x11_rslts(rq))
+  return(.p2r_x11_rslts(rq))
 }
 
 .p2r_x13_rslts<-function(p){
 
-  return (structure(
+  return(structure(
     list(
       preprocessing=rjd3toolkit::.p2r_regarima_rslts(p$preprocessing),
       preadjust=.p2r_x13_preadjust(p$preadjustment),
@@ -44,7 +44,7 @@ NULL
 }
 
 .p2r_x11_rslts<-function(p){
-  return (structure(
+  return(structure(
     list(
       d1=rjd3toolkit::.p2r_tsdata(p$d1),
       d2=rjd3toolkit::.p2r_tsdata(p$d2),
@@ -66,7 +66,7 @@ NULL
 
 
 .p2r_x13_final<-function(p){
-  return (list(
+  return(list(
       d11final=rjd3toolkit::.p2r_tsdata(p$d11final),
       d12final=rjd3toolkit::.p2r_tsdata(p$d12final),
       d13final=rjd3toolkit::.p2r_tsdata(p$d13final),
@@ -84,7 +84,7 @@ NULL
 }
 
 .p2r_x13_preadjust<-function(p){
-  return (list(
+  return(list(
       a1=rjd3toolkit::.p2r_tsdata(p$a1),
       a1a=rjd3toolkit::.p2r_tsdata(p$a1a),
       a1b=rjd3toolkit::.p2r_tsdata(p$a1b),
@@ -101,8 +101,8 @@ NULL
 #' @export
 #' @importFrom rjd3toolkit sa_decomposition
 sa_decomposition.JD3_X13_RSLTS<-function(x, ...){
-  if (is.null(x)) return (NULL)
-  return (rjd3toolkit::sadecomposition(x$preadjust$a1, #y
+  if (is.null(x)) return(NULL)
+  return(rjd3toolkit::sadecomposition(x$preadjust$a1, #y
                                   x$final$d11final, #sa
                                   x$final$d12final, #t
                                   x$final$d16, #s
@@ -114,5 +114,5 @@ sa_decomposition.JD3_X13_RSLTS<-function(x, ...){
 
 #' @export
 sa_decomposition.JD3_X13_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::sa_decomposition(x$result, ...))
+  return(rjd3toolkit::sa_decomposition(x$result, ...))
 }

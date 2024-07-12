@@ -1,18 +1,18 @@
 .add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
   if (is.null(userdefined)) {
-    x$user_defined = rjd3toolkit::user_defined(x, NULL)
+    x$user_defined <- rjd3toolkit::user_defined(x, NULL)
   } else {
     if (result) {
-      res = jx
+      res <- jx
     } else {
       if (is.null(out_class)) {
-        res = jx$getResult()
+        res <- jx$getResult()
       } else {
-        res = .jcall(jx, out_class, "getResult")
+        res <- .jcall(jx, out_class, "getResult")
       }
     }
-    res = rjd3toolkit::.jd3_object(res, result = TRUE)
-    x$user_defined = rjd3toolkit::user_defined(res, userdefined = userdefined)
+    res <- rjd3toolkit::.jd3_object(res, result = TRUE)
+    x$user_defined <- rjd3toolkit::user_defined(res, userdefined = userdefined)
   }
   x
 }
@@ -48,7 +48,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
   #   sort() |>
   #   dput()
 
-  sa_x13 = c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
+  sa_x13 <- c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
              "arima.btheta(*)", "arima.d", "arima.p", "arima.phi(*)", "arima.q",
              "arima.theta(*)", "benchmarking.original", "benchmarking.result",
              "benchmarking.target", "cal", "cal_b", "cal_b(?)", "cal_f", "cal_f(?)",
@@ -146,7 +146,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
   #   sort() |>
   #   dput()
 
-  sa_regarima = c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
+  sa_regarima <- c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
                   "arima.btheta(*)", "arima.d", "arima.p", "arima.phi(*)", "arima.q",
                   "arima.theta(*)", "cal", "cal_b(?)", "cal_f(?)", "det", "det_b(?)",
                   "det_f(?)", "det_i", "det_i_b(?)", "det_i_f(?)", "det_s", "det_s_b(?)",
@@ -187,13 +187,13 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
   #   sort() |>
   #   dput()
 
-  sa_x11 = c("b1", "b10", "b11", "b13", "b17", "b2", "b20", "b3", "b4",
+  sa_x11 <- c("b1", "b10", "b11", "b13", "b17", "b2", "b20", "b3", "b4",
              "b5", "b6", "b7", "b8", "b9", "c1", "c10", "c11", "c13", "c17",
              "c2", "c20", "c4", "c5", "c6", "c7", "c9", "d1", "d10", "d11",
              "d12", "d13", "d2", "d4", "d5", "d6", "d7", "d8", "d9", "d9-global-msr",
              "d9-msr", "d9-msr-table", "seasonal-filters", "trend-filter",
              "x11-all")
-  switch (x,
+  switch(x,
           x13 = sa_x13,
           regarima = sa_regarima,
           x11 = sa_x11

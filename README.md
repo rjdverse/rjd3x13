@@ -1,15 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rjd3x13
+# `rjd3x13` <a href="https://rjdverse.github.io/rjd3x13/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
 
-rjd3x13 offers full acces to options and outputs of X-13-Arima
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rjd3x13)](https://CRAN.R-project.org/package=rjd3x13)
+
+[![R-CMD-check](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml)
+
+[![GH Pages
+built](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml)
+<!-- badges: end -->
+
+rjd3x13 offers full access to options and outputs of X-13
 (`rjd3x13::x13()`), including RegARIMA modelling (`rjd3x13::regarima()`)
 and X-11 decomposition (`rjd3x13::x11()`).
 
-A specification can be created with the functions
-`rjd3x13::regarima_spec()`, `rjd3x13::x11_spec()` or
-`rjd3x13::x13_spec()` and can be modified with the function:
+A specification can be created with `rjd3x13::regarima_spec()`,
+`rjd3x13::x11_spec()` or `rjd3x13::x13_spec()` and can be modified with
+the following functions:
 
 - for pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
@@ -25,18 +37,36 @@ A specification can be created with the functions
 
 ## Installation
 
+Running rjd3 packages requires **Java 17 or higher**. How to set up such
+a configuration in R is explained
+[here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
+
+### Latest release
+
 To get the current stable version (from the latest release):
 
+- From GitHub:
+
 ``` r
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3x13@*release")
+remotes::install_github("rjdverse/rjd3toolkit@*release")
+remotes::install_github("rjdverse/rjd3x13@*release")
 ```
 
-To get the current development version from GitHub:
+- From [r-universe](https://rjdverse.r-universe.dev/rjd3x13):
+
+``` r
+install.packages("rjd3x13", repos = c("https://rjdverse.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+### Development version
+
+You can install the development version of **rjd3x13** from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3x13")
+remotes::install_github("rjdverse/rjd3x13")
 ```
 
 ## Usage
@@ -76,3 +106,16 @@ plot(x13_model) # Plot of the final decomposition
 ```
 
 <img src="man/figures/README-x-13-final-1.png" style="display: block; margin: auto;" />
+
+## Package Maintenance and contributing
+
+Any contribution is welcome and should be done through pull requests
+and/or issues. pull requests should include **updated tests** and
+**updated documentation**. If functionality is changed, docstrings
+should be added or updated.
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public
+Licence
+(EUPL)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).
