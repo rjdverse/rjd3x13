@@ -75,10 +75,10 @@ remotes::install_github("rjdverse/rjd3x13")
 library("rjd3x13")
 
 y <- rjd3toolkit::ABS$X0.2.09.10.M
-x13_model <- x13(y) 
+x13_model <- x13(y)
 summary(x13_model$result$preprocessing) # Summary of regarima model
 #> Log-transformation: yes 
-#> SARIMA model:  (2,1,1) (0,1,1)
+#> SARIMA model: (2,1,1) (0,1,1)
 #> 
 #> Coefficients
 #>           Estimate Std. Error  T-stat Pr(>|t|)    
@@ -92,15 +92,15 @@ summary(x13_model$result$preprocessing) # Summary of regarima model
 #> Regression model:
 #>                   Estimate Std. Error T-stat Pr(>|t|)    
 #> td               0.0023233  0.0006844  3.395 0.000755 ***
-#> easter           0.0520113  0.0084894  6.127 2.13e-09 ***
-#> TC (2000-06-01)  0.1590340  0.0288578  5.511 6.37e-08 ***
-#> AO (2000-07-01) -0.2900774  0.0400551 -7.242 2.25e-12 ***
+#> easter           0.0520113  0.0084894  6.127 2.14e-09 ***
+#> TC (2000-06-01)  0.1590340  0.0288578  5.511 6.38e-08 ***
+#> AO (2000-07-01) -0.2900774  0.0400551 -7.242 2.26e-12 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> Number of observations:  425 , Number of effective observations:  412 , Number of parameters:  9 
-#> Loglikelihood:  746.7517, Adjusted loglikelihood:  -2120.875
-#> Standard error of the regression (ML estimate):  0.03927991 
-#> AIC:  4259.75 , AICc:  4260.198 , BIC:  4295.939
+#> Number of observations: 425, Number of effective observations: 412, Number of parameters: 9
+#> Loglikelihood: 746.7517, Adjusted loglikelihood: -2120.875
+#> Standard error of the regression (ML estimate): 0.03927991 
+#> AIC: 4259.75, AICc: 4260.198, BIC: 4295.939
 
 plot(x13_model) # Plot of the final decomposition
 ```
