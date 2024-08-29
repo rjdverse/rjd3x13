@@ -25,11 +25,14 @@ residuals.JD3_REGARIMA_OUTPUT <- function(object, ...){
 }
 #' @export
 summary.JD3_REGARIMA_OUTPUT <- function(object, ...){
-  summary(object$result, ...)
+  x <- summary(object$result, ...)
+  x$method <- "RegARIMA"
+  x
 }
 #' @export
-print.JD3_REGARIMA_OUTPUT <- function(x, ...){
-  print(x$result, ...)
+print.JD3_REGARIMA_OUTPUT <- function(x, summary_info = getOption("summary_info"), ...){
+  cat("Method: RegARIMA\n")
+  print(x$result, summary_info = summary_info, ...)
 }
 #' @export
 diagnostics.JD3_REGARIMA_OUTPUT <- function(x, ...){
