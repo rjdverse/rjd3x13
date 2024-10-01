@@ -228,8 +228,12 @@ x11_spec<-function(){
     p$transform$outliers_correction<-r$transform$outliers
 
     # OUTLIER
-    p$outlier$outliers<-lapply(r$outlier$outliers, function(z)
-    {t<-x13.RegArimaSpec$OutlierSpec$Type$new();t$code<-z$type; t$va<-z$va; return(t)})
+    p$outlier$outliers<-lapply(X = r$outlier$outliers, FUN = function(z) {
+        t<-x13.RegArimaSpec$OutlierSpec$Type$new()
+        t$code<-z$type
+        t$va<-z$va
+        return(t)
+    })
     p$outlier$span<-rjd3toolkit::.r2p_span(r$outlier$span)
     p$outlier$defva<-r$outlier$defva
     p$outlier$method<-rjd3toolkit::.enum_of(x13.OutlierMethod, r$outlier$method, "OUTLIER")
