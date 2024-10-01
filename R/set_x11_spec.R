@@ -1,4 +1,3 @@
-
 #' Set X-11 Specification
 #'
 #' @param x the specification to be modified, object of class "JD3_X11_SPEC", default X11 spec can be obtained as 'x=x11_spec()'
@@ -103,7 +102,7 @@ set_x11.JD3_X11_SPEC <- function(x,
     x$seasonal <- seasonal.comp
   }
 
-  if (!any(is.na(seasonal.filter))) {
+  if (!anyNA(seasonal.filter)) {
     x$sfilters <- sprintf("FILTER_%s", seasonal.filter)
   }
   if (!is.na(henderson.filter)) {
@@ -133,7 +132,7 @@ set_x11.JD3_X11_SPEC <- function(x,
   if (!is.na(exclude.forecast) && is.logical(exclude.forecast)) {
     x$excludefcasts <- exclude.forecast
   }
-  if (!any(is.na(sigma.vector))) {
+  if (!anyNA(sigma.vector)) {
     if (!all(sigma.vector %in% c(1, 2))) {
       warning("sigma.vector must be equal to 1 or 2")
     }  else {
