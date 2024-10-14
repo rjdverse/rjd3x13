@@ -36,18 +36,19 @@
 #' @examples
 #' init_spec <- x11_spec()
 #' new_spec <- set_x11(init_spec,
-#'                    mode = "LogAdditive",
-#'                    seasonal.comp = 1,
-#'                    seasonal.filter = "S3X9",
-#'                    henderson.filter = 7,
-#'                    lsigma = 1.7,
-#'                    usigma = 2.7,
-#'                    fcasts = -1,
-#'                    bcasts = -1,
-#'                    calendar.sigma ="All",
-#'                    sigma.vector = NA,
-#'                    exclude.forecast = FALSE,
-#'                    bias = "LEGACY")
+#'     mode = "LogAdditive",
+#'     seasonal.comp = 1,
+#'     seasonal.filter = "S3X9",
+#'     henderson.filter = 7,
+#'     lsigma = 1.7,
+#'     usigma = 2.7,
+#'     fcasts = -1,
+#'     bcasts = -1,
+#'     calendar.sigma = "All",
+#'     sigma.vector = NA,
+#'     exclude.forecast = FALSE,
+#'     bias = "LEGACY"
+#' )
 #' @rdname x11_spec
 #' @export
 set_x11 <- function(x,
@@ -63,7 +64,7 @@ set_x11 <- function(x,
                     sigma.vector = NA,
                     exclude.forecast = NA,
                     bias = c(NA, "LEGACY")) {
-  UseMethod("set_x11", x)
+    UseMethod("set_x11", x)
 }
 #' @export
 set_x11.JD3_X11_SPEC <- function(x,
@@ -79,75 +80,85 @@ set_x11.JD3_X11_SPEC <- function(x,
                                  sigma.vector = NA,
                                  exclude.forecast = NA,
                                  bias = c(NA, "LEGACY")) {
-
-  mode <- match.arg(toupper(mode[1]),
-                    c(NA, "UNDEFINED", "ADDITIVE", "MULTIPLICATIVE",
-                      "LOGADDITIVE", "PSEUDOADDITIVE"))
-  calendar.sigma <- match.arg(toupper(calendar.sigma[1]),
-                              c(NA, "NONE", "SIGNIF", "ALL", "SELECT"))
-  seasonal.filter <- match.arg(toupper(seasonal.filter),
-                               choices = c(NA, "MSR", "STABLE", "X11DEFAULT",
-                                           "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"),
-                               several.ok = TRUE
-  )
-  bias <- match.arg(toupper(bias),
-                    c(NA, "LEGACY"))
-  if (!is.na(mode)) {
-    x$mode <- switch(mode,
-                     UNDEFINED = "UNKNOWN",
-                     mode)
-  }
-
-  if (!is.na(seasonal.comp) && is.logical(seasonal.comp)) {
-    x$seasonal <- seasonal.comp
-  }
-
-  if (!anyNA(seasonal.filter)) {
-    x$sfilters <- sprintf("FILTER_%s", seasonal.filter)
-  }
-  if (!is.na(henderson.filter)) {
-    if ((henderson.filter != 0) && (henderson.filter %% 2 == 0)) {
-      warning("The variable henderson.filter should be an odd number or equal to 0.", call. = FALSE)
-    } else {
-      x$henderson <- henderson.filter
+    mode <- match.arg(
+        toupper(mode[1]),
+        c(
+            NA, "UNDEFINED", "ADDITIVE", "MULTIPLICATIVE",
+            "LOGADDITIVE", "PSEUDOADDITIVE"
+        )
+    )
+    calendar.sigma <- match.arg(
+        toupper(calendar.sigma[1]),
+        c(NA, "NONE", "SIGNIF", "ALL", "SELECT")
+    )
+    seasonal.filter <- match.arg(toupper(seasonal.filter),
+        choices = c(
+            NA, "MSR", "STABLE", "X11DEFAULT",
+            "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"
+        ),
+        several.ok = TRUE
+    )
+    bias <- match.arg(
+        toupper(bias),
+        c(NA, "LEGACY")
+    )
+    if (!is.na(mode)) {
+        x$mode <- switch(mode,
+            UNDEFINED = "UNKNOWN",
+            mode
+        )
     }
-  }
 
-  if (!is.na(lsigma)) {
-    x$lsig <- lsigma
-  }
-  if (!is.na(usigma)) {
-    x$usig <- usigma
-  }
-
-  if (!is.na(bcasts)) {
-    x$nbcasts <- bcasts
-  }
-  if (!is.na(fcasts)) {
-    x$nfcasts <- fcasts
-  }
-  if (!is.na(calendar.sigma)) {
-    x$sigma <- calendar.sigma
-  }
-  if (!is.na(exclude.forecast) && is.logical(exclude.forecast)) {
-    x$excludefcasts <- exclude.forecast
-  }
-  if (!anyNA(sigma.vector)) {
-    if (!all(sigma.vector %in% c(1, 2))) {
-      warning("sigma.vector must be equal to 1 or 2")
-    }  else {
-      x$sigma <- "SELECT"
-      x$vsigmas <- as.integer(sigma.vector)
+    if (!is.na(seasonal.comp) && is.logical(seasonal.comp)) {
+        x$seasonal <- seasonal.comp
     }
-  }
-  if (!is.na(bias)) {
-    x$bias <- bias
-  }
-  x
+
+    if (!anyNA(seasonal.filter)) {
+        x$sfilters <- sprintf("FILTER_%s", seasonal.filter)
+    }
+    if (!is.na(henderson.filter)) {
+        if ((henderson.filter != 0) && (henderson.filter %% 2 == 0)) {
+            warning("The variable henderson.filter should be an odd number or equal to 0.", call. = FALSE)
+        } else {
+            x$henderson <- henderson.filter
+        }
+    }
+
+    if (!is.na(lsigma)) {
+        x$lsig <- lsigma
+    }
+    if (!is.na(usigma)) {
+        x$usig <- usigma
+    }
+
+    if (!is.na(bcasts)) {
+        x$nbcasts <- bcasts
+    }
+    if (!is.na(fcasts)) {
+        x$nfcasts <- fcasts
+    }
+    if (!is.na(calendar.sigma)) {
+        x$sigma <- calendar.sigma
+    }
+    if (!is.na(exclude.forecast) && is.logical(exclude.forecast)) {
+        x$excludefcasts <- exclude.forecast
+    }
+    if (!anyNA(sigma.vector)) {
+        if (!all(sigma.vector %in% c(1, 2))) {
+            warning("sigma.vector must be equal to 1 or 2")
+        } else {
+            x$sigma <- "SELECT"
+            x$vsigmas <- as.integer(sigma.vector)
+        }
+    }
+    if (!is.na(bias)) {
+        x$bias <- bias
+    }
+    x
 }
 
 #' @export
 set_x11.JD3_X13_SPEC <- function(x, ...) {
-  x$x11 <- set_x11(x$x11, ...)
-  x
+    x$x11 <- set_x11(x$x11, ...)
+    x
 }
