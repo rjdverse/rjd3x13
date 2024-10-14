@@ -22,32 +22,39 @@ regarima_fast(
 \arguments{
 \item{ts}{an univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
-\item{context}{list of external regressors (calendar or other) to be used for estimation}
+\item{context}{list of external regressors (calendar or other) to be used for
+estimation}
 
-\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
+\item{userdefined}{a vector containing additional output variables
+(see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
-the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{regarima_fast()} is a faster function that only returns the results.
+the \code{regarima()} function returns a list with the results
+(\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result
+specification, while \code{regarima_fast()} is a faster function that only returns
+the results.
 }
 \description{
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
-y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = regarima_spec("rg5c")
-sp = rjd3toolkit::add_outlier(sp,
-                 type = c("AO"), c("2015-01-01", "2010-01-01"))
-regarima_fast(y, spec = sp)
-sp = rjd3toolkit::set_transform(
-   rjd3toolkit::set_tradingdays(
-     rjd3toolkit::set_easter(sp, enabled = FALSE),
-    option = "workingdays"
-  ),
-  fun = "None"
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+sp <- regarima_spec("rg5c")
+sp <- rjd3toolkit::add_outlier(sp,
+    type = c("AO"), c("2015-01-01", "2010-01-01")
 )
 regarima_fast(y, spec = sp)
-sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+sp <- rjd3toolkit::set_transform(
+    rjd3toolkit::set_tradingdays(
+        rjd3toolkit::set_easter(sp, enabled = FALSE),
+        option = "workingdays"
+    ),
+    fun = "None"
+)
+regarima_fast(y, spec = sp)
+sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 regarima_fast(y, spec = sp)
 }

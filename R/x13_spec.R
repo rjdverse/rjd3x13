@@ -2,17 +2,22 @@
 NULL
 
 
-#' RegARIMA/X-13 Default Specifications
+#' @title RegARIMA/X-13 Default Specifications
 #'
-#' Set of functions to create default specification objects associated with the X-13ARIMA seasonal adjustment method.
+#' @description
+#' Set of functions to create default specification objects associated with the
+#' X-13ARIMA seasonal adjustment method.
 #'
-#' Specification setting of sheer X-11 decomposition method (without reg-arima pre-adjustment) is supported by the `x11_spec()` function only
-#' and doesn't appear among the possible X13-Arima default specifications
+#' Specification setting of sheer X-11 decomposition method (without reg-arima
+#' pre-adjustment) is supported by the `x11_spec()` function only and doesn't
+#' appear among the possible X13-Arima default specifications.
 #'
-#' Specification setting can be restricted to the reg-arima part with the `regarima_spec()` function,
-#' without argument `regarima_spec()` yields a RG5c specification
+#' Specification setting can be restricted to the reg-arima part with the
+#' `regarima_spec()` function, without argument `regarima_spec()` yields a RG5c
+#' specification.
 #'
-#' When setting a complete X13-Arima spec, `x13_spec()` without argument  yields a RSA5c specification
+#' When setting a complete X13-Arima spec, `x13_spec()` without argument yields
+#' a RSA5c specification.
 #'
 #'
 #' @param name the name of a predefined specification.
@@ -39,7 +44,14 @@ NULL
 #' RSA5c/RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
 #' }
 #' @seealso
-#' - To set the pre-processing parameters: [rjd3toolkit::set_arima()], [rjd3toolkit::set_automodel()], [rjd3toolkit::set_basic()], [rjd3toolkit::set_easter()], [rjd3toolkit::set_estimate()], [rjd3toolkit::set_outlier()], [rjd3toolkit::set_tradingdays()], [rjd3toolkit::set_transform()], [rjd3toolkit::add_outlier()], [rjd3toolkit::remove_outlier()], [rjd3toolkit::add_ramp()], [rjd3toolkit::remove_ramp()], [rjd3toolkit::add_usrdefvar()].
+#' - To set the pre-processing parameters:
+#' [rjd3toolkit::set_arima()], [rjd3toolkit::set_automodel()],
+#' [rjd3toolkit::set_basic()], [rjd3toolkit::set_easter()],
+#' [rjd3toolkit::set_estimate()], [rjd3toolkit::set_outlier()],
+#' [rjd3toolkit::set_tradingdays()], [rjd3toolkit::set_transform()],
+#' [rjd3toolkit::add_outlier()], [rjd3toolkit::remove_outlier()],
+#' [rjd3toolkit::add_ramp()], [rjd3toolkit::remove_ramp()],
+#' [rjd3toolkit::add_usrdefvar()].
 #' - To set the decomposition parameters: [set_x11()].
 #' - To set the benchmarking parameters: [rjd3toolkit::set_benchmarking()].
 #' @name x13_spec
@@ -50,7 +62,9 @@ regarima_spec <- function(name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c")) 
     name <- match.arg(name[1],
         choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
     )
-    return(.jd2r_spec_regarima(.jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", name)))
+    return(.jd2r_spec_regarima(.jcall("jdplus/x13/base/api/regarima/RegArimaSpec",
+                                      "Ljdplus/x13/base/api/regarima/RegArimaSpec;",
+                                      "fromString", name)))
 }
 
 
@@ -61,7 +75,9 @@ x13_spec <- function(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
     name <- match.arg(name[1],
         choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
     )
-    return(.jd2r_spec_x13(.jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", name)))
+    return(.jd2r_spec_x13(.jcall("jdplus/x13/base/api/x13/X13Spec",
+                                 "Ljdplus/x13/base/api/x13/X13Spec;",
+                                 "fromString", name)))
 }
 
 

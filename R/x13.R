@@ -4,11 +4,17 @@ NULL
 #' RegARIMA model, pre-adjustment in X13
 #'
 #' @param ts an univariate time series.
-#' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
-#' @param context list of external regressors (calendar or other) to be used for estimation
-#' @param userdefined a vector containing additional output variables (see [x13_dictionary()]).
+#' @param spec the model specification. Can be either the name of a predefined
+#' specification or a user-defined specification.
+#' @param context list of external regressors (calendar or other) to be used for
+#' estimation
+#' @param userdefined a vector containing additional output variables
+#' (see [x13_dictionary()]).
 #'
-#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `regarima_fast()` is a faster function that only returns the results.
+#' @return the `regarima()` function returns a list with the results
+#' (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result
+#' specification, while `regarima_fast()` is a faster function that only returns
+#' the results.
 #'
 #' @examples
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
@@ -28,14 +34,17 @@ NULL
 #' sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 #' regarima_fast(y, spec = sp)
 #' @export
-regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"), context = NULL, userdefined = NULL) {
+regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+                     context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
         spec <- match.arg(spec[1],
             choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
         )
-        jrslt <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
+        jrslt <- .jcall("jdplus/x13/base/r/RegArima",
+                        "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;",
+                        "fullProcess", jts, spec)
     } else {
         jspec <- .r2jd_spec_regarima(spec)
         if (is.null(context)) {
@@ -43,7 +52,9 @@ regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"), c
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/x13/base/r/RegArima",
+                        "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;",
+                        "fullProcess", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -54,14 +65,19 @@ regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"), c
 }
 #' @export
 #' @rdname regarima
-regarima_fast <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"), context = NULL, userdefined = NULL) {
+regarima_fast <- function(ts,
+                          spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+                          context = NULL,
+                          userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
         spec <- match.arg(spec[1],
             choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
         )
-        jrslt <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
+        jrslt <- .jcall("jdplus/x13/base/r/RegArima",
+                        "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+                        "process", jts, spec)
     } else {
         jspec <- .r2jd_spec_regarima(spec)
         if (is.null(context)) {
@@ -69,7 +85,9 @@ regarima_fast <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/x13/base/r/RegArima",
+                        "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+                        "process", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -125,20 +143,31 @@ regarima_fast <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c
 #' )
 #' x13_fast(y, spec = sp)
 #'
-#' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `x13_fast()` is a faster function that only returns the results.
-#' The `.jx13()` functions only returns results in a java object which will allow to customize outputs in other packages (use [rjd3toolkit::dictionary()] to
-#' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
-#' In the estimation functions `x13()` and `x13_fast()` you can directly use a specification name (string).
-#' If you want to customize a specification you have to create a specification object first.
+#' @return the `x13()` function returns a list with the results, the estimation
+#' specification and the result specification, while `x13_fast()` is a faster
+#' function that only returns the results. The `.jx13()` functions only returns
+#' results in a java object which will allow to customize outputs in other
+#' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
+#' [rjd3toolkit::result()] to get a specific variable). In the estimation
+#' functions `x13()` and `x13_fast()` you can directly use a specification name
+#' (string). If you want to customize a specification you have to create a
+#' specification object first.
+#'
 #' @export
-x13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
+#'
+x13 <- function(ts,
+                spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+                context = NULL,
+                userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
         spec <- match.arg(spec[1],
             choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
         )
-        jrslt <- .jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
+        jrslt <- .jcall("jdplus/x13/base/r/X13",
+                        "Ljdplus/x13/base/core/x13/X13Output;",
+                        "fullProcess", jts, spec)
     } else {
         jspec <- .r2jd_spec_x13(spec)
         if (is.null(context)) {
@@ -146,7 +175,9 @@ x13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), 
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/x13/base/r/X13",
+                        "Ljdplus/x13/base/core/x13/X13Output;",
+                        "fullProcess", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -159,7 +190,10 @@ x13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), 
 
 #' @export
 #' @rdname x13
-x13_fast <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
+x13_fast <- function(ts,
+                     spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+                     context = NULL,
+                     userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
@@ -174,7 +208,9 @@ x13_fast <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/x13/base/r/X13",
+                        "Ljdplus/x13/base/core/x13/X13Results;",
+                        "process", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -201,7 +237,9 @@ x13_fast <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/x13/base/r/X13",
+                        "Ljdplus/x13/base/core/x13/X13Output;",
+                        "fullProcess", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -255,44 +293,66 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' Refresh a specification with constraints
 #'
 #' @description
-#' Function allowing to create a new specification by updating a specification used for a previous estimation.
-#' Some selected parameters will be kept fixed (previous estimation results) while others will be freed for re-estimation
-#' in a domain of constraints. See details and examples.
+#' Function allowing to create a new specification by updating a specification
+#' used for a previous estimation. Some selected parameters will be kept fixed
+#' (previous estimation results) while others will be freed for re-estimation in
+#' a domain of constraints. See details and examples.
 #'
 #' @details
-#' The selection of constraints to be kept fixed or re-estimated is called a revision policy.
-#' User-defined parameters are always copied to the new refreshed specifications.
-#' In X-13 only the reg-arima part can be refreshed. X-11 decomposition will be completely re-run,
-#' keeping all the user-defined parameters from the original specification.
+#' The selection of constraints to be kept fixed or re-estimated is called a
+#' revision policy. User-defined parameters are always copied to the new
+#' refreshed specifications. In X-13 only the reg-arima part can be refreshed.
+#' X-11 decomposition will be completely re-run, keeping all the user-defined
+#' parameters from the original specification.
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and handling the new raw data points, or any sub-span of the series as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and
+#' handling the new raw data points, or any sub-span of the series as Additive
+#' Outliers (defined as new intervention variables)
 #'
-#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
+#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and
+#' replacing forecasts by new raw data points.
 #'
-#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
-#' and coefficients are unchanged.
+#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially
+#' modified: regression coefficients will be re-estimated but regression
+#' variables, Arima orders and coefficients are unchanged.
 #'
-#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
+#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima
+#' Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR)
+#' coefficients are kept fixed.
 #'
-#' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
+#' \strong{FreeParameters}: all regression and Arima model coefficients are
+#' re-estimated, regression variables and Arima orders are kept fixed.
 #'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated
+#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but
+#' outliers will be re-detected on the defined span, thus all regression and
+#' Arima model coefficients are re-estimated
 #'
-#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
+#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
+#' orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
-#' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
+#' @param refspec the reference specification used to define the domain
+#' considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"RG5c"` or `"RSA5"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end  additional parameters used to specify the span on which additive outliers (AO) are introduced when `policy = "Current"`
-#' or to specify the span on which outliers will be re-detected when `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`,
-#' is this case \code{end} is unused.
-#' If \code{start} is not specified, outliers will be re-identified on the whole series.
-#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: defined as arrays of two elements: year and first period (for example, `period = 12` and `c(1980, 1)` stands for January 1980)
-#' The dates corresponding \code{start} and \code{end} are included in the span definition.
+#'
+#' @param period,start,end  additional parameters used to specify the span on
+#' which additive outliers (AO) are introduced when `policy = "Current"` or to
+#' specify the span on which outliers will be re-detected when
+#' `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`, is this
+#' case \code{end} is unused.
+#' If \code{start} is not specified, outliers will be re-identified on the whole
+#' series.
+#' Span definition: \code{period}: numeric, number of observations in a year
+#' (12, 4...).
+#' \code{start} and \code{end}: defined as arrays of two elements: year and
+#' first period (for example, `period = 12` and `c(1980, 1)` stands for January
+#' 1980)
+#' The dates corresponding \code{start} and \code{end} are included in the span
+#' definition.
+#'
 #' @return a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
 #'
@@ -346,14 +406,24 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' @name refresh
 #' @rdname refresh
 #' @export
-regarima_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period = 0, start = NULL, end = NULL) {
+regarima_refresh <- function(spec,
+                             refspec = NULL,
+                             policy = c("FreeParameters", "Complete",
+                                        "Outliers_StochasticComponent",
+                                        "Outliers", "FixedParameters",
+                                        "FixedAutoRegressiveParameters",
+                                        "Fixed", "Current"),
+                             period = 0,
+                             start = NULL,
+                             end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_REGARIMA_SPEC")) {
         stop("Invalid specification type")
     }
     jspec <- .r2jd_spec_regarima(spec)
     if (is.null(refspec)) {
-        jrefspec <- .jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
+        jrefspec <- .jcall("jdplus/x13/base/api/regarima/RegArimaSpec",
+                           "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
     } else {
         if (!inherits(refspec, "JD3_REGARIMA_SPEC")) {
             stop("Invalid specification type")
@@ -368,19 +438,24 @@ regarima_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters", 
     } else {
         jdom <- jdom <- rjd3toolkit::.jdomain(0, NULL, NULL)
     }
-    jnspec <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+    jnspec <- .jcall("jdplus/x13/base/r/RegArima",
+                     "Ljdplus/x13/base/api/regarima/RegArimaSpec;",
+                     "refreshSpec", jspec, jrefspec, jdom, policy)
     return(.jd2r_spec_regarima(jnspec))
 }
 
 #' @rdname refresh
 #' @export
-x13_refresh <- function(spec, refspec = NULL, policy = c(
-                            "FreeParameters", "Complete",
-                            "Outliers_StochasticComponent", "Outliers",
-                            "FixedParameters",
-                            "FixedAutoRegressiveParameters", "Fixed",
-                            "Current"
-                        ), period = 0, start = NULL, end = NULL) {
+x13_refresh <- function(spec,
+                        refspec = NULL,
+                        policy = c("FreeParameters", "Complete",
+                                   "Outliers_StochasticComponent", "Outliers",
+                                   "FixedParameters",
+                                   "FixedAutoRegressiveParameters", "Fixed",
+                                   "Current"),
+                        period = 0,
+                        start = NULL,
+                        end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_X13_SPEC")) {
         stop("Invalid specification type")
