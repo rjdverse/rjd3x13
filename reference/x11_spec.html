@@ -61,66 +61,88 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>the specification to be modified, object of class "JD3_X11_SPEC", default X11 spec can be obtained as 'x=x11_spec()'</p></dd>
+<dd><p>the specification to be modified, object of class "JD3_X11_SPEC",
+default X11 spec can be obtained as 'x=x11_spec()'</p></dd>
 
 
 <dt id="arg-mode">mode<a class="anchor" aria-label="anchor" href="#arg-mode"></a></dt>
-<dd><p>character: the decomposition mode. Determines the mode of the seasonal adjustment decomposition to be performed:
-<code>"Undefined"</code> - no assumption concerning the relationship between the time series components is made;
+<dd><p>character: the decomposition mode. Determines the mode of the
+seasonal adjustment decomposition to be performed:
+<code>"Undefined"</code> - no assumption concerning the relationship between the time
+series components is made;
 <code>"Additive"</code> - assumes an additive relationship;
 <code>"Multiplicative"</code> - assumes a multiplicative relationship;
-<code>"LogAdditive"</code> - performs an additive decomposition of the logarithms of the series being adjusted;
-<code>"PseudoAdditive"</code> - assumes an pseudo-additive relationship. Could be changed by the program, if needed.</p></dd>
+<code>"LogAdditive"</code> - performs an additive decomposition of the logarithms of the
+series being adjusted;
+<code>"PseudoAdditive"</code> - assumes an pseudo-additive relationship. Could be
+changed by the program, if needed.</p></dd>
 
 
 <dt id="arg-seasonal-comp">seasonal.comp<a class="anchor" aria-label="anchor" href="#arg-seasonal-comp"></a></dt>
-<dd><p>logical: if <code>TRUE</code>, the program computes a seasonal component. Otherwise, the seasonal component
-is not estimated and its values are all set to 0 (additive decomposition) or 1 (multiplicative decomposition).</p></dd>
+<dd><p>logical: if <code>TRUE</code>, the program computes a seasonal
+component. Otherwise, the seasonal component is not estimated and its values
+are all set to 0 (additive decomposition) or 1 (multiplicative
+decomposition).</p></dd>
 
 
 <dt id="arg-seasonal-filter">seasonal.filter<a class="anchor" aria-label="anchor" href="#arg-seasonal-filter"></a></dt>
-<dd><p>a vector of character(s) specifying which seasonal moving average (i.e. seasonal filter)
-will be used to estimate the seasonal factors for the entire series. The vector can be of length:
-1 - the same seasonal filter is used for all periods (e.g.: <code>seasonal.filter = "Msr"</code> or <code>seasonal.filter = "S3X3"</code> );
-or have a different value for each quarter (length 4) or each month (length 12) - (e.g. for quarterly series: <code>seasonal.filter = c("S3X3", "Msr", "S3X3", "Msr")</code>).
-Possible filters are: <code>"Msr"</code>, <code>"Stable"</code>, <code>"X11Default"</code>, <code>"S3X1"</code>, <code>"S3X3"</code>, <code>"S3X5"</code>, <code>"S3X9"</code>, <code>"S3X15"</code>.
-<code>"Msr"</code> - the program chooses the final seasonal filter automatically.</p></dd>
+<dd><p>a vector of character(s) specifying which seasonal
+moving average (i.e. seasonal filter) will be used to estimate the seasonal
+factors for the entire series. The vector can be of length: 1 - the same
+seasonal filter is used for all periods (e.g.: <code>seasonal.filter = "Msr"</code> or
+<code>seasonal.filter = "S3X3"</code> ); or have a different value for each quarter
+(length 4) or each month (length 12) - (e.g. for quarterly series:
+<code>seasonal.filter = c("S3X3", "Msr", "S3X3", "Msr")</code>). Possible filters are:
+<code>"Msr"</code>, <code>"Stable"</code>, <code>"X11Default"</code>, <code>"S3X1"</code>, <code>"S3X3"</code>, <code>"S3X5"</code>, <code>"S3X9"</code>,
+<code>"S3X15"</code>. <code>"Msr"</code> - the program chooses the final seasonal filter
+automatically.</p></dd>
 
 
 <dt id="arg-henderson-filter">henderson.filter<a class="anchor" aria-label="anchor" href="#arg-henderson-filter"></a></dt>
-<dd><p>numeric: the length of the Henderson filter (odd number between 3 and 101). If <code>henderson.filter = 0</code> an automatic selection of the Henderson filter's length
-for the trend estimation is enabled.</p></dd>
+<dd><p>numeric: the length of the Henderson filter (odd
+number between 3 and 101). If <code>henderson.filter = 0</code> an automatic selection
+of the Henderson filter's length for the trend estimation is enabled.</p></dd>
 
 
 <dt id="arg-lsigma">lsigma<a class="anchor" aria-label="anchor" href="#arg-lsigma"></a></dt>
-<dd><p>numeric: the lower sigma boundary for the detection of extreme values, &gt; 0.5, default=1.5.</p></dd>
+<dd><p>numeric: the lower sigma boundary for the detection of extreme
+values, &gt; 0.5, default=1.5.</p></dd>
 
 
 <dt id="arg-usigma">usigma<a class="anchor" aria-label="anchor" href="#arg-usigma"></a></dt>
-<dd><p>numeric: the upper sigma boundary for the detection of extreme values, &gt; lsigma, default=2.5.</p></dd>
+<dd><p>numeric: the upper sigma boundary for the detection of extreme
+values, &gt; lsigma, default=2.5.</p></dd>
 
 
 <dt id="arg-bcasts-fcasts">bcasts, fcasts<a class="anchor" aria-label="anchor" href="#arg-bcasts-fcasts"></a></dt>
-<dd><p>numeric: the number of backasts (<code>bcasts</code>) or forecasts (<code>fcasts</code>) generated by the RegARIMA model in periods (positive values) or years (negative values).Default values: fcasts=-1 and bcasts=0.</p></dd>
+<dd><p>numeric: the number of backasts (<code>bcasts</code>) or forecasts
+(<code>fcasts</code>) generated by the RegARIMA model in periods (positive values) or
+years (negative values).Default values: fcasts=-1 and bcasts=0.</p></dd>
 
 
 <dt id="arg-calendar-sigma">calendar.sigma<a class="anchor" aria-label="anchor" href="#arg-calendar-sigma"></a></dt>
-<dd><p>character to specify if the standard errors used for extreme values detection and adjustment are computed:
-from 5 year spans of irregulars (<code>"None"</code>, default value);
-separately for each calendar period (<code>"All"</code>);
-separately for each period only if Cochran's hypothesis test determines that the irregular component is heteroskedastic
-by calendar month/quarter (<code>"Signif"</code>);
-separately for two complementary sets of calendar months/quarters specified by the x11.sigmaVector parameter (<code>"Select"</code>,
-see parameter <code>sigma.vector</code>).</p></dd>
+<dd><p>character to specify if the standard errors used for
+extreme values detection and adjustment are computed: from 5 year spans of
+irregulars (<code>"None"</code>, default value); separately for each calendar period
+(<code>"All"</code>); separately for each period only if Cochran's hypothesis test
+determines that the irregular component is heteroskedastic by calendar
+month/quarter (<code>"Signif"</code>); separately for two complementary sets of calendar
+months/quarters specified by the x11.sigmaVector parameter (<code>"Select"</code>, see
+parameter <code>sigma.vector</code>).</p></dd>
 
 
 <dt id="arg-sigma-vector">sigma.vector<a class="anchor" aria-label="anchor" href="#arg-sigma-vector"></a></dt>
-<dd><p>a vector to specify one of the two groups of periods for which standard errors used for extreme values
-detection and adjustment will be computed separately. Only used if <code>calendar.sigma = "Select"</code>. Possible values are: <code>1</code> or <code>2</code>.</p></dd>
+<dd><p>a vector to specify one of the two groups of periods for
+which standard errors used for extreme values detection and adjustment will
+be computed separately. Only used if <code>calendar.sigma = "Select"</code>. Possible
+values are: <code>1</code> or <code>2</code>.</p></dd>
 
 
 <dt id="arg-exclude-forecast">exclude.forecast<a class="anchor" aria-label="anchor" href="#arg-exclude-forecast"></a></dt>
-<dd><p>Boolean to exclude forecasts and backcasts. If <code>TRUE</code>, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.Default= FALSE.</p></dd>
+<dd><p>Boolean to exclude forecasts and backcasts. If
+<code>TRUE</code>, the RegARIMA model forecasts and backcasts are not used during the
+detection of extreme values in the seasonal adjustment routines.
+Default = FALSE.</p></dd>
 
 
 <dt id="arg-bias">bias<a class="anchor" aria-label="anchor" href="#arg-bias"></a></dt>
@@ -140,18 +162,19 @@ detection and adjustment will be computed separately. Only used if <code>calenda
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13_spec.html">x11_spec</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">new_spec</span> <span class="op">&lt;-</span> <span class="fu">set_x11</span><span class="op">(</span><span class="va">init_spec</span>,</span></span>
-<span class="r-in"><span>                   mode <span class="op">=</span> <span class="st">"LogAdditive"</span>,</span></span>
-<span class="r-in"><span>                   seasonal.comp <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                   seasonal.filter <span class="op">=</span> <span class="st">"S3X9"</span>,</span></span>
-<span class="r-in"><span>                   henderson.filter <span class="op">=</span> <span class="fl">7</span>,</span></span>
-<span class="r-in"><span>                   lsigma <span class="op">=</span> <span class="fl">1.7</span>,</span></span>
-<span class="r-in"><span>                   usigma <span class="op">=</span> <span class="fl">2.7</span>,</span></span>
-<span class="r-in"><span>                   fcasts <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                   bcasts <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                   calendar.sigma <span class="op">=</span><span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>                   sigma.vector <span class="op">=</span> <span class="cn">NA</span>,</span></span>
-<span class="r-in"><span>                   exclude.forecast <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>                   bias <span class="op">=</span> <span class="st">"LEGACY"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    mode <span class="op">=</span> <span class="st">"LogAdditive"</span>,</span></span>
+<span class="r-in"><span>    seasonal.comp <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    seasonal.filter <span class="op">=</span> <span class="st">"S3X9"</span>,</span></span>
+<span class="r-in"><span>    henderson.filter <span class="op">=</span> <span class="fl">7</span>,</span></span>
+<span class="r-in"><span>    lsigma <span class="op">=</span> <span class="fl">1.7</span>,</span></span>
+<span class="r-in"><span>    usigma <span class="op">=</span> <span class="fl">2.7</span>,</span></span>
+<span class="r-in"><span>    fcasts <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    bcasts <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    calendar.sigma <span class="op">=</span> <span class="st">"All"</span>,</span></span>
+<span class="r-in"><span>    sigma.vector <span class="op">=</span> <span class="cn">NA</span>,</span></span>
+<span class="r-in"><span>    exclude.forecast <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    bias <span class="op">=</span> <span class="st">"LEGACY"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
