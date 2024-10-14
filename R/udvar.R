@@ -1,4 +1,4 @@
-.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
+.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE) {
   if (is.null(userdefined)) {
     x$user_defined <- rjd3toolkit::user_defined(x, NULL)
   } else {
@@ -37,7 +37,7 @@
 #' More information and examples related to 'JDemetra+' features in the online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/}
 #' @export
-userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
+userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")) {
   x <- match.arg(gsub("-", "", tolower(x)),
                  choices = c("x13", "regarima", "x11"))
 

@@ -1,7 +1,7 @@
 linters: linters_with_defaults(
         indentation_linter = lintr::indentation_linter(indent = 4L),
         # line_length_linter = lintr::line_length_linter(80L),
-        line_length_linter = lintr::line_length_linter(200L),
+        line_length_linter = lintr::line_length_linter(500L),
         indentation_linter = NULL,
         assignment_linter = NULL,
         trailing_blank_lines_linter = NULL,

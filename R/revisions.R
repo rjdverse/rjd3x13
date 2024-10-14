@@ -1,7 +1,7 @@
 #' @include utils.R x13_spec.R x13_rslts.R
 NULL
 
-.jrevisions<-function(jts, jspec, jcontext){
+.jrevisions<-function(jts, jspec, jcontext) {
   jrslt<-.jcall("jdplus/x13/base/r/X13RevisionHistory",
                 "Ljdplus/toolkit/base/r/timeseries/Revisions;", "revisions", jts, jspec, jcontext)
   return(jrslt)
@@ -54,34 +54,34 @@ NULL
 #'   list(start = "2010-01-01", end = "2020-01-01", id = "t"))
 #' rh <- x13_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
 #' @export
-x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
+x13_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   jspec<-.r2jd_spec_x13(spec)
-  if (is.null(context)){
+  if (is.null(context)) {
     jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
   } else {
     jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
   }
   ldata<-NULL
   jr<-.jrevisions(jts, jspec, jcontext)
-  if (! is.null(data_ids)){
-    ldata<-lapply(data_ids, function(data_id){
+  if (! is.null(data_ids)) {
+    ldata<-lapply(data_ids, function(data_id) {
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "history", data_id$id, data_id$start)
       return(rjd3toolkit::.jd2r_tsdata(w))
     })
     names(ldata) <- sapply(data_ids, `[[`,"id")
   }
   lts<-NULL
-  if (! is.null(ts_ids)){
-    lts<-lapply(ts_ids, function(ts_id){
+  if (! is.null(ts_ids)) {
+    lts<-lapply(ts_ids, function(ts_id) {
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "tsHistory", ts_id$id, ts_id$period, ts_id$start)
       return(rjd3toolkit::.jd2r_tsdata(w))
     })
    names(lts) <- sapply(ts_ids, `[[`,"id")
   }
   lcmp<-NULL
-  if (! is.null(cmp_ids)){
-    lcmp<-lapply(cmp_ids, function(cmp_id){
+  if (! is.null(cmp_ids)) {
+    lcmp<-lapply(cmp_ids, function(cmp_id) {
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;", "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
       return(rjd3toolkit::.jd2r_mts(w))
     })

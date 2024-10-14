@@ -62,7 +62,7 @@ set_x11 <- function(x,
                     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
                     sigma.vector = NA,
                     exclude.forecast = NA,
-                    bias = c(NA, "LEGACY")){
+                    bias = c(NA, "LEGACY")) {
   UseMethod("set_x11", x)
 }
 #' @export

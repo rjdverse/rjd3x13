@@ -1,6 +1,6 @@
 #'@importFrom stats printCoefmat
 #'@importFrom utils capture.output
-print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...){
+print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
   mstats <- matrix(unlist(x$mstats),
                   ncol = 1,
                   dimnames = list(names(x$mstats), "M stats"))
@@ -16,7 +16,7 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
   return(invisible(x))
 }
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
-                              ...){
+                              ...) {
   variance_decomposition <- x$variance_decomposition
   residual_tests <- x$residual_tests
 
@@ -49,7 +49,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 
 #' @export
 print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                   ...){
+                   ...) {
 
   cat("Model: X-13\n")
   print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
@@ -63,7 +63,7 @@ print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), s
 }
 
 #' @export
-summary.JD3_X13_RSLTS <- function(object, ...){
+summary.JD3_X13_RSLTS <- function(object, ...) {
     x <- list(preprocessing = summary(object$preprocessing),
          decomposition = object[c("mstats", "decomposition")],
          diagnostics = rjd3toolkit::diagnostics(object),
@@ -74,12 +74,12 @@ summary.JD3_X13_RSLTS <- function(object, ...){
 }
 
 #' @export
-summary.JD3_X13_OUTPUT <- function(object, ...){
+summary.JD3_X13_OUTPUT <- function(object, ...) {
     summary(object$result, ...)
 }
 
 #' @export
-print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...){
+print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, signif.stars = signif.stars, ...)
     cat("\n", "Decomposition","\n",sep="")
@@ -93,7 +93,7 @@ print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") 
 
 #' @export
 print.JD3_X13_OUTPUT<- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                                ...){
+                                ...) {
   print(x$result, digits = digits, summary_info = summary_info, ...)
   return(invisible(x))
 }
@@ -116,7 +116,7 @@ plot.JD3_X13_RSLTS <- function(x, first_date = NULL, last_date = NULL,
                                            "seas-irr" = "Sea., irr.")[type_chart],
                                colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
                                           s = "#1E6C0B", i = "#155692"),
-                               ...){
+                               ...) {
   plot(rjd3toolkit::sa_decomposition(x),
        first_date = first_date, last_date = last_date,
        type_chart = type_chart,
@@ -131,7 +131,7 @@ plot.JD3_X13_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
                                            "seas-irr" = "Sea., irr.")[type_chart],
                                colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
                                           s = "#1E6C0B", i = "#155692"),
-                               ...){
+                               ...) {
   plot(x$result,
        first_date = first_date, last_date = last_date,
        type_chart = type_chart,
@@ -142,7 +142,7 @@ plot.JD3_X13_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
 
 #' @importFrom rjd3toolkit diagnostics
 #' @export
-diagnostics.JD3_X13_RSLTS<-function(x, ...){
+diagnostics.JD3_X13_RSLTS<-function(x, ...) {
   if (is.null(x)) return(NULL)
   variance_decomposition <- x$diagnostics$vardecomposition
   variance_decomposition <- matrix(unlist(variance_decomposition),
@@ -158,7 +158,7 @@ diagnostics.JD3_X13_RSLTS<-function(x, ...){
 }
 
 #' @export
-diagnostics.JD3_X13_OUTPUT<-function(x, ...){
+diagnostics.JD3_X13_OUTPUT<-function(x, ...) {
   return(rjd3toolkit::diagnostics(x$result, ...))
 }
 

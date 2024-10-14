@@ -45,7 +45,7 @@ NULL
 #' @name x13_spec
 #' @rdname x13_spec
 #' @export
-regarima_spec<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
+regarima_spec<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")) {
     name <- gsub("sa", "g", tolower(name), fixed = TRUE)
     name <- match.arg(name[1],
                       choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
@@ -56,7 +56,7 @@ regarima_spec<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
 
 #' @rdname x13_spec
 #' @export
-x13_spec<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
+x13_spec<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")) {
     name <- gsub("g", "sa", tolower(name), fixed = TRUE)
     name <- match.arg(name[1],
                       choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
@@ -67,13 +67,13 @@ x13_spec<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
 
 #' @rdname x13_spec
 #' @export
-x11_spec<-function(){
+x11_spec<-function() {
     return(.jd2r_spec_x11(.jfield("jdplus/x13/base/api/x11/X11Spec", "Ljdplus/x13/base/api/x11/X11Spec;", "DEFAULT")))
 }
 
 #' @export
 #' @rdname jd3_utilities
-.jd2r_spec_x11<-function(jspec){
+.jd2r_spec_x11<-function(jspec) {
     b<-.jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jspec)
     p<-RProtoBuf::read(x13.X11Spec, b)
     return(.p2r_spec_x11(p))
@@ -81,7 +81,7 @@ x11_spec<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.r2jd_spec_x11<-function(spec){
+.r2jd_spec_x11<-function(spec) {
     p<-.r2p_spec_x11(spec)
     b<-RProtoBuf::serialize(p, NULL)
     nspec<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/api/x11/X11Spec;", "of", b)
@@ -90,7 +90,7 @@ x11_spec<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.r2jd_spec_regarima<-function(spec){
+.r2jd_spec_regarima<-function(spec) {
     p<-.r2p_spec_regarima(spec)
     b<-RProtoBuf::serialize(p, NULL)
     nspec<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "specOf", b)
@@ -99,7 +99,7 @@ x11_spec<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.jd2r_spec_regarima<-function(jspec){
+.jd2r_spec_regarima<-function(jspec) {
     b<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
     p<-RProtoBuf::read(x13.RegArimaSpec, b)
     return(.p2r_spec_regarima(p))
@@ -107,7 +107,7 @@ x11_spec<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.r2jd_spec_x13<-function(spec){
+.r2jd_spec_x13<-function(spec) {
     p<-.r2p_spec_x13(spec)
     b<-RProtoBuf::serialize(p, NULL)
     nspec<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "specOf", b)
@@ -116,7 +116,7 @@ x11_spec<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.jd2r_spec_x13<-function(jspec){
+.jd2r_spec_x13<-function(jspec) {
     b<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jspec)
     p<-RProtoBuf::read(x13.Spec, b)
     return(.p2r_spec_x13(p))
@@ -124,7 +124,7 @@ x11_spec<-function(){
 
 ## P <-> R
 
-.p2r_spec_regarima<-function(pspec){
+.p2r_spec_regarima<-function(pspec) {
     basic<-list(
         span=rjd3toolkit::.p2r_span(pspec$basic$span),
         preprocessing = pspec$basic$preprocessing,
@@ -153,7 +153,7 @@ x11_spec<-function(){
     arima<-rjd3toolkit::.p2r_spec_sarima(pspec$arima)
 
     outlier<-list(
-        outliers=lapply(pspec$outlier$outliers, function(z){list(type=z$code, va=z$va)} ),
+        outliers=lapply(pspec$outlier$outliers, function(z) {list(type=z$code, va=z$va)} ),
         span=rjd3toolkit::.p2r_span(pspec$outlier$span),
         defva=pspec$outlier$defva,
         method=rjd3toolkit::.enum_extract(x13.OutlierMethod, pspec$outlier$method),
@@ -214,7 +214,7 @@ x11_spec<-function(){
 }
 
 
-.r2p_spec_regarima<-function(r){
+.r2p_spec_regarima<-function(r) {
     p<-x13.RegArimaSpec$new()
     # BIAS
     p$basic$preliminary_check<-r$basic$preliminaryCheck
@@ -296,13 +296,13 @@ x11_spec<-function(){
 }
 
 
-.p2r_spec_x11<-function(p){
+.p2r_spec_x11<-function(p) {
 
     return(structure(list(
         mode=rjd3toolkit::.enum_extract(sa.DecompositionMode, p$mode),
         seasonal=p$seasonal,
         henderson=p$henderson,
-        sfilters=sapply(p$sfilters, function(z){rjd3toolkit::.enum_extract(x13.SeasonalFilter, z)}),
+        sfilters=sapply(p$sfilters, function(z) {rjd3toolkit::.enum_extract(x13.SeasonalFilter, z)}),
         lsig=p$lsig,
         usig=p$usig,
         nfcasts=p$nfcasts,
@@ -315,12 +315,12 @@ x11_spec<-function(){
 }
 
 
-.r2p_spec_x11<-function(r){
+.r2p_spec_x11<-function(r) {
     p<-x13.X11Spec$new()
     p$mode<- rjd3toolkit::.enum_of(x13.DecompositionMode, r$mode, "MODE")
     p$seasonal<-r$seasonal
     p$henderson<-r$henderson
-    p$sfilters<-sapply(r$sfilters, function(z){rjd3toolkit::.enum_of(x13.SeasonalFilter, z, "SEASONAL")} )
+    p$sfilters<-sapply(r$sfilters, function(z) {rjd3toolkit::.enum_of(x13.SeasonalFilter, z, "SEASONAL")} )
     p$lsig<-r$lsig
     p$usig<-r$usig
     p$nfcasts<-r$nfcasts
@@ -332,7 +332,7 @@ x11_spec<-function(){
     return(p)
 }
 
-.p2r_spec_x13<-function(pspec){
+.p2r_spec_x13<-function(pspec) {
     return(structure(list(
         regarima=.p2r_spec_regarima(pspec$regarima),
         x11=.p2r_spec_x11(pspec$x11),
@@ -340,7 +340,7 @@ x11_spec<-function(){
     ), class="JD3_X13_SPEC"))
 }
 
-.r2p_spec_x13<-function(r){
+.r2p_spec_x13<-function(r) {
     p<-x13.Spec$new()
     p$regarima<-.r2p_spec_regarima(r$regarima)
     p$x11<-.r2p_spec_x11(r$x11)

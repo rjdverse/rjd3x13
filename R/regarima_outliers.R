@@ -21,11 +21,11 @@ NULL
 #'
 #' @export
 regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=FALSE,
-                        X=NULL, X.td=NULL, ao=TRUE, ls=TRUE, tc=FALSE, so=FALSE, cv=0, clean = FALSE){
-  if (!is.ts(y)){
+                        X=NULL, X.td=NULL, ao=TRUE, ls=TRUE, tc=FALSE, so=FALSE, cv=0, clean = FALSE) {
+  if (!is.ts(y)) {
     stop("y must be a time series")
   }
-  if (! is.null(X.td)){
+  if (! is.null(X.td)) {
     sy<-start(y)
     td<-rjd3toolkit::td(s = y, groups = X.td)
     X<-cbind(X, td)

@@ -27,9 +27,9 @@ NULL
 #' sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 #' regarima_fast(y, spec = sp)
 #' @export
-regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
+regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
-  if (is.character(spec)){
+  if (is.character(spec)) {
     spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
     spec <- match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
@@ -37,14 +37,14 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
   } else {
     jspec<-.r2jd_spec_regarima(spec)
-    if (is.null(context)){
+    if (is.null(context)) {
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
   }
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     res <- .regarima_output(jrslt)
@@ -53,9 +53,9 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
 }
 #' @export
 #' @rdname regarima
-regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
+regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
-  if (is.character(spec)){
+  if (is.character(spec)) {
     spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
     spec <- match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
@@ -63,14 +63,14 @@ regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   } else {
     jspec<-.r2jd_spec_regarima(spec)
-    if (is.null(context)){
+    if (is.null(context)) {
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     res <- .regarima_rslts(jrslt)
@@ -78,7 +78,7 @@ regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
   }
 }
 
-.regarima_output<-function(jq){
+.regarima_output<-function(jq) {
   if (is.jnull(jq))
     return(NULL)
   q<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq)
@@ -126,9 +126,9 @@ regarima_fast<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' In the estimation functions `x13()` and `x13_fast()` you can directly use a specification name (string).
 #' If you want to customize a specification you have to create a specification object first.
 #' @export
-x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
+x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
-  if (is.character(spec)){
+  if (is.character(spec)) {
     spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
@@ -136,14 +136,14 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
   } else {
     jspec<-.r2jd_spec_x13(spec)
-    if (is.null(context)){
+    if (is.null(context)) {
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     res <- .x13_output(jrslt)
@@ -154,9 +154,9 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
 
 #' @export
 #' @rdname x13
-x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
+x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
-  if (is.character(spec)){
+  if (is.character(spec)) {
     spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
@@ -164,14 +164,14 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, spec)
   } else {
     jspec<-.r2jd_spec_x13(spec)
-    if (is.null(context)){
+    if (is.null(context)) {
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, jspec, jcontext)
   }
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     res <- .x13_rslts(jrslt)
@@ -181,9 +181,9 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
 
 #' @export
 #' @rdname x13
-.jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
+.jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
-  if (is.character(spec)){
+  if (is.character(spec)) {
     spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
     spec <- match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
@@ -191,14 +191,14 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
   } else {
     jspec<-.r2jd_spec_x13(spec)
-    if (is.null(context)){
+    if (is.null(context)) {
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     jrslt <- .jcall(jrslt, "Ljdplus/x13/base/core/x13/X13Results;", "getResult")
@@ -207,7 +207,7 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   }
 }
 
-.x13_output<-function(jq){
+.x13_output<-function(jq) {
   if (is.jnull(jq))
     return(NULL)
   q<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq)
@@ -234,11 +234,11 @@ x13_fast<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
 #' x11_spec <- set_x11(x11_spec, henderson.filter = 13)
 #' x11(y, x11_spec)
 #' @export
-x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
+x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   jspec<-.r2jd_spec_x11(spec)
   jrslt<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts, jspec)
-  if (is.jnull(jrslt)){
+  if (is.jnull(jrslt)) {
     return(NULL)
   } else {
     res <- .x11_rslts(jrslt)
@@ -337,12 +337,12 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL){
 #' @name refresh
 #' @rdname refresh
 #' @export
-regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
+regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL) {
   policy <- match.arg(policy)
   if (!inherits(spec, "JD3_REGARIMA_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_regarima(spec)
-  if (is.null(refspec)){
+  if (is.null(refspec)) {
     jrefspec<-.jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
 
   } else {
@@ -350,7 +350,7 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_regarima(refspec)
   }
-  if (policy == 'Current'){
+  if (policy == 'Current') {
     if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
     jdom<-rjd3toolkit::.jdomain(period, start, end)
   }
@@ -368,12 +368,12 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
                                                    "Outliers_StochasticComponent", "Outliers",
                                                    "FixedParameters",
                                                    "FixedAutoRegressiveParameters", "Fixed",
-                                                   "Current"), period=0, start=NULL, end=NULL){
+                                                   "Current"), period=0, start=NULL, end=NULL) {
   policy <- match.arg(policy)
   if (!inherits(spec, "JD3_X13_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_x13(spec)
-  if (is.null(refspec)){
+  if (is.null(refspec)) {
     jrefspec<-.jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
 
   } else {
@@ -381,7 +381,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_x13(refspec)
   }
-  if (policy == 'Current'){
+  if (policy == 'Current') {
     if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
     jdom<-rjd3toolkit::.jdomain(period, start, end)
   }
@@ -401,7 +401,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
 #'
 #' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
 #' @export
-x13_dictionary<-function(){
+x13_dictionary<-function() {
   return(.jcall("jdplus/x13/base/r/X13","[S", "dictionary"))
 }
 
@@ -411,7 +411,7 @@ x13_dictionary<-function(){
 #' @export
 #'
 #' @examples
-x13_full_dictionary<-function(){
+x13_full_dictionary<-function() {
   q<-.jcall("jdplus/x13/base/r/X13","[S", "fullDictionary")
   q<-`dim<-`(q, c(6, length(q)/6))
   q<-t(q)
