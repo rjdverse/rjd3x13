@@ -8,11 +8,13 @@ NULL
 #' @param mean Boolean to include or not the mean.
 #' @param X user defined regressors (other than calendar).
 #' @param X.td calendar regressors.
-#' @param ao,ls,so,tc Boolean to indicate which type of outliers should be detected.
-#' @param cv  `numeric`. The entered critical value for the outlier detection procedure.
-#' If equal to 0 the critical value for the outlier detection procedure is automatically determined
-#' by the number of observations.
-#' @param clean Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.
+#' @param ao,ls,so,tc Boolean to indicate which type of outliers should be
+#' detected.
+#' @param cv  `numeric`. The entered critical value for the outlier detection
+#' procedure. If equal to 0 the critical value for the outlier detection
+#' procedure is automatically determined by the number of observations.
+#' @param clean Clean missing values at the beginning/end of the series.
+#' Regression variables are automatically resized, if need be.
 #'
 #' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
@@ -20,21 +22,32 @@ NULL
 #' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #'
 #' @export
-regarima_outliers <- function(y, order = c(0L, 1L, 1L), seasonal = c(0L, 1L, 1L), mean = FALSE,
-                              X = NULL, X.td = NULL, ao = TRUE, ls = TRUE, tc = FALSE, so = FALSE, cv = 0, clean = FALSE) {
+regarima_outliers <- function(y,
+                              order = c(0L, 1L, 1L),
+                              seasonal = c(0L, 1L, 1L),
+                              mean = FALSE,
+                              X = NULL,
+                              X.td = NULL,
+                              ao = TRUE,
+                              ls = TRUE,
+                              tc = FALSE,
+                              so = FALSE,
+                              cv = 0,
+                              clean = FALSE) {
     if (!is.ts(y)) {
         stop("y must be a time series")
     }
     if (!is.null(X.td)) {
-        sy <- start(y)
         td <- rjd3toolkit::td(s = y, groups = X.td)
         X <- cbind(X, td)
     }
 
 
     jregarima <- .jcall(
-        "jdplus/x13/base/r/RegArimaOutliersDetection", "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;", "process",
-        rjd3toolkit::.r2jd_tsdata(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::.r2jd_matrix(X),
+        "jdplus/x13/base/r/RegArimaOutliersDetection",
+        "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;", "process",
+        rjd3toolkit::.r2jd_tsdata(y), as.integer(order), as.integer(seasonal),
+        mean, rjd3toolkit::.r2jd_matrix(X),
         ao, ls, tc, so, cv, clean
     )
     model <- list(

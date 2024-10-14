@@ -30,13 +30,15 @@ regarima_outliers(
 
 \item{X.td}{calendar regressors.}
 
-\item{ao, ls, so, tc}{Boolean to indicate which type of outliers should be detected.}
+\item{ao, ls, so, tc}{Boolean to indicate which type of outliers should be
+detected.}
 
-\item{cv}{\code{numeric}. The entered critical value for the outlier detection procedure.
-If equal to 0 the critical value for the outlier detection procedure is automatically determined
-by the number of observations.}
+\item{cv}{\code{numeric}. The entered critical value for the outlier detection
+procedure. If equal to 0 the critical value for the outlier detection
+procedure is automatically determined by the number of observations.}
 
-\item{clean}{Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.}
+\item{clean}{Clean missing values at the beginning/end of the series.
+Regression variables are automatically resized, if need be.}
 }
 \value{
 a \code{"JD3_REGARIMA_OUTLIERS"} object, containing input variables and results

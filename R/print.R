@@ -92,7 +92,10 @@ summary.JD3_X13_OUTPUT <- function(object, ...) {
 }
 
 #' @export
-print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...) {
+print.summary.JD3_X13_RSLTS <- function(x,
+                                        digits = max(3L, getOption("digits") - 3L),
+                                        signif.stars = getOption("show.signif.stars"),
+                                        ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, signif.stars = signif.stars, ...)
     cat("\n", "Decomposition", "\n", sep = "")
@@ -105,7 +108,9 @@ print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") 
 }
 
 #' @export
-print.JD3_X13_OUTPUT <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+print.JD3_X13_OUTPUT <- function(x,
+                                 digits = max(3L, getOption("digits") - 3L),
+                                 summary_info = getOption("summary_info"),
                                  ...) {
     print(x$result, digits = digits, summary_info = summary_info, ...)
     return(invisible(x))
@@ -365,11 +370,25 @@ print.JD3_X13_SPEC <- function(x, ...) {
         cat("Is enabled: No\n")
     } else {
         cat("Enabled: Yes\n", sep = "")
-        cat("Target: ", x$benchmarking$target, ifelse(x$benchmarking$target == "TARGET_CALENDARADJUSTED", " (Auto)", ""), "\n", sep = "")
-        cat("Lambda: ", x$benchmarking$lambda, ifelse(x$benchmarking$lambda == 1, " (Auto)", ""), "\n", sep = "")
-        cat("Rho: ", x$benchmarking$rho, ifelse(x$benchmarking$rho == 1, " (Auto)", ""), "\n", sep = "")
-        cat("Bias: ", x$benchmarking$bias, ifelse(x$benchmarking$bias == "BIAS_NONE", " (Auto)", ""), "\n", sep = "")
-        cat("Use forecast: ", ifelse(x$benchmarking$forecast, "Yes", "No (Auto)"), "\n", sep = "")
+        cat("Target: ", x$benchmarking$target,
+            ifelse(
+                test = x$benchmarking$target == "TARGET_CALENDARADJUSTED",
+                yes = " (Auto)",
+                no = ""
+            ),
+            "\n", sep = "")
+        cat("Lambda: ", x$benchmarking$lambda,
+            ifelse(test = x$benchmarking$lambda == 1, yes = " (Auto)", no = ""),
+            "\n", sep = "")
+        cat("Rho: ", x$benchmarking$rho,
+            ifelse(test = x$benchmarking$rho == 1, yes = " (Auto)", no = ""),
+            "\n", sep = "")
+        cat("Bias: ", x$benchmarking$bias,
+            ifelse(test = x$benchmarking$bias == "BIAS_NONE", yes = " (Auto)", no = ""),
+            "\n", sep = "")
+        cat("Use forecast: ",
+            ifelse(test = x$benchmarking$forecast, yes = "Yes", no = "No (Auto)"),
+            "\n", sep = "")
     }
 
     return(invisible(x))

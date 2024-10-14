@@ -11,7 +11,8 @@ x11(ts, spec = x11_spec(), userdefined = NULL)
 
 \item{spec}{the specification.}
 
-\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
+\item{userdefined}{a vector containing additional output variables
+(see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \description{
 X-11 Decomposition Algorithm

@@ -79,7 +79,8 @@ x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NU
     lts <- NULL
     if (!is.null(ts_ids)) {
         lts <- lapply(ts_ids, function(ts_id) {
-            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "tsHistory", ts_id$id, ts_id$period, ts_id$start)
+            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;",
+                        "tsHistory", ts_id$id, ts_id$period, ts_id$start)
             return(rjd3toolkit::.jd2r_tsdata(w))
         })
         names(lts) <- sapply(ts_ids, `[[`, "id")
@@ -87,7 +88,8 @@ x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NU
     lcmp <- NULL
     if (!is.null(cmp_ids)) {
         lcmp <- lapply(cmp_ids, function(cmp_id) {
-            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;", "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
+            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;",
+                        "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
             return(rjd3toolkit::.jd2r_mts(w))
         })
         names(lcmp) <- sapply(cmp_ids, `[[`, "id")

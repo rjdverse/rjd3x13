@@ -30,42 +30,51 @@ x13_fast(
 \arguments{
 \item{ts}{an univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
-\item{context}{list of external regressors (calendar or other) to be used for estimation}
+\item{context}{list of external regressors (calendar or other) to be used for
+estimation}
 
-\item{userdefined}{a vector containing additional output variables (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
+\item{userdefined}{a vector containing additional output variables
+(see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
 \value{
-the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{x13_fast()} is a faster function that only returns the results.
-The \code{.jx13()} functions only returns results in a java object which will allow to customize outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
-get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
-In the estimation functions \code{x13()} and \code{x13_fast()} you can directly use a specification name (string).
-If you want to customize a specification you have to create a specification object first.
+the \code{x13()} function returns a list with the results, the estimation
+specification and the result specification, while \code{x13_fast()} is a faster
+function that only returns the results. The \code{.jx13()} functions only returns
+results in a java object which will allow to customize outputs in other
+packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of variables and
+\code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable). In the estimation
+functions \code{x13()} and \code{x13_fast()} you can directly use a specification name
+(string). If you want to customize a specification you have to create a
+specification object first.
 }
 \description{
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
-y = rjd3toolkit::ABS$X0.2.09.10.M
-x13_fast(y,"rsa3")
-x13(y,"rsa5c")
-regarima_fast(y,"rg0")
-regarima(y,"rg3")
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+x13_fast(y, "rsa3")
+x13(y, "rsa5c")
+regarima_fast(y, "rg0")
+regarima(y, "rg3")
 
-sp = x13_spec("rsa5c")
-sp = rjd3toolkit::add_outlier(sp,
-                 type = c("AO"), c("2015-01-01", "2010-01-01"))
-sp =  rjd3toolkit::set_transform(
-   rjd3toolkit::set_tradingdays(
-     rjd3toolkit::set_easter(sp, enabled = FALSE),
-    option = "workingdays"
-  ),
-  fun = "None"
+sp <- x13_spec("rsa5c")
+sp <- rjd3toolkit::add_outlier(sp,
+    type = c("AO"), c("2015-01-01", "2010-01-01")
 )
-x13(y,spec=sp)
-sp = set_x11(sp,
-             henderson.filter = 13)
+sp <- rjd3toolkit::set_transform(
+    rjd3toolkit::set_tradingdays(
+        rjd3toolkit::set_easter(sp, enabled = FALSE),
+        option = "workingdays"
+    ),
+    fun = "None"
+)
+x13(y, spec = sp)
+sp <- set_x11(sp,
+    henderson.filter = 13
+)
 x13_fast(y, spec = sp)
 
 }
