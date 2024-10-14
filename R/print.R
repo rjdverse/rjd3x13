@@ -1,171 +1,200 @@
-#'@importFrom stats printCoefmat
-#'@importFrom utils capture.output
-print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...){
-  mstats <- matrix(unlist(x$mstats),
-                  ncol = 1,
-                  dimnames = list(names(x$mstats), "M stats"))
-  cat("Monitoring and Quality Assessment Statistics:",
-      "\n")
-  printCoefmat(mstats, digits = digits, P.values= FALSE, na.print = "NA", ...)
-  cat("\n")
-  cat("Final filters:","\n")
-  cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
-  cat("\n")
-  cat(sprintf("Trend filter: %s terms Henderson moving average", x$decomposition$final_henderson))
-  cat("\n")
-  return(invisible(x))
+#' @importFrom stats printCoefmat
+#' @importFrom utils capture.output
+print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
+    mstats <- matrix(unlist(x$mstats),
+        ncol = 1,
+        dimnames = list(names(x$mstats), "M stats")
+    )
+    cat(
+        "Monitoring and Quality Assessment Statistics:",
+        "\n"
+    )
+    printCoefmat(mstats, digits = digits, P.values = FALSE, na.print = "NA", ...)
+    cat("\n")
+    cat("Final filters:", "\n")
+    cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
+    cat("\n")
+    cat(sprintf("Trend filter: %s terms Henderson moving average", x$decomposition$final_henderson))
+    cat("\n")
+    return(invisible(x))
 }
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
-                              ...){
-  variance_decomposition <- x$variance_decomposition
-  residual_tests <- x$residual_tests
+                              ...) {
+    variance_decomposition <- x$variance_decomposition
+    residual_tests <- x$residual_tests
 
-  cat("Relative contribution of the components to the stationary",
-      "portion of the variance in the original series,",
-      "after the removal of the long term trend (in %)",
-      sep = "\n"
-  )
-  cat("\n")
-  cat(paste0(" ",
-             capture.output(
-               printCoefmat(variance_decomposition*100, digits = digits, ...)
-             )),
-      sep ="\n")
-  cat("\n")
+    cat("Relative contribution of the components to the stationary",
+        "portion of the variance in the original series,",
+        "after the removal of the long term trend (in %)",
+        sep = "\n"
+    )
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            capture.output(
+                printCoefmat(variance_decomposition * 100, digits = digits, ...)
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
 
-  cat("Residual seasonality tests")
-  cat("\n")
-  cat(paste0(" ",
-             capture.output(
-               printCoefmat(residual_tests[,"P.value", drop = FALSE], digits = digits,
-                            na.print = "NA", ...)
-             )
-  ),
-  sep ="\n")
-  cat("\n")
+    cat("Residual seasonality tests")
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            capture.output(
+                printCoefmat(residual_tests[, "P.value", drop = FALSE],
+                    digits = digits,
+                    na.print = "NA", ...
+                )
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
 
-  return(invisible(x))
+    return(invisible(x))
 }
 
 #' @export
 print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                   ...){
-
-  cat("Model: X-13\n")
-  print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
-  cat("\n")
-  cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
-  cat("\n")
-  cat(sprintf("Trend filter: %s terms Henderson moving average\n", x$decomposition$final_henderson))
-  if (summary_info)
-      cat("\nFor a more detailed output, use the 'summary()' function.\n")
-  return(invisible(x))
+                                ...) {
+    cat("Model: X-13\n")
+    print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
+    cat("\n")
+    cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
+    cat("\n")
+    cat(sprintf("Trend filter: %s terms Henderson moving average\n", x$decomposition$final_henderson))
+    if (summary_info) {
+        cat("\nFor a more detailed output, use the 'summary()' function.\n")
+    }
+    return(invisible(x))
 }
 
 #' @export
-summary.JD3_X13_RSLTS <- function(object, ...){
-    x <- list(preprocessing = summary(object$preprocessing),
-         decomposition = object[c("mstats", "decomposition")],
-         diagnostics = rjd3toolkit::diagnostics(object),
-         final = rjd3toolkit::sa_decomposition(object)
-         )
+summary.JD3_X13_RSLTS <- function(object, ...) {
+    x <- list(
+        preprocessing = summary(object$preprocessing),
+        decomposition = object[c("mstats", "decomposition")],
+        diagnostics = rjd3toolkit::diagnostics(object),
+        final = rjd3toolkit::sa_decomposition(object)
+    )
     class(x) <- "summary.JD3_X13_RSLTS"
     return(x)
 }
 
 #' @export
-summary.JD3_X13_OUTPUT <- function(object, ...){
+summary.JD3_X13_OUTPUT <- function(object, ...) {
     summary(object$result, ...)
 }
 
 #' @export
-print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...){
+print.summary.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, signif.stars = signif.stars, ...)
-    cat("\n", "Decomposition","\n",sep="")
+    cat("\n", "Decomposition", "\n", sep = "")
     print_x11_decomp(x$decomposition, digits = digits, ...)
-    cat("\n", "Diagnostics","\n",sep="")
+    cat("\n", "Diagnostics", "\n", sep = "")
     print_diagnostics(x$diagnostics, digits = digits, ...)
-    cat("\n", "Final","\n",sep="")
+    cat("\n", "Final", "\n", sep = "")
     print(x$final, digits = digits, ...)
     return(invisible(x))
 }
 
 #' @export
-print.JD3_X13_OUTPUT<- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                                ...){
-  print(x$result, digits = digits, summary_info = summary_info, ...)
-  return(invisible(x))
+print.JD3_X13_OUTPUT <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+                                 ...) {
+    print(x$result, digits = digits, summary_info = summary_info, ...)
+    return(invisible(x))
 }
 
 #' @export
 print.JD3X11 <- function(x, ...) {
-  table <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
+    table <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 
-  cat("Last values\n")
-  print(utils::tail(stats::.preformat.ts(table)))
+    cat("Last values\n")
+    print(utils::tail(stats::.preformat.ts(table)))
 
-  return(invisible(x))
+    return(invisible(x))
 }
 
 
 #' @export
 plot.JD3_X13_RSLTS <- function(x, first_date = NULL, last_date = NULL,
                                type_chart = c("sa-trend", "seas-irr"),
-                               caption = c("sa-trend" = "Y, Sa, trend",
-                                           "seas-irr" = "Sea., irr.")[type_chart],
-                               colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
-                                          s = "#1E6C0B", i = "#155692"),
-                               ...){
-  plot(rjd3toolkit::sa_decomposition(x),
-       first_date = first_date, last_date = last_date,
-       type_chart = type_chart,
-       caption = caption,
-       colors = colors,
-       ...)
+                               caption = c(
+                                   "sa-trend" = "Y, Sa, trend",
+                                   "seas-irr" = "Sea., irr."
+                               )[type_chart],
+                               colors = c(
+                                   y = "#F0B400", t = "#1E6C0B", sa = "#155692",
+                                   s = "#1E6C0B", i = "#155692"
+                               ),
+                               ...) {
+    plot(rjd3toolkit::sa_decomposition(x),
+        first_date = first_date, last_date = last_date,
+        type_chart = type_chart,
+        caption = caption,
+        colors = colors,
+        ...
+    )
 }
 #' @export
 plot.JD3_X13_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
-                               type_chart = c("sa-trend", "seas-irr"),
-                               caption = c("sa-trend" = "Y, Sa, trend",
-                                           "seas-irr" = "Sea., irr.")[type_chart],
-                               colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
-                                          s = "#1E6C0B", i = "#155692"),
-                               ...){
-  plot(x$result,
-       first_date = first_date, last_date = last_date,
-       type_chart = type_chart,
-       caption = caption,
-       colors = colors,
-       ...)
+                                type_chart = c("sa-trend", "seas-irr"),
+                                caption = c(
+                                    "sa-trend" = "Y, Sa, trend",
+                                    "seas-irr" = "Sea., irr."
+                                )[type_chart],
+                                colors = c(
+                                    y = "#F0B400", t = "#1E6C0B", sa = "#155692",
+                                    s = "#1E6C0B", i = "#155692"
+                                ),
+                                ...) {
+    plot(x$result,
+        first_date = first_date, last_date = last_date,
+        type_chart = type_chart,
+        caption = caption,
+        colors = colors,
+        ...
+    )
 }
 
 #' @importFrom rjd3toolkit diagnostics
 #' @export
-diagnostics.JD3_X13_RSLTS<-function(x, ...){
-  if (is.null(x)) return(NULL)
-  variance_decomposition <- x$diagnostics$vardecomposition
-  variance_decomposition <- matrix(unlist(variance_decomposition),
-                                  ncol = 1,
-                                  dimnames = list(names(variance_decomposition), "Component"))
-  residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
-  residual_tests <- data.frame(Statistic = sapply(residual_tests, function(test) test[["value"]]),
-                              P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
-                              Description =  sapply(residual_tests, function(test) attr(test, "distribution")))
-  list(preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
-       variance_decomposition = variance_decomposition,
-       residual_tests = residual_tests)
+diagnostics.JD3_X13_RSLTS <- function(x, ...) {
+    if (is.null(x)) {
+        return(NULL)
+    }
+    variance_decomposition <- x$diagnostics$vardecomposition
+    variance_decomposition <- matrix(unlist(variance_decomposition),
+        ncol = 1,
+        dimnames = list(names(variance_decomposition), "Component")
+    )
+    residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
+    residual_tests <- data.frame(
+        Statistic = sapply(residual_tests, function(test) test[["value"]]),
+        P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
+        Description = sapply(residual_tests, function(test) attr(test, "distribution"))
+    )
+    list(
+        preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
+        variance_decomposition = variance_decomposition,
+        residual_tests = residual_tests
+    )
 }
 
 #' @export
-diagnostics.JD3_X13_OUTPUT<-function(x, ...){
-  return(rjd3toolkit::diagnostics(x$result, ...))
+diagnostics.JD3_X13_OUTPUT <- function(x, ...) {
+    return(rjd3toolkit::diagnostics(x$result, ...))
 }
 
 
 #' @export
 print.JD3_REGARIMA_SPEC <- function(x, ...) {
-
     cat("Specification", "\n", sep = "")
 
 
@@ -212,7 +241,9 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
             message("Trading days regressor unknown.")
         }
         cat("with Leap Year: ",
-            ifelse(x$regression$td$lp == "LEAPYEAR", "Yes", "No"), "\n", sep = "")
+            ifelse(x$regression$td$lp == "LEAPYEAR", "Yes", "No"), "\n",
+            sep = ""
+        )
         cat("AutoAdjust: ", x$regression$td$autoadjust, "\n", sep = "")
         cat("Test: ", x$regression$td$test, "\n", sep = "")
     }
@@ -229,8 +260,10 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
 
         if (!is.null(x$regression$easter$coef)) {
             cat("Coef:\n")
-            cat("\t- Type:", x$regression$easter$coefficient$type,
-                ifelse(x$regression$easter$coefficient$type == "FIXED", "(Auto)", ""), "\n")
+            cat(
+                "\t- Type:", x$regression$easter$coefficient$type,
+                ifelse(x$regression$easter$coefficient$type == "FIXED", "(Auto)", ""), "\n"
+            )
             cat("\t- Value:", x$regression$easter$coefficient$value, "\n")
         }
     }
@@ -242,7 +275,9 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
         for (out in x$regression$outliers) {
             cat("\t- ", out$name,
                 ifelse(is.null(out$coef), "", paste0(", coefficient: ", out$coef$value, " (", out$coef$type, ")")),
-                "\n", sep = "")
+                "\n",
+                sep = ""
+            )
         }
     }
     cat("Ramps: ")
@@ -250,7 +285,9 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
         cat("\n")
         for (ramp in x$regression$ramps) {
             cat("\t- start: ", ramp$start, ", end : ", ramp$end,
-                ifelse(is.null(ramp$coef), "", paste0(", coefficient: ", ramp$coef, " (", ramp$coef$type, ")")), sep = "")
+                ifelse(is.null(ramp$coef), "", paste0(", coefficient: ", ramp$coef, " (", ramp$coef$type, ")")),
+                sep = ""
+            )
             cat("\n")
         }
     } else {
@@ -262,7 +299,9 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
         for (uv in x$regression$users) {
             cat("\t-", uv$name,
                 ifelse(is.null(uv$coef), "", paste0(", coefficient: ", uv$coef)),
-                ", component: ", uv$regeffect, "\n", sep = "")
+                ", component: ", uv$regeffect, "\n",
+                sep = ""
+            )
         }
     }
 
@@ -293,16 +332,17 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
 
 #' @export
 print.JD3_X11_SPEC <- function(x, ...) {
-
     cat("Specification X11", "\n", sep = "")
 
 
     cat("Seasonal component: ", ifelse(x$seasonal, "Yes", "No"), "\n", sep = "")
     cat("Length of the Henderson filter: ", x$henderson, "\n", sep = "")
     cat("Seasonal filter: ", x$sfilters, "\n", sep = "")
-    cat("Boundaries used for extreme values correction :",
+    cat(
+        "Boundaries used for extreme values correction :",
         "\n\t lower_sigma: ", x$lsig,
-        "\n\t upper_sigma: ", x$usig)
+        "\n\t upper_sigma: ", x$usig
+    )
     cat("\n")
     cat("Nb of forecasts: ", x$nfcasts, "\n", sep = "")
     cat("Nb of backcasts: ", x$nbcasts, "\n", sep = "")
@@ -313,7 +353,6 @@ print.JD3_X11_SPEC <- function(x, ...) {
 
 #' @export
 print.JD3_X13_SPEC <- function(x, ...) {
-
     print(x$regarima)
 
     cat("\n")
