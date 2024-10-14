@@ -107,11 +107,11 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3x13" class="external-link">"rjd3x13"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va">ABS</span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span>
-<span><span class="va">x13_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x13.html">x13</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> </span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va"><a href="https://rjdverse.github.io/rjd3toolkit/reference/ABS.html" class="external-link">ABS</a></span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span>
+<span><span class="va">x13_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x13.html">x13</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">x13_model</span><span class="op">$</span><span class="va">result</span><span class="op">$</span><span class="va">preprocessing</span><span class="op">)</span> <span class="co"># Summary of regarima model</span></span>
 <span><span class="co">#&gt; Log-transformation: yes </span></span>
-<span><span class="co">#&gt; SARIMA model:  (2,1,1) (0,1,1)</span></span>
+<span><span class="co">#&gt; SARIMA model: (2,1,1) (0,1,1)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients</span></span>
 <span><span class="co">#&gt;           Estimate Std. Error  T-stat Pr(&gt;|t|)    </span></span>
@@ -125,15 +125,15 @@
 <span><span class="co">#&gt; Regression model:</span></span>
 <span><span class="co">#&gt;                   Estimate Std. Error T-stat Pr(&gt;|t|)    </span></span>
 <span><span class="co">#&gt; td               0.0023233  0.0006844  3.395 0.000755 ***</span></span>
-<span><span class="co">#&gt; easter           0.0520113  0.0084894  6.127 2.13e-09 ***</span></span>
-<span><span class="co">#&gt; TC (2000-06-01)  0.1590340  0.0288578  5.511 6.37e-08 ***</span></span>
-<span><span class="co">#&gt; AO (2000-07-01) -0.2900774  0.0400551 -7.242 2.25e-12 ***</span></span>
+<span><span class="co">#&gt; easter           0.0520113  0.0084894  6.127 2.14e-09 ***</span></span>
+<span><span class="co">#&gt; TC (2000-06-01)  0.1590340  0.0288578  5.511 6.38e-08 ***</span></span>
+<span><span class="co">#&gt; AO (2000-07-01) -0.2900774  0.0400551 -7.242 2.26e-12 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">#&gt; Number of observations:  425 , Number of effective observations:  412 , Number of parameters:  9 </span></span>
-<span><span class="co">#&gt; Loglikelihood:  746.7517, Adjusted loglikelihood:  -2120.875</span></span>
-<span><span class="co">#&gt; Standard error of the regression (ML estimate):  0.03927991 </span></span>
-<span><span class="co">#&gt; AIC:  4259.75 , AICc:  4260.198 , BIC:  4295.939</span></span>
+<span><span class="co">#&gt; Number of observations: 425, Number of effective observations: 412, Number of parameters: 9</span></span>
+<span><span class="co">#&gt; Loglikelihood: 746.7517, Adjusted loglikelihood: -2120.875</span></span>
+<span><span class="co">#&gt; Standard error of the regression (ML estimate): 0.03927991 </span></span>
+<span><span class="co">#&gt; AIC: 4259.75, AICc: 4260.198, BIC: 4295.939</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x13_model</span><span class="op">)</span> <span class="co"># Plot of the final decomposition</span></span></code></pre></div>
 <p><img src="reference/figures/README-x-13-final-1.png" style="display: block; margin: auto;"></p>
@@ -198,7 +198,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
