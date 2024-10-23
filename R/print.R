@@ -61,7 +61,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 
 #' @export
 print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                                thresholds_pval = c(0.001, 0.01, 0.05),
+                                thresholds_pval = getOption("thresholds_pval"),
                                 ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
@@ -78,16 +78,16 @@ print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), s
     )
     cat(
         sprintf("QS test on SA: %s (%.3f); ",
-                base::cut(x$diagnostics$seas.qstest.sa$pvalue, breaks = c(0, thresholds_pval, Inf),
-                          labels = c("Severe", "Bad", "Uncertain", "Good")),
+                base::cut(x$diagnostics$seas.qstest.sa$pvalue, breaks = c(0, thresholds_pval),
+                          labels = names(thresholds_pval)),
                 x$diagnostics$seas.qstest.sa$pvalue
                 )
     )
     cat(
         sprintf("F-test on SA: %s (%.3f)\n",
-                base::cut(mod$diagnostics$seas.ftest.sa$pvalue, breaks = c(0, thresholds_pval, Inf),
-                          labels = c("Severe", "Bad", "Uncertain", "Good")),
-                mod$diagnostics$seas.ftest.sa$pvalue
+                base::cut(x$diagnostics$seas.ftest.sa$pvalue, breaks = c(0, thresholds_pval),
+                          labels = names(thresholds_pval)),
+                x$diagnostics$seas.ftest.sa$pvalue
         )
     )
     if (summary_info) {
