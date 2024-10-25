@@ -61,13 +61,35 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 
 #' @export
 print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+                                thresholds_pval = getOption("thresholds_pval"),
                                 ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
     cat("\n")
-    cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
-    cat("\n")
-    cat(sprintf("Trend filter: %s terms Henderson moving average\n", x$decomposition$final_henderson))
+    cat(sprintf("Seasonal filter: S3X%s; ", x$decomposition$final_seasonal))
+    cat(sprintf("Trend filter: H-%s terms\n", x$decomposition$final_henderson))
+    cat(
+        sprintf("M-Statistics: q %s (%.3f); q-m2 %s (%.3f)\n",
+                ifelse(x$mstats$q <= 1, "Good", "Bad"),
+                x$mstats$q,
+                ifelse(x$mstats$qm2 <= 1, "Good", "Bad"),
+                x$mstats$qm2
+        )
+    )
+    cat(
+        sprintf("QS test on SA: %s (%.3f); ",
+                base::cut(x$diagnostics$seas.qstest.sa$pvalue, breaks = c(0, thresholds_pval),
+                          labels = names(thresholds_pval)),
+                x$diagnostics$seas.qstest.sa$pvalue
+                )
+    )
+    cat(
+        sprintf("F-test on SA: %s (%.3f)\n",
+                base::cut(x$diagnostics$seas.ftest.sa$pvalue, breaks = c(0, thresholds_pval),
+                          labels = names(thresholds_pval)),
+                x$diagnostics$seas.ftest.sa$pvalue
+        )
+    )
     if (summary_info) {
         cat("\nFor a more detailed output, use the 'summary()' function.\n")
     }
