@@ -167,11 +167,11 @@ set_x11.JD3_X11_SPEC <- function(
         x$excludefcasts <- exclude.forecast
     }
     if (!anyNA(sigma.vector)) {
-        if (!all(sigma.vector %in% c(1, 2))) {
-            warning("sigma.vector must be equal to 1 or 2")
-        } else {
+        if (all(sigma.vector %in% c(1, 2))) {
             x$sigma <- "SELECT"
             x$vsigmas <- as.integer(sigma.vector)
+        } else {
+            warning("sigma.vector must be equal to 1 or 2")
         }
     }
     if (!is.na(bias)) {

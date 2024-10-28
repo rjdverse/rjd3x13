@@ -388,9 +388,7 @@ print.JD3_X13_SPEC <- function(x, ...) {
 
     cat("\n", "Benchmarking", "\n", sep = "")
 
-    if (!x$benchmarking$enabled) {
-        cat("Is enabled: No\n")
-    } else {
+    if (x$benchmarking$enabled) {
         cat("Enabled: Yes\n", sep = "")
         cat("Target: ", x$benchmarking$target,
             ifelse(
@@ -411,6 +409,8 @@ print.JD3_X13_SPEC <- function(x, ...) {
         cat("Use forecast: ",
             ifelse(test = x$benchmarking$forecast, yes = "Yes", no = "No (Auto)"),
             "\n", sep = "")
+    } else {
+        cat("Is enabled: No\n")
     }
 
     return(invisible(x))
