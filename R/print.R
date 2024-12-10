@@ -1,7 +1,8 @@
 #' @importFrom stats printCoefmat
 #' @importFrom utils capture.output
 print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-    mstats <- matrix(unlist(x$mstats),
+    mstats <- matrix(
+        data = unlist(x$mstats),
         ncol = 1,
         dimnames = list(names(x$mstats), "M stats")
     )
@@ -46,7 +47,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
         paste0(
             " ",
             capture.output(
-                printCoefmat(residual_tests[, "P.value", drop = FALSE],
+                printCoefmat(
+                    residual_tests[, "P.value", drop = FALSE],
                     digits = digits,
                     na.print = "NA", ...
                 )
@@ -61,13 +63,34 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 
 #' @export
 print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+                                thresholds_pval = getOption("thresholds_pval"),
                                 ...) {
     cat("Model: X-13\n")
     print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
-    cat("\n")
-    cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
-    cat("\n")
-    cat(sprintf("Trend filter: %s terms Henderson moving average\n", x$decomposition$final_henderson))
+    cat(
+        "\n",
+        sprintf("Seasonal filter: S3X%s; ", x$decomposition$final_seasonal),
+        sprintf("Trend filter: H-%s terms\n", x$decomposition$final_henderson),
+        sprintf(
+            "M-Statistics: q %s (%.3f); q-m2 %s (%.3f)\n",
+            ifelse(x$mstats$q <= 1, "Good", "Bad"),
+            x$mstats$q,
+            ifelse(x$mstats$qm2 <= 1, "Good", "Bad"),
+            x$mstats$qm2
+        ),
+        sprintf(
+            "QS test on SA: %s (%.3f); ",
+            base::cut(x$diagnostics$seas.qstest.sa$pvalue, breaks = c(0, thresholds_pval),
+                      labels = names(thresholds_pval)),
+            x$diagnostics$seas.qstest.sa$pvalue
+        ),
+        sprintf(
+            "F-test on SA: %s (%.3f)\n",
+            base::cut(x$diagnostics$seas.ftest.sa$pvalue, breaks = c(0, thresholds_pval),
+                      labels = names(thresholds_pval)),
+            x$diagnostics$seas.ftest.sa$pvalue
+        )
+    )
     if (summary_info) {
         cat("\nFor a more detailed output, use the 'summary()' function.\n")
     }
@@ -139,7 +162,8 @@ plot.JD3_X13_RSLTS <- function(x, first_date = NULL, last_date = NULL,
                                    s = "#1E6C0B", i = "#155692"
                                ),
                                ...) {
-    plot(rjd3toolkit::sa_decomposition(x),
+    plot(
+        rjd3toolkit::sa_decomposition(x),
         first_date = first_date, last_date = last_date,
         type_chart = type_chart,
         caption = caption,
@@ -159,7 +183,8 @@ plot.JD3_X13_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
                                     s = "#1E6C0B", i = "#155692"
                                 ),
                                 ...) {
-    plot(x$result,
+    plot(
+        x$result,
         first_date = first_date, last_date = last_date,
         type_chart = type_chart,
         caption = caption,
@@ -175,15 +200,16 @@ diagnostics.JD3_X13_RSLTS <- function(x, ...) {
         return(NULL)
     }
     variance_decomposition <- x$diagnostics$vardecomposition
-    variance_decomposition <- matrix(unlist(variance_decomposition),
+    variance_decomposition <- matrix(
+        data = unlist(variance_decomposition),
         ncol = 1,
         dimnames = list(names(variance_decomposition), "Component")
     )
-    residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
+    residual_tests <- x$diagnostics[grep(pattern = "test", x = names(x$diagnostics), fixed = TRUE)]
     residual_tests <- data.frame(
-        Statistic = sapply(residual_tests, function(test) test[["value"]]),
-        P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
-        Description = sapply(residual_tests, function(test) attr(test, "distribution"))
+        Statistic = sapply(X = residual_tests, FUN = function(test) test[["value"]]),
+        P.value = sapply(X = residual_tests, FUN = function(test) test[["pvalue"]]),
+        Description = sapply(X = residual_tests, FUN = attr, which = "distribution")
     )
     list(
         preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
@@ -366,9 +392,7 @@ print.JD3_X13_SPEC <- function(x, ...) {
 
     cat("\n", "Benchmarking", "\n", sep = "")
 
-    if (!x$benchmarking$enabled) {
-        cat("Is enabled: No\n")
-    } else {
+    if (x$benchmarking$enabled) {
         cat("Enabled: Yes\n", sep = "")
         cat("Target: ", x$benchmarking$target,
             ifelse(
@@ -389,6 +413,8 @@ print.JD3_X13_SPEC <- function(x, ...) {
         cat("Use forecast: ",
             ifelse(test = x$benchmarking$forecast, yes = "Yes", no = "No (Auto)"),
             "\n", sep = "")
+    } else {
+        cat("Is enabled: No\n")
     }
 
     return(invisible(x))
