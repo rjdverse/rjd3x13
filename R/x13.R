@@ -358,7 +358,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/t-rev-policies-production}
+#' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
 #'
 #' @examples
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
