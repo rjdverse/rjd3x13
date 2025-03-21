@@ -2,3 +2,91 @@ url: https://rjdverse.github.io/rjd3x13/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    - rpackages
+    right:
+    - jdemetra
+    - github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    jdemetra:
+      text: JDemetra+
+      menu:
+      - text: Download JDemetra+
+        href: https://github.com/jdemetra/jdemetra-app/releases
+      - text: JDemetra+ documentation
+        href: https://jdemetra-new-documentation.netlify.app/
+    rpackages:
+      text: Around JDemetra+ and R
+      menu:
+      - text: rjd3toolkit
+        href: https://github.com/rjdverse/rjd3toolkit
+      - text: rjd3workspace
+        href: https://github.com/rjdverse/rjd3workspace
+      - text: rjwsacruncher
+        href: https://github.com/AQLT/rjwsacruncher
+      - text: JDCruncher
+        href: https://github.com/InseeFrLab/JDCruncher
+      - text: ggdemetra3
+        href: https://github.com/AQLT/ggdemetra3
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/rjdverse/rjdemetra
+
+reference:
+- title: Defining specifications
+  desc: Prior settings for seasonal adjustment with X-13ARIMA or Reg-Arima modelling
+  contents:
+- '` regarima_spec() `'
+- '` x13_spec() `'
+- '` x11_spec() `'
+- '` set_x11() `'
+- title: Seasonal adjustment
+  desc: Functions to perform seasonal adjustment with X-13ARIMA
+  contents:
+    - '` x13() `'
+    - '` x13_fast() `'
+    - '` x11() `'
+- title: Refresh policies
+  desc: Functions to update a specification within a domain of constraints
+  contents:
+    - '` regarima_refresh() `'
+    - '` x13_refresh() `'
+- title: RegARIMA
+  desc: Functions to peform regARIMA estimation only
+  contents:
+- '` regarima() `'
+- '` regarima_fast() `'
+- title: Outliers
+  desc: Outlier Detection with a RegARIMA Model
+  contents:
+    - '` regarima_outliers() `'
+- title: Revisions
+  desc: Monitoring revisions in estimation when adding data
+  contents:
+    - '` x13_revisions() `'
+- title: Output descpription
+  desc: Displaying names and descprition of all available output objects, defining customized output.
+    - '` x13_dictionary() `'
+    - '` x13_full_dictionary() `'
+    - '` userdefined_variables_x13() `'
+
+
+
+
