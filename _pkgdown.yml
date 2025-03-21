@@ -47,7 +47,7 @@ navbar:
         href: https://github.com/AQLT/ggdemetra3
     github:
       icon: fa-github fa-lg
-      href: https://github.com/rjdverse/rjdemetra
+      href: https://github.com/rjdverse/rjd3x13
 
 reference:
 - title: Defining specifications
@@ -63,21 +63,21 @@ reference:
     - '`x13`'
     - '`x13_fast`'
     - '`x11`'
-- title: Refresh policies
-  desc: Functions to update a specification within a domain of constraints
-  contents:
-    - '`regarima_refresh`'
-    - '`x13_refresh`'
 - title: RegARIMA
   desc: Functions to perform regARIMA estimation only
   contents:
     - '`regarima`'
     - '`regarima_fast`'
-- title: Outliers
+- title: Outlier Detection
   desc: Outlier Detection with a RegARIMA Model
   contents:
     - '`regarima_outliers`'
-- title: Revisions
+- title: Refresh policies
+  desc: Functions to update a specification within a domain of constraints
+  contents:
+    - '`regarima_refresh`'
+    - '`x13_refresh`'
+- title: Revision History
   desc: Monitoring revisions in estimation when adding data
   contents:
     - '`x13_revisions`'
@@ -87,7 +87,7 @@ reference:
     - '`x13_dictionary`'
     - '`x13_full_dictionary`'
     - '`userdefined_variables_x13`'
-- title: Wrangle Java objects
+- title: Wrangling Java objects
   desc: Functions to easily interact between R and Java objects
   contents:
     - '`.x13_rslts`'
