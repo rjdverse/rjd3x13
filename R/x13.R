@@ -101,8 +101,8 @@ regarima_fast <- function(ts,
     if (is.jnull(jq)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq)
-    p <- RProtoBuf::read(x13.RegArimaOutput, q)
+    q_obj <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq)
+    p <- RProtoBuf::read(x13.RegArimaOutput, q_obj)
     return(structure(
         list(
             result = rjd3toolkit::.p2r_regarima_rslts(p$result),
@@ -160,9 +160,7 @@ x13 <- function(ts,
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
-        spec <- match.arg(spec[1],
-            choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
-        )
+        spec <- match.arg(spec[1], choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c"))
         jrslt <- .jcall("jdplus/x13/base/r/X13",
                         "Ljdplus/x13/base/core/x13/X13Output;",
                         "fullProcess", jts, spec)
@@ -179,10 +177,16 @@ x13 <- function(ts,
     }
     if (is.jnull(jrslt)) {
         return(NULL)
-    } else {
-        res <- .x13_output(jrslt)
-        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
     }
+
+    res <- .x13_output(jrslt)
+    output <- rjd3toolkit::.add_ud_var(
+        res,
+        jrslt,
+        userdefined = userdefined,
+        out_class = "Ljdplus/x13/base/core/x13/X13Results;"
+    )
+    return(output)
 }
 
 
@@ -252,8 +256,8 @@ x13_fast <- function(ts,
     if (is.jnull(jq)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq)
-    p <- RProtoBuf::read(x13.X13Output, q)
+    q_obj <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq)
+    p <- RProtoBuf::read(x13.X13Output, q_obj)
     return(structure(
         list(
             result = .p2r_x13_rslts(p$result),
@@ -416,7 +420,7 @@ regarima_refresh <- function(spec,
                              end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_REGARIMA_SPEC")) {
-        stop("Invalid specification type")
+        stop("Invalid specification type", call. = FALSE)
     }
     jspec <- .r2jd_spec_regarima(spec)
     if (is.null(refspec)) {
@@ -424,7 +428,7 @@ regarima_refresh <- function(spec,
                            "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
     } else {
         if (!inherits(refspec, "JD3_REGARIMA_SPEC")) {
-            stop("Invalid specification type")
+            stop("Invalid specification type", call. = FALSE)
         }
         jrefspec <- .r2jd_spec_regarima(refspec)
     }
@@ -456,14 +460,14 @@ x13_refresh <- function(spec,
                         end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_X13_SPEC")) {
-        stop("Invalid specification type")
+        stop("Invalid specification type", call. = FALSE)
     }
     jspec <- .r2jd_spec_x13(spec)
     if (is.null(refspec)) {
         jrefspec <- .jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
     } else {
         if (!inherits(refspec, "JD3_X13_SPEC")) {
-            stop("Invalid specification type")
+            stop("Invalid specification type", call. = FALSE)
         }
         jrefspec <- .r2jd_spec_x13(refspec)
     }
@@ -499,9 +503,9 @@ x13_dictionary <- function() {
 #'
 #' @examples
 x13_full_dictionary <- function() {
-    q <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
-    q <- `dim<-`(q, c(6, length(q) / 6))
-    q <- t(q)
-    q <- `colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
-    return(q)
+    dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
+    dico <- `dim<-`(dico, c(6, length(dico) / 6))
+    dico <- t(dico)
+    dico <- `colnames<-`(dico, c("name", "description", "detail", "output", "type", "fullname"))
+    return(dico)
 }

@@ -35,7 +35,7 @@ regarima_outliers <- function(y,
                               cv = 0,
                               clean = FALSE) {
     if (!is.ts(y)) {
-        stop("y must be a time series")
+        stop("y must be a time series", call. = FALSE)
     }
     if (!is.null(X.td)) {
         td <- rjd3toolkit::td(s = y, groups = X.td)
@@ -62,11 +62,10 @@ regarima_outliers <- function(y,
     ll0 <- rjd3toolkit::.proc_likelihood(jregarima, "initiallikelihood.")
     ll1 <- rjd3toolkit::.proc_likelihood(jregarima, "finallikelihood.")
 
-    return(structure(
-        list(
-            model = model,
-            likelihood = list(initial = ll0, final = ll1)
-        ),
-        class = "JD3_REGARIMA_OUTLIERS"
-    ))
+    output <- list(
+        model = model,
+        likelihood = list(initial = ll0, final = ll1)
+    )
+    class(output) <- "JD3_REGARIMA_OUTLIERS"
+    return(output)
 }
