@@ -60,7 +60,7 @@ regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
         return(NULL)
     } else {
         res <- .regarima_output(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined))
     }
 }
 #' @export
@@ -93,7 +93,7 @@ regarima_fast <- function(ts,
         return(NULL)
     } else {
         res <- .regarima_rslts(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
     }
 }
 
@@ -116,8 +116,6 @@ regarima_fast <- function(ts,
 #' Seasonal Adjustment with  X13-ARIMA
 #'
 #' @inheritParams regarima
-#'
-#'
 #'
 #' @examples
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
@@ -183,7 +181,7 @@ x13 <- function(ts,
         return(NULL)
     } else {
         res <- .x13_output(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
     }
 }
 
@@ -216,7 +214,7 @@ x13_fast <- function(ts,
         return(NULL)
     } else {
         res <- .x13_rslts(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
     }
 }
 
@@ -286,7 +284,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
         return(NULL)
     } else {
         res <- .x11_rslts(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
     }
 }
 
