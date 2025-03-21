@@ -69,7 +69,7 @@ reference:
     - '` regarima_refresh() `'
     - '` x13_refresh() `'
 - title: RegARIMA
-  desc: Functions to peform regARIMA estimation only
+  desc: Functions to perform regARIMA estimation only
   contents:
 - '` regarima() `'
 - '` regarima_fast() `'
@@ -81,8 +81,8 @@ reference:
   desc: Monitoring revisions in estimation when adding data
   contents:
     - '` x13_revisions() `'
-- title: Output descpription
-  desc: Displaying names and descprition of all available output objects, defining customized output.
+- title: Output description
+  desc: Displaying names and description of all available output objects, defining customized output.
     - '` x13_dictionary() `'
     - '` x13_full_dictionary() `'
     - '` userdefined_variables_x13() `'
