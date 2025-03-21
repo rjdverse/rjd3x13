@@ -53,39 +53,60 @@ reference:
 - title: Defining specifications
   desc: Prior settings for seasonal adjustment with X-13ARIMA or Reg-Arima modelling
   contents:
-- '` regarima_spec() `'
-- '` x13_spec() `'
-- '` x11_spec() `'
-- '` set_x11() `'
+    - '`regarima_spec`'
+    - '`x13_spec`'
+    - '`x11_spec`'
+    - '`set_x11`'
 - title: Seasonal adjustment
   desc: Functions to perform seasonal adjustment with X-13ARIMA
   contents:
-    - '` x13() `'
-    - '` x13_fast() `'
-    - '` x11() `'
+    - '`x13`'
+    - '`x13_fast`'
+    - '`x11`'
 - title: Refresh policies
   desc: Functions to update a specification within a domain of constraints
   contents:
-    - '` regarima_refresh() `'
-    - '` x13_refresh() `'
+    - '`regarima_refresh`'
+    - '`x13_refresh`'
 - title: RegARIMA
   desc: Functions to perform regARIMA estimation only
   contents:
-- '` regarima() `'
-- '` regarima_fast() `'
+    - '`regarima`'
+    - '`regarima_fast`'
 - title: Outliers
   desc: Outlier Detection with a RegARIMA Model
   contents:
-    - '` regarima_outliers() `'
+    - '`regarima_outliers`'
 - title: Revisions
   desc: Monitoring revisions in estimation when adding data
   contents:
-    - '` x13_revisions() `'
+    - '`x13_revisions`'
 - title: Output description
-  desc: Displaying names and description of all available output objects, defining customized output.
-    - '` x13_dictionary() `'
-    - '` x13_full_dictionary() `'
-    - '` userdefined_variables_x13() `'
+  desc: Displaying names and description of all available output objects, defining customized output
+  contents:
+    - '`x13_dictionary`'
+    - '`x13_full_dictionary`'
+    - '`userdefined_variables_x13`'
+- title: Wrangle Java objects
+  desc: Functions to easily interact between R and Java objects
+  contents:
+    - '`.x13_rslts`'
+    - '`.jd2r_spec_x11`'
+    - '`.r2jd_spec_x11`'
+    - '`.r2jd_spec_regarima`'
+    - '`.jd2r_spec_regarima`'
+    - '`.r2jd_spec_x13`'
+    - '`.jd2r_spec_x13`'
+    - '`.jx13`'
+- title: Deprecated functions
+  desc: Use new version
+  contents:
+    - '`spec_x13`'
+    - '`spec_regarima`'
+    - '`spec_x11`'
+    - '`fast_x13`'
+    - '`fast_regarima`'
+
 
 
 
