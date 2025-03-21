@@ -15,11 +15,23 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rjdverse/rjd3x13/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home fa-lg"></span></a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-around-jdemetra-and-r" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Around JDemetra+ and R</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-around-jdemetra-and-r"><li><a class="external-link dropdown-item" href="https://github.com/rjdverse/rjd3toolkit">rjd3toolkit</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/rjdverse/rjd3workspace">rjd3workspace</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/AQLT/rjwsacruncher">rjwsacruncher</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/InseeFrLab/JDCruncher">JDCruncher</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/AQLT/ggdemetra3">ggdemetra3</a></li>
+  </ul></li>
+      </ul><ul class="navbar-nav"><li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-jdemetra-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">JDemetra+</button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-jdemetra-"><li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jdemetra-app/releases">Download JDemetra+</a></li>
+    <li><a class="external-link dropdown-item" href="https://jdemetra-new-documentation.netlify.app/">JDemetra+ documentation</a></li>
+  </ul></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rjdverse/rjdemetra"><span class="fa fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -31,9 +43,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="defining-specifications">Defining specifications<a class="anchor" aria-label="anchor" href="#defining-specifications"></a></h2>
 
-
+      <div class="section-desc"><p>Prior settings for seasonal adjustment with X-13ARIMA or Reg-Arima modelling</p></div>
 
 
     </div><div class="section level2">
@@ -43,59 +55,119 @@
 
       <dl><dt>
 
-          <code><a href="deprecated-rjd3x13.html">spec_x13()</a></code> <code><a href="deprecated-rjd3x13.html">spec_regarima()</a></code> <code><a href="deprecated-rjd3x13.html">spec_x11()</a></code> <code><a href="deprecated-rjd3x13.html">fast_x13()</a></code> <code><a href="deprecated-rjd3x13.html">fast_regarima()</a></code>
+          <code><a href="x13_spec.html">regarima_spec()</a></code> <code><a href="x13_spec.html">x13_spec()</a></code> <code><a href="x13_spec.html">x11_spec()</a></code>
 
         </dt>
-        <dd>Deprecated functions</dd>
-      </dl><dl><dt>
-
-          <code><a href="jd3_utilities.html">.x13_rslts()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_x11()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_x11()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_regarima()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_regarima()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_x13()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_x13()</a></code>
-
-        </dt>
-        <dd>Java Utility Functions</dd>
-      </dl><dl><dt>
-
-          <code><a href="refresh.html">regarima_refresh()</a></code> <code><a href="refresh.html">x13_refresh()</a></code>
-
-        </dt>
-        <dd>Refresh a specification with constraints</dd>
-      </dl><dl><dt>
-
-          <code><a href="regarima.html">regarima()</a></code> <code><a href="regarima.html">regarima_fast()</a></code>
-
-        </dt>
-        <dd>RegARIMA model, pre-adjustment in X13</dd>
-      </dl><dl><dt>
-
-          <code><a href="regarima_outliers.html">regarima_outliers()</a></code>
-
-        </dt>
-        <dd>Outlier Detection with a RegARIMA Model</dd>
-      </dl><dl><dt>
-
-          <code><a href="userdefined_variables_x13.html">userdefined_variables_x13()</a></code>
-
-        </dt>
-        <dd>Display a list of all the available output objects</dd>
-      </dl><dl><dt>
-
-          <code><a href="x11.html">x11()</a></code>
-
-        </dt>
-        <dd>X-11 Decomposition Algorithm</dd>
+        <dd>RegARIMA/X-13 Default Specifications</dd>
       </dl><dl><dt>
 
           <code><a href="x11_spec.html">set_x11()</a></code>
 
         </dt>
         <dd>Set X-11 Specification</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="seasonal-adjustment">Seasonal adjustment<a class="anchor" aria-label="anchor" href="#seasonal-adjustment"></a></h2>
+
+      <div class="section-desc"><p>Functions to perform seasonal adjustment with X-13ARIMA</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="x13.html">x13()</a></code> <code><a href="x13.html">x13_fast()</a></code> <code><a href="x13.html">.jx13()</a></code>
 
         </dt>
         <dd>Seasonal Adjustment with X13-ARIMA</dd>
       </dl><dl><dt>
+
+          <code><a href="x11.html">x11()</a></code>
+
+        </dt>
+        <dd>X-11 Decomposition Algorithm</dd>
+      </dl></div><div class="section level2">
+      <h2 id="refresh-policies">Refresh policies<a class="anchor" aria-label="anchor" href="#refresh-policies"></a></h2>
+
+      <div class="section-desc"><p>Functions to update a specification within a domain of constraints</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="refresh.html">regarima_refresh()</a></code> <code><a href="refresh.html">x13_refresh()</a></code>
+
+        </dt>
+        <dd>Refresh a specification with constraints</dd>
+      </dl></div><div class="section level2">
+      <h2 id="regarima">RegARIMA<a class="anchor" aria-label="anchor" href="#regarima"></a></h2>
+
+      <div class="section-desc"><p>Functions to perform regARIMA estimation only</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="regarima.html">regarima()</a></code> <code><a href="regarima.html">regarima_fast()</a></code>
+
+        </dt>
+        <dd>RegARIMA model, pre-adjustment in X13</dd>
+      </dl></div><div class="section level2">
+      <h2 id="outliers">Outliers<a class="anchor" aria-label="anchor" href="#outliers"></a></h2>
+
+      <div class="section-desc"><p>Outlier Detection with a RegARIMA Model</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="regarima_outliers.html">regarima_outliers()</a></code>
+
+        </dt>
+        <dd>Outlier Detection with a RegARIMA Model</dd>
+      </dl></div><div class="section level2">
+      <h2 id="revisions">Revisions<a class="anchor" aria-label="anchor" href="#revisions"></a></h2>
+
+      <div class="section-desc"><p>Monitoring revisions in estimation when adding data</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="x13_revisions.html">x13_revisions()</a></code>
+
+        </dt>
+        <dd>Revisions History</dd>
+      </dl></div><div class="section level2">
+      <h2 id="output-description">Output description<a class="anchor" aria-label="anchor" href="#output-description"></a></h2>
+
+      <div class="section-desc"><p>Displaying names and description of all available output objects, defining customized output</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="x13_dictionary.html">x13_dictionary()</a></code>
 
@@ -109,18 +181,53 @@
         <dd>Title</dd>
       </dl><dl><dt>
 
-          <code><a href="x13_revisions.html">x13_revisions()</a></code>
+          <code><a href="userdefined_variables_x13.html">userdefined_variables_x13()</a></code>
 
         </dt>
-        <dd>Revisions History</dd>
+        <dd>Display a list of all the available output objects</dd>
+      </dl></div><div class="section level2">
+      <h2 id="wrangle-java-objects">Wrangle Java objects<a class="anchor" aria-label="anchor" href="#wrangle-java-objects"></a></h2>
+
+      <div class="section-desc"><p>Functions to easily interact between R and Java objects</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="jd3_utilities.html">.x13_rslts()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_x11()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_x11()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_regarima()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_regarima()</a></code> <code><a href="jd3_utilities.html">.r2jd_spec_x13()</a></code> <code><a href="jd3_utilities.html">.jd2r_spec_x13()</a></code>
+
+        </dt>
+        <dd>Java Utility Functions</dd>
       </dl><dl><dt>
 
-          <code><a href="x13_spec.html">regarima_spec()</a></code> <code><a href="x13_spec.html">x13_spec()</a></code> <code><a href="x13_spec.html">x11_spec()</a></code>
+          <code><a href="x13.html">x13()</a></code> <code><a href="x13.html">x13_fast()</a></code> <code><a href="x13.html">.jx13()</a></code>
 
         </dt>
-        <dd>RegARIMA/X-13 Default Specifications</dd>
+        <dd>Seasonal Adjustment with X13-ARIMA</dd>
+      </dl></div><div class="section level2">
+      <h2 id="deprecated-functions">Deprecated functions<a class="anchor" aria-label="anchor" href="#deprecated-functions"></a></h2>
+
+      <div class="section-desc"><p>Use new version</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="deprecated-rjd3x13.html">spec_x13()</a></code> <code><a href="deprecated-rjd3x13.html">spec_regarima()</a></code> <code><a href="deprecated-rjd3x13.html">spec_x11()</a></code> <code><a href="deprecated-rjd3x13.html">fast_x13()</a></code> <code><a href="deprecated-rjd3x13.html">fast_regarima()</a></code>
+
+        </dt>
+        <dd>Deprecated functions</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
