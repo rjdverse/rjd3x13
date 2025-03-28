@@ -45,6 +45,7 @@ jobs:
 
       - name: Update Remotes field in DESCRIPTION file
         run: |
+          install.packages("desc")
           change_remotes_field <- function(path = ".", verbose = TRUE, target = c("develop", "snapshot", "main")) {
               remotes <- desc::desc_get_remotes(path)
               if (length(remotes) == 0) return(NULL)
