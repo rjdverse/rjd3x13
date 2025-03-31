@@ -171,7 +171,7 @@ set_x11.JD3_X11_SPEC <- function(
             x$sigma <- "SELECT"
             x$vsigmas <- as.integer(sigma.vector)
         } else {
-            warning("sigma.vector must be equal to 1 or 2")
+            warning("sigma.vector must be equal to 1 or 2", call. = FALSE)
         }
     }
     if (!is.na(bias)) {

@@ -1,0 +1,79 @@
+name: Merge Develop to Snapshot & Update Java
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 3 * * 1'
+
+jobs:
+  merge-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@users.noreply.github.com"
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Force Merge Develop into Snapshot
+        run: |
+          git checkout snapshot
+          git fetch origin develop
+          git reset --hard origin/develop # Force `snapshot` à être identique à `develop`
+          git push --force origin snapshot  # Force push sur `snapshot`
+
+      - name: Update Java Dependencies
+        run: mvn versions:update-properties -DallowSnapshots -DallowDowngrade
+
+      - name: Run Maven to Copy JARs
+        run: mvn -Pcopy-jars
+
+      - name: Update Remotes field in DESCRIPTION file
+        run: |
+          install.packages("desc")
+          change_remotes_field <- function(path = ".", verbose = TRUE, target = c("develop", "snapshot", "main")) {
+              remotes <- desc::desc_get_remotes(path)
+              if (length(remotes) == 0) return(NULL)
+
+              basic_remotes <- remotes |> strsplit("@") |> sapply(`[`, 1L)
+
+              new_remotes <- switch(
+                  EXPR = target,
+                  develop = basic_remotes,
+                  main = paste0(basic_remotes, "@*release"),
+                  snapshot = paste0(basic_remotes, "@snapshot")
+              )
+
+              if (verbose) {
+                  cat("Current remotes fields :\n")
+                  cat(remotes, "\n")
+                  cat("New remotes fields :\n")
+                  cat(new_remotes, "\n")
+                  cat("\n")
+              }
+              desc::desc_set_remotes(remotes = new_remotes, file = path)
+              return(invisible(new_remotes))
+          }
+          change_remotes_field(target = "snapshot", verbose = TRUE)
+        shell: Rscript {0}
+
+      - name: Commit & Push Updated POM and JARs
+        run: |
+          git add -A
+          git commit -m "Update Java dependencies & JARs after merging develop → snapshot" || echo "No changes to commit"
+          git push origin snapshot

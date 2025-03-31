@@ -141,10 +141,10 @@ print.JD3_X13_OUTPUT <- function(x,
 
 #' @export
 print.JD3X11 <- function(x, ...) {
-    table <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
+    table_x11 <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 
     cat("Last values\n")
-    print(utils::tail(stats::.preformat.ts(table)))
+    print(utils::tail(stats::.preformat.ts(table_x11)))
 
     return(invisible(x))
 }
