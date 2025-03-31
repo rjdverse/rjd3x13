@@ -23,7 +23,7 @@ Imports:
   rjd3toolkit (>= 3.3.0),
   RProtoBuf (>= 0.4.17)
 Remotes:  
-    github::rjdverse/rjd3toolkit
+    github::rjdverse/rjd3toolkit@snapshot
 SystemRequirements: Java (>= 17)
 License: file LICENSE
 URL: https://github.com/rjdverse/rjd3x13, https://rjdverse.github.io/rjd3x13/
