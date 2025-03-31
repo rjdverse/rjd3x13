@@ -45,7 +45,7 @@
 #' @export
 #'
 userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11")) {
-    x <- match.arg(gsub("-", "", tolower(x)),
+    x <- match.arg(gsub(pattern = "-", replacement = "", x = tolower(x), fixed = TRUE),
         choices = c("x13", "regarima", "x11")
     )
     sa_x13 <- c(
