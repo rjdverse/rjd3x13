@@ -6,8 +6,8 @@ NULL
     if (is.jnull(jrslts)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jrslts)
-    rq <- RProtoBuf::read(regarima.RegArimaModel, q)
+    q_obj <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jrslts)
+    rq <- RProtoBuf::read(regarima.RegArimaModel, q_obj)
     return(rjd3toolkit::.p2r_regarima_rslts(rq))
 }
 
@@ -17,8 +17,8 @@ NULL
     if (is.jnull(jrslts)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jrslts)
-    rq <- RProtoBuf::read(x13.X13Results, q)
+    q_obj <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jrslts)
+    rq <- RProtoBuf::read(x13.X13Results, q_obj)
     return(.p2r_x13_rslts(rq))
 }
 
@@ -26,8 +26,8 @@ NULL
     if (is.jnull(jrslts)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jrslts)
-    rq <- RProtoBuf::read(x13.X11Results, q)
+    q_obj <- .jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jrslts)
+    rq <- RProtoBuf::read(x13.X11Results, q_obj)
     return(.p2r_x11_rslts(rq))
 }
 
