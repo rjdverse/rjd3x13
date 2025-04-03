@@ -1,7 +1,7 @@
 Package: rjd3x13
 Type: Package
 Title: Seasonal Adjustment with X-13 in 'JDemetra+ 3.x'
-Version: 3.3.0.9000
+Version: 3.4.0
 Authors@R: c(
   person("Jean", "Palate", role = c("aut"),
                 email = "palatejean@gmail.com"),
@@ -20,10 +20,10 @@ Depends:
   R (>= 4.1.0)
 Imports:
   rJava (>= 1.0-6),
-  rjd3toolkit (>= 3.3.0),
+  rjd3toolkit (>= 3.4.0),
   RProtoBuf (>= 0.4.17)
 Remotes:  
-    github::rjdverse/rjd3toolkit
+    github::rjdverse/rjd3toolkit@snapshot
 SystemRequirements: Java (>= 17)
 License: file LICENSE
 URL: https://github.com/rjdverse/rjd3x13, https://rjdverse.github.io/rjd3x13/
