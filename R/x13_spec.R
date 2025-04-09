@@ -146,7 +146,7 @@ x11_spec <- function() {
         preprocessing = pspec$basic$preprocessing,
         preliminaryCheck = pspec$basic$preliminary_check
     )
-    transform <- list(
+    transform_list <- list(
         fn = rjd3toolkit::.enum_extract(modelling.Transformation, pspec$transform$transformation),
         adjust = rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
         aicdiff = pspec$transform$aicdiff,
@@ -167,7 +167,7 @@ x11_spec <- function() {
         balanced = pspec$automodel$balanced
     )
 
-    arima <- rjd3toolkit::.p2r_spec_sarima(pspec$arima)
+    arima_list <- rjd3toolkit::.p2r_spec_sarima(pspec$arima)
 
     outlier <- list(
         outliers = lapply(pspec$outlier$outliers, function(z) {
@@ -222,9 +222,9 @@ x11_spec <- function() {
     return(structure(
         list(
             basic = basic,
-            transform = transform,
+            transform = transform_list,
             outlier = outlier,
-            arima = arima,
+            arima = arima_list,
             automodel = automodel,
             regression = regression,
             estimate = estimate
@@ -249,10 +249,10 @@ x11_spec <- function() {
 
     # OUTLIER
     p$outlier$outliers <- lapply(X = r$outlier$outliers, FUN = function(z) {
-        t <- x13.RegArimaSpec$OutlierSpec$Type$new()
-        t$code <- z$type
-        t$va <- z$va
-        return(t)
+        type <- x13.RegArimaSpec$OutlierSpec$Type$new()
+        type$code <- z$type
+        type$va <- z$va
+        return(type)
     })
     p$outlier$span <- rjd3toolkit::.r2p_span(r$outlier$span)
     p$outlier$defva <- r$outlier$defva

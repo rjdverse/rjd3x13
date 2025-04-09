@@ -1,23 +1,5 @@
-.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE) {
-    if (is.null(userdefined)) {
-        x$user_defined <- rjd3toolkit::user_defined(x, NULL)
-    } else {
-        if (result) {
-            res <- jx
-        } else {
-            if (is.null(out_class)) {
-                res <- jx$getResult()
-            } else {
-                res <- .jcall(jx, out_class, "getResult")
-            }
-        }
-        res <- rjd3toolkit::.jd3_object(res, result = TRUE)
-        x$user_defined <- rjd3toolkit::user_defined(res, userdefined = userdefined)
-    }
-    x
-}
 
-#' Display a list of all the available output objects
+#' @title Display a list of all the available output objects
 #'
 #' @description
 #' Function generating a comprehensive list of available output variables
@@ -45,9 +27,11 @@
 #' @export
 #'
 userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11")) {
-    x <- match.arg(gsub("-", "", tolower(x)),
-        choices = c("x13", "regarima", "x11")
-    )
+
+    .Deprecated("x13_full_dictionary")
+
+    x <- match.arg(gsub(pattern = "-", replacement = "", x = tolower(x), fixed = TRUE),
+                   choices = c("x13", "regarima", "x11"))
     sa_x13 <- c(
         "adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
         "arima.btheta(*)", "arima.d", "arima.p", "arima.phi(*)", "arima.q",
@@ -186,7 +170,8 @@ userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11")) {
         "d9-msr", "d9-msr-table", "seasonal-filters", "trend-filter",
         "x11-all"
     )
-    switch(x,
+    switch(
+        EXPR = x,
         x13 = sa_x13,
         regarima = sa_regarima,
         x11 = sa_x11
