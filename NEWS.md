@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [3.5.0] - 2025-04-09
+
+
 ### Removed
 
 * `.add_ud_var` has been transfered to {rjd3toolkit}
@@ -33,7 +36,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [3.1.0] - 2023-08-11
 
 
-[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/rjdverse/rjd3x13/compare/v3.3.0...v3.5.0
 [3.3.0]: https://github.com/rjdverse/rjd3x13/compare/v3.2.3...v3.3.0
 [3.2.3]: https://github.com/rjdverse/rjd3x13/compare/v3.2.2...v3.2.3
 [3.2.2]: https://github.com/rjdverse/rjd3x13/compare/v3.2.1...v3.2.2
