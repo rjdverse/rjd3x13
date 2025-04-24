@@ -11,7 +11,8 @@ on:
 jobs:
   merge-and-update:
     runs-on: ubuntu-latest
-
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
 
