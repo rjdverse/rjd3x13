@@ -62,6 +62,7 @@ jobs:
 
       - name: Update Remotes field in DESCRIPTION file
         run: |
+          library("releaser")
           change_remotes_field(target = "snapshot", verbose = TRUE)
         shell: Rscript {0}
 
