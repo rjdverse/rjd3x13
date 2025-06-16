@@ -167,6 +167,7 @@ orders (p,d,q)(P,D,Q) can also be re-identified.</p>
 <span class="r-in"><span><span class="co"># refreshing the specification</span></span></span>
 <span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_x13</span><span class="op">$</span><span class="va">result_spec</span></span></span>
 <span class="r-in"><span><span class="va">current_domain_spec</span> <span class="op">&lt;-</span> <span class="va">sa_x13</span><span class="op">$</span><span class="va">estimation_spec</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># policy = "Fixed"</span></span></span>
 <span class="r-in"><span><span class="va">spec_x13_ref</span> <span class="op">&lt;-</span> <span class="fu">x13_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>, <span class="co"># point spec to be refreshed</span></span></span>
 <span class="r-in"><span>    <span class="va">current_domain_spec</span>, <span class="co"># domain spec (set of constraints)</span></span></span>
@@ -174,6 +175,7 @@ orders (p,d,q)(P,D,Q) can also be re-identified.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
 <span class="r-in"><span><span class="va">sa_x13_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13.html">x13</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_x13_ref</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># policy = "Outliers"</span></span></span>
 <span class="r-in"><span><span class="va">spec_x13_ref</span> <span class="op">&lt;-</span> <span class="fu">x13_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>,</span></span>
 <span class="r-in"><span>    <span class="va">current_domain_spec</span>,</span></span>
@@ -196,7 +198,6 @@ orders (p,d,q)(P,D,Q) can also be re-identified.</p>
 <span class="r-in"><span><span class="co"># as Additive Outliers, the previous reg-Arima model being otherwise kept fixed</span></span></span>
 <span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
 <span class="r-in"><span><span class="va">sa_x13_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13.html">x13</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_x13_ref</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
