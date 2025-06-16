@@ -54,6 +54,7 @@ specification object first.
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x13_fast(y, "rsa3")
 x13(y, "rsa5c")
@@ -76,5 +77,5 @@ sp <- set_x11(sp,
     henderson.filter = 13
 )
 x13_fast(y, spec = sp)
-
+\dontshow{\}) # examplesIf}
 }
