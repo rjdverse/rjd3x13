@@ -94,6 +94,7 @@ a "JD3_X11_SPEC" object, containing all the parameters.
 Set X-11 Specification
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 init_spec <- x11_spec()
 new_spec <- set_x11(init_spec,
     mode = "LogAdditive",
@@ -109,6 +110,7 @@ new_spec <- set_x11(init_spec,
     exclude.forecast = FALSE,
     bias = "LEGACY"
 )
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=x13_spec]{x13_spec()}} and \code{\link[=x11_spec]{x11_spec()}}.

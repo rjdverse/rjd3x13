@@ -10,8 +10,9 @@ NULL
 }
 
 
-#' Revisions History
+#' @title Revisions History
 #'
+#' @description
 #' Compute revisions history
 #'
 #' @param ts The time series used for the estimation.
@@ -36,7 +37,7 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' s <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sa_mod <- x13(s)
 #' data_ids <- list(
