@@ -8,9 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [3.5.1] - 2025-06-16
 
+### Changed
+
+-   New java libraries
 
 ## [3.5.0] - 2025-04-09
-
 
 ### Removed
 
