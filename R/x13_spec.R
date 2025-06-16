@@ -22,7 +22,7 @@ NULL
 #'
 #' @param name the name of a predefined specification.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' init_spec <- x11_spec()
 #' init_spec <- regarima_spec("rg4")
 #' init_spec <- x13_spec("rsa5c")

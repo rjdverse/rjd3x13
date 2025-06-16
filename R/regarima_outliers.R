@@ -18,7 +18,7 @@ NULL
 #'
 #' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #'
 #' @export

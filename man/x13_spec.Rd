@@ -49,10 +49,11 @@ RSA5c/RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automat
 }
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 init_spec <- x11_spec()
 init_spec <- regarima_spec("rg4")
 init_spec <- x13_spec("rsa5c")
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \itemize{

@@ -1,4 +1,4 @@
-#' Set X-11 Specification
+#' @title Set X-11 Specification
 #'
 #' @param x the specification to be modified, object of class "JD3_X11_SPEC",
 #' default X11 spec can be obtained as 'x=x11_spec()'
@@ -55,7 +55,8 @@
 #' @param bias TODO.
 #' @return  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
-#' @examples
+#'
+#' @examplesIf jversion >= 17
 #' init_spec <- x11_spec()
 #' new_spec <- set_x11(init_spec,
 #'     mode = "LogAdditive",
