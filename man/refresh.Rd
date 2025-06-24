@@ -93,6 +93,9 @@ Arima model coefficients are re-estimated
 
 \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
 orders (p,d,q)(P,D,Q) can also be re-identified.
+
+\strong{Complete}: All the parameters are re-identified and re-estimated,
+unless constrained in the domain spec.
 }
 \examples{
 \dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
