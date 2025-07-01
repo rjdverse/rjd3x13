@@ -502,7 +502,7 @@ x13_dictionary <- function() {
     return(.jcall("jdplus/x13/base/r/X13", "[S", "dictionary"))
 }
 
-#' @title Title
+#' @title X-13 Full Dictionary
 #'
 #' @return
 #' @export
