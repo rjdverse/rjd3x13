@@ -499,7 +499,9 @@ x13_refresh <- function(spec,
 #' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
 #' @export
 x13_dictionary <- function() {
-    return(.jcall("jdplus/x13/base/r/X13", "[S", "dictionary"))
+    output <- .jcall("jdplus/x13/base/r/X13", "[S", "dictionary")
+    class(output) <- "JD3_DICTIONARY"
+    return(output)
 }
 
 #' @title X-13 Full Dictionary
@@ -513,5 +515,7 @@ x13_full_dictionary <- function() {
     dico <- `dim<-`(dico, c(6, length(dico) / 6))
     dico <- t(dico)
     dico <- `colnames<-`(dico, c("name", "description", "detail", "output", "type", "fullname"))
+    dico <- as.data.frame(dico)
+    class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }
