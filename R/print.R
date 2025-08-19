@@ -135,10 +135,15 @@ print.JD3_X13_OUTPUT <- function(x,
                                  digits = max(3L, getOption("digits") - 3L),
                                  summary_info = getOption("summary_info"),
                                  ...) {
+    series_span <- x$result_spec$regarima$basic$span
+    model_span <- x$result_spec$regarima$estimate$span
+
     cat("Serie span: ")
-    print(x$result_spec$regarima$basic$span)
-    cat("Model span: ")
-    print(x$result_spec$regarima$estimate$span)
+    print(series_span)
+    if (!identical(series_span, model_span)) {
+        cat("Model span: ")
+        print(model_span)
+    }
     cat("\n")
     print(x$result, digits = digits, summary_info = summary_info, ...)
     return(invisible(x))
