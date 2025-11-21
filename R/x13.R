@@ -334,6 +334,10 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
 #' orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
+#' \strong{Complete}: All the parameters are re-identified and re-estimated,
+#' unless constrained in the domain spec.
+#'
+#'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
 #' @param refspec the reference specification used to define the domain
 #' considered for re-estimation (`"domain_spec"`).
@@ -498,7 +502,7 @@ x13_dictionary <- function() {
     return(.jcall("jdplus/x13/base/r/X13", "[S", "dictionary"))
 }
 
-#' @title Title
+#' @title X-13 Full Dictionary
 #'
 #' @return
 #' @export

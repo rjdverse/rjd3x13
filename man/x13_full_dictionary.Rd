@@ -2,12 +2,12 @@
 % Please edit documentation in R/x13.R
 \name{x13_full_dictionary}
 \alias{x13_full_dictionary}
-\title{Title}
+\title{X-13 Full Dictionary}
 \usage{
 x13_full_dictionary()
 }
 \description{
-Title
+X-13 Full Dictionary
 }
 \examples{
 \dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
