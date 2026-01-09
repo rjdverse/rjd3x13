@@ -25,6 +25,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - New java libraries
 
+#### Added
+
+- Classes to
+  [`x13_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_dictionary.md)
+  and
+  [`x13_full_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_full_dictionary.md)
+
 ### [3.5.0](https://github.com/rjdverse/rjd3x13/compare/v3.3.0...v3.5.0) - 2025-04-09
 
 #### Removed
