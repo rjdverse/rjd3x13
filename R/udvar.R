@@ -28,7 +28,7 @@
 #'
 userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11")) {
 
-    .Deprecated("x13_full_dictionary")
+    .Deprecated("x13_dictionary")
 
     x <- match.arg(gsub(pattern = "-", replacement = "", x = tolower(x), fixed = TRUE),
                    choices = c("x13", "regarima", "x11"))

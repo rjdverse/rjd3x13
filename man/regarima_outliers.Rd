@@ -48,6 +48,9 @@ Outlier Detection with a RegARIMA Model
 }
 \examples{
 \dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
-regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+# estimate model
+model<- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+# print outliers
+model$model$variables
 \dontshow{\}) # examplesIf}
 }

@@ -19,8 +19,11 @@ NULL
 #' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
 #' @examplesIf jversion >= 17
-#' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
-#'
+#' # estimate model
+#' model<- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+#' # print outliers
+#' model$model$variables
+
 #' @export
 regarima_outliers <- function(y,
                               order = c(0L, 1L, 1L),
