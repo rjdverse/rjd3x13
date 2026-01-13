@@ -140,10 +140,11 @@ regarima_fast <- function(ts,
 #'     henderson.filter = 13
 #' )
 #' x13_fast(y, spec = sp)
-#'
+#' j<- jx13(y, spec = sp)
+#' class(j)
 #' @return the `x13()` function returns a list with the results, the estimation
 #' specification and the result specification, while `x13_fast()` is a faster
-#' function that only returns the results. The `.jx13()` functions only returns
+#' function that only returns the results. The `jx13()` functions only returns
 #' results in a java object which will allow to customize outputs in other
 #' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
 #' [rjd3toolkit::result()] to get a specific variable). In the estimation
@@ -224,7 +225,7 @@ x13_fast <- function(ts,
 
 #' @export
 #' @rdname x13
-.jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
+jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)

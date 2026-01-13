@@ -38,3 +38,14 @@ fast_regarima <- function(ts,
     .Deprecated("regarima_fast")
     regarima_fast(ts, spec, context, userdefined)
 }
+
+#' @name deprecated-rjd3x13
+#' @export
+.jx13 <- function(ts,
+                  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+                  context = NULL,
+                  userdefined = NULL) {
+    .Deprecated("jx13")
+    jx13(ts, spec, context, userdefined)
+}
+

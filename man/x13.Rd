@@ -3,7 +3,7 @@
 \name{x13}
 \alias{x13}
 \alias{x13_fast}
-\alias{.jx13}
+\alias{jx13}
 \title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
 x13(
@@ -20,7 +20,7 @@ x13_fast(
   userdefined = NULL
 )
 
-.jx13(
+jx13(
   ts,
   spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   context = NULL,
@@ -42,7 +42,7 @@ estimation}
 \value{
 the \code{x13()} function returns a list with the results, the estimation
 specification and the result specification, while \code{x13_fast()} is a faster
-function that only returns the results. The \code{.jx13()} functions only returns
+function that only returns the results. The \code{jx13()} functions only returns
 results in a java object which will allow to customize outputs in other
 packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of variables and
 \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable). In the estimation
@@ -77,5 +77,7 @@ sp <- set_x11(sp,
     henderson.filter = 13
 )
 x13_fast(y, spec = sp)
+j<- jx13(y, spec = sp)
+class(j)
 \dontshow{\}) # examplesIf}
 }
