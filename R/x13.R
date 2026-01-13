@@ -496,7 +496,28 @@ x13_refresh <- function(spec,
 
 #' X-13 Dictionary
 #'
-#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
+#'
+#' @description
+#' Function providing the names all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#'
+#' @return returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
+
+#' @examplesIf jversion >= 17
+#' # visualize the list of names
+#' summary(x13_dictionary())
+#' # set up vector with names of output objects of interest
+#' user_defined_output <- c("ylin", "residuals.kurtosis")
+#' # generate the corresponding output in an estimation
+#' library(rjd3toolkit)
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' m<-x13(y,"rsa3", userdefined=user_defined_output)
+#' # retrieve user defined output
+#' tail(m$user_defined$ylin)
+#' m$user_defined$residuals.kurtosis
+#'
+#' @seealso
+#' `x13_full_dictionary` for a detailed version of the output description
 #' @export
 x13_dictionary <- function() {
     output <- .jcall("jdplus/x13/base/r/X13", "[S", "dictionary")
@@ -506,10 +527,29 @@ x13_dictionary <- function() {
 
 #' @title X-13 Full Dictionary
 #'
-#' @return
+#' @description
+#' Function listing the format and description for all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#'
+#' @return returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with `x13()`function
 #' @export
 #'
 #' @examplesIf jversion >= 17
+#' # visualize the dictionary
+#' View(x13_full_dictionary())
+#' # extract names of output of interest
+#' user_defined_output <- x13_full_dictionary()[135,1]
+#' user_defined_output
+#' # generate the corresponding output in an estimation
+#' library(rjd3toolkit)
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' m<-x13(y,"rsa3", userdefined=user_defined_output)
+#' # retrieve user defined output
+#' m$user_defined$sa_f
+
+#' @seealso
+#' `x13_dictionary` for an abbreviated version of the output description
+
 x13_full_dictionary <- function() {
     dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
     dico <- `dim<-`(dico, c(6, length(dico) / 6))
@@ -519,3 +559,4 @@ x13_full_dictionary <- function() {
     class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }
+

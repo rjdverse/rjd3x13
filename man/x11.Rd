@@ -18,7 +18,7 @@ x11(ts, spec = x11_spec(), userdefined = NULL)
 X-11 Decomposition Algorithm
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x11_spec <- x11_spec()
 x11(y, x11_spec)

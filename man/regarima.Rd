@@ -41,7 +41,7 @@ the results.
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
 sp <- rjd3toolkit::add_outlier(sp,

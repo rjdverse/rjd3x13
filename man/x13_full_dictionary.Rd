@@ -6,10 +6,28 @@
 \usage{
 x13_full_dictionary()
 }
+\value{
+returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with \code{x13()}function
+}
 \description{
-X-13 Full Dictionary
+Function listing the format and description for all output objects (series, diagnostics, parameters) available with \code{x13()} function
+To generate an output non available by default, use the name and userdefined option in \code{x13()}function (see examples)
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+# visualize the dictionary
+View(x13_full_dictionary())
+# extract names of output of interest
+user_defined_output <- x13_full_dictionary()[135,1]
+user_defined_output
+# generate the corresponding output in an estimation
+library(rjd3toolkit)
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+m<-x13(y,"rsa3", userdefined=user_defined_output)
+# retrieve user defined output
+m$user_defined$sa_f
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{x13_dictionary} for an abbreviated version of the output description
 }

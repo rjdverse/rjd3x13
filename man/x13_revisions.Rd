@@ -45,7 +45,7 @@ See example.}
 Compute revisions history
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
 s <- rjd3toolkit::ABS$X0.2.09.10.M
 sa_mod <- x13(s)
 data_ids <- list(
