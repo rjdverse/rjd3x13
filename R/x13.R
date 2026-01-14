@@ -555,7 +555,9 @@ x13_dictionary <- function() {
 #'
 #' @examplesIf jversion >= 17
 #' # visualize the dictionary
-#' View(x13_full_dictionary())
+#' # first 10 lines
+#' x13_full_dictionary()[1:10,]
+#' # for more structured information call `View(x13_full_dictionary())`
 #' # extract names of output of interest
 #' user_defined_output <- x13_full_dictionary()[135,1]
 #' user_defined_output
