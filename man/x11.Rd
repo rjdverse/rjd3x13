@@ -14,11 +14,14 @@ x11(ts, spec = x11_spec(), userdefined = NULL)
 \item{userdefined}{a vector containing additional output variables
 (see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
 }
+\value{
+the \code{x11()} function returns a list with the results (series) and final parameters
+}
 \description{
 X-11 Decomposition Algorithm
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x11_spec <- x11_spec()
 x11(y, x11_spec)

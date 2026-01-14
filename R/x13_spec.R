@@ -24,8 +24,11 @@ NULL
 #'
 #' @examplesIf jversion >= 17
 #' init_spec <- x11_spec()
+#' init_spec
 #' init_spec <- regarima_spec("rg4")
+#' init_spec
 #' init_spec <- x13_spec("rsa5c")
+#' init_spec
 #'
 #' @return an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
 #' `"JD3_REGARIMA_SPEC"` (`regarima_spec()`) or

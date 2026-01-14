@@ -55,8 +55,8 @@ a new specification, an object of class \code{"JD3_X13_SPEC"} or
 \code{"JD3_REGARIMA_SPEC"}.
 }
 \description{
-Function allowing to create a new specification by updating a specification
-used for a previous estimation. Some selected parameters will be kept fixed
+Functions \code{x13_refresh} and \code{regarima_refresh} allow to create a new specification
+by updating a specification used for a previous estimation. Some selected parameters will be kept fixed
 (previous estimation results) while others will be freed for re-estimation in
 a domain of constraints. See details and examples.
 }
@@ -98,7 +98,7 @@ orders (p,d,q)(P,D,Q) can also be re-identified.
 unless constrained in the domain spec.
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.08.10.M
 # raw series for first estimation
 y_raw <- window(y, end = c(2016, 12))
@@ -142,6 +142,22 @@ spec_x13_ref <- x13_refresh(current_result_spec,
 # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
 # 2nd estimation with refreshed specification
 sa_x13_ref <- x13(y_new, spec_x13_ref)
+# same procedure using regarima_refresh
+# specification for first estimation
+spec_1 <- regarima_spec("rg3")
+# first estimation
+reg_a_model <- regarima(y_raw, spec_1)
+reg_a_model$estimation_spec
+# refreshing the specification
+current_result_spec <- reg_a_model$result_spec
+current_domain_spec <- reg_a_model$estimation_spec
+# policy = "Fixed"
+spec_1_ref <- regarima_refresh(current_result_spec, # point spec to be refreshed
+                             current_domain_spec, # domain spec (set of constraints)
+                              policy = "Fixed"
+                               )
+# 2nd estimation with refreshed specification
+reg_a_model_ref <- regarima(y_new, spec_1_ref)
 \dontshow{\}) # examplesIf}
 }
 \references{

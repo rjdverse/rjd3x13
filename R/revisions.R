@@ -12,8 +12,8 @@ NULL
 
 #' @title Revisions History
 #'
-#' @description
-#' Compute revisions history
+#' @description Compute revisions history
+#' @return returns a list
 #'
 #' @param ts The time series used for the estimation.
 #' @param spec The specification used.
@@ -59,6 +59,9 @@ NULL
 #'     list(start = "2010-01-01", end = "2020-01-01", id = "t")
 #' )
 #' rh <- x13_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
+#' rh$data
+#' rh$series
+#' rh$components
 #' @export
 x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NULL, context = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
