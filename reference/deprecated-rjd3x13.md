@@ -31,10 +31,6 @@ fast_regarima(
   context = NULL,
   userdefined = NULL
 )
+
+userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 ```
-
-## Arguments
-
-- ts, spec, context, userdefined, name:
-
-  Parameters.

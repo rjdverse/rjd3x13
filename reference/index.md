@@ -62,8 +62,14 @@ defining customized output
   : X-13 Dictionary
 - [`x13_full_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_full_dictionary.md)
   : X-13 Full Dictionary
-- [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/userdefined_variables_x13.md)
-  : Display a list of all the available output objects
+- [`spec_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`spec_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`spec_x11()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`fast_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`fast_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  : Deprecated functions
 
 ## Wrangling Java objects
 
@@ -84,6 +90,7 @@ Functions to easily interact between R and Java objects
   [`fast_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`fast_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   : Deprecated functions
 
 ## Deprecated functions
@@ -96,4 +103,5 @@ Use new version
   [`fast_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`fast_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   : Deprecated functions
