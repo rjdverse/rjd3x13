@@ -76,6 +76,121 @@ in the table below:
 
 ``` r
 init_spec <- x11_spec()
+init_spec
+#> Specification X11
+#> Seasonal component: Yes
+#> Length of the Henderson filter: 0
+#> Seasonal filter: FILTER_MSR
+#> Boundaries used for extreme values correction : 
+#>   lower_sigma:  1.5 
+#>   upper_sigma:  2.5
+#> Nb of forecasts: 0
+#> Nb of backcasts: 0
+#> Calendar sigma: NONE
 init_spec <- regarima_spec("rg4")
+init_spec
+#> Specification
+#> 
+#> Series
+#> Serie span: All 
+#> Preliminary Check: Yes
+#> 
+#> Estimate
+#> Model span: All 
+#> 
+#> Tolerance: 1e-07
+#> 
+#> Transformation
+#> Function: AUTO
+#> AIC difference: -2
+#> Adjust: NONE
+#> 
+#> Regression
+#> Calendar regressor: WorkingDays
+#> with Leap Year: Yes
+#> AutoAdjust: TRUE
+#> Test: REMOVE
+#> 
+#> Easter: STANDARD 
+#> Duration: 8 (Auto) 
+#> Test: ADD (Auto) 
+#> 
+#> Pre-specified outliers: 0
+#> Ramps: No
+#> 
+#> Outliers
+#> Detection span: All 
+#> Outliers type: 
+#>  - AO, critical value : 0 (Auto)
+#>  - LS, critical value : 0 (Auto)
+#>  - TC, critical value : 0 (Auto)
+#> TC rate: 0.7 (Auto)
+#> Method: ADDONE (Auto)
+#> 
+#> ARIMA
+#> SARIMA model: (0,1,1) (0,1,1)
+#> 
+#> SARIMA coefficients:
+#>  theta(1) btheta(1) 
+#>         0         0 
 init_spec <- x13_spec("rsa5c")
+init_spec
+#> Specification
+#> 
+#> Series
+#> Serie span: All 
+#> Preliminary Check: Yes
+#> 
+#> Estimate
+#> Model span: All 
+#> 
+#> Tolerance: 1e-07
+#> 
+#> Transformation
+#> Function: AUTO
+#> AIC difference: -2
+#> Adjust: NONE
+#> 
+#> Regression
+#> Calendar regressor: TradingDays
+#> with Leap Year: Yes
+#> AutoAdjust: TRUE
+#> Test: REMOVE
+#> 
+#> Easter: STANDARD 
+#> Duration: 8 (Auto) 
+#> Test: ADD (Auto) 
+#> 
+#> Pre-specified outliers: 0
+#> Ramps: No
+#> 
+#> Outliers
+#> Detection span: All 
+#> Outliers type: 
+#>  - AO, critical value : 0 (Auto)
+#>  - LS, critical value : 0 (Auto)
+#>  - TC, critical value : 0 (Auto)
+#> TC rate: 0.7 (Auto)
+#> Method: ADDONE (Auto)
+#> 
+#> ARIMA
+#> SARIMA model: (0,1,1) (0,1,1)
+#> 
+#> SARIMA coefficients:
+#>  theta(1) btheta(1) 
+#>         0         0 
+#> 
+#> Specification X11
+#> Seasonal component: Yes
+#> Length of the Henderson filter: 0
+#> Seasonal filter: FILTER_MSR
+#> Boundaries used for extreme values correction : 
+#>   lower_sigma:  1.5 
+#>   upper_sigma:  2.5
+#> Nb of forecasts: -1
+#> Nb of backcasts: 0
+#> Calendar sigma: NONE
+#> 
+#> Benchmarking
+#> Is enabled: No
 ```

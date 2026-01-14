@@ -24,6 +24,13 @@ fast_regarima(
   context = NULL,
   userdefined = NULL
 )
+
+.jx13(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
 ```
 
 ## Arguments

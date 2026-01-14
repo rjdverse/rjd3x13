@@ -38,7 +38,7 @@ online documentation: <https://jdemetra-new-documentation.netlify.app/>
 ``` r
 userdefined_variables_x13("x13")
 #> Warning: 'userdefined_variables_x13' is deprecated.
-#> Use 'x13_full_dictionary' instead.
+#> Use 'x13_dictionary' instead.
 #> See help("Deprecated")
 #>   [1] "adjust"                              
 #>   [2] "arima.bd"                            
@@ -366,7 +366,7 @@ userdefined_variables_x13("x13")
 #> [324] "ycal_f(?)"                           
 userdefined_variables_x13("regarima")
 #> Warning: 'userdefined_variables_x13' is deprecated.
-#> Use 'x13_full_dictionary' instead.
+#> Use 'x13_dictionary' instead.
 #> See help("Deprecated")
 #>   [1] "adjust"                          "arima.bd"                       
 #>   [3] "arima.bp"                        "arima.bphi(*)"                  
@@ -444,7 +444,7 @@ userdefined_variables_x13("regarima")
 #> [147] "ycal_f(?)"                      
 userdefined_variables_x13("x11")
 #> Warning: 'userdefined_variables_x13' is deprecated.
-#> Use 'x13_full_dictionary' instead.
+#> Use 'x13_dictionary' instead.
 #> See help("Deprecated")
 #>  [1] "b1"               "b10"              "b11"              "b13"             
 #>  [5] "b17"              "b2"               "b20"              "b3"              

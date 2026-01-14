@@ -18,7 +18,7 @@ Functions to perform seasonal adjustment with X-13ARIMA
 
 - [`x13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)
   [`x13_fast()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)
-  [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md) :
+  [`jx13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md) :
   Seasonal Adjustment with X13-ARIMA
 - [`x11()`](https://rjdverse.github.io/rjd3x13/reference/x11.md) : X-11
   Decomposition Algorithm
@@ -78,10 +78,13 @@ Functions to easily interact between R and Java objects
   [`.jd2r_spec_x13()`](https://rjdverse.github.io/rjd3x13/reference/jd3_utilities.md)
   [`jversion`](https://rjdverse.github.io/rjd3x13/reference/jd3_utilities.md)
   : Java Utility Functions
-- [`x13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)
-  [`x13_fast()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)
-  [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md) :
-  Seasonal Adjustment with X13-ARIMA
+- [`spec_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`spec_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`spec_x11()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`fast_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`fast_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  : Deprecated functions
 
 ## Deprecated functions
 
@@ -92,4 +95,5 @@ Use new version
   [`spec_x11()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`fast_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`fast_regarima()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
+  [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   : Deprecated functions

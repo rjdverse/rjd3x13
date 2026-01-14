@@ -1,10 +1,10 @@
 # Refresh a specification with constraints
 
-Function allowing to create a new specification by updating a
-specification used for a previous estimation. Some selected parameters
-will be kept fixed (previous estimation results) while others will be
-freed for re-estimation in a domain of constraints. See details and
-examples.
+Functions `x13_refresh` and `regarima_refresh` allow to create a new
+specification by updating a specification used for a previous
+estimation. Some selected parameters will be kept fixed (previous
+estimation results) while others will be freed for re-estimation in a
+domain of constraints. See details and examples.
 
 ## Usage
 
@@ -154,4 +154,59 @@ spec_x13_ref <- x13_refresh(current_result_spec,
 # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
 # 2nd estimation with refreshed specification
 sa_x13_ref <- x13(y_new, spec_x13_ref)
+# same procedure using regarima_refresh
+# specification for first estimation
+spec_1 <- regarima_spec("rg3")
+# first estimation
+reg_a_model <- regarima(y_raw, spec_1)
+reg_a_model$estimation_spec
+#> Specification
+#> 
+#> Series
+#> Serie span: All 
+#> Preliminary Check: Yes
+#> 
+#> Estimate
+#> Model span: All 
+#> 
+#> Tolerance: 1e-07
+#> 
+#> Transformation
+#> Function: AUTO
+#> AIC difference: -2
+#> Adjust: NONE
+#> 
+#> Regression
+#> No calendar regressor
+#> 
+#> Easter: No
+#> 
+#> Pre-specified outliers: 0
+#> Ramps: No
+#> 
+#> Outliers
+#> Detection span: All 
+#> Outliers type: 
+#>  - AO, critical value : 0 (Auto)
+#>  - LS, critical value : 0 (Auto)
+#>  - TC, critical value : 0 (Auto)
+#> TC rate: 0.7 (Auto)
+#> Method: ADDONE (Auto)
+#> 
+#> ARIMA
+#> SARIMA model: (0,1,1) (0,1,1)
+#> 
+#> SARIMA coefficients:
+#>  theta(1) btheta(1) 
+#>         0         0 
+# refreshing the specification
+current_result_spec <- reg_a_model$result_spec
+current_domain_spec <- reg_a_model$estimation_spec
+# policy = "Fixed"
+spec_1_ref <- regarima_refresh(current_result_spec, # point spec to be refreshed
+                             current_domain_spec, # domain spec (set of constraints)
+                              policy = "Fixed"
+                               )
+# 2nd estimation with refreshed specification
+reg_a_model_ref <- regarima(y_new, spec_1_ref)
 ```

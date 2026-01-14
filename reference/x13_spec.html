@@ -121,8 +121,123 @@ a RSA5c specification.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu">x11_spec</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">init_spec</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Specification X11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal component: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Length of the Henderson filter: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter: FILTER_MSR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Boundaries used for extreme values correction : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 lower_sigma:  1.5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 upper_sigma:  2.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nb of forecasts: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nb of backcasts: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calendar sigma: NONE</span>
 <span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu">regarima_spec</span><span class="op">(</span><span class="st">"rg4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">init_spec</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Series</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Serie span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Preliminary Check: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance: 1e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Transformation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Function: AUTO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC difference: -2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Adjust: NONE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calendar regressor: WorkingDays</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> with Leap Year: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AutoAdjust: TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test: REMOVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Easter: STANDARD </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Duration: 8 (Auto) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test: ADD (Auto) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pre-specified outliers: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ramps: No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outliers</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Detection span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outliers type: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- AO, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- LS, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- TC, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TC rate: 0.7 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Method: ADDONE (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (0,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  theta(1) btheta(1) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0         0 </span>
 <span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu">x13_spec</span><span class="op">(</span><span class="st">"rsa5c"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">init_spec</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Specification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Series</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Serie span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Preliminary Check: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance: 1e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Transformation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Function: AUTO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC difference: -2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Adjust: NONE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Regression</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calendar regressor: TradingDays</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> with Leap Year: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AutoAdjust: TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test: REMOVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Easter: STANDARD </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Duration: 8 (Auto) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test: ADD (Auto) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pre-specified outliers: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ramps: No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outliers</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Detection span: All </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outliers type: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- AO, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- LS, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	- TC, critical value : 0 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TC rate: 0.7 (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Method: ADDONE (Auto)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ARIMA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (0,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  theta(1) btheta(1) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0         0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Specification X11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal component: Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Length of the Henderson filter: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Seasonal filter: FILTER_MSR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Boundaries used for extreme values correction : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 lower_sigma:  1.5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 upper_sigma:  2.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nb of forecasts: -1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nb of backcasts: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calendar sigma: NONE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Benchmarking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Is enabled: No</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
