@@ -16,7 +16,7 @@ NULL
 #' specification, while `regarima_fast()` is a faster function that only returns
 #' the results.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sp <- regarima_spec("rg5c")
 #' sp <- rjd3toolkit::add_outlier(sp,
@@ -117,7 +117,7 @@ regarima_fast <- function(ts,
 #'
 #' @inheritParams regarima
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x13_fast(y, "rsa3")
 #' x13(y, "rsa5c")
@@ -273,7 +273,7 @@ x13_fast <- function(ts,
 #' @inheritParams x13
 #' @param spec the specification.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x11_spec <- x11_spec()
 #' x11(y, x11_spec)
@@ -366,7 +366,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' More information on revision policies in JDemetra+ online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
 #' # raw series for first estimation
 #' y_raw <- window(y, end = c(2016, 12))
@@ -504,10 +504,10 @@ x13_dictionary <- function() {
 
 #' @title X-13 Full Dictionary
 #'
-#' @return
+#' @returns a data.frame with the dictionary of variables
 #' @export
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 x13_full_dictionary <- function() {
     dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
     dico <- `dim<-`(dico, c(6, length(dico) / 6))

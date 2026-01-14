@@ -37,7 +37,7 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' s <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sa_mod <- x13(s)
 #' data_ids <- list(

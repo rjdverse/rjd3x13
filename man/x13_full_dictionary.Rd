@@ -6,10 +6,13 @@
 \usage{
 x13_full_dictionary()
 }
+\value{
+a data.frame with the dictionary of variables
+}
 \description{
 X-13 Full Dictionary
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 \dontshow{\}) # examplesIf}
 }

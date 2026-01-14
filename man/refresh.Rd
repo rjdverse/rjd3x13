@@ -98,7 +98,7 @@ orders (p,d,q)(P,D,Q) can also be re-identified.
 unless constrained in the domain spec.
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.08.10.M
 # raw series for first estimation
 y_raw <- window(y, end = c(2016, 12))
