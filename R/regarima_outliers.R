@@ -18,6 +18,8 @@ NULL
 #'
 #' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
+#' @importFrom stats is.ts
+#'
 #' @examplesIf current_java_version >= minimal_java_version
 #' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #'
@@ -34,7 +36,7 @@ regarima_outliers <- function(y,
                               so = FALSE,
                               cv = 0,
                               clean = FALSE) {
-    if (!is.ts(y)) {
+    if (!stats::is.ts(y)) {
         stop("y must be a time series", call. = FALSE)
     }
     if (!is.null(X.td)) {

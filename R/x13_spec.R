@@ -88,6 +88,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_x11 <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jspec)
@@ -96,6 +97,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_x11 <- function(spec) {
     p <- .r2p_spec_x11(spec)
@@ -105,6 +107,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_regarima <- function(spec) {
     p <- .r2p_spec_regarima(spec)
@@ -114,6 +117,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_regarima <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
@@ -122,6 +126,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_x13 <- function(spec) {
     p <- .r2p_spec_x13(spec)
@@ -131,6 +136,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_x13 <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jspec)

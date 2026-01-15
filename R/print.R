@@ -140,6 +140,8 @@ print.JD3_X13_OUTPUT <- function(x,
 }
 
 #' @export
+#' @importFrom stats .preformat.ts
+#' @importFrom utils tail
 print.JD3X11 <- function(x, ...) {
     table_x11 <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 

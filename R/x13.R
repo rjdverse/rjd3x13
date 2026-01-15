@@ -97,6 +97,7 @@ regarima_fast <- function(ts,
     }
 }
 
+#' @importFrom RProtoBuf read
 .regarima_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)
@@ -252,6 +253,7 @@ x13_fast <- function(ts,
     }
 }
 
+#' @importFrom RProtoBuf read
 .x13_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)

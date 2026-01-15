@@ -27,11 +27,13 @@ minimal_java_version <- rjd3jars::minimal_java_version
     }
 }
 
+#' @importFrom RProtoBuf read readProtoFiles2
+#' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield
 .onLoad <- function(libname, pkgname) {
     if (!requireNamespace("rjd3jars", quietly = TRUE)) stop("Loading rjd3 libraries failed", call. = FALSE)
     if (!requireNamespace("rjd3toolkit", quietly = TRUE)) stop("Loading rjd3 libraries failed", call. = FALSE)
 
-    result <- .jpackage(pkgname, lib.loc = libname)
+    result <- rJava::.jpackage(pkgname, lib.loc = libname)
     if (!result) stop("Loading java packages failed", call. = FALSE)
 
     proto.dir <- system.file("proto", package = pkgname)

@@ -1,6 +1,5 @@
-#' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
-#' @import RProtoBuf rjd3toolkit
-#' @importFrom stats is.ts start
+#' @import rjd3jars
+#' @import rjd3toolkit
 NULL
 
 #' Java Utility Functions
