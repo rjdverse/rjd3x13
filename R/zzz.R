@@ -35,10 +35,11 @@ minimal_java_version <- rjd3jars::minimal_java_version
     if (!result) stop("Loading java packages failed", call. = FALSE)
 
     proto.dir <- system.file("proto", package = pkgname)
-    readProtoFiles2(protoPath = proto.dir)
+    RProtoBuf::readProtoFiles2(protoPath = proto.dir)
 
     # reload extractors
     rjd3toolkit::reload_dictionaries()
+
     if (is.null(getOption("summary_info"))) {
         options(summary_info = TRUE)
     }
