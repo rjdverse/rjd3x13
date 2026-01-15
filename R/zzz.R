@@ -25,6 +25,9 @@ minimal_java_version <- rjd3jars::minimal_java_version
         packageStartupMessage(sprintf("Your java version is %s. %s or higher is needed.",
                                       current_java_version, minimal_java_version))
     }
+
+    # reload extractors
+    rjd3toolkit::reload_dictionaries()
 }
 
 #' @importFrom RProtoBuf read readProtoFiles2
@@ -38,9 +41,6 @@ minimal_java_version <- rjd3jars::minimal_java_version
 
     proto.dir <- system.file("proto", package = pkgname)
     RProtoBuf::readProtoFiles2(protoPath = proto.dir)
-
-    # reload extractors
-    rjd3toolkit::reload_dictionaries()
 
     if (is.null(getOption("summary_info"))) {
         options(summary_info = TRUE)
