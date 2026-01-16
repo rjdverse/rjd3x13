@@ -520,14 +520,16 @@ x13_refresh <- function(spec,
     return(.jd2r_spec_x13(jnspec))
 }
 
-#' X-13 Dictionary
-#'
+#' @title X-13 Dictionary
 #'
 #' @description
-#' Function providing the names all output objects (series, diagnostics, parameters) available with `x13()` function.
-#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#' Function providing the names all output objects (series, diagnostics,
+#' parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined
+#' option in `x13()`function (see examples).
 #'
-#' @returns returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' @returns returns a vector containing the names of all output objects (series,
+#' diagnostics, parameters) available with `x13()` function.
 #'
 #' @examplesIf current_java_version >= minimal_java_version
 #' # visualize the list of names
@@ -554,11 +556,15 @@ x13_dictionary <- function() {
 #' @title X-13 Full Dictionary
 #'
 #' @description
-#' Function listing the format and description for all output objects (series, diagnostics, parameters) available with `x13()` function.
-#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#' Function listing the format and description for all output objects (series,
+#' diagnostics, parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined
+#' option in `x13()`function (see examples).
 #'
-#' @returns a data.frame with the dictionary of variables
-#' @returns returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with `x13()`function
+#' @returns returns a data frame containing format and description, for all
+#' output objects (series, diagnostics, parameters) available with `x13()`
+#' function
+#'
 #' @export
 #'
 #' @examplesIf current_java_version >= minimal_java_version

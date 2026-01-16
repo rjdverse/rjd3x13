@@ -1,5 +1,6 @@
 #' @title Deprecated functions
 #'
+#' @param x useless parameter
 #' @inheritParams x13
 #' @inheritParams x13_spec
 #'
@@ -56,5 +57,5 @@ fast_regarima <- function(ts,
 #' @export
 userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11"))  {
     .Deprecated("x13_dictionary")
-    x13_dictionary
+    x13_dictionary()
 }

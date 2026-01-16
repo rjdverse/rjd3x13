@@ -7,11 +7,14 @@
 x13_dictionary()
 }
 \value{
-returns a vector containing the names of all output objects (series, diagnostics, parameters) available with \code{x13()} function.
+returns a vector containing the names of all output objects (series,
+diagnostics, parameters) available with \code{x13()} function.
 }
 \description{
-Function providing the names all output objects (series, diagnostics, parameters) available with \code{x13()} function.
-Can be used to generate an output non available by default with userdefined option in \code{x13()}function (see examples).
+Function providing the names all output objects (series, diagnostics,
+parameters) available with \code{x13()} function.
+Can be used to generate an output non available by default with userdefined
+option in \code{x13()}function (see examples).
 }
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
