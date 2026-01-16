@@ -18,15 +18,17 @@ option in \code{x13()}function (see examples).
 }
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
-# visualize the list of names
+# Visualize the list of names
 summary(x13_dictionary())
-# set up vector with names of output objects of interest
+
+# Set up vector with names of output objects of interest
 user_defined_output <- c("ylin", "residuals.kurtosis")
-# generate the corresponding output in an estimation
-library(rjd3toolkit)
+
+# Generate the corresponding output in an estimation
 y <- rjd3toolkit::ABS$X0.2.09.10.M
-m<-x13(y,"rsa3", userdefined=user_defined_output)
-# retrieve user defined output
+m <- x13(y,"rsa3", userdefined=user_defined_output)
+
+# Retrieve user defined output
 tail(m$user_defined$ylin)
 m$user_defined$residuals.kurtosis
 \dontshow{\}) # examplesIf}

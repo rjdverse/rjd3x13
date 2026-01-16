@@ -297,13 +297,14 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
     }
 }
 
-#' Refresh a specification with constraints
+#' @title Refresh a specification with constraints
 #'
 #' @description
-#' Functions `x13_refresh` and `regarima_refresh` allow to create a new specification
-#' by updating a specification used for a previous estimation. Some selected parameters will be kept fixed
-#' (previous estimation results) while others will be freed for re-estimation in
-#' a domain of constraints. See details and examples.
+#' Functions `x13_refresh` and `regarima_refresh` allow to create a new
+#' specification by updating a specification used for a previous estimation.
+#' Some selected parameters will be kept fixed (previous estimation results)
+#' while others will be freed for re-estimation in a domain of constraints.
+#' See details and examples.
 #'
 #' @details
 #' The selection of constraints to be kept fixed or re-estimated is called a
@@ -313,35 +314,28 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' parameters from the original specification.
 #'
 #' Available refresh policies are:
-#'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and
-#' handling the new raw data points, or any sub-span of the series as Additive
-#' Outliers (defined as new intervention variables)
-#'
-#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and
-#' replacing forecasts by new raw data points.
-#'
-#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially
+#' \enumerate{
+#' \item \strong{Current}: applying the current pre-adjustment reg-arima model
+#' and handling the new raw data points, or any sub-span of the series as
+#' Additive Outliers (defined as new intervention variables);
+#' \item \strong{Fixed}: applying the current pre-adjustment reg-arima model
+#' and replacing forecasts by new raw data points;
+#' \item \strong{FixedParameters}: pre-adjustment reg-arima model is partially
 #' modified: regression coefficients will be re-estimated but regression
-#' variables, Arima orders and coefficients are unchanged.
-#'
-#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima
-#' Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR)
-#' coefficients are kept fixed.
-#'
-#' \strong{FreeParameters}: all regression and Arima model coefficients are
-#' re-estimated, regression variables and Arima orders are kept fixed.
-#'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but
-#' outliers will be re-detected on the defined span, thus all regression and
-#' Arima model coefficients are re-estimated
-#'
-#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
-#' orders (p,d,q)(P,D,Q) can also be re-identified.
-#'
-#' \strong{Complete}: All the parameters are re-identified and re-estimated,
-#' unless constrained in the domain spec.
-#'
+#' variables, Arima orders and coefficients are unchanged;
+#' \item \strong{FixedAutoRegressiveParameters}: same as FixedParameters but
+#' Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive
+#'  (AR) coefficients are kept fixed;
+#' \item \strong{FreeParameters}: all regression and Arima model coefficients
+#' are re-estimated, regression variables and Arima orders are kept fixed;
+#' \item \strong{Outliers}: regression variables and Arima orders are kept
+#' fixed, but outliers will be re-detected on the defined span, thus all
+#' regression and Arima model coefficients are re-estimated;
+#' \item \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima
+#' model orders (p,d,q)(P,D,Q) can also be re-identified;
+#' \item \strong{Complete}: All the parameters are re-identified and
+#' re-estimated, unless constrained in the domain spec.
+#' }
 #'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
 #' @param refspec the reference specification used to define the domain
@@ -372,6 +366,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
 #'
 #' @examplesIf current_java_version >= minimal_java_version
+#' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
 #'
 #' # raw series for first estimation
@@ -416,26 +411,33 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'     start = c(2017, 1),
 #'     end = end(y_new)
 #' )
-#' # points from January 2017 (included) until the end of the series will be treated
-#' # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
-#' # 2nd estimation with refreshed specification
+#'
+#' # Points from January 2017 (included) until the end of the series will be
+#' # treated as Additive Outliers, the previous reg-Arima model being otherwise
+#' # kept fixed 2nd estimation with refreshed specification
 #' sa_x13_ref <- x13(y_new, spec_x13_ref)
-#' # same procedure using regarima_refresh
+#'
+#' # Same procedure using regarima_refresh
 #' # specification for first estimation
 #' spec_1 <- regarima_spec("rg3")
-#' # first estimation
+#'
+#' # First estimation
 #' reg_a_model <- regarima(y_raw, spec_1)
 #' reg_a_model$estimation_spec
-#' # refreshing the specification
+#'
+#' # Refreshing the specification
 #' current_result_spec <- reg_a_model$result_spec
 #' current_domain_spec <- reg_a_model$estimation_spec
-#' # policy = "Fixed"
-#' spec_1_ref <- regarima_refresh(current_result_spec, # point spec to be refreshed
-#'                              current_domain_spec, # domain spec (set of constraints)
-#'                               policy = "Fixed"
-#'                                )
+#'
+#' # Policy = "Fixed"
+#' spec_1_ref <- regarima_refresh(
+#'     current_result_spec, # point spec to be refreshed
+#'     current_domain_spec, # domain spec (set of constraints)
+#'     policy = "Fixed"
+#' )
 #' # 2nd estimation with refreshed specification
-#'reg_a_model_ref <- regarima(y_new, spec_1_ref)
+#' reg_a_model_ref <- regarima(y_new, spec_1_ref)
+#' }
 #'
 #' @name refresh
 #' @rdname refresh
@@ -532,15 +534,17 @@ x13_refresh <- function(spec,
 #' diagnostics, parameters) available with `x13()` function.
 #'
 #' @examplesIf current_java_version >= minimal_java_version
-#' # visualize the list of names
+#' # Visualize the list of names
 #' summary(x13_dictionary())
-#' # set up vector with names of output objects of interest
+#'
+#' # Set up vector with names of output objects of interest
 #' user_defined_output <- c("ylin", "residuals.kurtosis")
-#' # generate the corresponding output in an estimation
-#' library(rjd3toolkit)
+#'
+#' # Generate the corresponding output in an estimation
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
-#' m<-x13(y,"rsa3", userdefined=user_defined_output)
-#' # retrieve user defined output
+#' m <- x13(y,"rsa3", userdefined=user_defined_output)
+#'
+#' # Retrieve user defined output
 #' tail(m$user_defined$ylin)
 #' m$user_defined$residuals.kurtosis
 #'
@@ -570,11 +574,11 @@ x13_dictionary <- function() {
 #' @examplesIf current_java_version >= minimal_java_version
 #' # Visualize the dictionary
 #' # first 10 lines
-#' x13_full_dictionary()[1:10,]
+#' head(x13_full_dictionary(), n = 10)
 #'
-#' # for more structured information call `View(x13_full_dictionary())`
+#' # For more structured information call `View(x13_full_dictionary())`
 #' # Extract names of output of interest
-#' user_defined_output <- x13_full_dictionary()[135,1]
+#' user_defined_output <- x13_full_dictionary()$name[135]
 #' user_defined_output
 #'
 #' # Generate the corresponding output in an estimation

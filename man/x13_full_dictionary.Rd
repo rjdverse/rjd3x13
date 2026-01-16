@@ -21,11 +21,11 @@ option in \code{x13()}function (see examples).
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 # Visualize the dictionary
 # first 10 lines
-x13_full_dictionary()[1:10,]
+head(x13_full_dictionary(), n = 10)
 
-# for more structured information call `View(x13_full_dictionary())`
+# For more structured information call `View(x13_full_dictionary())`
 # Extract names of output of interest
-user_defined_output <- x13_full_dictionary()[135,1]
+user_defined_output <- x13_full_dictionary()$name[135]
 user_defined_output
 
 # Generate the corresponding output in an estimation
