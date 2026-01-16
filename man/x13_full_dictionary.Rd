@@ -8,11 +8,32 @@ x13_full_dictionary()
 }
 \value{
 a data.frame with the dictionary of variables
+
+returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with \code{x13()}function
 }
 \description{
-X-13 Full Dictionary
+Function listing the format and description for all output objects (series, diagnostics, parameters) available with \code{x13()} function.
+Can be used to generate an output non available by default with userdefined option in \code{x13()}function (see examples).
 }
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
+# Visualize the dictionary
+# first 10 lines
+x13_full_dictionary()[1:10,]
+
+# for more structured information call `View(x13_full_dictionary())`
+# Extract names of output of interest
+user_defined_output <- x13_full_dictionary()[135,1]
+user_defined_output
+
+# Generate the corresponding output in an estimation
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+m <- x13(y,"rsa3", userdefined=user_defined_output)
+
+# Retrieve user defined output
+m$user_defined$sa_f
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{x13_dictionary} for an abbreviated version of the output description
 }

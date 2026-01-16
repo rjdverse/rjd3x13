@@ -1,7 +1,7 @@
 #' Deprecated functions
 #'
 #'
-#' @param ts,spec,context,userdefined,name Parameters.
+
 #' @name deprecated-rjd3x13
 #' @export
 spec_x13 <- function(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")) {
@@ -37,4 +37,21 @@ fast_regarima <- function(ts,
                           userdefined = NULL) {
     .Deprecated("regarima_fast")
     regarima_fast(ts, spec, context, userdefined)
+}
+
+#' @name deprecated-rjd3x13
+#' @export
+.jx13 <- function(ts,
+                  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+                  context = NULL,
+                  userdefined = NULL) {
+    .Deprecated("jx13")
+    jx13(ts, spec, context, userdefined)
+}
+
+#' @name deprecated-rjd3x13
+#' @export
+userdefined_variables_x13 <- function(x = c("X-13", "RegArima", "X-11"))  {
+    .Deprecated("x13_dictionary")
+    x13_dictionary
 }

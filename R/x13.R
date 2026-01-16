@@ -141,10 +141,11 @@ regarima_fast <- function(ts,
 #'     henderson.filter = 13
 #' )
 #' x13_fast(y, spec = sp)
-#'
+#' j<- jx13(y, spec = sp)
+#' class(j)
 #' @return the `x13()` function returns a list with the results, the estimation
 #' specification and the result specification, while `x13_fast()` is a faster
-#' function that only returns the results. The `.jx13()` functions only returns
+#' function that only returns the results. The `jx13()` functions only returns
 #' results in a java object which will allow to customize outputs in other
 #' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
 #' [rjd3toolkit::result()] to get a specific variable). In the estimation
@@ -225,7 +226,7 @@ x13_fast <- function(ts,
 
 #' @export
 #' @rdname x13
-.jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
+jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
@@ -275,6 +276,8 @@ x13_fast <- function(ts,
 #' @inheritParams x13
 #' @param spec the specification.
 #'
+#' @returns the `x11()` function returns a list with the results (series) and final parameters
+#'
 #' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x11_spec <- x11_spec()
@@ -297,8 +300,8 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' Refresh a specification with constraints
 #'
 #' @description
-#' Function allowing to create a new specification by updating a specification
-#' used for a previous estimation. Some selected parameters will be kept fixed
+#' Functions `x13_refresh` and `regarima_refresh` allow to create a new specification
+#' by updating a specification used for a previous estimation. Some selected parameters will be kept fixed
 #' (previous estimation results) while others will be freed for re-estimation in
 #' a domain of constraints. See details and examples.
 #'
@@ -412,6 +415,22 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
 #' # 2nd estimation with refreshed specification
 #' sa_x13_ref <- x13(y_new, spec_x13_ref)
+#' # same procedure using regarima_refresh
+#' # specification for first estimation
+#' spec_1 <- regarima_spec("rg3")
+#' # first estimation
+#' reg_a_model <- regarima(y_raw, spec_1)
+#' reg_a_model$estimation_spec
+#' # refreshing the specification
+#' current_result_spec <- reg_a_model$result_spec
+#' current_domain_spec <- reg_a_model$estimation_spec
+#' # policy = "Fixed"
+#' spec_1_ref <- regarima_refresh(current_result_spec, # point spec to be refreshed
+#'                              current_domain_spec, # domain spec (set of constraints)
+#'                               policy = "Fixed"
+#'                                )
+#' # 2nd estimation with refreshed specification
+#'reg_a_model_ref <- regarima(y_new, spec_1_ref)
 #'
 #' @name refresh
 #' @rdname refresh
@@ -498,22 +517,70 @@ x13_refresh <- function(spec,
 
 #' X-13 Dictionary
 #'
-#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
+#'
+#' @description
+#' Function providing the names all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#'
+#' @return returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
+
+#' @examplesIf jversion >= 17
+#' # visualize the list of names
+#' summary(x13_dictionary())
+#' # set up vector with names of output objects of interest
+#' user_defined_output <- c("ylin", "residuals.kurtosis")
+#' # generate the corresponding output in an estimation
+#' library(rjd3toolkit)
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' m<-x13(y,"rsa3", userdefined=user_defined_output)
+#' # retrieve user defined output
+#' tail(m$user_defined$ylin)
+#' m$user_defined$residuals.kurtosis
+#'
+#' @seealso
+#' `x13_full_dictionary` for a detailed version of the output description
 #' @export
 x13_dictionary <- function() {
-    return(.jcall("jdplus/x13/base/r/X13", "[S", "dictionary"))
+    output <- .jcall("jdplus/x13/base/r/X13", "[S", "dictionary")
+    class(output) <- "JD3_DICTIONARY"
+    return(output)
 }
 
 #' @title X-13 Full Dictionary
 #'
+#' @description
+#' Function listing the format and description for all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
+#'
 #' @returns a data.frame with the dictionary of variables
+#' @return returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with `x13()`function
 #' @export
 #'
 #' @examplesIf current_java_version >= minimal_java_version
+#' # Visualize the dictionary
+#' # first 10 lines
+#' x13_full_dictionary()[1:10,]
+#'
+#' # for more structured information call `View(x13_full_dictionary())`
+#' # Extract names of output of interest
+#' user_defined_output <- x13_full_dictionary()[135,1]
+#' user_defined_output
+#'
+#' # Generate the corresponding output in an estimation
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' m <- x13(y,"rsa3", userdefined=user_defined_output)
+#'
+#' # Retrieve user defined output
+#' m$user_defined$sa_f
+#' @seealso
+#' `x13_dictionary` for an abbreviated version of the output description
 x13_full_dictionary <- function() {
     dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
     dico <- `dim<-`(dico, c(6, length(dico) / 6))
     dico <- t(dico)
     dico <- `colnames<-`(dico, c("name", "description", "detail", "output", "type", "fullname"))
+    dico <- as.data.frame(dico)
+    class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }
+

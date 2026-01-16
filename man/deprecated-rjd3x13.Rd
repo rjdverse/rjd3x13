@@ -7,6 +7,8 @@
 \alias{spec_x11}
 \alias{fast_x13}
 \alias{fast_regarima}
+\alias{.jx13}
+\alias{userdefined_variables_x13}
 \title{Deprecated functions}
 \usage{
 spec_x13(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
@@ -28,9 +30,15 @@ fast_regarima(
   context = NULL,
   userdefined = NULL
 )
-}
-\arguments{
-\item{ts, spec, context, userdefined, name}{Parameters.}
+
+.jx13(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
+
+userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 }
 \description{
 Deprecated functions

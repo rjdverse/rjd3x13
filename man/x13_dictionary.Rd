@@ -7,8 +7,27 @@
 x13_dictionary()
 }
 \value{
-A vector containing the names of all the available output objects (series, diagnostics, parameters).
+returns a vector containing the names of all output objects (series, diagnostics, parameters) available with \code{x13()} function.
 }
 \description{
-X-13 Dictionary
+Function providing the names all output objects (series, diagnostics, parameters) available with \code{x13()} function.
+Can be used to generate an output non available by default with userdefined option in \code{x13()}function (see examples).
+}
+\examples{
+\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+# visualize the list of names
+summary(x13_dictionary())
+# set up vector with names of output objects of interest
+user_defined_output <- c("ylin", "residuals.kurtosis")
+# generate the corresponding output in an estimation
+library(rjd3toolkit)
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+m<-x13(y,"rsa3", userdefined=user_defined_output)
+# retrieve user defined output
+tail(m$user_defined$ylin)
+m$user_defined$residuals.kurtosis
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{x13_full_dictionary} for a detailed version of the output description
 }

@@ -16,13 +16,15 @@ NULL
 #' @param clean Clean missing values at the beginning/end of the series.
 #' Regression variables are automatically resized, if need be.
 #'
-#' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
+#' @returns a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
 #' @importFrom stats is.ts
 #'
 #' @examplesIf current_java_version >= minimal_java_version
-#' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
-#'
+#' # estimate model
+#' model <- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+#' # print outliers
+#' model$model$variables
 #' @export
 regarima_outliers <- function(y,
                               order = c(0L, 1L, 1L),

@@ -41,6 +41,9 @@ See example.}
 
 \item{context}{The context of the specification.}
 }
+\value{
+returns a list
+}
 \description{
 Compute revisions history
 }
@@ -67,5 +70,8 @@ cmp_ids <- list(
     list(start = "2010-01-01", end = "2020-01-01", id = "t")
 )
 rh <- x13_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
+rh$data
+rh$series
+rh$components
 \dontshow{\}) # examplesIf}
 }
