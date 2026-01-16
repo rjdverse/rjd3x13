@@ -17,6 +17,7 @@ NULL
 #' the results.
 #'
 #' @examplesIf current_java_version >= minimal_java_version
+#' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sp <- regarima_spec("rg5c")
 #' sp <- rjd3toolkit::add_outlier(sp,
@@ -33,7 +34,12 @@ NULL
 #' regarima_fast(y, spec = sp)
 #' sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 #' regarima_fast(y, spec = sp)
+#' }
+#'
+#' @name regarima
+#'
 #' @export
+#'
 regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
                      context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
@@ -119,6 +125,7 @@ regarima_fast <- function(ts,
 #' @inheritParams regarima
 #'
 #' @examplesIf current_java_version >= minimal_java_version
+#' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x13_fast(y, "rsa3")
 #' x13(y, "rsa5c")
@@ -141,8 +148,10 @@ regarima_fast <- function(ts,
 #'     henderson.filter = 13
 #' )
 #' x13_fast(y, spec = sp)
-#' j<- jx13(y, spec = sp)
+#' j <- jx13(y, spec = sp)
 #' class(j)
+#' }
+#'
 #' @returns the `x13()` function returns a list with the results, the estimation
 #' specification and the result specification, while `x13_fast()` is a faster
 #' function that only returns the results. The `jx13()` functions only returns
@@ -154,6 +163,8 @@ regarima_fast <- function(ts,
 #' specification object first.
 #'
 #' @export
+#'
+#' @name x13
 #'
 x13 <- function(ts,
                 spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
@@ -603,4 +614,3 @@ x13_full_dictionary <- function() {
     class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }
-

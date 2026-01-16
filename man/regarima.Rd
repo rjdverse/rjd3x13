@@ -42,6 +42,7 @@ RegARIMA model, pre-adjustment in X13
 }
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\donttest{
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
 sp <- rjd3toolkit::add_outlier(sp,
@@ -58,5 +59,6 @@ sp <- rjd3toolkit::set_transform(
 regarima_fast(y, spec = sp)
 sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 regarima_fast(y, spec = sp)
+}
 \dontshow{\}) # examplesIf}
 }
