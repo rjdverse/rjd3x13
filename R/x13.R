@@ -498,7 +498,12 @@ x13_refresh <- function(spec,
     }
     jspec <- .r2jd_spec_x13(spec)
     if (is.null(refspec)) {
-        jrefspec <- .jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
+        jrefspec <- .jcall(
+            obj = "jdplus/x13/base/api/x13/X13Spec",
+            returnSig = "Ljdplus/x13/base/api/x13/X13Spec;",
+            method = "fromString",
+            "rsa4"
+        )
     } else {
         if (!inherits(refspec, "JD3_X13_SPEC")) {
             stop("Invalid specification type", call. = FALSE)
