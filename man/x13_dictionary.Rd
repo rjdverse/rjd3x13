@@ -14,7 +14,7 @@ Function providing the names all output objects (series, diagnostics, parameters
 Can be used to generate an output non available by default with userdefined option in \code{x13()}function (see examples).
 }
 \examples{
-\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 # visualize the list of names
 summary(x13_dictionary())
 # set up vector with names of output objects of interest

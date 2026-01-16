@@ -40,6 +40,20 @@ fast_regarima(
 
 userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 }
+\arguments{
+\item{name}{the name of a predefined specification.}
+
+\item{ts}{an univariate time series.}
+
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
+
+\item{context}{list of external regressors (calendar or other) to be used for
+estimation}
+
+\item{userdefined}{a vector containing additional output variables
+(see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
+}
 \description{
 Deprecated functions
 }

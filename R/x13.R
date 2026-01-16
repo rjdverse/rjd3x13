@@ -373,14 +373,19 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'
 #' @examplesIf current_java_version >= minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
+#'
 #' # raw series for first estimation
 #' y_raw <- window(y, end = c(2016, 12))
+#'
 #' # raw series for second (refreshed) estimation
 #' y_new <- window(y, end = c(2017, 6))
+#'
 #' # specification for first estimation
 #' spec_x13_1 <- x13_spec("rsa5c")
+#'
 #' # first estimation
 #' sa_x13 <- x13(y_raw, spec_x13_1)
+#'
 #' # refreshing the specification
 #' current_result_spec <- sa_x13$result_spec
 #' current_domain_spec <- sa_x13$estimation_spec
@@ -523,8 +528,8 @@ x13_refresh <- function(spec,
 #' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
 #'
 #' @returns returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
-
-#' @examplesIf jversion >= 17
+#'
+#' @examplesIf current_java_version >= minimal_java_version
 #' # visualize the list of names
 #' summary(x13_dictionary())
 #' # set up vector with names of output objects of interest

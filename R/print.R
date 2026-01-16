@@ -302,7 +302,7 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
         cat("Duration:", x$regression$easter$duration, ifelse(x$regression$easter$duration == 8, "(Auto)", ""), "\n")
         cat("Test:", x$regression$easter$test, ifelse(x$regression$easter$test == "ADD", "(Auto)", ""), "\n")
 
-        if (!is.null(x$regression$easter$coef)) {
+        if (!is.null(x$regression$easter$coefficient)) {
             cat("Coef:\n")
             cat(
                 "\t- Type:", x$regression$easter$coefficient$type,

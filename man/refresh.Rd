@@ -100,14 +100,19 @@ unless constrained in the domain spec.
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.08.10.M
+
 # raw series for first estimation
 y_raw <- window(y, end = c(2016, 12))
+
 # raw series for second (refreshed) estimation
 y_new <- window(y, end = c(2017, 6))
+
 # specification for first estimation
 spec_x13_1 <- x13_spec("rsa5c")
+
 # first estimation
 sa_x13 <- x13(y_raw, spec_x13_1)
+
 # refreshing the specification
 current_result_spec <- sa_x13$result_spec
 current_domain_spec <- sa_x13$estimation_spec

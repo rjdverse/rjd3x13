@@ -1,5 +1,8 @@
 #' @title Deprecated functions
 #'
+#' @inheritParams x13
+#' @inheritParams x13_spec
+#'
 #' @name deprecated-rjd3x13
 
 #' @rdname deprecated-rjd3x13
