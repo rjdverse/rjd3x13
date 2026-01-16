@@ -11,7 +11,7 @@ Authors@R: c(
   )
 Description: R Interface to 'JDemetra+ 3.x'
     (<https://github.com/jdemetra>) time series analysis software.  It
-    offers full acces to options and outputs of X-13, including RegARIMA
+    offers full access to options and outputs of X-13, including Reg-ARIMA
     modelling (automatic ARIMA model with outlier detection and trading
     days adjustment) and X-11 decomposition.
 License: EUPL
