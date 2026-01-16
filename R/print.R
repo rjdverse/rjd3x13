@@ -1,5 +1,3 @@
-#' @importFrom stats printCoefmat
-#' @importFrom utils capture.output
 print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
     mstats <- matrix(
         data = unlist(x$mstats),
@@ -19,6 +17,9 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
     cat("\n")
     return(invisible(x))
 }
+
+#' @importFrom stats printCoefmat
+#' @importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...) {
     variance_decomposition <- x$variance_decomposition
@@ -33,8 +34,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
-                printCoefmat(variance_decomposition * 100, digits = digits, ...)
+            utils::capture.output(
+                stats::printCoefmat(variance_decomposition * 100, digits = digits, ...)
             )
         ),
         sep = "\n"
@@ -46,8 +47,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
-                printCoefmat(
+            utils::capture.output(
+                stats::printCoefmat(
                     residual_tests[, "P.value", drop = FALSE],
                     digits = digits,
                     na.print = "NA", ...
