@@ -25,19 +25,17 @@ minimal_java_version <- rjd3jars::minimal_java_version
         packageStartupMessage(sprintf("Your java version is %s. %s or higher is needed.",
                                       current_java_version, minimal_java_version))
     }
-
-    # reload extractors
-    rjd3toolkit::reload_dictionaries()
 }
 
 #' @importFrom RProtoBuf read readProtoFiles2
 #' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield
 .onLoad <- function(libname, pkgname) {
-    if (!requireNamespace("rjd3jars", quietly = TRUE)) stop("Loading rjd3 libraries failed", call. = FALSE)
-    if (!requireNamespace("rjd3toolkit", quietly = TRUE)) stop("Loading rjd3 libraries failed", call. = FALSE)
-
     result <- rJava::.jpackage(pkgname, lib.loc = libname)
     if (!result) stop("Loading java packages failed", call. = FALSE)
+
+    if (current_java_version >= minimal_java_version) {
+        rjd3toolkit::reload_dictionaries()
+    }
 
     proto.dir <- system.file("proto", package = pkgname)
     RProtoBuf::readProtoFiles2(protoPath = proto.dir)
