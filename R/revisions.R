@@ -13,7 +13,7 @@ NULL
 #' @title Revisions History
 #'
 #' @description Compute revisions history
-#' @return returns a list
+#' @returns returns a list
 #'
 #' @param ts The time series used for the estimation.
 #' @param spec The specification used.

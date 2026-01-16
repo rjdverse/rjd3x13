@@ -53,7 +53,7 @@
 #' detection of extreme values in the seasonal adjustment routines.
 #' Default = FALSE.
 #' @param bias TODO.
-#' @return  a "JD3_X11_SPEC" object, containing all the parameters.
+#' @returns  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
 #'
 #' @examplesIf current_java_version >= minimal_java_version

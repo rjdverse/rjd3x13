@@ -30,7 +30,7 @@ NULL
 #' init_spec <- x13_spec("rsa5c")
 #' init_spec
 #'
-#' @return an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
+#' @returns an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
 #' `"JD3_REGARIMA_SPEC"` (`regarima_spec()`) or
 #' `"JD3_X11_SPEC"` (`x11_spec()`).
 #'

@@ -11,7 +11,7 @@ NULL
 #' @param userdefined a vector containing additional output variables
 #' (see [x13_dictionary()]).
 #'
-#' @return the `regarima()` function returns a list with the results
+#' @returns the `regarima()` function returns a list with the results
 #' (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result
 #' specification, while `regarima_fast()` is a faster function that only returns
 #' the results.
@@ -143,7 +143,7 @@ regarima_fast <- function(ts,
 #' x13_fast(y, spec = sp)
 #' j<- jx13(y, spec = sp)
 #' class(j)
-#' @return the `x13()` function returns a list with the results, the estimation
+#' @returns the `x13()` function returns a list with the results, the estimation
 #' specification and the result specification, while `x13_fast()` is a faster
 #' function that only returns the results. The `jx13()` functions only returns
 #' results in a java object which will allow to customize outputs in other
@@ -364,7 +364,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' The dates corresponding \code{start} and \code{end} are included in the span
 #' definition.
 #'
-#' @return a new specification, an object of class `"JD3_X13_SPEC"` or
+#' @returns a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
 #'
 #' @references
@@ -522,7 +522,7 @@ x13_refresh <- function(spec,
 #' Function providing the names all output objects (series, diagnostics, parameters) available with `x13()` function.
 #' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
 #'
-#' @return returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
+#' @returns returns a vector containing the names of all output objects (series, diagnostics, parameters) available with `x13()` function.
 
 #' @examplesIf jversion >= 17
 #' # visualize the list of names
@@ -553,7 +553,7 @@ x13_dictionary <- function() {
 #' Can be used to generate an output non available by default with userdefined option in `x13()`function (see examples).
 #'
 #' @returns a data.frame with the dictionary of variables
-#' @return returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with `x13()`function
+#' @returns returns a data frame containing format and description, for all output objects (series, diagnostics, parameters) available with `x13()`function
 #' @export
 #'
 #' @examplesIf current_java_version >= minimal_java_version
