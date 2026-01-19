@@ -18,21 +18,23 @@ NULL
 #'
 #' @examplesIf current_java_version >= minimal_java_version
 #' \donttest{
+#' library("rjd3toolkit")
+#'
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sp <- regarima_spec("rg5c")
-#' sp <- rjd3toolkit::add_outlier(sp,
+#' sp <- add_outlier(sp,
 #'     type = c("AO"), c("2015-01-01", "2010-01-01")
 #' )
 #' regarima_fast(y, spec = sp)
-#' sp <- rjd3toolkit::set_transform(
-#'     rjd3toolkit::set_tradingdays(
-#'         rjd3toolkit::set_easter(sp, enabled = FALSE),
+#' sp <- set_transform(
+#'     set_tradingdays(
+#'         set_easter(sp, enabled = FALSE),
 #'         option = "workingdays"
 #'     ),
 #'     fun = "None"
 #' )
 #' regarima_fast(y, spec = sp)
-#' sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+#' sp <- set_outlier(sp, outliers.type = c("AO"))
 #' regarima_fast(y, spec = sp)
 #' }
 #'
@@ -126,6 +128,8 @@ regarima_fast <- function(ts,
 #'
 #' @examplesIf current_java_version >= minimal_java_version
 #' \donttest{
+#' library("rjd3toolkit")
+#'
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x13_fast(y, "rsa3")
 #' x13(y, "rsa5c")
@@ -133,12 +137,12 @@ regarima_fast <- function(ts,
 #' regarima(y, "rg3")
 #'
 #' sp <- x13_spec("rsa5c")
-#' sp <- rjd3toolkit::add_outlier(sp,
+#' sp <- add_outlier(sp,
 #'     type = c("AO"), c("2015-01-01", "2010-01-01")
 #' )
-#' sp <- rjd3toolkit::set_transform(
-#'     rjd3toolkit::set_tradingdays(
-#'         rjd3toolkit::set_easter(sp, enabled = FALSE),
+#' sp <- set_transform(
+#'     set_tradingdays(
+#'         set_easter(sp, enabled = FALSE),
 #'         option = "workingdays"
 #'     ),
 #'     fun = "None"
@@ -549,7 +553,7 @@ x13_refresh <- function(spec,
 #' the `x13()` function, whereas \code{x13_full_dictionary()} returns a
 #' \code{data.frame} with format and description, for all the output objects.
 #'
-#' @name dictionary
+#' @name x13_dictionary
 #'
 #' @details
 #' These functions provide lists of output names (series, diagnostics,
@@ -591,7 +595,7 @@ x13_dictionary <- function() {
 }
 
 #' @export
-#' @rdname dictionary
+#' @rdname x13_dictionary
 x13_full_dictionary <- function() {
     dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
     dico <- `dim<-`(dico, c(6, length(dico) / 6))

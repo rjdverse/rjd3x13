@@ -56,6 +56,8 @@ Seasonal Adjustment with  X13-ARIMA
 \examples{
 \dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 \donttest{
+library("rjd3toolkit")
+
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x13_fast(y, "rsa3")
 x13(y, "rsa5c")
@@ -63,12 +65,12 @@ regarima_fast(y, "rg0")
 regarima(y, "rg3")
 
 sp <- x13_spec("rsa5c")
-sp <- rjd3toolkit::add_outlier(sp,
+sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")
 )
-sp <- rjd3toolkit::set_transform(
-    rjd3toolkit::set_tradingdays(
-        rjd3toolkit::set_easter(sp, enabled = FALSE),
+sp <- set_transform(
+    set_tradingdays(
+        set_easter(sp, enabled = FALSE),
         option = "workingdays"
     ),
     fun = "None"

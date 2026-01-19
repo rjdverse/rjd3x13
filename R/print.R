@@ -63,7 +63,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 }
 
 #' @export
-print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L),
+                                summary_info = getOption("summary_info"),
                                 thresholds_pval = getOption("thresholds_pval"),
                                 ...) {
     cat("Model: X-13\n")
