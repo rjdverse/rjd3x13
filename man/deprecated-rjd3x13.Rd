@@ -56,6 +56,19 @@ estimation}
 
 \item{x}{useless parameter}
 }
+\value{
+All these functions are deprecated and return the same value as the
+function that replaces them:
+\itemize{
+\item \code{spec_x13()} returns the same value as \code{x13_spec()}
+\item \code{spec_regarima()} returns the same value as \code{regarima_spec()}
+\item \code{spec_x11()} returns the same value as \code{x11_spec()}
+\item \code{fast_x13()} returns the same value as \code{x13_fast()}
+\item \code{fast_regarima()} returns the same value as \code{regarima_fast()}
+\item \code{.jx13()} returns the same value as \code{jx13()}
+\item \code{userdefined_variables_x13()} returns the same value as \code{x13_dictionary()}
+}
+}
 \description{
 Deprecated functions
 }

@@ -5,7 +5,18 @@
 #' @inheritParams x13_spec
 #'
 #' @name deprecated-rjd3x13
-
+#'
+#' @returns All these functions are deprecated and return the same value as the
+#' function that replaces them:
+#'
+#' - `spec_x13()` returns the same value as `x13_spec()`
+#' - `spec_regarima()` returns the same value as `regarima_spec()`
+#' - `spec_x11()` returns the same value as `x11_spec()`
+#' - `fast_x13()` returns the same value as `x13_fast()`
+#' - `fast_regarima()` returns the same value as `regarima_fast()`
+#' - `.jx13()` returns the same value as `jx13()`
+#' - `userdefined_variables_x13()` returns the same value as `x13_dictionary()`
+#'
 #' @rdname deprecated-rjd3x13
 #' @export
 spec_x13 <- function(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")) {
