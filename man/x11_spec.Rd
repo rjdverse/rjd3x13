@@ -94,7 +94,7 @@ a "JD3_X11_SPEC" object, containing all the parameters.
 Set X-11 Specification
 }
 \examples{
-\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 init_spec <- x11_spec()
 new_spec <- set_x11(init_spec,
     mode = "LogAdditive",

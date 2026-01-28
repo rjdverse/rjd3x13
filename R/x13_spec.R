@@ -22,7 +22,7 @@ NULL
 #'
 #' @param name the name of a predefined specification.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
 #' init_spec <- x11_spec()
 #' init_spec
 #' init_spec <- regarima_spec("rg4")
@@ -30,7 +30,7 @@ NULL
 #' init_spec <- x13_spec("rsa5c")
 #' init_spec
 #'
-#' @return an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
+#' @returns an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
 #' `"JD3_REGARIMA_SPEC"` (`regarima_spec()`) or
 #' `"JD3_X11_SPEC"` (`x11_spec()`).
 #'
@@ -91,6 +91,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_x11 <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jspec)
@@ -99,6 +100,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_x11 <- function(spec) {
     p <- .r2p_spec_x11(spec)
@@ -108,6 +110,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_regarima <- function(spec) {
     p <- .r2p_spec_regarima(spec)
@@ -117,6 +120,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_regarima <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
@@ -125,6 +129,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf serialize
 #' @rdname jd3_utilities
 .r2jd_spec_x13 <- function(spec) {
     p <- .r2p_spec_x13(spec)
@@ -134,6 +139,7 @@ x11_spec <- function() {
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .jd2r_spec_x13 <- function(jspec) {
     b <- .jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jspec)

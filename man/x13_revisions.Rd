@@ -48,7 +48,8 @@ returns a list
 Compute revisions history
 }
 \examples{
-\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\donttest{
 s <- rjd3toolkit::ABS$X0.2.09.10.M
 sa_mod <- x13(s)
 data_ids <- list(
@@ -73,5 +74,6 @@ rh <- x13_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
 rh$data
 rh$series
 rh$components
+}
 \dontshow{\}) # examplesIf}
 }

@@ -13,7 +13,7 @@ NULL
 #' @title Revisions History
 #'
 #' @description Compute revisions history
-#' @return returns a list
+#' @returns returns a list
 #'
 #' @param ts The time series used for the estimation.
 #' @param spec The specification used.
@@ -37,7 +37,8 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf current_java_version >= minimal_java_version
+#' \donttest{
 #' s <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sa_mod <- x13(s)
 #' data_ids <- list(
@@ -62,6 +63,7 @@ NULL
 #' rh$data
 #' rh$series
 #' rh$components
+#' }
 #' @export
 x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NULL, context = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)

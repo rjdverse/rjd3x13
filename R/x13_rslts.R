@@ -2,6 +2,7 @@
 #' @importFrom rjd3toolkit sa_decomposition
 NULL
 
+#' @importFrom RProtoBuf read
 .regarima_rslts <- function(jrslts) {
     if (is.jnull(jrslts)) {
         return(NULL)
@@ -12,6 +13,7 @@ NULL
 }
 
 #' @export
+#' @importFrom RProtoBuf read
 #' @rdname jd3_utilities
 .x13_rslts <- function(jrslts) {
     if (is.jnull(jrslts)) {
@@ -22,6 +24,7 @@ NULL
     return(.p2r_x13_rslts(rq))
 }
 
+#' @importFrom RProtoBuf read
 .x11_rslts <- function(jrslts) {
     if (is.jnull(jrslts)) {
         return(NULL)

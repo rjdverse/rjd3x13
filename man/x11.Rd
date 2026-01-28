@@ -21,7 +21,7 @@ the \code{x11()} function returns a list with the results (series) and final par
 X-11 Decomposition Algorithm
 }
 \examples{
-\dontshow{if (jversion >= 17) withAutoprint(\{ # examplesIf}
+\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x11_spec <- x11_spec()
 x11(y, x11_spec)

@@ -19,6 +19,7 @@ navbar:
     home:
       icon: fa-home fa-lg
       href: index.html
+      aria-label: Home
     reference:
       text: Reference
       href: reference/index.html
@@ -98,6 +99,8 @@ reference:
     - '`.r2jd_spec_x13`'
     - '`.jd2r_spec_x13`'
     - '`.jx13`'
+    - '`current_java_version`'
+    - '`minimal_java_version`'
 - title: Deprecated functions
   desc: Use new version
   contents:

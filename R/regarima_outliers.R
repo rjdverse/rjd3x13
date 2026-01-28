@@ -16,14 +16,15 @@ NULL
 #' @param clean Clean missing values at the beginning/end of the series.
 #' Regression variables are automatically resized, if need be.
 #'
-#' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
+#' @returns a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
-#' @examplesIf jversion >= 17
+#' @importFrom stats is.ts
+#'
+#' @examplesIf current_java_version >= minimal_java_version
 #' # estimate model
-#' model<- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+#' model <- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #' # print outliers
 #' model$model$variables
-
 #' @export
 regarima_outliers <- function(y,
                               order = c(0L, 1L, 1L),
@@ -37,7 +38,7 @@ regarima_outliers <- function(y,
                               so = FALSE,
                               cv = 0,
                               clean = FALSE) {
-    if (!is.ts(y)) {
+    if (!stats::is.ts(y)) {
         stop("y must be a time series", call. = FALSE)
     }
     if (!is.null(X.td)) {
