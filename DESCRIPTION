@@ -1,6 +1,6 @@
 Type: Package
 Package: rjd3x13
-Title: Seasonal Adjustment with X-13 in 'JDemetra+ 3.x'
+Title: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x
 Version: 3.6.0
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
@@ -9,7 +9,7 @@ Authors@R: c(
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art")),
     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
   )
-Description: R Interface to 'JDemetra+ 3.x'
+Description: R Interface to 'JDemetra+' 3.x
     (<https://github.com/jdemetra>) time series analysis software.  It
     offers full access to options and outputs of 'X-13', including Reg-ARIMA
     modelling (automatic AutoRegressive Integrated Moving Average (ARIMA) model 
