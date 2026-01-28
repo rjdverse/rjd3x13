@@ -1,6 +1,8 @@
 # Changelog
 
-## rjd3x13 3.6.0.9000
+## rjd3x13 3.6.0
+
+CRAN release: 2026-01-27
 
 All notable changes to this project will be documented in this file.
 
@@ -30,7 +32,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Classes to
   [`x13_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_dictionary.md)
   and
-  [`x13_full_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_full_dictionary.md)
+  [`x13_full_dictionary()`](https://rjdverse.github.io/rjd3x13/reference/x13_dictionary.md)
 
 ### [3.5.0](https://github.com/rjdverse/rjd3x13/compare/v3.3.0...v3.5.0) - 2025-04-09
 

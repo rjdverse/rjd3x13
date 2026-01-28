@@ -66,6 +66,7 @@ returns a list
 ## Examples
 
 ``` r
+# \donttest{
 s <- rjd3toolkit::ABS$X0.2.09.10.M
 sa_mod <- x13(s)
 data_ids <- list(
@@ -12111,4 +12112,5 @@ rh$components
 #> Jul 2017 1551.6255
 #> Aug 2017 1550.1023
 #> 
+# }
 ```

@@ -67,7 +67,7 @@ results
 
 ``` r
 # estimate model
-model<- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+model <- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 # print outliers
 model$model$variables
 #> [1] "AO.220" "AO.219" "AO.277" "LS.400" "LS.280"

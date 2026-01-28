@@ -19,16 +19,14 @@ interact between R and Java objects.
 .r2jd_spec_x13(spec)
 
 .jd2r_spec_x13(jspec)
-
-jversion
 ```
-
-## Format
-
-An object of class `integer` of length 1.
 
 ## Arguments
 
 - spec, jspec, jrslts:
 
   parameters.
+
+## Value
+
+These functions return specification in Java, proto or R.

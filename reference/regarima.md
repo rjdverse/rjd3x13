@@ -51,9 +51,20 @@ only returns the results.
 ## Examples
 
 ``` r
+# \donttest{
+library("rjd3toolkit")
+#> 
+#> Attaching package: ‘rjd3toolkit’
+#> The following object is masked from ‘package:rjd3x13’:
+#> 
+#>     current_java_version
+#> The following objects are masked from ‘package:stats’:
+#> 
+#>     aggregate, mad
+
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
-sp <- rjd3toolkit::add_outlier(sp,
+sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")
 )
 regarima_fast(y, spec = sp)
@@ -73,9 +84,9 @@ regarima_fast(y, spec = sp)
 #>       -0.306536 
 #> 
 #> For a more detailed output, use the 'summary()' function.
-sp <- rjd3toolkit::set_transform(
-    rjd3toolkit::set_tradingdays(
-        rjd3toolkit::set_easter(sp, enabled = FALSE),
+sp <- set_transform(
+    set_tradingdays(
+        set_easter(sp, enabled = FALSE),
         option = "workingdays"
     ),
     fun = "None"
@@ -95,7 +106,7 @@ regarima_fast(y, spec = sp)
 #>        -194.689         -82.306          81.333 
 #> 
 #> For a more detailed output, use the 'summary()' function.
-sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+sp <- set_outlier(sp, outliers.type = c("AO"))
 regarima_fast(y, spec = sp)
 #> Log-transformation: no 
 #> SARIMA model: (3,1,1) (0,1,1)
@@ -111,4 +122,5 @@ regarima_fast(y, spec = sp)
 #>        -201.192        -150.277 
 #> 
 #> For a more detailed output, use the 'summary()' function.
+# }
 ```

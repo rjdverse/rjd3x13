@@ -75,33 +75,33 @@ user-defined parameters from the original specification.
 
 Available refresh policies are:
 
-**Current**: applying the current pre-adjustment reg-arima model and
-handling the new raw data points, or any sub-span of the series as
-Additive Outliers (defined as new intervention variables)
+1.  **Current**: applying the current pre-adjustment reg-arima model and
+    handling the new raw data points, or any sub-span of the series as
+    Additive Outliers (defined as new intervention variables);
 
-**Fixed**: applying the current pre-adjustment reg-arima model and
-replacing forecasts by new raw data points.
+2.  **Fixed**: applying the current pre-adjustment reg-arima model and
+    replacing forecasts by new raw data points;
 
-**FixedParameters**: pre-adjustment reg-arima model is partially
-modified: regression coefficients will be re-estimated but regression
-variables, Arima orders and coefficients are unchanged.
+3.  **FixedParameters**: pre-adjustment reg-arima model is partially
+    modified: regression coefficients will be re-estimated but
+    regression variables, Arima orders and coefficients are unchanged;
 
-**FixedAutoRegressiveParameters**: same as FixedParameters but Arima
-Moving Average coefficients (MA) are also re-estimated, Auto-regressive
-(AR) coefficients are kept fixed.
+4.  **FixedAutoRegressiveParameters**: same as FixedParameters but Arima
+    Moving Average coefficients (MA) are also re-estimated,
+    Auto-regressive (AR) coefficients are kept fixed;
 
-**FreeParameters**: all regression and Arima model coefficients are
-re-estimated, regression variables and Arima orders are kept fixed.
+5.  **FreeParameters**: all regression and Arima model coefficients are
+    re-estimated, regression variables and Arima orders are kept fixed;
 
-**Outliers**: regression variables and Arima orders are kept fixed, but
-outliers will be re-detected on the defined span, thus all regression
-and Arima model coefficients are re-estimated
+6.  **Outliers**: regression variables and Arima orders are kept fixed,
+    but outliers will be re-detected on the defined span, thus all
+    regression and Arima model coefficients are re-estimated;
 
-**Outliers_StochasticComponent**: same as "Outliers" but Arima model
-orders (p,d,q)(P,D,Q) can also be re-identified.
+7.  **Outliers_StochasticComponent**: same as "Outliers" but Arima model
+    orders (p,d,q)(P,D,Q) can also be re-identified;
 
-**Complete**: All the parameters are re-identified and re-estimated,
-unless constrained in the domain spec.
+8.  **Complete**: All the parameters are re-identified and re-estimated,
+    unless constrained in the domain spec.
 
 ## References
 
@@ -111,15 +111,21 @@ More information on revision policies in JDemetra+ online documentation:
 ## Examples
 
 ``` r
+# \donttest{
 y <- rjd3toolkit::ABS$X0.2.08.10.M
+
 # raw series for first estimation
 y_raw <- window(y, end = c(2016, 12))
+
 # raw series for second (refreshed) estimation
 y_new <- window(y, end = c(2017, 6))
+
 # specification for first estimation
 spec_x13_1 <- x13_spec("rsa5c")
+
 # first estimation
 sa_x13 <- x13(y_raw, spec_x13_1)
+
 # refreshing the specification
 current_result_spec <- sa_x13$result_spec
 current_domain_spec <- sa_x13$estimation_spec
@@ -150,14 +156,17 @@ spec_x13_ref <- x13_refresh(current_result_spec,
     start = c(2017, 1),
     end = end(y_new)
 )
-# points from January 2017 (included) until the end of the series will be treated
-# as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
-# 2nd estimation with refreshed specification
+
+# Points from January 2017 (included) until the end of the series will be
+# treated as Additive Outliers, the previous reg-Arima model being otherwise
+# kept fixed 2nd estimation with refreshed specification
 sa_x13_ref <- x13(y_new, spec_x13_ref)
-# same procedure using regarima_refresh
+
+# Same procedure using regarima_refresh
 # specification for first estimation
 spec_1 <- regarima_spec("rg3")
-# first estimation
+
+# First estimation
 reg_a_model <- regarima(y_raw, spec_1)
 reg_a_model$estimation_spec
 #> Specification
@@ -199,14 +208,18 @@ reg_a_model$estimation_spec
 #> SARIMA coefficients:
 #>  theta(1) btheta(1) 
 #>         0         0 
-# refreshing the specification
+
+# Refreshing the specification
 current_result_spec <- reg_a_model$result_spec
 current_domain_spec <- reg_a_model$estimation_spec
-# policy = "Fixed"
-spec_1_ref <- regarima_refresh(current_result_spec, # point spec to be refreshed
-                             current_domain_spec, # domain spec (set of constraints)
-                              policy = "Fixed"
-                               )
+
+# Policy = "Fixed"
+spec_1_ref <- regarima_refresh(
+    current_result_spec, # point spec to be refreshed
+    current_domain_spec, # domain spec (set of constraints)
+    policy = "Fixed"
+)
 # 2nd estimation with refreshed specification
 reg_a_model_ref <- regarima(y_new, spec_1_ref)
+# }
 ```
