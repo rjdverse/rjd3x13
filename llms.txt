@@ -51,6 +51,12 @@ a configuration in R is explained
 
 To get the current stable version (from the latest release):
 
+- From CRAN:
+
+``` r
+install.packages("rjd3x13")
+```
+
 - From GitHub:
 
 ``` r
