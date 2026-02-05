@@ -1,4 +1,3 @@
-#' @import rjd3jars
 #' @import rjd3toolkit
 NULL
 

@@ -6,7 +6,7 @@
 #'
 #' @returns \code{current_java_version} is the current Java version and \code{minimal_java_version} is the minimum accepted Java version.
 #'
-#' @importFrom rjd3jars get_java_version minimal_java_version
+#' @importFrom rjd3toolkit current_java_version minimal_java_version
 #' @export
 #' @name java_version
 #'
@@ -14,11 +14,11 @@
 #' print(minimal_java_version)
 #' print(current_java_version)
 #' @export
-current_java_version <- rjd3jars::get_java_version()
+current_java_version <- rjd3toolkit::current_java_version
 
 #' @rdname java_version
 #' @export
-minimal_java_version <- rjd3jars::minimal_java_version
+minimal_java_version <- rjd3toolkit::minimal_java_version
 
 .onAttach <- function(libname, pkgname) {
     if (current_java_version < minimal_java_version) {
