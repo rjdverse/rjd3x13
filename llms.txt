@@ -1,4 +1,4 @@
-# `rjd3x13`
+# {rjd3x13}
 
 [![R-CMD-check](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml)
 [![lint](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml)
@@ -6,7 +6,7 @@
 [![GH Pages
 built](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml)
 
-rjd3x13 offers full access to options and outputs of X-13
+{rjd3x13} offers full access to options and outputs of X-13
 ([`rjd3x13::x13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)),
 including RegARIMA modelling
 ([`rjd3x13::regarima()`](https://rjdverse.github.io/rjd3x13/reference/regarima.md))
@@ -47,33 +47,15 @@ Running rjd3 packages requires **Java 17 or higher**. How to set up such
 a configuration in R is explained
 [here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
 
-### Latest release
+**🎉 {rjd3x13} is now available on CRAN! 🎉**
 
-To get the current stable version (from the latest release):
-
-- From CRAN:
+To install it, you have to launch the following command line:
 
 ``` r
 install.packages("rjd3x13")
 ```
 
-- From GitHub:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("rjdverse/rjd3toolkit@*release")
-remotes::install_github("rjdverse/rjd3x13@*release")
-```
-
-- From [r-universe](https://rjdverse.r-universe.dev/rjd3x13):
-
-``` r
-install.packages("rjd3x13", repos = c("https://rjdverse.r-universe.dev", "https://cloud.r-project.org"))
-```
-
-### Development version
-
-You can install the development version of **rjd3x13** from
+To get the current development version of **{rjd3x13}** from
 [GitHub](https://github.com/) with:
 
 ``` r
