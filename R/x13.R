@@ -16,7 +16,7 @@ NULL
 #' specification, while `regarima_fast()` is a faster function that only returns
 #' the results.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' \donttest{
 #' library("rjd3toolkit")
 #'
@@ -126,7 +126,7 @@ regarima_fast <- function(ts,
 #'
 #' @inheritParams regarima
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' \donttest{
 #' library("rjd3toolkit")
 #'
@@ -293,7 +293,7 @@ jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
 #'
 #' @returns the `x11()` function returns a list with the results (series) and final parameters
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x11_spec <- x11_spec()
 #' x11(y, x11_spec)
@@ -380,7 +380,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' More information on revision policies in JDemetra+ online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
 #'
@@ -563,7 +563,7 @@ x13_refresh <- function(spec,
 #' The \code{x13_full_dictionary} function provides additional information on
 #' object format and description.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' \donttest{
 #' # Visualize the dictionary
 #' print(x13_dictionary())

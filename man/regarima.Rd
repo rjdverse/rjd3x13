@@ -41,7 +41,7 @@ the results.
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
-\dontshow{if (rjd3toolkit::get_java_version() >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 \donttest{
 library("rjd3toolkit")
 

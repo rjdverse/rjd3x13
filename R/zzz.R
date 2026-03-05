@@ -2,33 +2,11 @@
 #' @importFrom stats is.ts start
 #' @include utils.R
 
-#' @title Java version.
-#'
-#' @returns `get_java_version()` returns the current Java version and
-#' `minimal_java_version` is the minimum accepted Java version.
-#'
-#' @importFrom rjd3jars get_java_version minimal_java_version
-#' @export
-#' @name java_version
-#'
-#' @keywords internal
-#' @noRd
-#'
-#' @examples
-#' print(minimal_java_version)
-#' print(get_java_version())
-get_java_version <- rjd3toolkit::get_java_version
-
-#' @keywords internal
-#' @noRd
-#' @rdname java_version
-minimal_java_version <- rjd3toolkit::minimal_java_version
-
 .onAttach <- function(libname, pkgname) {
-    current_java_version <- get_java_version()
-    if (current_java_version < minimal_java_version) {
+    current_java_version <- rjd3toolkit::get_java_version()
+    if (current_java_version < rjd3toolkit::minimal_java_version) {
         packageStartupMessage(sprintf("Your java version is %s. %s or higher is needed.",
-                                      current_java_version, minimal_java_version))
+                                      current_java_version, rjd3toolkit::minimal_java_version))
     }
 }
 
@@ -38,8 +16,8 @@ minimal_java_version <- rjd3toolkit::minimal_java_version
     result <- rJava::.jpackage(pkgname, lib.loc = libname)
     if (!result) stop("Loading java packages failed", call. = FALSE)
 
-    current_java_version <- get_java_version()
-    if (current_java_version >= minimal_java_version) {
+    current_java_version <- rjd3toolkit::get_java_version()
+    if (current_java_version >= rjd3toolkit::minimal_java_version) {
         rjd3toolkit::reload_dictionaries()
     }
 

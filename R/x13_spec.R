@@ -22,7 +22,7 @@ NULL
 #'
 #' @param name the name of a predefined specification.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' init_spec <- x11_spec()
 #' init_spec
 #' init_spec <- regarima_spec("rg4")
