@@ -4,7 +4,8 @@
 
 #' @title Java version.
 #'
-#' @returns \code{get_java_version()} returns the current Java version and \code{minimal_java_version} is the minimum accepted Java version.
+#' @returns `get_java_version()` returns the current Java version and
+#' `minimal_java_version` is the minimum accepted Java version.
 #'
 #' @importFrom rjd3jars get_java_version minimal_java_version
 #' @export
