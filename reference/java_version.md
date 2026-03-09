@@ -27,5 +27,5 @@ An object of class `numeric` of length 1.
 print(minimal_java_version)
 #> [1] 17
 print(current_java_version)
-#> [1] 17
+#> [1] 21
 ```

@@ -55,9 +55,6 @@ only returns the results.
 library("rjd3toolkit")
 #> 
 #> Attaching package: ‘rjd3toolkit’
-#> The following object is masked from ‘package:rjd3x13’:
-#> 
-#>     current_java_version
 #> The following objects are masked from ‘package:stats’:
 #> 
 #>     aggregate, mad
