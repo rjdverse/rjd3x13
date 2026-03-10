@@ -20,7 +20,7 @@ NULL
 #'
 #' @importFrom stats is.ts
 #'
-#' @examplesIf current_java_version >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' # estimate model
 #' model <- regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #' # print outliers

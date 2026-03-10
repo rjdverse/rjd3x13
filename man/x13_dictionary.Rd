@@ -28,7 +28,7 @@ The \code{x13_full_dictionary} function provides additional information on
 object format and description.
 }
 \examples{
-\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 \donttest{
 # Visualize the dictionary
 print(x13_dictionary())
