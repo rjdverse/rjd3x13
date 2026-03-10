@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3x13
 Title: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x
-Version: 3.7.0
+Version: 3.7.1
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",

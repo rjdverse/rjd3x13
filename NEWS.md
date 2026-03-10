@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [3.7.1] - 2026-03-10
+
+
 ## [3.6.0] - 2025-11-21
 
 ### Added
@@ -53,7 +56,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [3.1.0] - 2023-08-11
 
 
-[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...HEAD
+[3.7.1]: https://github.com/rjdverse/rjd3x13/compare/v3.6.0...v3.7.1
 [3.6.0]: https://github.com/rjdverse/rjd3x13/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/rjdverse/rjd3x13/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/rjdverse/rjd3x13/compare/v3.3.0...v3.5.0
