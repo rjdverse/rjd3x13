@@ -1,5 +1,3 @@
-#' @importFrom stats printCoefmat
-#' @importFrom utils capture.output
 print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
     mstats <- matrix(
         data = unlist(x$mstats),
@@ -19,6 +17,9 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
     cat("\n")
     return(invisible(x))
 }
+
+#' @importFrom stats printCoefmat
+#' @importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...) {
     variance_decomposition <- x$variance_decomposition
@@ -33,8 +34,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
-                printCoefmat(variance_decomposition * 100, digits = digits, ...)
+            utils::capture.output(
+                stats::printCoefmat(variance_decomposition * 100, digits = digits, ...)
             )
         ),
         sep = "\n"
@@ -46,8 +47,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
-                printCoefmat(
+            utils::capture.output(
+                stats::printCoefmat(
                     residual_tests[, "P.value", drop = FALSE],
                     digits = digits,
                     na.print = "NA", ...
@@ -62,7 +63,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
 }
 
 #' @export
-print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L),
+                                summary_info = getOption("summary_info"),
                                 thresholds_pval = getOption("thresholds_pval"),
                                 ...) {
     cat("Model: X-13\n")
@@ -135,11 +137,23 @@ print.JD3_X13_OUTPUT <- function(x,
                                  digits = max(3L, getOption("digits") - 3L),
                                  summary_info = getOption("summary_info"),
                                  ...) {
+    series_span <- x$result_spec$regarima$basic$span
+    model_span <- x$result_spec$regarima$estimate$span
+
+    cat("Serie span: ")
+    print(series_span)
+    if (!identical(series_span, model_span)) {
+        cat("Model span: ")
+        print(model_span)
+    }
+    cat("\n")
     print(x$result, digits = digits, summary_info = summary_info, ...)
     return(invisible(x))
 }
 
 #' @export
+#' @importFrom stats .preformat.ts
+#' @importFrom utils tail
 print.JD3X11 <- function(x, ...) {
     table_x11 <- do.call(cbind, x[grepl(pattern = "^d(\\d+)$", x = names(x))])
 
@@ -289,7 +303,7 @@ print.JD3_REGARIMA_SPEC <- function(x, ...) {
         cat("Duration:", x$regression$easter$duration, ifelse(x$regression$easter$duration == 8, "(Auto)", ""), "\n")
         cat("Test:", x$regression$easter$test, ifelse(x$regression$easter$test == "ADD", "(Auto)", ""), "\n")
 
-        if (!is.null(x$regression$easter$coef)) {
+        if (!is.null(x$regression$easter$coefficient)) {
             cat("Coef:\n")
             cat(
                 "\t- Type:", x$regression$easter$coefficient$type,

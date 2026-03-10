@@ -7,6 +7,8 @@
 \alias{spec_x11}
 \alias{fast_x13}
 \alias{fast_regarima}
+\alias{.jx13}
+\alias{userdefined_variables_x13}
 \title{Deprecated functions}
 \usage{
 spec_x13(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
@@ -28,9 +30,44 @@ fast_regarima(
   context = NULL,
   userdefined = NULL
 )
+
+.jx13(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
+
+userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 }
 \arguments{
-\item{ts, spec, context, userdefined, name}{Parameters.}
+\item{name}{the name of a predefined specification.}
+
+\item{ts}{an univariate time series.}
+
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
+
+\item{context}{list of external regressors (calendar or other) to be used for
+estimation}
+
+\item{userdefined}{a vector containing additional output variables
+(see \code{\link[=x13_dictionary]{x13_dictionary()}}).}
+
+\item{x}{useless parameter}
+}
+\value{
+All these functions are deprecated and return the same value as the
+function that replaces them:
+\itemize{
+\item \code{spec_x13()} returns the same value as \code{x13_spec()}
+\item \code{spec_regarima()} returns the same value as \code{regarima_spec()}
+\item \code{spec_x11()} returns the same value as \code{x11_spec()}
+\item \code{fast_x13()} returns the same value as \code{x13_fast()}
+\item \code{fast_regarima()} returns the same value as \code{regarima_fast()}
+\item \code{.jx13()} returns the same value as \code{jx13()}
+\item \code{userdefined_variables_x13()} returns the same value as \code{x13_dictionary()}
+}
 }
 \description{
 Deprecated functions

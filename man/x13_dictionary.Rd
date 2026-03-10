@@ -2,13 +2,54 @@
 % Please edit documentation in R/x13.R
 \name{x13_dictionary}
 \alias{x13_dictionary}
+\alias{x13_full_dictionary}
 \title{X-13 Dictionary}
 \usage{
 x13_dictionary()
+
+x13_full_dictionary()
 }
 \value{
-A vector containing the names of all the available output objects (series, diagnostics, parameters).
+\code{x13_dictionary()} returns a character vector containing the
+names of all output objects (series, diagnostics, parameters) available with
+the \code{x13()} function, whereas \code{x13_full_dictionary()} returns a
+\code{data.frame} with format and description, for all the output objects.
 }
 \description{
-X-13 Dictionary
+Functions to provide information for all output objects (series, diagnostics,
+parameters) available with \code{x13()} function.
+}
+\details{
+These functions provide lists of output names (series, diagnostics,
+parameters) available with the \code{x13()} function. These names can be
+used to generate customized outputs with the userdefined option of the
+\code{x13()} function (see examples).
+The \code{x13_full_dictionary} function provides additional information on
+object format and description.
+}
+\examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+\donttest{
+# Visualize the dictionary
+print(x13_dictionary())
+summary(x13_dictionary())
+
+# first 10 lines
+head(x13_full_dictionary(), n = 10)
+# For more structured information call `View(x13_full_dictionary())`
+
+# Extract names of output of interest
+user_defined_output <- x13_dictionary()[c(65, 95, 135)]
+user_defined_output
+
+# Generate the corresponding output in an estimation
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+m <- x13(y,"rsa3", userdefined=user_defined_output)
+
+# Retrieve user defined output
+tail(m$user_defined$ylin)
+m$user_defined$residuals.kurtosis
+m$user_defined$sa_f
+}
+\dontshow{\}) # examplesIf}
 }

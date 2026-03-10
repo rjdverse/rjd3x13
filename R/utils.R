@@ -1,15 +1,17 @@
-#' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
-#' @import RProtoBuf rjd3toolkit
-#' @importFrom stats is.ts start
+#' @import rjd3toolkit
 NULL
 
-#' Java Utility Functions
+#' @title Java Utility Functions
 #'
+#' @description
 #' These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
 #'
 #' @param spec,jspec,jrslts parameters.
 #'
 #' @name jd3_utilities
+#'
+#' @returns These functions return specification in Java, proto or R.
+#'
 NULL
 #> NULL
 

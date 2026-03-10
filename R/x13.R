@@ -11,29 +11,37 @@ NULL
 #' @param userdefined a vector containing additional output variables
 #' (see [x13_dictionary()]).
 #'
-#' @return the `regarima()` function returns a list with the results
+#' @returns the `regarima()` function returns a list with the results
 #' (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result
 #' specification, while `regarima_fast()` is a faster function that only returns
 #' the results.
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' \donttest{
+#' library("rjd3toolkit")
+#'
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sp <- regarima_spec("rg5c")
-#' sp <- rjd3toolkit::add_outlier(sp,
+#' sp <- add_outlier(sp,
 #'     type = c("AO"), c("2015-01-01", "2010-01-01")
 #' )
 #' regarima_fast(y, spec = sp)
-#' sp <- rjd3toolkit::set_transform(
-#'     rjd3toolkit::set_tradingdays(
-#'         rjd3toolkit::set_easter(sp, enabled = FALSE),
+#' sp <- set_transform(
+#'     set_tradingdays(
+#'         set_easter(sp, enabled = FALSE),
 #'         option = "workingdays"
 #'     ),
 #'     fun = "None"
 #' )
 #' regarima_fast(y, spec = sp)
-#' sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+#' sp <- set_outlier(sp, outliers.type = c("AO"))
 #' regarima_fast(y, spec = sp)
+#' }
+#'
+#' @name regarima
+#'
 #' @export
+#'
 regarima <- function(ts, spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
                      context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
@@ -97,6 +105,7 @@ regarima_fast <- function(ts,
     }
 }
 
+#' @importFrom RProtoBuf read
 .regarima_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)
@@ -117,7 +126,10 @@ regarima_fast <- function(ts,
 #'
 #' @inheritParams regarima
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' \donttest{
+#' library("rjd3toolkit")
+#'
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x13_fast(y, "rsa3")
 #' x13(y, "rsa5c")
@@ -125,12 +137,12 @@ regarima_fast <- function(ts,
 #' regarima(y, "rg3")
 #'
 #' sp <- x13_spec("rsa5c")
-#' sp <- rjd3toolkit::add_outlier(sp,
+#' sp <- add_outlier(sp,
 #'     type = c("AO"), c("2015-01-01", "2010-01-01")
 #' )
-#' sp <- rjd3toolkit::set_transform(
-#'     rjd3toolkit::set_tradingdays(
-#'         rjd3toolkit::set_easter(sp, enabled = FALSE),
+#' sp <- set_transform(
+#'     set_tradingdays(
+#'         set_easter(sp, enabled = FALSE),
 #'         option = "workingdays"
 #'     ),
 #'     fun = "None"
@@ -140,10 +152,13 @@ regarima_fast <- function(ts,
 #'     henderson.filter = 13
 #' )
 #' x13_fast(y, spec = sp)
+#' j <- jx13(y, spec = sp)
+#' class(j)
+#' }
 #'
-#' @return the `x13()` function returns a list with the results, the estimation
+#' @returns the `x13()` function returns a list with the results, the estimation
 #' specification and the result specification, while `x13_fast()` is a faster
-#' function that only returns the results. The `.jx13()` functions only returns
+#' function that only returns the results. The `jx13()` functions only returns
 #' results in a java object which will allow to customize outputs in other
 #' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
 #' [rjd3toolkit::result()] to get a specific variable). In the estimation
@@ -152,6 +167,8 @@ regarima_fast <- function(ts,
 #' specification object first.
 #'
 #' @export
+#'
+#' @name x13
 #'
 x13 <- function(ts,
                 spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
@@ -224,7 +241,7 @@ x13_fast <- function(ts,
 
 #' @export
 #' @rdname x13
-.jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
+jx13 <- function(ts, spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context = NULL, userdefined = NULL) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
@@ -252,6 +269,7 @@ x13_fast <- function(ts,
     }
 }
 
+#' @importFrom RProtoBuf read
 .x13_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)
@@ -273,7 +291,9 @@ x13_fast <- function(ts,
 #' @inheritParams x13
 #' @param spec the specification.
 #'
-#' @examplesIf jversion >= 17
+#' @returns the `x11()` function returns a list with the results (series) and final parameters
+#'
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x11_spec <- x11_spec()
 #' x11(y, x11_spec)
@@ -292,13 +312,14 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
     }
 }
 
-#' Refresh a specification with constraints
+#' @title Refresh a specification with constraints
 #'
 #' @description
-#' Function allowing to create a new specification by updating a specification
-#' used for a previous estimation. Some selected parameters will be kept fixed
-#' (previous estimation results) while others will be freed for re-estimation in
-#' a domain of constraints. See details and examples.
+#' Functions `x13_refresh` and `regarima_refresh` allow to create a new
+#' specification by updating a specification used for a previous estimation.
+#' Some selected parameters will be kept fixed (previous estimation results)
+#' while others will be freed for re-estimation in a domain of constraints.
+#' See details and examples.
 #'
 #' @details
 #' The selection of constraints to be kept fixed or re-estimated is called a
@@ -308,35 +329,28 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' parameters from the original specification.
 #'
 #' Available refresh policies are:
-#'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and
-#' handling the new raw data points, or any sub-span of the series as Additive
-#' Outliers (defined as new intervention variables)
-#'
-#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and
-#' replacing forecasts by new raw data points.
-#'
-#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially
+#' \enumerate{
+#' \item \strong{Current}: applying the current pre-adjustment reg-arima model
+#' and handling the new raw data points, or any sub-span of the series as
+#' Additive Outliers (defined as new intervention variables);
+#' \item \strong{Fixed}: applying the current pre-adjustment reg-arima model
+#' and replacing forecasts by new raw data points;
+#' \item \strong{FixedParameters}: pre-adjustment reg-arima model is partially
 #' modified: regression coefficients will be re-estimated but regression
-#' variables, Arima orders and coefficients are unchanged.
-#'
-#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima
-#' Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR)
-#' coefficients are kept fixed.
-#'
-#' \strong{FreeParameters}: all regression and Arima model coefficients are
-#' re-estimated, regression variables and Arima orders are kept fixed.
-#'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but
-#' outliers will be re-detected on the defined span, thus all regression and
-#' Arima model coefficients are re-estimated
-#'
-#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
-#' orders (p,d,q)(P,D,Q) can also be re-identified.
-#'
-#' \strong{Complete}: All the parameters are re-identified and re-estimated,
-#' unless constrained in the domain spec.
-#'
+#' variables, Arima orders and coefficients are unchanged;
+#' \item \strong{FixedAutoRegressiveParameters}: same as FixedParameters but
+#' Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive
+#'  (AR) coefficients are kept fixed;
+#' \item \strong{FreeParameters}: all regression and Arima model coefficients
+#' are re-estimated, regression variables and Arima orders are kept fixed;
+#' \item \strong{Outliers}: regression variables and Arima orders are kept
+#' fixed, but outliers will be re-detected on the defined span, thus all
+#' regression and Arima model coefficients are re-estimated;
+#' \item \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima
+#' model orders (p,d,q)(P,D,Q) can also be re-identified;
+#' \item \strong{Complete}: All the parameters are re-identified and
+#' re-estimated, unless constrained in the domain spec.
+#' }
 #'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
 #' @param refspec the reference specification used to define the domain
@@ -359,23 +373,29 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' The dates corresponding \code{start} and \code{end} are included in the span
 #' definition.
 #'
-#' @return a new specification, an object of class `"JD3_X13_SPEC"` or
+#' @returns a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
 #'
-#' @examplesIf jversion >= 17
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
+#'
 #' # raw series for first estimation
 #' y_raw <- window(y, end = c(2016, 12))
+#'
 #' # raw series for second (refreshed) estimation
 #' y_new <- window(y, end = c(2017, 6))
+#'
 #' # specification for first estimation
 #' spec_x13_1 <- x13_spec("rsa5c")
+#'
 #' # first estimation
 #' sa_x13 <- x13(y_raw, spec_x13_1)
+#'
 #' # refreshing the specification
 #' current_result_spec <- sa_x13$result_spec
 #' current_domain_spec <- sa_x13$estimation_spec
@@ -406,10 +426,33 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'     start = c(2017, 1),
 #'     end = end(y_new)
 #' )
-#' # points from January 2017 (included) until the end of the series will be treated
-#' # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
-#' # 2nd estimation with refreshed specification
+#'
+#' # Points from January 2017 (included) until the end of the series will be
+#' # treated as Additive Outliers, the previous reg-Arima model being otherwise
+#' # kept fixed 2nd estimation with refreshed specification
 #' sa_x13_ref <- x13(y_new, spec_x13_ref)
+#'
+#' # Same procedure using regarima_refresh
+#' # specification for first estimation
+#' spec_1 <- regarima_spec("rg3")
+#'
+#' # First estimation
+#' reg_a_model <- regarima(y_raw, spec_1)
+#' reg_a_model$estimation_spec
+#'
+#' # Refreshing the specification
+#' current_result_spec <- reg_a_model$result_spec
+#' current_domain_spec <- reg_a_model$estimation_spec
+#'
+#' # Policy = "Fixed"
+#' spec_1_ref <- regarima_refresh(
+#'     current_result_spec, # point spec to be refreshed
+#'     current_domain_spec, # domain spec (set of constraints)
+#'     policy = "Fixed"
+#' )
+#' # 2nd estimation with refreshed specification
+#' reg_a_model_ref <- regarima(y_new, spec_1_ref)
+#' }
 #'
 #' @name refresh
 #' @rdname refresh
@@ -470,7 +513,12 @@ x13_refresh <- function(spec,
     }
     jspec <- .r2jd_spec_x13(spec)
     if (is.null(refspec)) {
-        jrefspec <- .jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
+        jrefspec <- .jcall(
+            obj = "jdplus/x13/base/api/x13/X13Spec",
+            returnSig = "Ljdplus/x13/base/api/x13/X13Spec;",
+            method = "fromString",
+            "rsa4"
+        )
     } else {
         if (!inherits(refspec, "JD3_X13_SPEC")) {
             stop("Invalid specification type", call. = FALSE)
@@ -494,24 +542,66 @@ x13_refresh <- function(spec,
     return(.jd2r_spec_x13(jnspec))
 }
 
-#' X-13 Dictionary
+#' @title X-13 Dictionary
 #'
-#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
+#' @description
+#' Functions to provide information for all output objects (series, diagnostics,
+#' parameters) available with `x13()` function.
+#'
+#' @returns \code{x13_dictionary()} returns a character vector containing the
+#' names of all output objects (series, diagnostics, parameters) available with
+#' the `x13()` function, whereas \code{x13_full_dictionary()} returns a
+#' \code{data.frame} with format and description, for all the output objects.
+#'
+#' @name x13_dictionary
+#'
+#' @details
+#' These functions provide lists of output names (series, diagnostics,
+#' parameters) available with the \code{x13()} function. These names can be
+#' used to generate customized outputs with the userdefined option of the
+#' \code{x13()} function (see examples).
+#' The \code{x13_full_dictionary} function provides additional information on
+#' object format and description.
+#'
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' \donttest{
+#' # Visualize the dictionary
+#' print(x13_dictionary())
+#' summary(x13_dictionary())
+#'
+#' # first 10 lines
+#' head(x13_full_dictionary(), n = 10)
+#' # For more structured information call `View(x13_full_dictionary())`
+#'
+#' # Extract names of output of interest
+#' user_defined_output <- x13_dictionary()[c(65, 95, 135)]
+#' user_defined_output
+#'
+#' # Generate the corresponding output in an estimation
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' m <- x13(y,"rsa3", userdefined=user_defined_output)
+#'
+#' # Retrieve user defined output
+#' tail(m$user_defined$ylin)
+#' m$user_defined$residuals.kurtosis
+#' m$user_defined$sa_f
+#' }
+#'
 #' @export
 x13_dictionary <- function() {
-    return(.jcall("jdplus/x13/base/r/X13", "[S", "dictionary"))
+    output <- .jcall("jdplus/x13/base/r/X13", "[S", "dictionary")
+    class(output) <- "JD3_DICTIONARY"
+    return(output)
 }
 
-#' @title X-13 Full Dictionary
-#'
-#' @return
 #' @export
-#'
-#' @examplesIf jversion >= 17
+#' @rdname x13_dictionary
 x13_full_dictionary <- function() {
     dico <- .jcall("jdplus/x13/base/r/X13", "[S", "fullDictionary")
     dico <- `dim<-`(dico, c(6, length(dico) / 6))
     dico <- t(dico)
     dico <- `colnames<-`(dico, c("name", "description", "detail", "output", "type", "fullname"))
+    dico <- as.data.frame(dico)
+    class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }

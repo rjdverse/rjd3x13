@@ -41,22 +41,26 @@ the results.
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
-\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+\donttest{
+library("rjd3toolkit")
+
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
-sp <- rjd3toolkit::add_outlier(sp,
+sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")
 )
 regarima_fast(y, spec = sp)
-sp <- rjd3toolkit::set_transform(
-    rjd3toolkit::set_tradingdays(
-        rjd3toolkit::set_easter(sp, enabled = FALSE),
+sp <- set_transform(
+    set_tradingdays(
+        set_easter(sp, enabled = FALSE),
         option = "workingdays"
     ),
     fun = "None"
 )
 regarima_fast(y, spec = sp)
-sp <- rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+sp <- set_outlier(sp, outliers.type = c("AO"))
 regarima_fast(y, spec = sp)
+}
 \dontshow{\}) # examplesIf}
 }

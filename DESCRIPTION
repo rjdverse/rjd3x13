@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3x13
-Title: Seasonal Adjustment with X-13 in 'JDemetra+ 3.x'
-Version: 3.6.0
+Title: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x
+Version: 3.7.1
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
@@ -9,12 +9,12 @@ Authors@R: c(
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art")),
     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
   )
-Description: R Interface to 'JDemetra+ 3.x'
+Description: R Interface to 'JDemetra+' 3.x
     (<https://github.com/jdemetra>) time series analysis software.  It
-    offers full acces to options and outputs of X-13, including RegARIMA
-    modelling (automatic ARIMA model with outlier detection and trading
-    days adjustment) and X-11 decomposition.
-License: file LICENSE
+    offers full access to options and outputs of 'X-13', including Reg-ARIMA
+    modelling (automatic AutoRegressive Integrated Moving Average (ARIMA) model 
+    with outlier detection and trading days adjustment) and X-11 decomposition.
+License: EUPL
 URL: https://github.com/rjdverse/rjd3x13,
     https://rjdverse.github.io/rjd3x13/
 BugReports: https://github.com/rjdverse/rjd3x13/issues
@@ -22,14 +22,12 @@ Depends:
     R (>= 4.1.0)
 Imports:
     rJava (>= 1.0-6),
-    rjd3toolkit (>= 3.6.0),
-    RProtoBuf (>= 0.4.17)
-Remotes: 
-    github::rjdverse/rjd3toolkit@*release
+    RProtoBuf (>= 0.4.20),
+    rjd3toolkit (>= 3.7.1)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
-SystemRequirements: Java (>= 17)
+RoxygenNote: 7.3.3
+SystemRequirements: Java (>= 21)
 Collate: 
     'deprecated.R'
     'print.R'
