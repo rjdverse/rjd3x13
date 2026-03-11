@@ -1,7 +1,7 @@
-#' @importFrom RProtoBuf readProtoFiles2
-#' @importFrom stats is.ts start
 #' @include utils.R
+NULL
 
+#' @importFrom rjd3toolkit get_java_version minimal_java_version
 .onAttach <- function(libname, pkgname) {
     current_java_version <- rjd3toolkit::get_java_version()
     if (current_java_version < rjd3toolkit::minimal_java_version) {
@@ -10,6 +10,7 @@
     }
 }
 
+#' @importFrom stats is.ts start
 #' @importFrom RProtoBuf read readProtoFiles2
 #' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield
 .onLoad <- function(libname, pkgname) {
