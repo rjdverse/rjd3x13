@@ -4,13 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [Unreleased]
+
 
 ## [3.7.1] - 2026-03-10
 
 ### Changed
 
-* New JARS
+* New JARS related to version [3.7.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.7.1)
 
 
 ## [3.6.0] - 2025-11-21
@@ -20,18 +22,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 * Documentation of `x13_full_dictionnary` #74
 * Documentation of `Complete` policy #86
 
+### Changed
+
+* New JARS related to version [3.6.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.6.0)
+
 
 ## [3.5.1] - 2025-06-16
 
 ### Changed
 
--   New java libraries
+* New JARS related to version [3.5.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.1)
 
 ### Added
 
 * Classes to `x13_dictionary()` and `x13_full_dictionary()`
 
+
 ## [3.5.0] - 2025-04-09
+
+### Changed
+
+* New JARS related to version [3.5.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.0)
 
 ### Removed
 
@@ -42,22 +53,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
--   New java libraries
+* New JARS related to version [3.3.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.3.0)
+
 
 ## [3.2.3] - 2024-07-12
 
 ### Changed
 
--   New .jar (related to release)
--   Some linting of R functions
+* New JARS related to version [3.2.3](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.3)
+* Some linting of R functions
+
 
 ## [3.2.2] - 2024-03-15
 
+### Changed
+
+* New JARS related to version [3.2.2](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.2)
+
+
 ## [3.2.1] - 2023-12-12
+
+### Changed
+
+* New JARS related to version [3.2.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.1)
+
 
 ## [3.2.0] - 2023-11-24
 
+### Changed
+
+* New JARS related to version [3.2.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.0)
+
+
 ## [3.1.0] - 2023-08-11
+
+### Added
+
+* New JARS related to version [3.1.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.1.0)
 
 
 [Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...HEAD
