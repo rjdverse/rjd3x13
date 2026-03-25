@@ -12,8 +12,12 @@ NULL
 
 #' @importFrom stats is.ts start
 #' @importFrom RProtoBuf read readProtoFiles2
-#' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield
+#' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield .jaddClassPath
+#' @importFrom rjd3toolkit get_java_version minimal_java_version
 .onLoad <- function(libname, pkgname) {
+    jar_dir <- file.path(libname, pkgname, "inst", "java")
+    jars <- list.files(jar_dir, pattern = "\\.jar$", full.names = TRUE, all.files = TRUE)
+    rJava::.jaddClassPath(jars)
     result <- rJava::.jpackage(pkgname, lib.loc = libname)
     if (!result) stop("Loading java packages failed", call. = FALSE)
 
