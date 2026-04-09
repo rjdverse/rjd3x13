@@ -373,8 +373,8 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' @param period,start,end  additional parameters used to specify the span on
 #' which additive outliers (AO) are introduced when `policy = "Current"` or to
 #' specify the span on which outliers will be re-detected when
-#' `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`, is this
-#' case \code{end} is unused.
+#' `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`, in this
+#' last case \code{end} is unused.
 #'
 #' If \code{start} is not specified, outliers will be re-identified on the whole
 #' series.
@@ -383,7 +383,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' \code{start} and \code{end}: defined as arrays of two elements: year and
 #' first period (for example, `period = 12` and `c(1980, 1)` stands for January
 #' 1980)
-#' The dates corresponding \code{start} and \code{end} are included in the span
+#' The dates corresponding to \code{start} and \code{end} are included in the span
 #' definition.
 #'
 #' @returns a new specification, an object of class `"JD3_X13_SPEC"` or
@@ -396,6 +396,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3toolkit")
 #' \donttest{
+#' # Example 1 : refresh mechanism
 #' # Create reference spec, here the default "rsa3"
 #' rsa3<- x13_spec("rsa3")
 #' # Customize this spec
@@ -441,7 +442,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' # Use policy: "Outliers_StochasticComponent"
 
 #' x13_spec_ref <- x13_refresh(spec= user_spec,
-#'                            refspec= r3,
+#'                            refspec= rsa3,
 #'                            policy = "Outliers_StochasticComponent"
 #')
 
@@ -453,15 +454,17 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' # Use policy: "Complete"
 
 #' x13_spec_ref <- x13_refresh(spec= user_spec,
-#'                            refspec= r3,
+#'                            refspec= rsa3,
 #'                            policy = "Complete"
 #')
 
 #' # print(x13_spec_ref)
 #' # all user defined parameters are reset and replaced with "rsa3" parameters,
-# including for X11 and Benchmarking parameters
+#' # including for X11 and Benchmarking parameters
 
-## Practical re-estimation example
+#'
+#' # Example 2 : practical re-estimation use-case
+
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
 
 #' # raw series for first estimation
@@ -474,7 +477,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' sa_x13 <- x13(y_raw, user_spec)
 
 #' # refreshing the specification resulting from the first estimation
-#' # to partially adapt to new data
+#' # to partially adapt it to new data
 
 #' spec_to_refresh <- sa_x13$result_spec
 #' reference_spec <- sa_x13$estimation_spec
