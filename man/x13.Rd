@@ -55,9 +55,8 @@ Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
-\donttest{
 library("rjd3toolkit")
-
+\donttest{
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x13_fast(y, "rsa3")
 x13(y, "rsa5c")

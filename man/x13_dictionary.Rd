@@ -29,6 +29,7 @@ object format and description.
 }
 \examples{
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+library("rjd3toolkit")
 \donttest{
 # Visualize the dictionary
 print(x13_dictionary())
@@ -43,7 +44,7 @@ user_defined_output <- x13_dictionary()[c(65, 95, 135)]
 user_defined_output
 
 # Generate the corresponding output in an estimation
-y <- rjd3toolkit::ABS$X0.2.09.10.M
+y <- ABS$X0.2.09.10.M
 m <- x13(y,"rsa3", userdefined=user_defined_output)
 
 # Retrieve user defined output
