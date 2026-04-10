@@ -6,12 +6,12 @@ jobs:
   check-changelog-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
 
-      - uses: jbangdev/jbang-action@v0.126.1
+      - uses: jbangdev/jbang-action@v0.136.0
         with:
-          script: com.github.nbbrd.heylogs:heylogs-cli:0.9.3:bin
+          script: com.github.nbbrd.heylogs:heylogs-cli:0.15.0:bin
           scriptargs: "check NEWS.md"

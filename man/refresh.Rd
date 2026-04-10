@@ -184,10 +184,10 @@ spec_x13_ref <- x13_refresh(spec_to_refresh,
 sa_x13_ref <- x13(y_new, spec_x13_ref)
 # policy = "Outliers"
 spec_x13_ref <- x13_refresh(spec_to_refresh,
-                           reference_spec,
-                           policy = "Outliers",
-                           period = 12,
-                           start = c(2017, 1)
+                            reference_spec,
+                            policy = "Outliers",
+                            period = 12,
+                            start = c(2017, 1)
 )
 # outliers will be re-detected from January 2017 included
 # 2nd estimation with refreshed specification
@@ -196,17 +196,18 @@ sa_x13_ref <- x13(y_new, spec_x13_ref)
 # policy = "Current"
 
 spec_x13_ref <- x13_refresh(spec_to_refresh,
-                           reference_spec,
-                           policy = "Current",
-                           period = 12,
-                           start = c(2017, 1),
-                           end = end(y_new)
+                            reference_spec,
+                            policy = "Current",
+                            period = 12,
+                            start = c(2017, 1),
+                            end = end(y_new)
 )
-}
 # Points from January 2017 (included) until the end of the series will be
 # treated as Additive Outliers, the previous reg-Arima model being otherwise
 # kept fixed 2nd estimation with refreshed specification
 sa_x13_ref <- x13(y_new, spec_x13_ref)
+
+}
 \dontshow{\}) # examplesIf}
 }
 \references{

@@ -39,6 +39,5 @@ Collate:
     'x13_spec.R'
     'revisions.R'
     'set_x11_spec.R'
-    'udvar.R'
     'x13.R'
     'zzz.R'

@@ -17,10 +17,10 @@ NULL
 #' the results.
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
-#' \donttest{
-#' library("rjd3toolkit")
 #'
-#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' library("rjd3toolkit")
+#' \donttest{
+#' y <- ABS$X0.2.09.10.M
 #' sp <- regarima_spec("rg5c")
 #' sp <- add_outlier(sp,
 #'     type = c("AO"), c("2015-01-01", "2010-01-01")
@@ -127,9 +127,8 @@ regarima_fast <- function(ts,
 #' @inheritParams regarima
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
-#' \donttest{
 #' library("rjd3toolkit")
-#'
+#' \donttest{
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' x13_fast(y, "rsa3")
 #' x13(y, "rsa5c")
@@ -492,31 +491,31 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 
 #' # policy = "Outliers"
 #' spec_x13_ref <- x13_refresh(spec_to_refresh,
-#'                            reference_spec,
-#'                            policy = "Outliers",
-#'                            period = 12,
-#'                            start = c(2017, 1)
-#')
-#'# outliers will be re-detected from January 2017 included
-#'# 2nd estimation with refreshed specification
-#'sa_x13_ref <- x13(y_new, spec_x13_ref)
+#'                             reference_spec,
+#'                             policy = "Outliers",
+#'                             period = 12,
+#'                             start = c(2017, 1)
+#' )
+#' # outliers will be re-detected from January 2017 included
+#' # 2nd estimation with refreshed specification
+#' sa_x13_ref <- x13(y_new, spec_x13_ref)
 #'
-#'# policy = "Current"
+#' # policy = "Current"
 #'
-#'spec_x13_ref <- x13_refresh(spec_to_refresh,
-#'                            reference_spec,
-#'                            policy = "Current",
-#'                            period = 12,
-#'                            start = c(2017, 1),
-#'                            end = end(y_new)
-#')
-#'}
+#' spec_x13_ref <- x13_refresh(spec_to_refresh,
+#'                             reference_spec,
+#'                             policy = "Current",
+#'                             period = 12,
+#'                             start = c(2017, 1),
+#'                             end = end(y_new)
+#' )
 #' # Points from January 2017 (included) until the end of the series will be
 #' # treated as Additive Outliers, the previous reg-Arima model being otherwise
 #' # kept fixed 2nd estimation with refreshed specification
 #' sa_x13_ref <- x13(y_new, spec_x13_ref)
-
-# Procedure is the same procedure using regarima_refresh instead of x13_refresh
+#'
+#  Procedure is the same procedure using regarima_refresh instead of x13_refresh
+#' }
 #'
 #' @name refresh
 #' @rdname refresh
@@ -628,6 +627,7 @@ x13_refresh <- function(spec,
 #' object format and description.
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' library("rjd3toolkit")
 #' \donttest{
 #' # Visualize the dictionary
 #' print(x13_dictionary())
@@ -642,7 +642,7 @@ x13_refresh <- function(spec,
 #' user_defined_output
 #'
 #' # Generate the corresponding output in an estimation
-#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' y <- ABS$X0.2.09.10.M
 #' m <- x13(y,"rsa3", userdefined=user_defined_output)
 #'
 #' # Retrieve user defined output
