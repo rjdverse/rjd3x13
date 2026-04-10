@@ -90,9 +90,6 @@ Functions to easily interact between R and Java objects
   [`.jx13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   : Deprecated functions
-- [`current_java_version`](https://rjdverse.github.io/rjd3x13/reference/java_version.md)
-  [`minimal_java_version`](https://rjdverse.github.io/rjd3x13/reference/java_version.md)
-  : Java version.
 
 ## Deprecated functions
 

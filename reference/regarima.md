@@ -51,15 +51,9 @@ only returns the results.
 ## Examples
 
 ``` r
-# \donttest{
 library("rjd3toolkit")
-#> 
-#> Attaching package: ‘rjd3toolkit’
-#> The following objects are masked from ‘package:stats’:
-#> 
-#>     aggregate, mad
-
-y <- rjd3toolkit::ABS$X0.2.09.10.M
+# \donttest{
+y <- ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
 sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")

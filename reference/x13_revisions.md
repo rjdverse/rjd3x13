@@ -66,8 +66,9 @@ returns a list
 ## Examples
 
 ``` r
+library("rjd3toolkit")
 # \donttest{
-s <- rjd3toolkit::ABS$X0.2.09.10.M
+s <- ABS$X0.2.09.10.M
 sa_mod <- x13(s)
 data_ids <- list(
     # Get the coefficient of the trading-day coefficient from 2005-jan
