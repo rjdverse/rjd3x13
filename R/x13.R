@@ -327,7 +327,7 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'
 #' Available refresh policies are:
 #' \enumerate{
-#' \item \strong{Current}: applying the current pre-adjustment reg-arima model
+#' \item \strong{Current}: applying the current pre-adjustment reg-arima model from
 #' and handling the new raw data points, or any sub-span of the series as
 #' Additive Outliers (defined as new intervention variables);
 #' X11 and Benchmarking part parameters are untouched.
@@ -352,8 +352,8 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #' model orders (p,d,q)(P,D,Q) can also be re-identified;
 #' X11 and Benchmarking part parameters are untouched.
 #' \item \strong{Complete}: All the parameters are re-identified and
-#' re-estimated, unless constrained in the domain spec.
-#' X11 and Benchmarking part parameters are entirely reset to values in the reference spec.
+#' re-estimated, unless constrained in the reference spec.
+#' X11 and Benchmarking part parameters are entirely reset to values in the reference specification.
 #' }
 #'
 #' @param spec specification to be refreshed
@@ -369,31 +369,38 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 #'
 #' @param policy refresh policy to apply (see details)
 #'
-#' @param period,start,end  additional parameters used to specify the span on
-#' which additive outliers (AO) are introduced when `policy = "Current"` or to
-#' specify the span on which outliers will be re-detected when
-#' `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`, in this
-#' last case \code{end} is unused.
-#'
-#' If \code{start} is not specified, outliers will be re-identified on the whole
-#' series.
-#' Span definition: \code{period}: numeric, number of observations in a year
-#' (12, 4...).
+#' @param period,start,end  additional parameters used to specify the span
+#' when `policy = "Current"` or `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`
+#' \code{period}: numeric, number of observations in a year (12, 4...), compulsory, if false or missing,
+#' re-estimation with refreshed specification won't work.
+#' When `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`
+#' \code{start} has to be specified as the date from which outliers will be re-identified
+#' \code{end} is not used, if specified it will be ignored.
+#' When `policy = "Current"`
+#' \code{start} and \code{end} have to be both specified and indicate the span on which
+#' additive outliers (AO) will be added.
+
+#' Span definition:
 #' \code{start} and \code{end}: defined as arrays of two elements: year and
-#' first period (for example, `period = 12` and `c(1980, 1)` stands for January
+#' first period (for example, `period = 12` and `start=c(1980, 1)` stands for January
 #' 1980)
-#' The dates corresponding to \code{start} and \code{end} are included in the span
-#' definition.
 #'
 #' @returns a new specification, an object of class `"JD3_X13_SPEC"` or
 #' `"JD3_REGARIMA_SPEC"`.
 #'
 #' @references
 #' More information on revision policies in JDemetra+ documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-rev-policies}
+#' \url{https://doc.jdemetra.org/a-rev-policies}
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3toolkit")
+#' y <- rjd3toolkit::ABS$X0.2.08.10.M
+
+#' # raw series for first estimation
+#' y_raw <- window(y, end = c(2016, 12))
+
+#' # raw series for second (refreshed) estimation: new data points
+#' y_new <- window(y, end = c(2017, 6))
 #' \donttest{
 #' # Example 1 : refresh mechanism
 #' # Create reference spec, here the default "rsa3"
@@ -463,14 +470,6 @@ x11 <- function(ts, spec = x11_spec(), userdefined = NULL) {
 
 #'
 #' # Example 2 : practical re-estimation use-case
-
-#' y <- rjd3toolkit::ABS$X0.2.08.10.M
-
-#' # raw series for first estimation
-#' y_raw <- window(y, end = c(2016, 12))
-
-#' # raw series for second (refreshed) estimation: new data points
-#' y_new <- window(y, end = c(2017, 6))
 
 # '# first estimation
 #' sa_x13 <- x13(y_raw, user_spec)
