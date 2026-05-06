@@ -37,7 +37,7 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' library("rjd3toolkit")
 #' \donttest{
 #' s <- ABS$X0.2.09.10.M
