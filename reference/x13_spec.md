@@ -41,13 +41,13 @@ an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
 The available predefined 'JDemetra+' model specifications are described
 in the table below:
 
-|                       |                            |                           |                         |                       |                       |             |
-|-----------------------|----------------------------|---------------------------|-------------------------|-----------------------|-----------------------|-------------|
-| **Identifier** \|     | **Log/level detection** \| | **Outliers detection** \| | **Calendar effects** \| | **ARIMA**             | RSA0/RG0 \|           | *NA* \|     |
-| *NA* \|               | *NA* \|                    | Airline(+mean)            | RSA1/RG1 \|             | automatic \|          | AO/LS/TC \|           | *NA* \|     |
-| Airline(+mean)        | RSA2c/RG2c \|              | automatic \|              | AO/LS/TC \|             | 2 td vars + Easter \| | Airline(+mean)        | RSA3/RG3 \| |
-| automatic \|          | AO/LS/TC \|                | *NA* \|                   | automatic               | RSA4c/RG4c \|         | automatic \|          | AO/LS/TC \| |
-| 2 td vars + Easter \| | automatic                  | RSA5c/RG5c \|             | automatic \|            | AO/LS/TC \|           | 7 td vars + Easter \| | automatic   |
+|  |  |  |  |  |  |  |
+|----|----|----|----|----|----|----|
+| **Identifier** \| | **Log/level detection** \| | **Outliers detection** \| | **Calendar effects** \| | **ARIMA** | RSA0/RG0 \| | *NA* \| |
+| *NA* \| | *NA* \| | Airline(+mean) | RSA1/RG1 \| | automatic \| | AO/LS/TC \| | *NA* \| |
+| Airline(+mean) | RSA2c/RG2c \| | automatic \| | AO/LS/TC \| | 2 td vars + Easter \| | Airline(+mean) | RSA3/RG3 \| |
+| automatic \| | AO/LS/TC \| | *NA* \| | automatic | RSA4c/RG4c \| | automatic \| | AO/LS/TC \| |
+| 2 td vars + Easter \| | automatic | RSA5c/RG5c \| | automatic \| | AO/LS/TC \| | 7 td vars + Easter \| | automatic |
 
 ## See also
 

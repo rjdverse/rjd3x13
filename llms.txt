@@ -52,6 +52,7 @@ a configuration in R is explained
 To install it, just launch the following command line:
 
 ``` r
+
 install.packages("rjd3x13")
 ```
 
@@ -59,6 +60,7 @@ To get the current development version of **{rjd3x13}** from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("rjdverse/rjd3x13")
 ```
@@ -68,6 +70,7 @@ remotes::install_github("rjdverse/rjd3x13")
 Seasonal adjustment with X13-Arima
 
 ``` r
+
 library("rjd3x13")
 
 y <- rjd3toolkit::ABS$X0.2.09.10.M
