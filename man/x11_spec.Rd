@@ -73,12 +73,12 @@ irregulars (\code{"None"}, default value); separately for each calendar period
 determines that the irregular component is heteroskedastic by calendar
 month/quarter (\code{"Signif"}); separately for two complementary sets of calendar
 months/quarters specified by the x11.sigmaVector parameter (\code{"Select"}, see
-parameter \code{sigma.vector}).}
+parameter \code{sigma.vector}).If \code{sigma.vector} is specified then \code{calendar.sigma} is set to
+"Select"`.}
 
 \item{sigma.vector}{a vector to specify one of the two groups of periods for
 which standard errors used for extreme values detection and adjustment will
-be computed separately. Only used if \code{calendar.sigma = "Select"}. Possible
-values are: \code{1} or \code{2}.}
+be computed separately. Possible values are: \code{1} or \code{2}.}
 
 \item{exclude.forecast}{Boolean to exclude forecasts and backcasts. If
 \code{TRUE}, the RegARIMA model forecasts and backcasts are not used during the
