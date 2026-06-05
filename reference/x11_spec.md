@@ -94,14 +94,14 @@ set_x11(
   test determines that the irregular component is heteroskedastic by
   calendar month/quarter (`"Signif"`); separately for two complementary
   sets of calendar months/quarters specified by the x11.sigmaVector
-  parameter (`"Select"`, see parameter `sigma.vector`).
+  parameter (`"Select"`, see parameter `sigma.vector`).If `sigma.vector`
+  is specified then `calendar.sigma` is set to "Select"\`.
 
 - sigma.vector:
 
   a vector to specify one of the two groups of periods for which
   standard errors used for extreme values detection and adjustment will
-  be computed separately. Only used if `calendar.sigma = "Select"`.
-  Possible values are: `1` or `2`.
+  be computed separately. Possible values are: `1` or `2`.
 
 - exclude.forecast:
 

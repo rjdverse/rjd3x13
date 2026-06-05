@@ -1,18 +1,18 @@
 # RegARIMA/X-13 Default Specifications
 
 Set of functions to create default specification objects associated with
-the X-13ARIMA seasonal adjustment method.
+X-13ARIMA seasonal adjustment method.
 
 Specification setting of sheer X-11 decomposition method (without
-reg-arima pre-adjustment) is supported by the `x11_spec()` function only
-and doesn't appear among the possible X13-Arima default specifications.
+reg-arima pre-adjustment) is supported by `x11_spec()` function only and
+doesn't appear among possible X13-Arima default specifications.
 
-Specification setting can be restricted to the reg-arima part with the
+Specification setting can be restricted to the reg-arima part with
 `regarima_spec()` function, without argument `regarima_spec()` yields a
 RG5c specification.
 
-When setting a complete X13-Arima spec, `x13_spec()` without argument
-yields a RSA5c specification.
+Setting a complete X13-Arima spec, `x13_spec()` without argument yields
+a RSA5c specification.
 
 ## Usage
 
@@ -28,7 +28,7 @@ x11_spec()
 
 - name:
 
-  the name of a predefined specification.
+  name of a predefined specification.
 
 ## Value
 
@@ -38,8 +38,8 @@ an object of class `"JD3_X13_SPEC"` (`x13_spec()`),
 
 ## Details
 
-The available predefined 'JDemetra+' model specifications are described
-in the table below:
+Available predefined 'JDemetra+' model specifications are described in
+the table below:
 
 |  |  |  |  |  |  |  |
 |----|----|----|----|----|----|----|

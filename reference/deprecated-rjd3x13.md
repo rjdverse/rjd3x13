@@ -39,7 +39,7 @@ userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 
 - name:
 
-  the name of a predefined specification.
+  name of a predefined specification.
 
 - ts:
 
