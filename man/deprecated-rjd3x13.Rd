@@ -41,7 +41,7 @@ fast_regarima(
 userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 }
 \arguments{
-\item{name}{the name of a predefined specification.}
+\item{name}{name of a predefined specification.}
 
 \item{ts}{an univariate time series.}
 
