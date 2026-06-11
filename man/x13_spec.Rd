@@ -65,8 +65,8 @@ init_spec
 \code{\link[rjd3toolkit:set_basic]{rjd3toolkit::set_basic()}}, \code{\link[rjd3toolkit:set_easter]{rjd3toolkit::set_easter()}},
 \code{\link[rjd3toolkit:set_estimate]{rjd3toolkit::set_estimate()}}, \code{\link[rjd3toolkit:set_outlier]{rjd3toolkit::set_outlier()}},
 \code{\link[rjd3toolkit:set_tradingdays]{rjd3toolkit::set_tradingdays()}}, \code{\link[rjd3toolkit:set_transform]{rjd3toolkit::set_transform()}},
-\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_outlier()}}, \code{\link[rjd3toolkit:remove_outlier]{rjd3toolkit::remove_outlier()}},
-\code{\link[rjd3toolkit:add_ramp]{rjd3toolkit::add_ramp()}}, \code{\link[rjd3toolkit:remove_ramp]{rjd3toolkit::remove_ramp()}},
+\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_outlier()}}, \code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::remove_outlier()}},
+\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_ramp()}}, \code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::remove_ramp()}},
 \code{\link[rjd3toolkit:add_usrdefvar]{rjd3toolkit::add_usrdefvar()}}.
 \item To set the decomposition parameters: \code{\link[=set_x11]{set_x11()}}.
 \item To set the benchmarking parameters: \code{\link[rjd3toolkit:set_benchmarking]{rjd3toolkit::set_benchmarking()}}.

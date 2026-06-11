@@ -1,3 +1,5 @@
+#' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
+#' @import RProtoBuf
 #' @import rjd3toolkit
 NULL
 
