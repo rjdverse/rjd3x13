@@ -1,8 +1,7 @@
-#' @include utils.R
 #' @importFrom rjd3jars check_java_version reload_dictionaries
-#' @importFrom stats is.ts start
+#' @importFrom stats is.ts start coef df.residual logLik residuals vcov nobs
 #' @importFrom RProtoBuf read readProtoFiles2
-#' @importFrom rJava .jpackage
+#' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
 NULL
 
 
