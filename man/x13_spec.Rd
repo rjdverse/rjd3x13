@@ -13,7 +13,7 @@ x13_spec(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
 x11_spec()
 }
 \arguments{
-\item{name}{the name of a predefined specification.}
+\item{name}{name of a predefined specification.}
 }
 \value{
 an object of class \code{"JD3_X13_SPEC"} (\code{x13_spec()}),
@@ -21,22 +21,22 @@ an object of class \code{"JD3_X13_SPEC"} (\code{x13_spec()}),
 \code{"JD3_X11_SPEC"} (\code{x11_spec()}).
 }
 \description{
-Set of functions to create default specification objects associated with the
+Set of functions to create default specification objects associated with
 X-13ARIMA seasonal adjustment method.
 
 Specification setting of sheer X-11 decomposition method (without reg-arima
-pre-adjustment) is supported by the \code{x11_spec()} function only and doesn't
-appear among the possible X13-Arima default specifications.
+pre-adjustment) is supported by \code{x11_spec()} function only and doesn't
+appear among possible X13-Arima default specifications.
 
-Specification setting can be restricted to the reg-arima part with the
+Specification setting can be restricted to the reg-arima part with
 \code{regarima_spec()} function, without argument \code{regarima_spec()} yields a RG5c
 specification.
 
-When setting a complete X13-Arima spec, \code{x13_spec()} without argument yields
+Setting a complete X13-Arima spec, \code{x13_spec()} without argument yields
 a RSA5c specification.
 }
 \details{
-The available predefined 'JDemetra+' model specifications are described in the table below:
+Available predefined 'JDemetra+' model specifications are described in the table below:
 
 \tabular{rrrrrrr}{
 \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
