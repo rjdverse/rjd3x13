@@ -27,7 +27,6 @@ Imports:
     rjd3toolkit (>= 3.7.1.9100)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 SystemRequirements: Java (>= 21)
 Collate: 
     'deprecated.R'
@@ -42,3 +41,5 @@ Collate:
     'set_x11_spec.R'
     'x13.R'
     'zzz.R'
+Config/roxygen2/version: 8.0.0
+RoxygenNote: 7.3.3

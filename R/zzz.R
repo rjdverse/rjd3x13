@@ -2,7 +2,7 @@
 #' @importFrom rjd3jars check_java_version reload_dictionaries
 #' @importFrom stats is.ts start
 #' @importFrom RProtoBuf read readProtoFiles2
-#' @importFrom rJava .jpackage .jcall .jnull is.jnull .jfield .jaddClassPath
+#' @importFrom rJava .jpackage
 NULL
 
 
