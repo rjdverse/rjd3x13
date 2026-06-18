@@ -23,7 +23,6 @@ Depends:
 Imports:
     rJava (>= 1.0-6),
     RProtoBuf (>= 0.4.25),
-    rjd3jars (>= 0.0.4),
     rjd3toolkit (>= 3.7.1.9100)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

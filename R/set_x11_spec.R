@@ -57,7 +57,7 @@
 #' @returns  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
 #'
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf rjd3toolkit::check_java_version()
 #' init_spec <- x11_spec()
 #' new_spec <- set_x11(init_spec,
 #'     mode = "LogAdditive",
