@@ -26,7 +26,7 @@ Imports:
     rjd3jars (>= 0.0.3),
     rjd3toolkit (>= 3.7.1)
 Remotes:  
-    github::rjdverse/rjd3jars
+    github::rjdverse/rjd3jars,
     github::rjdverse/rjd3toolkit
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
