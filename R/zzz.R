@@ -1,10 +1,12 @@
 #' @importFrom stats is.ts start coef df.residual logLik residuals vcov nobs
 #' @importFrom RProtoBuf read readProtoFiles2
 #' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
-NULL
-
+#' @importFrom rjd3jars check_java_version reload_dictionaries
 .onLoad <- function(libname, pkgname) {
     # Loading dependencies
+    if (!requireNamespace("rjd3jars", quietly = TRUE)) {
+        stop("Loading {rjd3jars} failed", call. = FALSE)
+    }
     if (!requireNamespace("rjd3toolkit", quietly = TRUE)) {
         stop("Loading {rjd3toolkit} failed", call. = FALSE)
     }
@@ -24,6 +26,11 @@ NULL
     )
     if (!result) {
         stop("Loading java packages failed")
+    }
+
+    has_java <- rjd3jars::check_java_version()
+    if (has_java) {
+        rjd3jars::reload_dictionaries()
     }
 
     # Loading Proto class

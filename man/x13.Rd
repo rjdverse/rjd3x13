@@ -54,7 +54,7 @@ specification object first.
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
-\dontshow{if (    rjd3toolkit::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
 \donttest{
 y <- rjd3toolkit::ABS$X0.2.09.10.M
