@@ -22,7 +22,7 @@ NULL
 #'
 #' @param name name of a predefined specification.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' init_spec <- x11_spec()
 #' init_spec
 #' init_spec <- regarima_spec("rg4")
@@ -246,9 +246,12 @@ x11_spec <- function() {
 .r2p_spec_regarima <- function(r) {
     p <- x13.RegArimaSpec$new()
     # BIAS
+    freq<--1
+    if (! is.null(r$basic$frequency)) freq<-r$basic$frequency
     p$basic$preliminary_check <- r$basic$preliminaryCheck
     p$basic$preprocessing <- r$basic$preprocessing
     p$basic$span <- rjd3toolkit::.r2p_span(r$basic$span)
+    p$basic$annual_frequency <- freq
 
     # TRANSFORM
     p$transform$transformation <- rjd3toolkit::.enum_of(modelling.Transformation, r$transform$fn, "FN")

@@ -1,4 +1,3 @@
-#' @import rjd3toolkit
 NULL
 
 #' @title Java Utility Functions

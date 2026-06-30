@@ -1,4 +1,3 @@
-#' @importFrom stats coef df.residual logLik residuals vcov nobs
 #' @export
 coef.JD3_REGARIMA_OUTPUT <- function(object, component = c("regression", "arima", "both"), ...) {
     coef(object$result, component = component, ...)

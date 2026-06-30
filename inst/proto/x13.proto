@@ -7,7 +7,7 @@ import public "sa.proto";
 package x13;
 
 option java_multiple_files = true;
-option java_package = "demetra.x13.io.protobuf";
+option java_package = "jdplus.x13.base.protobuf";
 option java_outer_classname = "X13Protos";
 
 enum DecompositionMode {
@@ -17,7 +17,7 @@ enum DecompositionMode {
   MODE_LOGADDITIVE = 3;
   MODE_PSEUDOADDITIVE = 4;
 }
-  
+
 enum SeasonalFilter {
 	SEASONAL_FILTER_MSR=0;
     SEASONAL_FILTER_S3X1=1;
@@ -27,24 +27,25 @@ enum SeasonalFilter {
     SEASONAL_FILTER_S3X15=5;
 	SEASONAL_FILTER_STABLE=6;
     SEASONAL_FILTER_X11DEFAULT=7;
+    SEASONAL_FILTER_CROSSVALIDATION=8;
 }
-  
+
 enum CalendarSigma {
     SIGMA_NONE=0;
-    SIGMA_SIGNIF=1; 
+    SIGMA_SIGNIF=1;
     SIGMA_ALL=2;
     SIGMA_SELECT=3;
 }
-  
+
 enum BiasCorrection {
     BIAS_NONE = 0;
     BIAS_LEGACY = 1;
     BIAS_SMOOTH = 2;
-    BIAS_RATIO = 3;	
+    BIAS_RATIO = 3;
 }
 
 message X11Spec {
-  
+
   DecompositionMode mode = 1;
   bool seasonal = 2;
   int32 henderson = 3;
@@ -83,23 +84,24 @@ enum AutomaticTradingDays {
 	TD_AUTO_AIC = 2;
 	TD_AUTO_BIC = 3;
 }
-	
-		
+
+
 message RegArimaSpec {
-    
+
     message BasicSpec{
 		jd3.TimeSelector span = 1;
 		bool preprocessing = 2;
 		bool preliminary_check = 3;
+        int32 annual_frequency = 4;
     }
-	
+
     message TransformSpec{
 		modelling.Transformation transformation = 1;
 		modelling.LengthOfPeriod adjust = 2;
 		double aicdiff = 3;
 		bool outliers_correction = 4;
     }
-	
+
 	message OutlierSpec{
 		message Type{
 			string code = 1;
@@ -197,11 +199,11 @@ message X11Results{
     jd3.TsData d11=11;
     jd3.TsData d12=12;
     jd3.TsData d13=13;
-	
+
 	repeated SeasonalFilter final_seasonal_filters = 14;
 	int32 final_henderson_filter = 15;
 	double icratio =16;
-	
+
     jd3.TsData b1=20;
     jd3.TsData b2=21;
     jd3.TsData b3=22;
@@ -229,7 +231,7 @@ message X11Results{
     jd3.TsData c17=50;
     jd3.TsData c20=51;
  }
- 
+
  message MStatistics{
 	double m1 = 1;
 	double m2 = 2;
@@ -243,11 +245,11 @@ message X11Results{
 	double m10 = 10;
 	double m11 = 11;
 	double q = 12;
-	double qm2 = 13; 
+	double qm2 = 13;
  }
- 
+
   message X13Preadjustment{
- 
+
 	jd3.TsData a1 = 1;
 	jd3.TsData a1a = 2;
 	jd3.TsData a1b = 3;
@@ -257,9 +259,9 @@ message X11Results{
 	jd3.TsData a9 = 7;
  }
 
- 
+
   message X13Finals{
- 
+
 	jd3.TsData d11final = 1;
 	jd3.TsData d12final = 2;
 	jd3.TsData d13final = 3;
@@ -269,19 +271,19 @@ message X11Results{
 	jd3.TsData d12a = 7;
 	jd3.TsData d16a = 8;
 	jd3.TsData d18a = 9;
-	
+
 	jd3.TsData e1 = 10;
 	jd3.TsData e2 = 11;
 	jd3.TsData e3 = 12;
 	jd3.TsData e11 = 13;
 
  }
- 
+
  message Diagnostics{
  	MStatistics mstatistics = 1;
 
  }
- 
+
  message X13Results{
     X13Preadjustment preadjustment = 1;
 	regarima.RegArimaModel preprocessing = 2;
