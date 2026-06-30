@@ -103,7 +103,7 @@ X11 and Benchmarking part parameters are entirely reset to values in the referen
 }
 }
 \examples{
-\dontshow{if (    rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
 y <- rjd3toolkit::ABS$X0.2.08.10.M
 # raw series for first estimation
