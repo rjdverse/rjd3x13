@@ -11,7 +11,7 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
     printCoefmat(mstats, digits = digits, P.values = FALSE, na.print = "NA", ...)
     cat("\n")
     cat("Final filters:", "\n")
-    cat(sprintf("Seasonal filter: S3X%s", x$decomposition$final_seasonal))
+    cat(sprintf("Seasonal filter: %s", x$decomposition$final_seasonal))
     cat("\n")
     cat(sprintf("Trend filter: %s terms Henderson moving average", x$decomposition$final_henderson))
     cat("\n")
@@ -71,7 +71,7 @@ print.JD3_X13_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L),
     print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
     cat(
         "\n",
-        sprintf("Seasonal filter: S3X%s; ", x$decomposition$final_seasonal),
+        sprintf("Seasonal filter: %s; ", x$decomposition$final_seasonal),
         sprintf("Trend filter: H-%s terms\n", x$decomposition$final_henderson),
         sprintf(
             "M-Statistics: q %s (%.3f); q-m2 %s (%.3f)\n",
