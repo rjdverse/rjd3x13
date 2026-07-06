@@ -53,12 +53,14 @@
 #' `TRUE`, the RegARIMA model forecasts and backcasts are not used during the
 #' detection of extreme values in the seasonal adjustment routines.
 #' Default = FALSE.
-#' @param bias TODO.
+#' @param bias , `NA` default value, no correction applied. If (`bias= "LEGACY"` or `"RATIO"` or `"SMOOTH"`
+#' and if `mode = "LogAdditive"` a correction is applied when computing final components (S, T, I) in level
+#' from components estimated in log.
 #' @returns  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
 #'
 #' @examplesIf rjd3jars::check_java_version()
-#' init_spec <- x11_spec()
+#' init_spec <- x13_spec()
 #' new_spec <- set_x11(init_spec,
 #'     mode = "LogAdditive",
 #'     seasonal.comp = 1,
@@ -71,7 +73,7 @@
 #'     calendar.sigma = "All",
 #'     sigma.vector = NA,
 #'     exclude.forecast = FALSE,
-#'     bias = "LEGACY"
+#'     bias = "RATIO"
 #' )
 #' @rdname x11_spec
 #' @export
@@ -87,7 +89,7 @@ set_x11 <- function(x,
                     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
                     sigma.vector = NA,
                     exclude.forecast = NA,
-                    bias = c(NA, "LEGACY")) {
+                    bias = c(NA, "LEGACY","SMOOTH","RATIO")) {
     UseMethod("set_x11", x)
 }
 #' @export
@@ -104,7 +106,7 @@ set_x11.JD3_X11_SPEC <- function(
         calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
         sigma.vector = NA,
         exclude.forecast = NA,
-        bias = c(NA, "LEGACY")) {
+        bias = c(NA, "LEGACY","SMOOTH","RATIO")) {
     mode <- match.arg(
         toupper(mode[1]),
         c(
@@ -125,7 +127,7 @@ set_x11.JD3_X11_SPEC <- function(
     )
     bias <- match.arg(
         toupper(bias),
-        c(NA, "LEGACY")
+        c(NA, "LEGACY","SMOOTH","RATIO")
     )
     if (!is.na(mode)) {
         x$mode <- switch(mode,
