@@ -22,7 +22,7 @@ NULL
 #'
 #' @param name name of a predefined specification.
 #'
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' init_spec <- x11_spec()
 #' init_spec
 #' init_spec <- regarima_spec("rg4")
