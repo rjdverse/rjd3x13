@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       update_type:
-        description: "Type de mise à jour (release/snapshot)"
+        description: "Type of update (release/snapshot)"
         required: true
         type: choice
         options:
