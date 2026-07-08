@@ -1,3 +1,10 @@
+
+#' @importFrom rjd3jars check_java_version
+.onAttach <- function(libname, pkgname) {
+    # Check java version
+    rjd3jars::check_java_version(silent = FALSE, startup = TRUE)
+}
+
 #' @importFrom stats is.ts start coef df.residual logLik residuals vcov nobs
 #' @importFrom RProtoBuf read readProtoFiles2
 #' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
@@ -29,7 +36,7 @@
     }
 
     # If java >= 21, then reload dictionnaries
-    has_java <- rjd3jars::check_java_version()
+    has_java <- rjd3jars::check_java_version(silent = TRUE)
     if (has_java) {
         rjd3jars::reload_dictionaries()
     }
