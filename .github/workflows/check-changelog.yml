@@ -2,16 +2,15 @@ name: Check changelog
 
 on: [ push, pull_request ]
 
+env:
+  MAVEN_ARGS: "-B -ntp"
+
 jobs:
   check-changelog-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: true
-          fetch-depth: 0
+      - name: Checkout and Setup Maven
+        uses: s4u/setup-maven-action@v1.20.0
 
-      - uses: jbangdev/jbang-action@v0.136.0
-        with:
-          script: com.github.nbbrd.heylogs:heylogs-cli:0.15.0:bin
-          scriptargs: "check NEWS.md"
+      - name: Check changelog using Heylogs latest version
+        run: mvn -U com.github.nbbrd.heylogs:heylogs-maven-plugin::check -Dheylogs.inputFiles=NEWS.md

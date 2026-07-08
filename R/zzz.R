@@ -28,6 +28,7 @@
         stop("Loading java packages failed")
     }
 
+    # If java >= 21, then reload dictionnaries
     has_java <- rjd3jars::check_java_version()
     if (has_java) {
         rjd3jars::reload_dictionaries()
