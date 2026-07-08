@@ -1,4 +1,3 @@
-
 #' @importFrom rjd3jars check_java_version
 .onAttach <- function(libname, pkgname) {
     # Check java version
@@ -50,7 +49,14 @@
         options(summary_info = TRUE)
     }
     if (is.null(getOption("thresholds_pval"))) {
-        options(thresholds_pval = c(Severe = 0.001, Bad = 0.01, Uncertain = 0.05, Good = Inf))
+        options(
+            thresholds_pval = c(
+                Severe = 0.001,
+                Bad = 0.01,
+                Uncertain = 0.05,
+                Good = Inf
+            )
+        )
     }
 }
 
@@ -63,9 +69,9 @@
 #'
 #' @examples
 #' x13_option("test", "DUMMY")
-x13_option<-function(name, obj){
-    options<-rjd3toolkit::.jd3_env$x13
-    options[[name]]<-obj
+x13_option <- function(name, obj) {
+    options <- rjd3toolkit::.jd3_env$x13
+    options[[name]] <- obj
     assign("x13", options, rjd3toolkit::.jd3_env)
     return(invisible(NULL))
 }
@@ -80,7 +86,7 @@ x13_option<-function(name, obj){
 #' @examples
 #' x13_option("test", "DUMMY")
 #' get_x13_option("test")
-get_x13_option<-function(name){
-    options<-rjd3toolkit::.jd3_env$x13
-    return (options[[name]])
+get_x13_option <- function(name) {
+    options <- rjd3toolkit::.jd3_env$x13
+    return(options[[name]])
 }

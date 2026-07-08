@@ -11,9 +11,10 @@ Authors@R: c(
   )
 Description: R Interface to 'JDemetra+' 3.x
     (<https://github.com/jdemetra>) time series analysis software.  It
-    offers full access to options and outputs of 'X-13', including Reg-ARIMA
-    modelling (automatic AutoRegressive Integrated Moving Average (ARIMA) model 
-    with outlier detection and trading days adjustment) and X-11 decomposition.
+    offers full access to options and outputs of 'X-13', including
+    Reg-ARIMA modelling (automatic AutoRegressive Integrated Moving
+    Average (ARIMA) model with outlier detection and trading days
+    adjustment) and X-11 decomposition.
 License: EUPL
 URL: https://github.com/rjdverse/rjd3x13,
     https://rjdverse.github.io/rjd3x13/
@@ -22,12 +23,13 @@ Depends:
     R (>= 4.1.0)
 Imports:
     rJava (>= 1.0-6),
-    RProtoBuf (>= 0.4.25),
-    rjd3jars (>= 0.0.4),
-    rjd3toolkit (>= 3.7.1.9100)
-Remotes:  
+    rjd3jars (>= 0.0.5),
+    rjd3toolkit (>= 3.7.1),
+    RProtoBuf (>= 0.4.25)
+Remotes: 
     github::rjdverse/rjd3jars,
     github::rjdverse/rjd3toolkit
+Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
@@ -41,7 +43,7 @@ Collate:
     'x13_rslts.R'
     'x13_spec.R'
     'revisions.R'
+    'rjd3x13-package.R'
     'set_x11_spec.R'
     'x13.R'
     'zzz.R'
-Config/roxygen2/version: 8.0.0

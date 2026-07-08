@@ -26,18 +26,20 @@ NULL
 #' # print outliers
 #' model$model$variables
 #' @export
-regarima_outliers <- function(y,
-                              order = c(0L, 1L, 1L),
-                              seasonal = c(0L, 1L, 1L),
-                              mean = FALSE,
-                              X = NULL,
-                              X.td = NULL,
-                              ao = TRUE,
-                              ls = TRUE,
-                              tc = FALSE,
-                              so = FALSE,
-                              cv = 0,
-                              clean = FALSE) {
+regarima_outliers <- function(
+    y,
+    order = c(0L, 1L, 1L),
+    seasonal = c(0L, 1L, 1L),
+    mean = FALSE,
+    X = NULL,
+    X.td = NULL,
+    ao = TRUE,
+    ls = TRUE,
+    tc = FALSE,
+    so = FALSE,
+    cv = 0,
+    clean = FALSE
+) {
     if (!stats::is.ts(y)) {
         stop("y must be a time series", call. = FALSE)
     }
@@ -46,13 +48,21 @@ regarima_outliers <- function(y,
         X <- cbind(X, td)
     }
 
-
     jregarima <- .jcall(
         "jdplus/x13/base/r/RegArimaOutliersDetection",
-        "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;", "process",
-        rjd3toolkit::.r2jd_tsdata(y), as.integer(order), as.integer(seasonal),
-        mean, rjd3toolkit::.r2jd_matrix(X),
-        ao, ls, tc, so, cv, clean
+        "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;",
+        "process",
+        rjd3toolkit::.r2jd_tsdata(y),
+        as.integer(order),
+        as.integer(seasonal),
+        mean,
+        rjd3toolkit::.r2jd_matrix(X),
+        ao,
+        ls,
+        tc,
+        so,
+        cv,
+        clean
     )
     model <- list(
         y = rjd3toolkit::.proc_ts(jregarima, "y"),
