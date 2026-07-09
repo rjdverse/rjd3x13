@@ -24,7 +24,7 @@ Depends:
 Imports:
     rJava (>= 1.0-6),
     rjd3jars (>= 0.0.5),
-    rjd3toolkit (>= 3.7.1),
+    rjd3toolkit (>= 3.8.0),
     RProtoBuf (>= 0.4.25)
 Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
