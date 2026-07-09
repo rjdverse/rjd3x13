@@ -20,8 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-* Documentation of `x13_full_dictionnary` #74
-* Documentation of `Complete` policy #86
+* Documentation of `x13_full_dictionnary` [#74](https://github.com/rjdverse/rjd3x13/issues/74)
+* Documentation of `Complete` policy [#86](https://github.com/rjdverse/rjd3x13/issues/86)
 
 ### Changed
 

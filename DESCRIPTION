@@ -6,7 +6,7 @@ Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
            comment = c(ORCID = "0000-0001-7890-3857")),
-    person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art")),
+    person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art")),
     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
   )
 Description: R Interface to 'JDemetra+' 3.x
