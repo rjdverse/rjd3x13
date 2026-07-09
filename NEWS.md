@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Span information to `JD3_X13_OUTPUT` objects [#45](https://github.com/rjdverse/rjd3x13/issues/45)
+
+### Fixed
+
+- Print correctly seasonal component [#110](https://github.com/rjdverse/rjd3x13/issues/110)
+
 ### Changed
 
 - Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
