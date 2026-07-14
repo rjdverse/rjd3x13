@@ -22,6 +22,24 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
 #' @importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...) {
+
+    cat("Residual seasonality tests")
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            utils::capture.output(
+                stats::printCoefmat(
+                    residual_tests[, "P.value", drop = FALSE],
+                    digits = digits,
+                    na.print = "NA", ...
+                )
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
+
     variance_decomposition <- x$variance_decomposition
     residual_tests <- x$residual_tests
 
@@ -36,23 +54,6 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
             " ",
             utils::capture.output(
                 stats::printCoefmat(variance_decomposition * 100, digits = digits, ...)
-            )
-        ),
-        sep = "\n"
-    )
-    cat("\n")
-
-    cat("Residual seasonality tests")
-    cat("\n")
-    cat(
-        paste0(
-            " ",
-            utils::capture.output(
-                stats::printCoefmat(
-                    residual_tests[, "P.value", drop = FALSE],
-                    digits = digits,
-                    na.print = "NA", ...
-                )
             )
         ),
         sep = "\n"
@@ -392,6 +393,8 @@ print.JD3_X11_SPEC <- function(x, ...) {
     cat("Nb of forecasts: ", x$nfcasts, "\n", sep = "")
     cat("Nb of backcasts: ", x$nbcasts, "\n", sep = "")
     cat("Calendar sigma: ", x$sigma, "\n", sep = "")
+    cat("Mode X-11: ", x$mode, "\n", sep = "")
+    cat("Bias: ", x$bias, "\n", sep = "")
 
     return(invisible(x))
 }
