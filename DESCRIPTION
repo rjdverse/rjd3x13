@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3x13
 Title: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x
-Version: 3.8.0
+Version: 3.8.0.9000
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
@@ -44,3 +44,6 @@ Collate:
     'set_x11_spec.R'
     'x13.R'
     'zzz.R'
+Remotes:  
+    github::rjdverse/rjd3jars,
+    github::rjdverse/rjd3toolkit
