@@ -5,24 +5,24 @@ NULL
 #' @title RegARIMA/X-13 Default Specifications
 #'
 #' @description
-#' Set of functions to create default specification objects associated with the
+#' Set of functions to create default specification objects associated with
 #' X-13ARIMA seasonal adjustment method.
 #'
 #' Specification setting of sheer X-11 decomposition method (without reg-arima
-#' pre-adjustment) is supported by the `x11_spec()` function only and doesn't
-#' appear among the possible X13-Arima default specifications.
+#' pre-adjustment) is supported by `x11_spec()` function only and doesn't
+#' appear among possible X13-Arima default specifications.
 #'
-#' Specification setting can be restricted to the reg-arima part with the
+#' Specification setting can be restricted to the reg-arima part with
 #' `regarima_spec()` function, without argument `regarima_spec()` yields a RG5c
 #' specification.
 #'
-#' When setting a complete X13-Arima spec, `x13_spec()` without argument yields
+#' Setting a complete X13-Arima spec, `x13_spec()` without argument yields
 #' a RSA5c specification.
 #'
 #'
-#' @param name the name of a predefined specification.
+#' @param name name of a predefined specification.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' init_spec <- x11_spec()
 #' init_spec
 #' init_spec <- regarima_spec("rg4")
@@ -35,7 +35,7 @@ NULL
 #' `"JD3_X11_SPEC"` (`x11_spec()`).
 #'
 #' @details
-#' The available predefined 'JDemetra+' model specifications are described in the table below:
+#' Available predefined 'JDemetra+' model specifications are described in the table below:
 #'
 #' \tabular{rrrrrrr}{
 #' \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
@@ -60,34 +60,50 @@ NULL
 #' @name x13_spec
 #' @rdname x13_spec
 #' @export
-regarima_spec <- function(name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c")) {
+regarima_spec <- function(
+    name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c")
+) {
     name <- gsub("sa", "g", tolower(name), fixed = TRUE)
-    name <- match.arg(name[1],
+    name <- match.arg(
+        name[1],
         choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
     )
-    return(.jd2r_spec_regarima(.jcall("jdplus/x13/base/api/regarima/RegArimaSpec",
-                                      "Ljdplus/x13/base/api/regarima/RegArimaSpec;",
-                                      "fromString", name)))
+    return(.jd2r_spec_regarima(.jcall(
+        "jdplus/x13/base/api/regarima/RegArimaSpec",
+        "Ljdplus/x13/base/api/regarima/RegArimaSpec;",
+        "fromString",
+        name
+    )))
 }
 
 
 #' @rdname x13_spec
 #' @export
-x13_spec <- function(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")) {
+x13_spec <- function(
+    name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")
+) {
     name <- gsub("g", "sa", tolower(name), fixed = TRUE)
-    name <- match.arg(name[1],
+    name <- match.arg(
+        name[1],
         choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
     )
-    return(.jd2r_spec_x13(.jcall("jdplus/x13/base/api/x13/X13Spec",
-                                 "Ljdplus/x13/base/api/x13/X13Spec;",
-                                 "fromString", name)))
+    return(.jd2r_spec_x13(.jcall(
+        "jdplus/x13/base/api/x13/X13Spec",
+        "Ljdplus/x13/base/api/x13/X13Spec;",
+        "fromString",
+        name
+    )))
 }
 
 
 #' @rdname x13_spec
 #' @export
 x11_spec <- function() {
-    return(.jd2r_spec_x11(.jfield("jdplus/x13/base/api/x11/X11Spec", "Ljdplus/x13/base/api/x11/X11Spec;", "DEFAULT")))
+    return(.jd2r_spec_x11(.jfield(
+        "jdplus/x13/base/api/x11/X11Spec",
+        "Ljdplus/x13/base/api/x11/X11Spec;",
+        "DEFAULT"
+    )))
 }
 
 #' @export
@@ -105,7 +121,12 @@ x11_spec <- function() {
 .r2jd_spec_x11 <- function(spec) {
     p <- .r2p_spec_x11(spec)
     b <- RProtoBuf::serialize(p, NULL)
-    nspec <- .jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/api/x11/X11Spec;", "of", b)
+    nspec <- .jcall(
+        "jdplus/x13/base/r/X11",
+        "Ljdplus/x13/base/api/x11/X11Spec;",
+        "of",
+        b
+    )
     return(nspec)
 }
 
@@ -115,7 +136,12 @@ x11_spec <- function() {
 .r2jd_spec_regarima <- function(spec) {
     p <- .r2p_spec_regarima(spec)
     b <- RProtoBuf::serialize(p, NULL)
-    nspec <- .jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "specOf", b)
+    nspec <- .jcall(
+        "jdplus/x13/base/r/RegArima",
+        "Ljdplus/x13/base/api/regarima/RegArimaSpec;",
+        "specOf",
+        b
+    )
     return(nspec)
 }
 
@@ -134,7 +160,12 @@ x11_spec <- function() {
 .r2jd_spec_x13 <- function(spec) {
     p <- .r2p_spec_x13(spec)
     b <- RProtoBuf::serialize(p, NULL)
-    nspec <- .jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "specOf", b)
+    nspec <- .jcall(
+        "jdplus/x13/base/r/X13",
+        "Ljdplus/x13/base/api/x13/X13Spec;",
+        "specOf",
+        b
+    )
     return(nspec)
 }
 
@@ -156,8 +187,14 @@ x11_spec <- function() {
         preliminaryCheck = pspec$basic$preliminary_check
     )
     transform_list <- list(
-        fn = rjd3toolkit::.enum_extract(modelling.Transformation, pspec$transform$transformation),
-        adjust = rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
+        fn = rjd3toolkit::.enum_extract(
+            modelling.Transformation,
+            pspec$transform$transformation
+        ),
+        adjust = rjd3toolkit::.enum_extract(
+            modelling.LengthOfPeriod,
+            pspec$transform$adjust
+        ),
         aicdiff = pspec$transform$aicdiff,
         outliers = pspec$transform$outliers_correction
     )
@@ -184,32 +221,59 @@ x11_spec <- function() {
         }),
         span = rjd3toolkit::.p2r_span(pspec$outlier$span),
         defva = pspec$outlier$defva,
-        method = rjd3toolkit::.enum_extract(x13.OutlierMethod, pspec$outlier$method),
+        method = rjd3toolkit::.enum_extract(
+            x13.OutlierMethod,
+            pspec$outlier$method
+        ),
         monthlytcrate = pspec$outlier$monthly_tc_rate,
         maxiter = pspec$outlier$maxiter,
         lsrun = pspec$outlier$lsrun
     )
 
     td <- list(
-        td = rjd3toolkit::.enum_sextract(modelling.TradingDays, pspec$regression$td$td),
-        lp = rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, pspec$regression$td$lp),
+        td = rjd3toolkit::.enum_sextract(
+            modelling.TradingDays,
+            pspec$regression$td$td
+        ),
+        lp = rjd3toolkit::.enum_extract(
+            modelling.LengthOfPeriod,
+            pspec$regression$td$lp
+        ),
         holidays = pspec$regression$td$holidays,
         users = unlist(pspec$regression$td$users),
         w = pspec$regression$td$w,
-        test = rjd3toolkit::.enum_extract(x13.RegressionTest, pspec$regression$td$test),
-        auto = rjd3toolkit::.enum_extract(x13.AutomaticTradingDays, pspec$regression$td$auto),
+        test = rjd3toolkit::.enum_extract(
+            x13.RegressionTest,
+            pspec$regression$td$test
+        ),
+        auto = rjd3toolkit::.enum_extract(
+            x13.AutomaticTradingDays,
+            pspec$regression$td$auto
+        ),
         autoadjust = pspec$regression$td$auto_adjust,
-        tdcoefficients = rjd3toolkit::.p2r_parameters(pspec$regression$td$tdcoefficients),
-        lpcoefficient = rjd3toolkit::.p2r_parameter(pspec$regression$td$lpcoefficient),
+        tdcoefficients = rjd3toolkit::.p2r_parameters(
+            pspec$regression$td$tdcoefficients
+        ),
+        lpcoefficient = rjd3toolkit::.p2r_parameter(
+            pspec$regression$td$lpcoefficient
+        ),
         ptest1 = pspec$regression$td$ptest1,
         ptest2 = pspec$regression$td$ptest2
     )
 
     easter <- list(
-        type = rjd3toolkit::.enum_extract(x13.EasterType, pspec$regression$easter$type),
+        type = rjd3toolkit::.enum_extract(
+            x13.EasterType,
+            pspec$regression$easter$type
+        ),
         duration = pspec$regression$easter$duration,
-        test = rjd3toolkit::.enum_extract(x13.RegressionTest, pspec$regression$easter$test),
-        coefficient = rjd3toolkit::.p2r_parameter(pspec$regression$easter$coefficient)
+        test = rjd3toolkit::.enum_extract(
+            x13.RegressionTest,
+            pspec$regression$easter$test
+        ),
+        coefficient = rjd3toolkit::.p2r_parameter(
+            pspec$regression$easter$coefficient
+        )
     )
 
     # TODO: complete regression
@@ -246,13 +310,26 @@ x11_spec <- function() {
 .r2p_spec_regarima <- function(r) {
     p <- x13.RegArimaSpec$new()
     # BIAS
+    freq <- -1
+    if (!is.null(r$basic$frequency)) {
+        freq <- r$basic$frequency
+    }
     p$basic$preliminary_check <- r$basic$preliminaryCheck
     p$basic$preprocessing <- r$basic$preprocessing
     p$basic$span <- rjd3toolkit::.r2p_span(r$basic$span)
+    p$basic$annual_frequency <- freq
 
     # TRANSFORM
-    p$transform$transformation <- rjd3toolkit::.enum_of(modelling.Transformation, r$transform$fn, "FN")
-    p$transform$adjust <- rjd3toolkit::.enum_of(modelling.LengthOfPeriod, r$transform$adjust, "LP")
+    p$transform$transformation <- rjd3toolkit::.enum_of(
+        modelling.Transformation,
+        r$transform$fn,
+        "FN"
+    )
+    p$transform$adjust <- rjd3toolkit::.enum_of(
+        modelling.LengthOfPeriod,
+        r$transform$adjust,
+        "LP"
+    )
     p$transform$aicdiff <- r$transform$aicdiff
     p$transform$outliers_correction <- r$transform$outliers
 
@@ -265,7 +342,11 @@ x11_spec <- function() {
     })
     p$outlier$span <- rjd3toolkit::.r2p_span(r$outlier$span)
     p$outlier$defva <- r$outlier$defva
-    p$outlier$method <- rjd3toolkit::.enum_of(x13.OutlierMethod, r$outlier$method, "OUTLIER")
+    p$outlier$method <- rjd3toolkit::.enum_of(
+        x13.OutlierMethod,
+        r$outlier$method,
+        "OUTLIER"
+    )
     p$outlier$monthly_tc_rate <- r$outlier$monthlytcrate
     p$outlier$maxiter <- r$outlier$maxiter
     p$outlier$lsrun <- r$outlier$lsrun
@@ -294,28 +375,59 @@ x11_spec <- function() {
     p$regression$check_mean <- r$regression$check_mean
     p$regression$outliers <- rjd3toolkit::.r2p_outliers(r$regression$outliers)
     p$regression$users <- rjd3toolkit::.r2p_uservars(r$regression$users)
-    p$regression$interventions <- rjd3toolkit::.r2p_ivs(r$regression$interventions)
+    p$regression$interventions <- rjd3toolkit::.r2p_ivs(
+        r$regression$interventions
+    )
     p$regression$ramps <- rjd3toolkit::.r2p_ramps(r$regression$ramps)
 
     # TD
-    p$regression$td$td <- rjd3toolkit::.enum_sof(modelling.TradingDays, r$regression$td$td)
-    p$regression$td$lp <- rjd3toolkit::.enum_of(modelling.LengthOfPeriod, r$regression$td$lp, "LP")
+    p$regression$td$td <- rjd3toolkit::.enum_sof(
+        modelling.TradingDays,
+        r$regression$td$td
+    )
+    p$regression$td$lp <- rjd3toolkit::.enum_of(
+        modelling.LengthOfPeriod,
+        r$regression$td$lp,
+        "LP"
+    )
     p$regression$td$holidays <- r$regression$td$holidays
     p$regression$td$users <- r$regression$td$users
     p$regression$td$w <- r$regression$td$w
-    p$regression$td$test <- rjd3toolkit::.enum_of(x13.RegressionTest, r$regression$td$test, "TEST")
-    p$regression$td$auto <- rjd3toolkit::.enum_of(x13.AutomaticTradingDays, r$regression$td$auto, "TD")
+    p$regression$td$test <- rjd3toolkit::.enum_of(
+        x13.RegressionTest,
+        r$regression$td$test,
+        "TEST"
+    )
+    p$regression$td$auto <- rjd3toolkit::.enum_of(
+        x13.AutomaticTradingDays,
+        r$regression$td$auto,
+        "TD"
+    )
     p$regression$td$auto_adjust <- r$regression$td$autoadjust
-    p$regression$td$tdcoefficients <- rjd3toolkit::.r2p_parameters(r$regression$td$tdcoefficients)
-    p$regression$td$lpcoefficient <- rjd3toolkit::.r2p_parameter(r$regression$td$lpcoefficient)
+    p$regression$td$tdcoefficients <- rjd3toolkit::.r2p_parameters(
+        r$regression$td$tdcoefficients
+    )
+    p$regression$td$lpcoefficient <- rjd3toolkit::.r2p_parameter(
+        r$regression$td$lpcoefficient
+    )
     p$regression$td$ptest1 <- r$regression$td$ptest1
     p$regression$td$ptest2 <- r$regression$td$ptest2
 
     # EASTER
-    p$regression$easter$type <- rjd3toolkit::.enum_of(x13.EasterType, r$regression$easter$type, "EASTER")
+    p$regression$easter$type <- rjd3toolkit::.enum_of(
+        x13.EasterType,
+        r$regression$easter$type,
+        "EASTER"
+    )
     p$regression$easter$duration <- r$regression$easter$duration
-    p$regression$easter$test <- rjd3toolkit::.enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
-    p$regression$easter$coefficient <- rjd3toolkit::.r2p_parameter(r$regression$easter$coefficient)
+    p$regression$easter$test <- rjd3toolkit::.enum_of(
+        x13.RegressionTest,
+        r$regression$easter$test,
+        "TEST"
+    )
+    p$regression$easter$coefficient <- rjd3toolkit::.r2p_parameter(
+        r$regression$easter$coefficient
+    )
 
     # ESTIMATE
     p$estimate$span <- rjd3toolkit::.r2p_span(r$estimate$span)
@@ -326,22 +438,25 @@ x11_spec <- function() {
 
 
 .p2r_spec_x11 <- function(p) {
-    return(structure(list(
-        mode = rjd3toolkit::.enum_extract(sa.DecompositionMode, p$mode),
-        seasonal = p$seasonal,
-        henderson = p$henderson,
-        sfilters = sapply(p$sfilters, function(z) {
-            rjd3toolkit::.enum_extract(x13.SeasonalFilter, z)
-        }),
-        lsig = p$lsig,
-        usig = p$usig,
-        nfcasts = p$nfcasts,
-        nbcasts = p$nbcasts,
-        sigma = rjd3toolkit::.enum_extract(x13.CalendarSigma, p$sigma),
-        vsigmas = p$vsigmas,
-        excludefcasts = p$exclude_fcasts,
-        bias = rjd3toolkit::.enum_extract(x13.BiasCorrection, p$bias)
-    ), class = "JD3_X11_SPEC"))
+    return(structure(
+        list(
+            mode = rjd3toolkit::.enum_extract(sa.DecompositionMode, p$mode),
+            seasonal = p$seasonal,
+            henderson = p$henderson,
+            sfilters = sapply(p$sfilters, function(z) {
+                rjd3toolkit::.enum_extract(x13.SeasonalFilter, z)
+            }),
+            lsig = p$lsig,
+            usig = p$usig,
+            nfcasts = p$nfcasts,
+            nbcasts = p$nbcasts,
+            sigma = rjd3toolkit::.enum_extract(x13.CalendarSigma, p$sigma),
+            vsigmas = p$vsigmas,
+            excludefcasts = p$exclude_fcasts,
+            bias = rjd3toolkit::.enum_extract(x13.BiasCorrection, p$bias)
+        ),
+        class = "JD3_X11_SPEC"
+    ))
 }
 
 
@@ -365,11 +480,16 @@ x11_spec <- function() {
 }
 
 .p2r_spec_x13 <- function(pspec) {
-    return(structure(list(
-        regarima = .p2r_spec_regarima(pspec$regarima),
-        x11 = .p2r_spec_x11(pspec$x11),
-        benchmarking = rjd3toolkit::.p2r_spec_benchmarking(pspec$benchmarking)
-    ), class = "JD3_X13_SPEC"))
+    return(structure(
+        list(
+            regarima = .p2r_spec_regarima(pspec$regarima),
+            x11 = .p2r_spec_x11(pspec$x11),
+            benchmarking = rjd3toolkit::.p2r_spec_benchmarking(
+                pspec$benchmarking
+            )
+        ),
+        class = "JD3_X13_SPEC"
+    ))
 }
 
 .r2p_spec_x13 <- function(r) {

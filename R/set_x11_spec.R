@@ -43,21 +43,24 @@
 #' determines that the irregular component is heteroskedastic by calendar
 #' month/quarter (`"Signif"`); separately for two complementary sets of calendar
 #' months/quarters specified by the x11.sigmaVector parameter (`"Select"`, see
-#' parameter `sigma.vector`).
+#' parameter `sigma.vector`).If `sigma.vector` is specified then `calendar.sigma` is set to
+#' "Select"`.
+#'
 #' @param sigma.vector a vector to specify one of the two groups of periods for
 #' which standard errors used for extreme values detection and adjustment will
-#' be computed separately. Only used if `calendar.sigma = "Select"`. Possible
-#' values are: `1` or `2`.
+#' be computed separately. Possible values are: `1` or `2`.
 #' @param exclude.forecast Boolean to exclude forecasts and backcasts. If
 #' `TRUE`, the RegARIMA model forecasts and backcasts are not used during the
 #' detection of extreme values in the seasonal adjustment routines.
 #' Default = FALSE.
-#' @param bias TODO.
+#' @param bias , `NA` default value, no correction applied. If (`bias= "LEGACY"` or `"RATIO"` or `"SMOOTH"`
+#' and if `mode = "LogAdditive"` a correction is applied when computing final components (S, T, I) in level
+#' from components estimated in log.
 #' @returns  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
-#' init_spec <- x11_spec()
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
+#' init_spec <- x13_spec()
 #' new_spec <- set_x11(init_spec,
 #'     mode = "LogAdditive",
 #'     seasonal.comp = 1,
@@ -70,67 +73,93 @@
 #'     calendar.sigma = "All",
 #'     sigma.vector = NA,
 #'     exclude.forecast = FALSE,
-#'     bias = "LEGACY"
+#'     bias = "RATIO"
 #' )
 #' @rdname x11_spec
 #' @export
-set_x11 <- function(x,
-                    mode = c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"),
-                    seasonal.comp = NA,
-                    seasonal.filter = NA,
-                    henderson.filter = NA,
-                    lsigma = NA,
-                    usigma = NA,
-                    fcasts = NA,
-                    bcasts = NA,
-                    calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
-                    sigma.vector = NA,
-                    exclude.forecast = NA,
-                    bias = c(NA, "LEGACY")) {
+set_x11 <- function(
+    x,
+    mode = c(
+        NA,
+        "Undefined",
+        "Additive",
+        "Multiplicative",
+        "LogAdditive",
+        "PseudoAdditive"
+    ),
+    seasonal.comp = NA,
+    seasonal.filter = NA,
+    henderson.filter = NA,
+    lsigma = NA,
+    usigma = NA,
+    fcasts = NA,
+    bcasts = NA,
+    calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
+    sigma.vector = NA,
+    exclude.forecast = NA,
+    bias = c(NA, "LEGACY","SMOOTH","RATIO")
+) {
     UseMethod("set_x11", x)
 }
 #' @export
 set_x11.JD3_X11_SPEC <- function(
-        x,
-        mode = c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"),
-        seasonal.comp = NA,
-        seasonal.filter = NA,
-        henderson.filter = NA,
-        lsigma = NA,
-        usigma = NA,
-        fcasts = NA,
-        bcasts = NA,
-        calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
-        sigma.vector = NA,
-        exclude.forecast = NA,
-        bias = c(NA, "LEGACY")) {
+    x,
+    mode = c(
+        NA,
+        "Undefined",
+        "Additive",
+        "Multiplicative",
+        "LogAdditive",
+        "PseudoAdditive"
+    ),
+    seasonal.comp = NA,
+    seasonal.filter = NA,
+    henderson.filter = NA,
+    lsigma = NA,
+    usigma = NA,
+    fcasts = NA,
+    bcasts = NA,
+    calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
+    sigma.vector = NA,
+    exclude.forecast = NA,
+    bias = c(NA, "LEGACY","SMOOTH","RATIO")
+) {
     mode <- match.arg(
         toupper(mode[1]),
         c(
-            NA, "UNDEFINED", "ADDITIVE", "MULTIPLICATIVE",
-            "LOGADDITIVE", "PSEUDOADDITIVE"
+            NA,
+            "UNDEFINED",
+            "ADDITIVE",
+            "MULTIPLICATIVE",
+            "LOGADDITIVE",
+            "PSEUDOADDITIVE"
         )
     )
     calendar.sigma <- match.arg(
         toupper(calendar.sigma[1]),
         c(NA, "NONE", "SIGNIF", "ALL", "SELECT")
     )
-    seasonal.filter <- match.arg(toupper(seasonal.filter),
+    seasonal.filter <- match.arg(
+        toupper(seasonal.filter),
         choices = c(
-            NA, "MSR", "STABLE", "X11DEFAULT",
-            "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"
+            NA,
+            "MSR",
+            "STABLE",
+            "X11DEFAULT",
+            "S3X1",
+            "S3X3",
+            "S3X5",
+            "S3X9",
+            "S3X15"
         ),
         several.ok = TRUE
     )
     bias <- match.arg(
         toupper(bias),
-        c(NA, "LEGACY")
+        c(NA, "LEGACY","SMOOTH","RATIO")
     )
     if (!is.na(mode)) {
-        x$mode <- switch(mode,
-            UNDEFINED = "UNKNOWN",
-            mode
-        )
+        x$mode <- switch(mode, UNDEFINED = "UNKNOWN", mode)
     }
 
     if (!is.na(seasonal.comp) && is.logical(seasonal.comp)) {
@@ -142,7 +171,10 @@ set_x11.JD3_X11_SPEC <- function(
     }
     if (!is.na(henderson.filter)) {
         if ((henderson.filter != 0) && (henderson.filter %% 2 == 0)) {
-            warning("The variable henderson.filter should be an odd number or equal to 0.", call. = FALSE)
+            warning(
+                "The variable henderson.filter should be an odd number or equal to 0.",
+                call. = FALSE
+            )
         } else {
             x$henderson <- henderson.filter
         }

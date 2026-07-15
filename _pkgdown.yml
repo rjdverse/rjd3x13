@@ -49,6 +49,7 @@ navbar:
     github:
       icon: fa-github fa-lg
       href: https://github.com/rjdverse/rjd3x13
+      aria-label: GitHub
 
 reference:
 - title: Defining specifications
@@ -88,6 +89,11 @@ reference:
     - '`x13_dictionary`'
     - '`x13_full_dictionary`'
     - '`userdefined_variables_x13`'
+- title: Option for rjdverse
+  desc: Evironment specific to JDemetra+
+  contents:
+    - '`get_x13_option`'
+    - '`x13_option`'
 - title: Wrangling Java objects
   desc: Functions to easily interact between R and Java objects
   contents:
@@ -99,8 +105,6 @@ reference:
     - '`.r2jd_spec_x13`'
     - '`.jd2r_spec_x13`'
     - '`.jx13`'
-    - '`current_java_version`'
-    - '`minimal_java_version`'
 - title: Deprecated functions
   desc: Use new version
   contents:
@@ -109,8 +113,3 @@ reference:
     - '`spec_x11`'
     - '`fast_x13`'
     - '`fast_regarima`'
-
-
-
-
-

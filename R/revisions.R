@@ -4,7 +4,11 @@ NULL
 .jrevisions <- function(jts, jspec, jcontext) {
     jrslt <- .jcall(
         "jdplus/x13/base/r/X13RevisionHistory",
-        "Ljdplus/toolkit/base/r/timeseries/Revisions;", "revisions", jts, jspec, jcontext
+        "Ljdplus/toolkit/base/r/timeseries/Revisions;",
+        "revisions",
+        jts,
+        jspec,
+        jcontext
     )
     return(jrslt)
 }
@@ -37,9 +41,10 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
+#' library("rjd3toolkit")
 #' \donttest{
-#' s <- rjd3toolkit::ABS$X0.2.09.10.M
+#' s <- ABS$X0.2.09.10.M
 #' sa_mod <- x13(s)
 #' data_ids <- list(
 #'     # Get the coefficient of the trading-day coefficient from 2005-jan
@@ -65,11 +70,20 @@ NULL
 #' rh$components
 #' }
 #' @export
-x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NULL, context = NULL) {
+x13_revisions <- function(
+    ts,
+    spec,
+    data_ids = NULL,
+    ts_ids = NULL,
+    cmp_ids = NULL,
+    context = NULL
+) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     jspec <- .r2jd_spec_x13(spec)
     if (is.null(context)) {
-        jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
+        jcontext <- .jnull(
+            "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
+        )
     } else {
         jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
@@ -77,7 +91,13 @@ x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NU
     jr <- .jrevisions(jts, jspec, jcontext)
     if (!is.null(data_ids)) {
         ldata <- lapply(data_ids, function(data_id) {
-            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "history", data_id$id, data_id$start)
+            w <- .jcall(
+                jr,
+                "Ljdplus/toolkit/base/api/timeseries/TsData;",
+                "history",
+                data_id$id,
+                data_id$start
+            )
             return(rjd3toolkit::.jd2r_tsdata(w))
         })
         names(ldata) <- sapply(data_ids, `[[`, "id")
@@ -85,8 +105,14 @@ x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NU
     lts <- NULL
     if (!is.null(ts_ids)) {
         lts <- lapply(ts_ids, function(ts_id) {
-            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;",
-                        "tsHistory", ts_id$id, ts_id$period, ts_id$start)
+            w <- .jcall(
+                jr,
+                "Ljdplus/toolkit/base/api/timeseries/TsData;",
+                "tsHistory",
+                ts_id$id,
+                ts_id$period,
+                ts_id$start
+            )
             return(rjd3toolkit::.jd2r_tsdata(w))
         })
         names(lts) <- sapply(ts_ids, `[[`, "id")
@@ -94,8 +120,14 @@ x13_revisions <- function(ts, spec, data_ids = NULL, ts_ids = NULL, cmp_ids = NU
     lcmp <- NULL
     if (!is.null(cmp_ids)) {
         lcmp <- lapply(cmp_ids, function(cmp_id) {
-            w <- .jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;",
-                        "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
+            w <- .jcall(
+                jr,
+                "Ljdplus/toolkit/base/api/timeseries/TsDataTable;",
+                "tsSelect",
+                cmp_id$id,
+                cmp_id$start,
+                cmp_id$end
+            )
             return(rjd3toolkit::.jd2r_mts(w))
         })
         names(lcmp) <- sapply(cmp_ids, `[[`, "id")

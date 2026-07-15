@@ -1,6 +1,9 @@
-#' @importFrom stats coef df.residual logLik residuals vcov nobs
 #' @export
-coef.JD3_REGARIMA_OUTPUT <- function(object, component = c("regression", "arima", "both"), ...) {
+coef.JD3_REGARIMA_OUTPUT <- function(
+    object,
+    component = c("regression", "arima", "both"),
+    ...
+) {
     coef(object$result, component = component, ...)
 }
 #' @export
@@ -30,7 +33,11 @@ summary.JD3_REGARIMA_OUTPUT <- function(object, ...) {
     x
 }
 #' @export
-print.JD3_REGARIMA_OUTPUT <- function(x, summary_info = getOption("summary_info"), ...) {
+print.JD3_REGARIMA_OUTPUT <- function(
+    x,
+    summary_info = getOption("summary_info"),
+    ...
+) {
     cat("Method: RegARIMA\n")
     print(x$result, summary_info = summary_info, ...)
 }
@@ -40,7 +47,11 @@ diagnostics.JD3_REGARIMA_OUTPUT <- function(x, ...) {
 }
 
 #' @export
-coef.JD3_X13_OUTPUT <- function(object, component = c("regression", "arima", "both"), ...) {
+coef.JD3_X13_OUTPUT <- function(
+    object,
+    component = c("regression", "arima", "both"),
+    ...
+) {
     coef(object$result$preprocessing, component = component, ...)
 }
 #' @export

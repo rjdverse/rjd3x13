@@ -45,7 +45,7 @@ specification and the result specification, while \code{x13_fast()} is a faster
 function that only returns the results. The \code{jx13()} functions only returns
 results in a java object which will allow to customize outputs in other
 packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of variables and
-\code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable). In the estimation
+\code{\link[rjd3toolkit:result]{rjd3toolkit::result()}} to get a specific variable). In the estimation
 functions \code{x13()} and \code{x13_fast()} you can directly use a specification name
 (string). If you want to customize a specification you have to create a
 specification object first.
@@ -54,10 +54,9 @@ specification object first.
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
-\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
-\donttest{
+\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
-
+\donttest{
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 x13_fast(y, "rsa3")
 x13(y, "rsa5c")

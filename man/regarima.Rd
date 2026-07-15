@@ -41,11 +41,11 @@ the results.
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
-\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
-\donttest{
-library("rjd3toolkit")
+\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 
-y <- rjd3toolkit::ABS$X0.2.09.10.M
+library("rjd3toolkit")
+\donttest{
+y <- ABS$X0.2.09.10.M
 sp <- regarima_spec("rg5c")
 sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")

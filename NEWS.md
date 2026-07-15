@@ -6,22 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-07-15
+
+### Added
+
+- Span information to `JD3_X13_OUTPUT` objects [#45](https://github.com/rjdverse/rjd3x13/issues/45)
+
+### Fixed
+
+- Print correctly seasonal component [#110](https://github.com/rjdverse/rjd3x13/issues/110)
+
+### Changed
+
+- Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
+
 ## [3.7.1] - 2026-03-10
 
+### Changed
+
+* New JARS related to version [3.7.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.7.1)
 
 ## [3.6.0] - 2025-11-21
 
 ### Added
 
-* Documentation of `x13_full_dictionnary` #74
-* Documentation of `Complete` policy #86
+* Documentation of `x13_full_dictionnary` [#74](https://github.com/rjdverse/rjd3x13/issues/74)
+* Documentation of `Complete` policy [#86](https://github.com/rjdverse/rjd3x13/issues/86)
 
+### Changed
+
+* New JARS related to version [3.6.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.6.0)
 
 ## [3.5.1] - 2025-06-16
 
 ### Changed
 
--   New java libraries
+* New JARS related to version [3.5.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.1)
 
 ### Added
 
@@ -29,34 +49,53 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [3.5.0] - 2025-04-09
 
+### Changed
+
+* New JARS related to version [3.5.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.0)
+
 ### Removed
 
 * `.add_ud_var` has been transfered to {rjd3toolkit}
-
 
 ## [3.3.0] - 2024-10-28
 
 ### Changed
 
--   New java libraries
+* New JARS related to version [3.3.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.3.0)
 
 ## [3.2.3] - 2024-07-12
 
 ### Changed
 
--   New .jar (related to release)
--   Some linting of R functions
+* New JARS related to version [3.2.3](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.3)
+* Some linting of R functions
 
 ## [3.2.2] - 2024-03-15
 
+### Changed
+
+* New JARS related to version [3.2.2](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.2)
+
 ## [3.2.1] - 2023-12-12
+
+### Changed
+
+* New JARS related to version [3.2.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.1)
 
 ## [3.2.0] - 2023-11-24
 
+### Changed
+
+* New JARS related to version [3.2.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.0)
+
 ## [3.1.0] - 2023-08-11
 
+### Added
 
-[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...HEAD
+* New JARS related to version [3.1.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.1.0)
+
+[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/3.8.0...HEAD
+[3.8.0]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...3.8.0
 [3.7.1]: https://github.com/rjdverse/rjd3x13/compare/v3.6.0...v3.7.1
 [3.6.0]: https://github.com/rjdverse/rjd3x13/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/rjdverse/rjd3x13/compare/v3.5.0...v3.5.1

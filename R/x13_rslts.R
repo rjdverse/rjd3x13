@@ -63,7 +63,10 @@ NULL
             d11 = rjd3toolkit::.p2r_tsdata(p$d11),
             d12 = rjd3toolkit::.p2r_tsdata(p$d12),
             d13 = rjd3toolkit::.p2r_tsdata(p$d13),
-            final_seasonal = p$final_seasonal_filters,
+            final_seasonal = rjd3toolkit::.enum_extract(
+                x13.SeasonalFilter,
+                p$final_seasonal_filters
+            ),
             final_henderson = p$final_henderson_filter
         ),
         class = "JD3X11"

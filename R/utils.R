@@ -1,4 +1,3 @@
-#' @import rjd3toolkit
 NULL
 
 #' @title Java Utility Functions
@@ -14,7 +13,6 @@ NULL
 #'
 NULL
 #> NULL
-
 
 identical_na <- function(x) {
     identical(x, NA) ||

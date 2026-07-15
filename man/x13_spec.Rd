@@ -13,7 +13,7 @@ x13_spec(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
 x11_spec()
 }
 \arguments{
-\item{name}{the name of a predefined specification.}
+\item{name}{name of a predefined specification.}
 }
 \value{
 an object of class \code{"JD3_X13_SPEC"} (\code{x13_spec()}),
@@ -21,22 +21,22 @@ an object of class \code{"JD3_X13_SPEC"} (\code{x13_spec()}),
 \code{"JD3_X11_SPEC"} (\code{x11_spec()}).
 }
 \description{
-Set of functions to create default specification objects associated with the
+Set of functions to create default specification objects associated with
 X-13ARIMA seasonal adjustment method.
 
 Specification setting of sheer X-11 decomposition method (without reg-arima
-pre-adjustment) is supported by the \code{x11_spec()} function only and doesn't
-appear among the possible X13-Arima default specifications.
+pre-adjustment) is supported by \code{x11_spec()} function only and doesn't
+appear among possible X13-Arima default specifications.
 
-Specification setting can be restricted to the reg-arima part with the
+Specification setting can be restricted to the reg-arima part with
 \code{regarima_spec()} function, without argument \code{regarima_spec()} yields a RG5c
 specification.
 
-When setting a complete X13-Arima spec, \code{x13_spec()} without argument yields
+Setting a complete X13-Arima spec, \code{x13_spec()} without argument yields
 a RSA5c specification.
 }
 \details{
-The available predefined 'JDemetra+' model specifications are described in the table below:
+Available predefined 'JDemetra+' model specifications are described in the table below:
 
 \tabular{rrrrrrr}{
 \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
@@ -49,7 +49,7 @@ RSA5c/RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automat
 }
 }
 \examples{
-\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 init_spec <- x11_spec()
 init_spec
 init_spec <- regarima_spec("rg4")
@@ -65,8 +65,8 @@ init_spec
 \code{\link[rjd3toolkit:set_basic]{rjd3toolkit::set_basic()}}, \code{\link[rjd3toolkit:set_easter]{rjd3toolkit::set_easter()}},
 \code{\link[rjd3toolkit:set_estimate]{rjd3toolkit::set_estimate()}}, \code{\link[rjd3toolkit:set_outlier]{rjd3toolkit::set_outlier()}},
 \code{\link[rjd3toolkit:set_tradingdays]{rjd3toolkit::set_tradingdays()}}, \code{\link[rjd3toolkit:set_transform]{rjd3toolkit::set_transform()}},
-\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_outlier()}}, \code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::remove_outlier()}},
-\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_ramp()}}, \code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::remove_ramp()}},
+\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_outlier()}}, \code{\link[rjd3toolkit:remove_outlier]{rjd3toolkit::remove_outlier()}},
+\code{\link[rjd3toolkit:add_ramp]{rjd3toolkit::add_ramp()}}, \code{\link[rjd3toolkit:remove_ramp]{rjd3toolkit::remove_ramp()}},
 \code{\link[rjd3toolkit:add_usrdefvar]{rjd3toolkit::add_usrdefvar()}}.
 \item To set the decomposition parameters: \code{\link[=set_x11]{set_x11()}}.
 \item To set the benchmarking parameters: \code{\link[rjd3toolkit:set_benchmarking]{rjd3toolkit::set_benchmarking()}}.
