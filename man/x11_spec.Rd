@@ -18,7 +18,7 @@ set_x11(
   calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
   sigma.vector = NA,
   exclude.forecast = NA,
-  bias = c(NA, "LEGACY")
+  bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
 )
 }
 \arguments{
@@ -85,7 +85,9 @@ be computed separately. Possible values are: \code{1} or \code{2}.}
 detection of extreme values in the seasonal adjustment routines.
 Default = FALSE.}
 
-\item{bias}{TODO.}
+\item{bias}{, \code{NA} default value, no correction applied. If (\code{bias= "LEGACY"} or \code{"RATIO"} or \code{"SMOOTH"}
+and if \code{mode = "LogAdditive"} a correction is applied when computing final components (S, T, I) in level
+from components estimated in log.}
 }
 \value{
 a "JD3_X11_SPEC" object, containing all the parameters.
@@ -95,7 +97,7 @@ Set X-11 Specification
 }
 \examples{
 \dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
-init_spec <- x11_spec()
+init_spec <- x13_spec()
 new_spec <- set_x11(init_spec,
     mode = "LogAdditive",
     seasonal.comp = 1,
@@ -108,7 +110,7 @@ new_spec <- set_x11(init_spec,
     calendar.sigma = "All",
     sigma.vector = NA,
     exclude.forecast = FALSE,
-    bias = "LEGACY"
+    bias = "RATIO"
 )
 \dontshow{\}) # examplesIf}
 }
