@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rjd3x13</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,7 @@
 <span>  calendar.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"None"</span>, <span class="st">"Signif"</span>, <span class="st">"All"</span>, <span class="st">"Select"</span><span class="op">)</span>,</span>
 <span>  sigma.vector <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  exclude.forecast <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  bias <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"LEGACY"</span><span class="op">)</span></span>
+<span>  bias <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"LEGACY"</span>, <span class="st">"SMOOTH"</span>, <span class="st">"RATIO"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -158,7 +158,9 @@ Default = FALSE.</p></dd>
 
 
 <dt id="arg-bias">bias<a class="anchor" aria-label="anchor" href="#arg-bias"></a></dt>
-<dd><p>TODO.</p></dd>
+<dd><p>, <code>NA</code> default value, no correction applied. If (<code>bias= "LEGACY"</code> or <code>"RATIO"</code> or <code>"SMOOTH"</code>
+and if <code>mode = "LogAdditive"</code> a correction is applied when computing final components (S, T, I) in level
+from components estimated in log.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -172,7 +174,7 @@ Default = FALSE.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13_spec.html">x11_spec</a></span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">init_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="x13_spec.html">x13_spec</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">new_spec</span> <span class="op">&lt;-</span> <span class="fu">set_x11</span><span class="op">(</span><span class="va">init_spec</span>,</span></span>
 <span class="r-in"><span>    mode <span class="op">=</span> <span class="st">"LogAdditive"</span>,</span></span>
 <span class="r-in"><span>    seasonal.comp <span class="op">=</span> <span class="fl">1</span>,</span></span>
@@ -185,7 +187,7 @@ Default = FALSE.</p></dd>
 <span class="r-in"><span>    calendar.sigma <span class="op">=</span> <span class="st">"All"</span>,</span></span>
 <span class="r-in"><span>    sigma.vector <span class="op">=</span> <span class="cn">NA</span>,</span></span>
 <span class="r-in"><span>    exclude.forecast <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>    bias <span class="op">=</span> <span class="st">"LEGACY"</span></span></span>
+<span class="r-in"><span>    bias <span class="op">=</span> <span class="st">"RATIO"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
@@ -198,7 +200,7 @@ Default = FALSE.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

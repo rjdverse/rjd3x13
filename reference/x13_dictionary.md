@@ -290,6 +290,7 @@ summary(x13_dictionary())
 #> - decomposition.x11-all
 #> - decomposition.icratio
 #> - decomposition.trend-filter
+#> - decomposition.d7-trend-filter
 #> - decomposition.seasonal-filters
 #> - decomposition.d9-global-msr
 #> - decomposition.d9-msr
@@ -364,6 +365,8 @@ summary(x13_dictionary())
 #> - diagnostics.fcast-insample-mean
 #> - diagnostics.fcast-outsample-mean
 #> - diagnostics.fcast-outsample-variance
+#> - diagnostics.td_f_ma
+#> - diagnostics.td_f_ols
 #> - m-statistics.m1
 #> - m-statistics.m2
 #> - m-statistics.m3
@@ -392,13 +395,13 @@ summary(x13_dictionary())
 
 # first 10 lines
 head(x13_full_dictionary(), n = 10)
-#>           name                                               description
-#> 1       period                                      period of the series
-#> 2   span.start                  start of the considered (partial) series
-#> 3     span.end                    end of the considered (partial) series
-#> 4       span.n      number of periods in the considered (partial) series
-#> 5 span.missing number of missing values in the considered (partial) s...
-#> 6          log                                         log-transformtion
+#>           name                                     description
+#> 1       period                 number of observations per year
+#> 2   span.start                    start date of SA estimation 
+#> 3     span.end                       end date of SA estimation
+#> 4       span.n   number of observations in the original series
+#> 5 span.missing number of missing values in the original series
+#> 6          log                log transformation (1=Yes, 0=No)
 #> ...
 #> 
 #>  For a complete list of all outputs, please call summary()

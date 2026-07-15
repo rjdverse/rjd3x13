@@ -19,7 +19,7 @@ set_x11(
   calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
   sigma.vector = NA,
   exclude.forecast = NA,
-  bias = c(NA, "LEGACY")
+  bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
 )
 ```
 
@@ -111,7 +111,10 @@ set_x11(
 
 - bias:
 
-  TODO.
+  , `NA` default value, no correction applied. If (`bias= "LEGACY"` or
+  `"RATIO"` or `"SMOOTH"` and if `mode = "LogAdditive"` a correction is
+  applied when computing final components (S, T, I) in level from
+  components estimated in log.
 
 ## Value
 
@@ -126,7 +129,7 @@ and
 ## Examples
 
 ``` r
-init_spec <- x11_spec()
+init_spec <- x13_spec()
 new_spec <- set_x11(init_spec,
     mode = "LogAdditive",
     seasonal.comp = 1,
@@ -139,6 +142,6 @@ new_spec <- set_x11(init_spec,
     calendar.sigma = "All",
     sigma.vector = NA,
     exclude.forecast = FALSE,
-    bias = "LEGACY"
+    bias = "RATIO"
 )
 ```

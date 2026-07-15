@@ -70,6 +70,15 @@ defining customized output
   [`userdefined_variables_x13()`](https://rjdverse.github.io/rjd3x13/reference/deprecated-rjd3x13.md)
   : Deprecated functions
 
+## Option for rjdverse
+
+Evironment specific to JDemetra+
+
+- [`get_x13_option()`](https://rjdverse.github.io/rjd3x13/reference/get_x13_option.md)
+  : Set an option for x13
+- [`x13_option()`](https://rjdverse.github.io/rjd3x13/reference/x13_option.md)
+  : Set an option for x13
+
 ## Wrangling Java objects
 
 Functions to easily interact between R and Java objects

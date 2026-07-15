@@ -1,6 +1,8 @@
 # Changelog
 
-## rjd3x13 3.7.1.9000
+## rjd3x13 3.8.0
+
+CRAN release: 2026-07-10
 
 All notable changes to this project will be documented in this file.
 
@@ -9,6 +11,21 @@ Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [Unreleased](https://github.com/rjdverse/rjd3x13/compare/v3.7.1...HEAD)
+
+#### Added
+
+- Span information to `JD3_X13_OUTPUT` objects
+  [\#45](https://github.com/rjdverse/rjd3x13/issues/45)
+
+#### Fixed
+
+- Print correctly seasonal component
+  [\#110](https://github.com/rjdverse/rjd3x13/issues/110)
+
+#### Changed
+
+- Updated JARS from jdplus-main to
+  [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
 
 ### [3.7.1](https://github.com/rjdverse/rjd3x13/compare/v3.6.0...v3.7.1) - 2026-03-10
 
