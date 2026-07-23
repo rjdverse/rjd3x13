@@ -87,6 +87,8 @@ init_spec
 #> Nb of forecasts: 0
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: MULTIPLICATIVE
+#> Bias: RATIO
 init_spec <- regarima_spec("rg4")
 init_spec
 #> Specification
@@ -190,6 +192,8 @@ init_spec
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No

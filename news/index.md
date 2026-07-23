@@ -1,8 +1,6 @@
 # Changelog
 
-## rjd3x13 3.8.0
-
-CRAN release: 2026-07-10
+## rjd3x13 3.8.0.9000
 
 All notable changes to this project will be documented in this file.
 

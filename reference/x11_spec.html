@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rjd3x13</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Set X-11 Specification</h1>
-      <small class="dont-index">Source: <a href="https://github.com/rjdverse/rjd3x13/blob/v3.8.0/R/set_x11_spec.R" class="external-link"><code>R/set_x11_spec.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rjdverse/rjd3x13/blob/develop/R/set_x11_spec.R" class="external-link"><code>R/set_x11_spec.R</code></a></small>
       <div class="d-none name"><code>x11_spec.Rd</code></div>
     </div>
 
@@ -78,16 +78,13 @@ default X11 spec can be obtained as 'x=x11_spec()'</p></dd>
 
 
 <dt id="arg-mode">mode<a class="anchor" aria-label="anchor" href="#arg-mode"></a></dt>
-<dd><p>character: the decomposition mode. Determines the mode of the
+<dd><p>character: the decomposition mode in X11. Determines the mode of the
 seasonal adjustment decomposition to be performed:
-<code>"Undefined"</code> - no assumption concerning the relationship between the time
-series components is made;
-<code>"Additive"</code> - assumes an additive relationship;
-<code>"Multiplicative"</code> - assumes a multiplicative relationship;
-<code>"LogAdditive"</code> - performs an additive decomposition of the logarithms of the
-series being adjusted;
-<code>"PseudoAdditive"</code> - assumes an pseudo-additive relationship. Could be
-changed by the program, if needed.</p></dd>
+If a pre-adjustment is performed mode is inherited:</p><ul><li><p>if log transformation in pre-adjustment, X11 <code>mode</code> is <code>"Multiplicative"</code> by default (or can also  be <code>"LogAdditive"</code> if set by the user)</p></li>
+<li><p>if no log transformation, X11 <code>mode</code> is <code>"Additive"</code> by default (or can also be <code>"PseudoAdditive"</code> if set by the user)</p></li>
+<li><p>If NO pre-adjustment is performed, just X-11 decomposition using 'x=x11_spec()' spec, mode is <code>"Multiplicative"</code> by default, it can be set to <code>"Additive"</code>, <code>"LogAdditive"</code>, <code>"PseudoAdditive"</code> (could be changed by the program, if needed).
+If set to <code>"Undefined"</code> an additive decomposition is performed, see details.</p></li>
+</ul></dd>
 
 
 <dt id="arg-seasonal-comp">seasonal.comp<a class="anchor" aria-label="anchor" href="#arg-seasonal-comp"></a></dt>
@@ -158,15 +155,25 @@ Default = FALSE.</p></dd>
 
 
 <dt id="arg-bias">bias<a class="anchor" aria-label="anchor" href="#arg-bias"></a></dt>
-<dd><p>, <code>NA</code> default value, no correction applied. If (<code>bias= "LEGACY"</code> or <code>"RATIO"</code> or <code>"SMOOTH"</code>
-and if <code>mode = "LogAdditive"</code> a correction is applied when computing final components (S, T, I) in level
-from components estimated in log.</p></dd>
+<dd><p>If <code>mode = "LogAdditive"</code> (only in this case) a correction is applied when computing final
+components (S, T, I) in level from components estimated in log.
+Then <code>bias= "RATIO"</code> (default) Average of S (on complete years)
+and I (on the whole series) is set to 1, the correction is allocated to T.).
+<code>"LEGACY"</code> or <code>"SMOOTH"</code> corrections are based on trend filters.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a "JD3_X11_SPEC" object, containing all the parameters.</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Decomposition mode formulas (Y: raw series, T: trend, S: seasonal, I: Irregular, SA: seasonally
+adjusted series)</p><ul><li><p>Additive: <code>Y=T+S+I</code>, <code>SA =Y-S=T+I</code></p></li>
+<li><p>Multiplicative <code>Y=T*S*I</code>, <code>SA =Y/S=T*I</code></p></li>
+<li><p>LogAdditive <code>Log(Y) = T + S + I</code>, <code>SA=exp(T+I)=Y/exp(S)</code></p></li>
+<li><p>PseudoAdditive <code>Y=T*(S+I-1)</code>, <code>SA=T*I</code></p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="x13_spec.html">x13_spec()</a></code> and <code><a href="x13_spec.html">x11_spec()</a></code>.</p></div>
