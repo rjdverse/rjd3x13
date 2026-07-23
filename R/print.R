@@ -38,31 +38,6 @@ print_diagnostics <- function(
     digits = max(3L, getOption("digits") - 3L),
     ...
 ) {
-    variance_decomposition <- x$variance_decomposition
-    residual_tests <- x$residual_tests
-
-    cat(
-        "Relative contribution of the components to the stationary",
-        "portion of the variance in the original series,",
-        "after the removal of the long term trend (in %)",
-        sep = "\n"
-    )
-    cat("\n")
-    cat(
-        paste0(
-            " ",
-            utils::capture.output(
-                stats::printCoefmat(
-                    variance_decomposition * 100,
-                    digits = digits,
-                    ...
-                )
-            )
-        ),
-        sep = "\n"
-    )
-    cat("\n")
-
     cat("Residual seasonality tests")
     cat("\n")
     cat(
@@ -72,9 +47,29 @@ print_diagnostics <- function(
                 stats::printCoefmat(
                     residual_tests[, "P.value", drop = FALSE],
                     digits = digits,
-                    na.print = "NA",
+                    na.print = "NA", 
                     ...
                 )
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
+
+    variance_decomposition <- x$variance_decomposition
+    residual_tests <- x$residual_tests
+
+    cat("Relative contribution of the components to the stationary",
+        "portion of the variance in the original series,",
+        "after the removal of the long term trend (in %)",
+        sep = "\n"
+    )
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            utils::capture.output(
+                stats::printCoefmat(variance_decomposition * 100, digits = digits, ...)
             )
         ),
         sep = "\n"
@@ -533,6 +528,8 @@ print.JD3_X11_SPEC <- function(x, ...) {
     cat("Nb of forecasts: ", x$nfcasts, "\n", sep = "")
     cat("Nb of backcasts: ", x$nbcasts, "\n", sep = "")
     cat("Calendar sigma: ", x$sigma, "\n", sep = "")
+    cat("Mode X-11: ", x$mode, "\n", sep = "")
+    cat("Bias: ", x$bias, "\n", sep = "")
 
     return(invisible(x))
 }

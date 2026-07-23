@@ -25,16 +25,15 @@ set_x11(
 \item{x}{the specification to be modified, object of class "JD3_X11_SPEC",
 default X11 spec can be obtained as 'x=x11_spec()'}
 
-\item{mode}{character: the decomposition mode. Determines the mode of the
+\item{mode}{character: the decomposition mode in X11. Determines the mode of the
 seasonal adjustment decomposition to be performed:
-\code{"Undefined"} - no assumption concerning the relationship between the time
-series components is made;
-\code{"Additive"} - assumes an additive relationship;
-\code{"Multiplicative"} - assumes a multiplicative relationship;
-\code{"LogAdditive"} - performs an additive decomposition of the logarithms of the
-series being adjusted;
-\code{"PseudoAdditive"} - assumes an pseudo-additive relationship. Could be
-changed by the program, if needed.}
+If a pre-adjustment is performed mode is inherited:
+\itemize{
+\item if log transformation in pre-adjustment, X11 \code{mode} is \code{"Multiplicative"} by default (or can also  be \code{"LogAdditive"} if set by the user)
+\item if no log transformation, X11 \code{mode} is \code{"Additive"} by default (or can also be \code{"PseudoAdditive"} if set by the user)
+\item If NO pre-adjustment is performed, just X-11 decomposition using 'x=x11_spec()' spec, mode is \code{"Multiplicative"} by default, it can be set to \code{"Additive"}, \code{"LogAdditive"}, \code{"PseudoAdditive"} (could be changed by the program, if needed).
+If set to \code{"Undefined"} an additive decomposition is performed, see details.
+}}
 
 \item{seasonal.comp}{logical: if \code{TRUE}, the program computes a seasonal
 component. Otherwise, the seasonal component is not estimated and its values
@@ -85,15 +84,27 @@ be computed separately. Possible values are: \code{1} or \code{2}.}
 detection of extreme values in the seasonal adjustment routines.
 Default = FALSE.}
 
-\item{bias}{, \code{NA} default value, no correction applied. If (\code{bias= "LEGACY"} or \code{"RATIO"} or \code{"SMOOTH"}
-and if \code{mode = "LogAdditive"} a correction is applied when computing final components (S, T, I) in level
-from components estimated in log.}
+\item{bias}{If \code{mode = "LogAdditive"} (only in this case) a correction is applied when computing final
+components (S, T, I) in level from components estimated in log.
+Then \code{bias= "RATIO"} (default) Average of S (on complete years)
+and I (on the whole series) is set to 1, the correction is allocated to T.).
+\code{"LEGACY"} or \code{"SMOOTH"} corrections are based on trend filters.}
 }
 \value{
 a "JD3_X11_SPEC" object, containing all the parameters.
 }
 \description{
 Set X-11 Specification
+}
+\details{
+Decomposition mode formulas (Y: raw series, T: trend, S: seasonal, I: Irregular, SA: seasonally
+adjusted series)
+\itemize{
+\item Additive: \code{Y=T+S+I}, \code{SA =Y-S=T+I}
+\item Multiplicative \code{Y=T*S*I}, \code{SA =Y/S=T*I}
+\item LogAdditive \code{Log(Y) = T + S + I}, \code{SA=exp(T+I)=Y/exp(S)}
+\item PseudoAdditive \code{Y=T*(S+I-1)}, \code{SA=T*I}
+}
 }
 \examples{
 \dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
