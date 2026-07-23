@@ -1,19 +1,20 @@
 Type: Package
 Package: rjd3x13
 Title: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x
-Version: 3.7.1.9100
+Version: 3.8.0.9000
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
            comment = c(ORCID = "0000-0001-7890-3857")),
-    person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art")),
+    person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art")),
     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
   )
 Description: R Interface to 'JDemetra+' 3.x
     (<https://github.com/jdemetra>) time series analysis software.  It
-    offers full access to options and outputs of 'X-13', including Reg-ARIMA
-    modelling (automatic AutoRegressive Integrated Moving Average (ARIMA) model 
-    with outlier detection and trading days adjustment) and X-11 decomposition.
+    offers full access to options and outputs of 'X-13', including
+    Reg-ARIMA modelling (automatic AutoRegressive Integrated Moving
+    Average (ARIMA) model with outlier detection and trading days
+    adjustment) and X-11 decomposition.
 License: EUPL
 URL: https://github.com/rjdverse/rjd3x13,
     https://rjdverse.github.io/rjd3x13/
@@ -22,12 +23,10 @@ Depends:
     R (>= 4.1.0)
 Imports:
     rJava (>= 1.0-6),
-    RProtoBuf (>= 0.4.25),
-    rjd3jars (>= 0.0.4),
-    rjd3toolkit (>= 3.7.1.9100)
-Remotes:  
-    github::rjdverse/rjd3jars,
-    github::rjdverse/rjd3toolkit
+    rjd3jars (>= 0.0.5),
+    rjd3toolkit (>= 3.8.0),
+    RProtoBuf (>= 0.4.25)
+Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
@@ -41,7 +40,10 @@ Collate:
     'x13_rslts.R'
     'x13_spec.R'
     'revisions.R'
+    'rjd3x13-package.R'
     'set_x11_spec.R'
     'x13.R'
     'zzz.R'
-Config/roxygen2/version: 8.0.0
+Remotes:  
+    github::rjdverse/rjd3jars,
+    github::rjdverse/rjd3toolkit

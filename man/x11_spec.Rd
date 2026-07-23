@@ -107,7 +107,7 @@ adjusted series)
 }
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 init_spec <- x13_spec()
 new_spec <- set_x11(init_spec,
     mode = "LogAdditive",
