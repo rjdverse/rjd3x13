@@ -1,10 +1,10 @@
 # {rjd3x13}
 
-[![R-CMD-check](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yaml)
-[![lint](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/R-CMD-check.yml)
+[![lint](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/lint.yml)
 
 [![GH Pages
-built](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yaml)
+built](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yml/badge.svg)](https://github.com/rjdverse/rjd3x13/actions/workflows/pkgdown.yml)
 
 {rjd3x13} offers full access to options and outputs of X-13
 ([`rjd3x13::x13()`](https://rjdverse.github.io/rjd3x13/reference/x13.md)),
