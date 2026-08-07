@@ -44,7 +44,7 @@ set_x11(
     can also be `"PseudoAdditive"` if set by the user)
 
   - If NO pre-adjustment is performed, just X-11 decomposition using
-    'x=x11_spec()' spec, mode is `"Multiplicative"` by default, it can
+    `x = x11_spec()` spec, mode is `"Multiplicative"` by default, it can
     be set to `"Additive"`, `"LogAdditive"`, `"PseudoAdditive"` (could
     be changed by the program, if needed). If set to `"Undefined"` an
     additive decomposition is performed, see details.
