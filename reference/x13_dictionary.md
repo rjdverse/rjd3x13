@@ -406,7 +406,7 @@ head(x13_full_dictionary(), n = 10)
 #> 
 #>  For a complete list of all outputs, please call summary()
 #> 
-#>  For more informations about the type, the java class of the output or additive details, call `View()`.
+#>  For more informations about the type, the Java class of the output or additive details, call `View()`.
 # For more structured information call `View(x13_full_dictionary())`
 
 # Extract names of output of interest
