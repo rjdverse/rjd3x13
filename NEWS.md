@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Updated JARS from jdplus-main to [3.9.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.9.0)
+
 ## [3.8.0] - 2026-07-15
 
 ### Added
