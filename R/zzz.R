@@ -65,10 +65,12 @@
 #' @param name Name of the option
 #' @param obj Option
 #'
-#' @export
+#' @return Invisibly returns `NULL`
 #'
 #' @examples
 #' x13_option("test", "DUMMY")
+#'
+#' @export
 x13_option <- function(name, obj) {
     options_x13 <- rjd3toolkit::.jd3_env$x13
     options_x13[[name]] <- obj
