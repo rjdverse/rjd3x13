@@ -7,7 +7,9 @@
 - **Alain Quartier-la-Tente**. Author.
   [](https://orcid.org/0000-0001-7890-3857)
 
-- **Tanguy Barthelemy**. Author, maintainer, artist.
+- **Tanguy Barthelemy**. Author, maintainer, artist, copyright holder.
+
+- **Eulalie Delaune**. Author.
 
 - **Anna Smyk**. Author.
 
@@ -16,13 +18,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/rjdverse/rjd3x13/blob/develop/DESCRIPTION)
 
-Palate J, Quartier-la-Tente A, Barthelemy T, Smyk A (2026). *rjd3x13:
-Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x*. R package version
-3.9.0, <https://github.com/rjdverse/rjd3x13>.
+Palate J, Quartier-la-Tente A, Barthelemy T, Delaune E, Smyk A (2026).
+*rjd3x13: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x*. R package
+version 3.9.0, <https://github.com/rjdverse/rjd3x13>.
 
     @Manual{,
       title = {rjd3x13: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x},
-      author = {Jean Palate and Alain Quartier-la-Tente and Tanguy Barthelemy and Anna Smyk},
+      author = {Jean Palate and Alain Quartier-la-Tente and Tanguy Barthelemy and Eulalie Delaune and Anna Smyk},
       year = {2026},
       note = {R package version 3.9.0},
       url = {https://github.com/rjdverse/rjd3x13},

@@ -19,15 +19,18 @@ Useful links:
 ## Author
 
 **Maintainer**: Tanguy Barthelemy <timeserieswithjdemetraandr@gmail.com>
-\[artist\]
+\[artist, copyright holder\]
 
 Authors:
 
-- Tanguy Barthelemy <timeserieswithjdemetraandr@gmail.com> \[artist\]
+- Tanguy Barthelemy <timeserieswithjdemetraandr@gmail.com> \[artist,
+  copyright holder\]
 
 - Jean Palate <palatejean@gmail.com>
 
 - Alain Quartier-la-Tente <alain.quartier@yahoo.fr>
   ([ORCID](https://orcid.org/0000-0001-7890-3857))
+
+- Eulalie Delaune <eulalie.delaune-virrion@insee.fr>
 
 - Anna Smyk <anna.smyk@insee.fr>
