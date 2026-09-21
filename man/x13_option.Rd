@@ -11,9 +11,13 @@ x13_option(name, obj)
 
 \item{obj}{Option}
 }
+\value{
+Invisibly returns \code{NULL}
+}
 \description{
 Set an option for x13
 }
 \examples{
 x13_option("test", "DUMMY")
+
 }
