@@ -20,13 +20,14 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Tanguy Barthelemy \email{tanguy.barthelemy@insee.fr} [artist]
+\strong{Maintainer}: Tanguy Barthelemy \email{timeserieswithjdemetraandr@gmail.com} [artist, copyright holder]
 
 Authors:
 \itemize{
-  \item Tanguy Barthelemy \email{tanguy.barthelemy@insee.fr} [artist]
+  \item Tanguy Barthelemy \email{timeserieswithjdemetraandr@gmail.com} [artist, copyright holder]
   \item Jean Palate \email{palatejean@gmail.com}
   \item Alain Quartier-la-Tente \email{alain.quartier@yahoo.fr} (\href{https://orcid.org/0000-0001-7890-3857}{ORCID})
+  \item Eulalie Delaune \email{eulalie.delaune-virrion@insee.fr}
   \item Anna Smyk \email{anna.smyk@insee.fr}
 }
 

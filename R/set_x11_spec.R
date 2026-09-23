@@ -2,16 +2,18 @@
 #'
 #' @param x the specification to be modified, object of class "JD3_X11_SPEC",
 #' default X11 spec can be obtained as 'x=x11_spec()'
-#' @param mode character: the decomposition mode. Determines the mode of the
-#' seasonal adjustment decomposition to be performed:
-#' `"Undefined"` - no assumption concerning the relationship between the time
-#' series components is made;
-#' `"Additive"` - assumes an additive relationship;
-#' `"Multiplicative"` - assumes a multiplicative relationship;
-#' `"LogAdditive"` - performs an additive decomposition of the logarithms of the
-#' series being adjusted;
-#' `"PseudoAdditive"` - assumes an pseudo-additive relationship. Could be
-#' changed by the program, if needed.
+#' @param mode character: the decomposition mode in X11. Determines the mode of
+#'   the seasonal adjustment decomposition to be performed:
+#'   If a pre-adjustment is performed mode is inherited:
+#'   - if log transformation in pre-adjustment, X11 `mode` is `"Multiplicative"`
+#'     by default (or can also  be `"LogAdditive"` if set by the user)
+#'   - if no log transformation, X11 `mode` is `"Additive"` by default (or can
+#'     also be `"PseudoAdditive"` if set by the user)
+#'   - If NO pre-adjustment is performed, just X-11 decomposition using
+#'     `x = x11_spec()` spec, mode is `"Multiplicative"` by default, it can be
+#'     set to `"Additive"`, `"LogAdditive"`, `"PseudoAdditive"` (could be
+#'     changed by the program, if needed).
+#'   If set to `"Undefined"` an additive decomposition is performed, see details.
 #' @param seasonal.comp logical: if `TRUE`, the program computes a seasonal
 #' component. Otherwise, the seasonal component is not estimated and its values
 #' are all set to 0 (additive decomposition) or 1 (multiplicative
@@ -43,8 +45,8 @@
 #' determines that the irregular component is heteroskedastic by calendar
 #' month/quarter (`"Signif"`); separately for two complementary sets of calendar
 #' months/quarters specified by the x11.sigmaVector parameter (`"Select"`, see
-#' parameter `sigma.vector`).If `sigma.vector` is specified then `calendar.sigma` is set to
-#' "Select"`.
+#' parameter `sigma.vector`).If `sigma.vector` is specified then
+#' `calendar.sigma` is set to "Select"`.
 #'
 #' @param sigma.vector a vector to specify one of the two groups of periods for
 #' which standard errors used for extreme values detection and adjustment will
@@ -53,9 +55,23 @@
 #' `TRUE`, the RegARIMA model forecasts and backcasts are not used during the
 #' detection of extreme values in the seasonal adjustment routines.
 #' Default = FALSE.
-#' @param bias , `NA` default value, no correction applied. If (`bias= "LEGACY"` or `"RATIO"` or `"SMOOTH"`
-#' and if `mode = "LogAdditive"` a correction is applied when computing final components (S, T, I) in level
-#' from components estimated in log.
+#' @param bias If `mode = "LogAdditive"` (only in this case) a correction is
+#' applied when computing final components (S, T, I) in level from components
+#' estimated in log.
+#' Then `bias= "RATIO"` (default) Average of S (on complete years)
+#' and I (on the whole series) is set to 1, the correction is allocated to T.).
+#'  `"LEGACY"` or `"SMOOTH"` corrections are based on trend filters.
+#'
+#' @details
+#' Decomposition mode formulas (Y: raw series, T: trend, S: seasonal,
+#' I: Irregular, SA: seasonally
+#' adjusted series)
+#' - Additive: `Y=T+S+I`, `SA =Y-S=T+I`
+#' - Multiplicative `Y=T*S*I`, `SA =Y/S=T*I`
+#' - LogAdditive `Log(Y) = T + S + I`, `SA=exp(T+I)=Y/exp(S)`
+#' - PseudoAdditive `Y=T*(S+I-1)`, `SA=T*I`
+#'
+#'
 #' @returns  a "JD3_X11_SPEC" object, containing all the parameters.
 #' @seealso [x13_spec()] and [x11_spec()].
 #'
@@ -97,7 +113,7 @@ set_x11 <- function(
     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
     sigma.vector = NA,
     exclude.forecast = NA,
-    bias = c(NA, "LEGACY","SMOOTH","RATIO")
+    bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
 ) {
     UseMethod("set_x11", x)
 }
@@ -122,7 +138,7 @@ set_x11.JD3_X11_SPEC <- function(
     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
     sigma.vector = NA,
     exclude.forecast = NA,
-    bias = c(NA, "LEGACY","SMOOTH","RATIO")
+    bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
 ) {
     mode <- match.arg(
         toupper(mode[1]),
@@ -156,7 +172,7 @@ set_x11.JD3_X11_SPEC <- function(
     )
     bias <- match.arg(
         toupper(bias),
-        c(NA, "LEGACY","SMOOTH","RATIO")
+        c(NA, "LEGACY", "SMOOTH", "RATIO")
     )
     if (!is.na(mode)) {
         x$mode <- switch(mode, UNDEFINED = "UNKNOWN", mode)

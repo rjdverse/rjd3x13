@@ -184,7 +184,8 @@ x11_spec <- function() {
     basic <- list(
         span = rjd3toolkit::.p2r_span(pspec$basic$span),
         preprocessing = pspec$basic$preprocessing,
-        preliminaryCheck = pspec$basic$preliminary_check
+        preliminaryCheck = pspec$basic$preliminary_check,
+        frequency = pspec$basic$annual_frequency
     )
     transform_list <- list(
         fn = rjd3toolkit::.enum_extract(

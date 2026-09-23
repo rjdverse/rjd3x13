@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [3.9.0] - 2026-09-23
+
+### Changed
+
+- Updated JARS from jdplus-main to [3.9.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.9.0)
+
+- Introduction of frequency in regarima spec
+
+- Updated documentation and GHA
+
 ## [3.8.0] - 2026-07-15
 
 ### Added
@@ -94,8 +104,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 * New JARS related to version [3.1.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.1.0)
 
-[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/3.8.0...HEAD
-[3.8.0]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...3.8.0
+[Unreleased]: https://github.com/rjdverse/rjd3x13/compare/v3.9.0...HEAD
+[3.9.0]: https://github.com/rjdverse/rjd3x13/compare/v3.8.0...v3.9.0
+[3.8.0]: https://github.com/rjdverse/rjd3x13/compare/v3.7.1...v3.8.0
 [3.7.1]: https://github.com/rjdverse/rjd3x13/compare/v3.6.0...v3.7.1
 [3.6.0]: https://github.com/rjdverse/rjd3x13/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/rjdverse/rjd3x13/compare/v3.5.0...v3.5.1

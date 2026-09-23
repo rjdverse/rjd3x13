@@ -1,6 +1,6 @@
 #' @importFrom rjd3jars check_java_version
 .onAttach <- function(libname, pkgname) {
-    # Check java version
+    # Check Java version
     rjd3jars::check_java_version(silent = FALSE, startup = TRUE)
 }
 
@@ -31,7 +31,7 @@
         morePaths = jars_inst
     )
     if (!result) {
-        stop("Loading java packages failed")
+        stop("Loading Java packages failed", call. = FALSE)
     }
 
     # If java >= 21, then reload dictionnaries
@@ -65,14 +65,16 @@
 #' @param name Name of the option
 #' @param obj Option
 #'
-#' @export
+#' @return Invisibly returns `NULL`
 #'
 #' @examples
 #' x13_option("test", "DUMMY")
+#'
+#' @export
 x13_option <- function(name, obj) {
-    options <- rjd3toolkit::.jd3_env$x13
-    options[[name]] <- obj
-    assign("x13", options, rjd3toolkit::.jd3_env)
+    options_x13 <- rjd3toolkit::.jd3_env$x13
+    options_x13[[name]] <- obj
+    assign("x13", options_x13, rjd3toolkit::.jd3_env)
     return(invisible(NULL))
 }
 
@@ -87,6 +89,6 @@ x13_option <- function(name, obj) {
 #' x13_option("test", "DUMMY")
 #' get_x13_option("test")
 get_x13_option <- function(name) {
-    options <- rjd3toolkit::.jd3_env$x13
-    return(options[[name]])
+    options_x13 <- rjd3toolkit::.jd3_env$x13
+    return(options_x13[[name]])
 }
