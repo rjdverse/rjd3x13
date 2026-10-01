@@ -113,7 +113,7 @@ set_x11 <- function(
     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
     sigma.vector = NA,
     exclude.forecast = NA,
-    bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
+    bias = c("NONE", "LEGACY", "SMOOTH", "RATIO")
 ) {
     UseMethod("set_x11", x)
 }
@@ -138,7 +138,7 @@ set_x11.JD3_X11_SPEC <- function(
     calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
     sigma.vector = NA,
     exclude.forecast = NA,
-    bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
+    bias = c(NA, "NONE", "LEGACY", "SMOOTH", "RATIO")
 ) {
     mode <- match.arg(
         toupper(mode[1]),
@@ -172,7 +172,7 @@ set_x11.JD3_X11_SPEC <- function(
     )
     bias <- match.arg(
         toupper(bias),
-        c(NA, "LEGACY", "SMOOTH", "RATIO")
+        c(NA, "NONE", "LEGACY", "SMOOTH", "RATIO")
     )
     if (!is.na(mode)) {
         x$mode <- switch(mode, UNDEFINED = "UNKNOWN", mode)
