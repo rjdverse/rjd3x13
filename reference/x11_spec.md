@@ -19,7 +19,7 @@ set_x11(
   calendar.sigma = c(NA, "None", "Signif", "All", "Select"),
   sigma.vector = NA,
   exclude.forecast = NA,
-  bias = c(NA, "LEGACY", "SMOOTH", "RATIO")
+  bias = c("NONE", "LEGACY", "SMOOTH", "RATIO")
 )
 ```
 

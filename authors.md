@@ -16,16 +16,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/rjdverse/rjd3x13/blob/v3.9.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/rjdverse/rjd3x13/blob/develop/DESCRIPTION)
 
 Palate J, Quartier-la-Tente A, Barthelemy T, Delaune E, Smyk A (2026).
 *rjd3x13: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x*. R package
-version 3.9.0, <https://github.com/rjdverse/rjd3x13>.
+version 3.9.0.9000, <https://github.com/rjdverse/rjd3x13>.
 
     @Manual{,
       title = {rjd3x13: Seasonal Adjustment with 'X-13' in 'JDemetra+' 3.x},
       author = {Jean Palate and Alain Quartier-la-Tente and Tanguy Barthelemy and Eulalie Delaune and Anna Smyk},
       year = {2026},
-      note = {R package version 3.9.0},
+      note = {R package version 3.9.0.9000},
       url = {https://github.com/rjdverse/rjd3x13},
     }
