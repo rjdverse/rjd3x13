@@ -20,7 +20,7 @@ x13_option(name, obj)
 
 ## Value
 
-Invisibly returns `NULL`
+Invisibly `NULL`
 
 ## Examples
 
