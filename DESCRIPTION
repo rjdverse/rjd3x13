@@ -33,6 +33,7 @@ Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
 Collate: 
     'deprecated.R'
+    'options.R'
     'print.R'
     'regarima_generic.R'
     'utils.R'
@@ -45,6 +46,6 @@ Collate:
     'set_x11_spec.R'
     'x13.R'
     'zzz.R'
-Remotes:  
+Remotes: 
     github::rjdverse/rjd3jars,
     github::rjdverse/rjd3toolkit

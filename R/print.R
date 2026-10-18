@@ -61,11 +61,13 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L), ...
 }
 
 #' @export
-print.JD3_X13_RSLTS <- function(x,
-                                digits = max(3L, getOption("digits") - 3L),
-                                summary_info = getOption("summary_info"),
-                                thresholds_pval = getOption("thresholds_pval"),
-                                ...) {
+print.JD3_X13_RSLTS <- function(
+    x,
+    digits = max(3L, getOption("digits") - 3L),
+    summary_info = getOption("summary_info"),
+    rjd3x13.thresholds_pval = getOption("rjd3x13.thresholds_pval"),
+    ...
+) {
     cat("Model: X-13\n")
     print(x$preprocessing,
         digits = digits,
@@ -90,8 +92,8 @@ print.JD3_X13_RSLTS <- function(x,
             "QS test on SA: %s (%.3f); ",
             base::cut(
                 x$diagnostics$seas.qstest.sa$pvalue,
-                breaks = c(0, thresholds_pval),
-                labels = names(thresholds_pval)
+                breaks = c(0, rjd3x13.thresholds_pval),
+                labels = names(rjd3x13.thresholds_pval)
             ),
             x$diagnostics$seas.qstest.sa$pvalue
         ),
@@ -99,8 +101,8 @@ print.JD3_X13_RSLTS <- function(x,
             "F-test on SA: %s (%.3f)\n",
             base::cut(
                 x$diagnostics$seas.ftest.sa$pvalue,
-                breaks = c(0, thresholds_pval),
-                labels = names(thresholds_pval)
+                breaks = c(0, rjd3x13.thresholds_pval),
+                labels = names(rjd3x13.thresholds_pval)
             ),
             x$diagnostics$seas.ftest.sa$pvalue
         )
