@@ -14,7 +14,10 @@ NULL
 #' @returns the `regarima()` function returns a list with the results
 #' (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result
 #' specification, while `regarima_fast()` is a faster function that only returns
-#' the results.
+#' the results. The `jregarima()` functions only returns
+#' results in a java object which will allow to customize outputs in other
+#' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
+#' [rjd3toolkit::result()] to get a specific variable)
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
@@ -139,6 +142,54 @@ regarima_fast <- function(
         ))
     }
 }
+#' @export
+#' @rdname regarima
+jregarima <- function(
+        ts,
+        spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+        context = NULL,
+        userdefined = NULL
+) {
+    jts <- rjd3toolkit::.r2jd_tsdata(ts)
+    if (is.character(spec)) {
+        spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
+        spec <- match.arg(
+            spec[1],
+            choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
+        )
+        jrslt <- .jcall(
+            "jdplus/x13/base/r/RegArima",
+            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+            "process",
+            jts,
+            spec
+        )
+    } else {
+        jspec <- .r2jd_spec_regarima(spec)
+        if (is.null(context)) {
+            jcontext <- .jnull(
+                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
+            )
+        } else {
+            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
+        }
+        jrslt <- .jcall(
+            "jdplus/x13/base/r/RegArima",
+            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+            "process",
+            jts,
+            jspec,
+            jcontext
+        )
+    }
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
+
 
 #' @importFrom RProtoBuf read
 .regarima_output <- function(jq) {
