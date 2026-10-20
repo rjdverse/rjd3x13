@@ -100,7 +100,7 @@ jregarima <- function(
         ts = ts, spec = spec, context = context,
         jfun = "process",
         joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
-        )
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
