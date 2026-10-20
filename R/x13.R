@@ -51,7 +51,7 @@ regarima <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jrslt <- jrslt_regarima(
+    jrslt <- .jrslt_regarima(
         ts = ts, spec = spec, context = context,
         jfun = "fullProcess",
         joutput = "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;"
@@ -71,7 +71,7 @@ regarima_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jrslt <- jrslt_regarima(
+    jrslt <- .jrslt_regarima(
         ts = ts, spec = spec, context = context,
         jfun = "process",
         joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
@@ -96,7 +96,7 @@ jregarima <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jrslt <- jrslt_regarima(
+    jrslt <- .jrslt_regarima(
         ts = ts, spec = spec, context = context,
         jfun = "process",
         joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
@@ -111,7 +111,7 @@ jregarima <- function(
 
 #' @keywords internals
 #' @noRd
-jrslt_regarima <- function(
+.jrslt_regarima <- function(
     ts,
     jfun,
     joutput,
@@ -225,7 +225,7 @@ x13 <- function(
     userdefined = NULL
 ) {
 
-    jrslt <- jrslt_x13(
+    jrslt <- .jrslt_x13(
         ts = ts, spec = spec, context = context,
         jfun = "fullProcess", joutput = "X13Output"
     )
@@ -249,7 +249,7 @@ x13_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jrslt <- jrslt_x13(
+    jrslt <- .jrslt_x13(
         ts = ts, spec = spec, context = context,
         jfun = "process", joutput = "X13Results"
     )
@@ -274,7 +274,7 @@ jx13 <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jrslt <- jrslt_x13(
+    jrslt <- .jrslt_x13(
         ts = ts, spec = spec, context = context,
         jfun = "process", joutput = "X13Results"
     )
@@ -288,7 +288,7 @@ jx13 <- function(
 
 #' @keywords internals
 #' @noRd
-jrslt_x13 <- function(
+.jrslt_x13 <- function(
     ts,
     jfun,
     joutput,
