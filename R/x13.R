@@ -145,10 +145,10 @@ regarima_fast <- function(
 #' @export
 #' @rdname regarima
 jregarima <- function(
-        ts,
-        spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
-        context = NULL,
-        userdefined = NULL
+    ts,
+    spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+    context = NULL,
+    userdefined = NULL
 ) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
