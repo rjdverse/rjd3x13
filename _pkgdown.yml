@@ -65,11 +65,12 @@ reference:
     - '`x13`'
     - '`x13_fast`'
     - '`x11`'
-- title: RegARIMA
+- title: RegARIMA Modelling and Forecasting
   desc: Functions to perform regARIMA estimation only
   contents:
     - '`regarima`'
     - '`regarima_fast`'
+    - '`regarima_forecast`'
 - title: Outlier Detection
   desc: Outlier Detection with a RegARIMA Model
   contents:
