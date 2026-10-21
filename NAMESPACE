@@ -61,6 +61,7 @@ export(jregarima)
 export(jx13)
 export(regarima)
 export(regarima_fast)
+export(regarima_forecast)
 export(regarima_outliers)
 export(regarima_refresh)
 export(regarima_spec)
@@ -123,13 +124,16 @@ importFrom(rjd3toolkit,
 importFrom(stats,
   .preformat.ts,
   coef,
+  deltat,
   df.residual,
+  frequency,
   is.ts,
   logLik,
   nobs,
   printCoefmat,
   residuals,
   start,
+  time,
   vcov
 )
 importFrom(utils,

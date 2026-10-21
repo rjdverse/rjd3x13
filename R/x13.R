@@ -779,3 +779,84 @@ x13_full_dictionary <- function() {
     class(dico) <- c("JD3_FULL_DICTIONARY", "data.frame")
     return(dico)
 }
+
+#' @title Forecasts with RegARIMA
+#'
+#' @inheritParams regarima
+#' @param nf the forecasting horizon (`numeric`). The forecast length is in
+#' periods (positive values) or years (negative values). By default, the program
+#' generates a one-year forecast (`nf = -1`).
+#'
+#' @returns a `mts` object with 4 variables:
+#' - `forecast` the forecast of the actual data at the end of the series.
+#'
+#' - `error` standard deviation of the forecast.
+#'
+#' - `fraw` the forecast of the transformed series.
+#'
+#' - `efraw` the standard deviation of the forecast of the transformed series.
+#'
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
+#'
+#' regarima_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
+#'
+#' @importFrom stats deltat frequency time
+#' @export
+regarima_forecast <- function(
+    ts,
+    spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+    context = NULL,
+    nf = -1
+) {
+    # TODO : check parameters
+    jts <- rjd3toolkit::.r2jd_tsdata(ts)
+    if (nf < 0) {
+        nf <- frequency(ts) * (-nf)
+    }
+
+    if (is.character(spec)) {
+        spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
+        spec <- match.arg(
+            spec[1],
+            choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
+        )
+        jrslt <- .jcall(
+            "jdplus/x13/base/r/RegArima",
+            "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+            "forecast",
+            jts,
+            spec,
+            as.integer(nf)
+        )
+    } else {
+        jspec <- .r2jd_spec_regarima(spec)
+        if (is.null(context)) {
+            jcontext <- .jnull(
+                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
+            )
+        } else {
+            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
+        }
+        jrslt <- .jcall(
+            "jdplus/tramoseats/base/r/Tramo",
+            "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+            "forecast",
+            jts,
+            jspec,
+            jcontext,
+            as.integer(nf)
+        )
+    }
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        rslt <- rjd3toolkit::.jd2r_matrix(jrslt)
+        rslt <- ts(
+            rslt,
+            frequency = frequency(ts),
+            start = time(ts)[length(ts)] + deltat(ts)
+        )
+        colnames(rslt) <- c("forecast", "error", "fraw", "efraw")
+        return(rslt)
+    }
+}
