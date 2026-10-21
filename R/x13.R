@@ -14,7 +14,10 @@ NULL
 #' @returns the `regarima()` function returns a list with the results
 #' (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result
 #' specification, while `regarima_fast()` is a faster function that only returns
-#' the results.
+#' the results. The `jregarima()` functions only returns
+#' results in a java object which will allow to customize outputs in other
+#' packages (use [rjd3toolkit::dictionary()] to get the list of variables and
+#' [rjd3toolkit::result()] to get a specific variable)
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
@@ -48,38 +51,11 @@ regarima <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c("rg0", "rg1", "rg2c", "rg3", "rg4", "rg5c")
-        )
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/RegArima",
-            "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;",
-            "fullProcess",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_regarima(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/RegArima",
-            "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;",
-            "fullProcess",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
+    jrslt <- .jrslt_regarima(
+        ts = ts, spec = spec, context = context,
+        jfun = "fullProcess",
+        joutput = "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;"
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
@@ -95,6 +71,53 @@ regarima_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
+    jrslt <- .jrslt_regarima(
+        ts = ts, spec = spec, context = context,
+        jfun = "process",
+        joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- .regarima_rslts(jrslt)
+        return(rjd3toolkit::.add_ud_var(
+            res,
+            jrslt,
+            userdefined = userdefined,
+            result = TRUE
+        ))
+    }
+}
+#' @export
+#' @rdname regarima
+jregarima <- function(
+    ts,
+    spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+    context = NULL,
+    userdefined = NULL
+) {
+    jrslt <- .jrslt_regarima(
+        ts = ts, spec = spec, context = context,
+        jfun = "process",
+        joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
+
+#' @keywords internals
+#' @noRd
+.jrslt_regarima <- function(
+    ts,
+    jfun,
+    joutput,
+    spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+    context = NULL
+) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("sa", "g", tolower(spec), fixed = TRUE)
@@ -104,8 +127,8 @@ regarima_fast <- function(
         )
         jrslt <- .jcall(
             "jdplus/x13/base/r/RegArima",
-            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
-            "process",
+            joutput,
+            jfun,
             jts,
             spec
         )
@@ -120,25 +143,16 @@ regarima_fast <- function(
         }
         jrslt <- .jcall(
             "jdplus/x13/base/r/RegArima",
-            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
-            "process",
+            joutput,
+            jfun,
             jts,
             jspec,
             jcontext
         )
     }
-    if (is.jnull(jrslt)) {
-        return(NULL)
-    } else {
-        res <- .regarima_rslts(jrslt)
-        return(rjd3toolkit::.add_ud_var(
-            res,
-            jrslt,
-            userdefined = userdefined,
-            result = TRUE
-        ))
-    }
+    return(jrslt)
 }
+
 
 #' @importFrom RProtoBuf read
 .regarima_output <- function(jq) {
@@ -210,41 +224,11 @@ x13 <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
-        )
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Output;",
-            "fullProcess",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_x13(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Output;",
-            "fullProcess",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
-    if (is.jnull(jrslt)) {
-        return(NULL)
-    }
+
+    jrslt <- .jrslt_x13(
+        ts = ts, spec = spec, context = context,
+        jfun = "fullProcess", joutput = "X13Output"
+    )
 
     res <- .x13_output(jrslt)
     output <- rjd3toolkit::.add_ud_var(
@@ -265,38 +249,10 @@ x13_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c("rsa0", "rsa1", "rsa2c", "rsa3", "rsa4", "rsa5c")
-        )
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Results;",
-            "process",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_x13(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Results;",
-            "process",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
+    jrslt <- .jrslt_x13(
+        ts = ts, spec = spec, context = context,
+        jfun = "process", joutput = "X13Results"
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
@@ -318,6 +274,27 @@ jx13 <- function(
     context = NULL,
     userdefined = NULL
 ) {
+    jrslt <- .jrslt_x13(
+        ts = ts, spec = spec, context = context,
+        jfun = "process", joutput = "X13Results"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
+
+#' @keywords internals
+#' @noRd
+.jrslt_x13 <- function(
+    ts,
+    jfun,
+    joutput,
+    spec =  c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+    context = NULL
+) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("g", "sa", tolower(spec), fixed = TRUE)
@@ -327,8 +304,8 @@ jx13 <- function(
         )
         jrslt <- .jcall(
             "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Output;",
-            "fullProcess",
+            sprintf("Ljdplus/x13/base/core/x13/%s;", joutput),
+            jfun,
             jts,
             spec
         )
@@ -343,24 +320,14 @@ jx13 <- function(
         }
         jrslt <- .jcall(
             "jdplus/x13/base/r/X13",
-            "Ljdplus/x13/base/core/x13/X13Output;",
-            "fullProcess",
+            sprintf("Ljdplus/x13/base/core/x13/%s;", joutput),
+            jfun,
             jts,
             jspec,
             jcontext
         )
     }
-    if (is.jnull(jrslt)) {
-        return(NULL)
-    } else {
-        jrslt <- .jcall(
-            jrslt,
-            "Ljdplus/x13/base/core/x13/X13Results;",
-            "getResult"
-        )
-        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
-        return(res)
-    }
+    return(jrslt)
 }
 
 #' @importFrom RProtoBuf read

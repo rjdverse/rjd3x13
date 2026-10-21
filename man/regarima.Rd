@@ -3,6 +3,7 @@
 \name{regarima}
 \alias{regarima}
 \alias{regarima_fast}
+\alias{jregarima}
 \title{RegARIMA model, pre-adjustment in X13}
 \usage{
 regarima(
@@ -13,6 +14,13 @@ regarima(
 )
 
 regarima_fast(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
+
+jregarima(
   ts,
   spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
   context = NULL,
@@ -35,7 +43,10 @@ estimation}
 the \code{regarima()} function returns a list with the results
 (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result
 specification, while \code{regarima_fast()} is a faster function that only returns
-the results.
+the results. The \code{jregarima()} functions only returns
+results in a java object which will allow to customize outputs in other
+packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of variables and
+\code{\link[rjd3toolkit:result]{rjd3toolkit::result()}} to get a specific variable)
 }
 \description{
 RegARIMA model, pre-adjustment in X13

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- New function `jregarima()` [#136](https://github.com/rjdverse/rjd3x13/issues/136)
+
 ## [3.9.0] - 2026-09-23
 
 ### Changed
