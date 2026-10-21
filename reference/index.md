@@ -29,6 +29,7 @@ Functions to perform regARIMA estimation only
 
 - [`regarima()`](https://rjdverse.github.io/rjd3x13/reference/regarima.md)
   [`regarima_fast()`](https://rjdverse.github.io/rjd3x13/reference/regarima.md)
+  [`jregarima()`](https://rjdverse.github.io/rjd3x13/reference/regarima.md)
   : RegARIMA model, pre-adjustment in X13
 
 ## Outlier Detection

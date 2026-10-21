@@ -10,6 +10,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [Unreleased](https://github.com/rjdverse/rjd3x13/compare/v3.9.0...HEAD)
 
+#### Added
+
+- New function
+  [`jregarima()`](https://rjdverse.github.io/rjd3x13/reference/regarima.md)
+  [\#136](https://github.com/rjdverse/rjd3x13/issues/136)
+
 ### [3.9.0](https://github.com/rjdverse/rjd3x13/compare/v3.8.0...v3.9.0) - 2026-09-23
 
 #### Changed

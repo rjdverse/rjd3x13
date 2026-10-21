@@ -18,6 +18,13 @@ regarima_fast(
   context = NULL,
   userdefined = NULL
 )
+
+jregarima(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
 ```
 
 ## Arguments
@@ -46,7 +53,13 @@ regarima_fast(
 the `regarima()` function returns a list with the results
 (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the
 result specification, while `regarima_fast()` is a faster function that
-only returns the results.
+only returns the results. The `jregarima()` functions only returns
+results in a java object which will allow to customize outputs in other
+packages (use
+[`rjd3toolkit::dictionary()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html)
+to get the list of variables and
+[`rjd3toolkit::result()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html)
+to get a specific variable)
 
 ## Examples
 
